@@ -5,13 +5,13 @@ import './AuthenticationForm.css';
 import * as Yup   from 'yup';
 
 //* HOC witch hook is useFormik
-import form       from '../../../HOC/form';
+import form       from '../../../../HOC/form';
 
 //* Components
-import Button     from '../../../Components/Button/Button';
-import Input      from '../../../Components/Input/Input';
-import InputError from '../../../Components/InputError/InputError';
-import Label      from '../../../Components/Label/Label';
+import Button     from '../../../../components/Button/Button';
+import Input      from '../../../../components/Input/Input';
+import InputError from '../../../../components/InputError/InputError';
+import Label      from '../../../../components/Label/Label';
 
 type Props = {
     values: {
@@ -56,8 +56,7 @@ const AuthenticationForm: FunctionComponent <Props> = ({values, errors, touched,
             .map(([key, value], index) =>
                 <Fragment key={index}>
                     <Label className="form-auth__label" text={key}>
-                        <Input 
-                            className="form-auth__input"
+                        <Input className="form-auth__input"
                             type        ={key} 
                             name        ={key} 
                             id          ={key} 
@@ -78,7 +77,7 @@ const AuthenticationForm: FunctionComponent <Props> = ({values, errors, touched,
 
     const FORM_AUTH_BUTTON = (
         <Button className="form-auth__button" type="submit">
-            login
+            Login
         </Button>
     ); 
 

@@ -2,15 +2,12 @@
     background-color: var(--main-blue-color);
     border: .15rem solid var(--main-grey-color);
     border-radius: .35rem;
-    
     color: var(--main-white-color);
     cursor: pointer;
-
     font-size: var(--main-fs-h3);
     font-weight: 400;
     text-transform: uppercase;
     transition: .3s;
-    
     outline: none;
 }
 
