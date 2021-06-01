@@ -1,0 +1,36 @@
+:root {
+    --main-black-color: #111016;
+    --main-white-color: #fff;
+    --main-grey-color: #757b92;
+    --main-lg-greu-color: #cccccc;
+    --main-blue-color: #30364a;
+    --main-lg-blue-color: #c4d0ee;
+    --main-brown-color: #d2a283;
+
+    --main-fs-h1: 2.4rem;
+    --main-fs-h2: 2.2rem;
+    --main-fs-h3: 1.6rem;
+
+    --main-fs-text: 1.4rem;
+    
+    --main-font-regular: 'DIN Pro', sans-serif;
+    --main-font-medium : 'DIN Pro', sans-serif;
+    --main-fron-bold   : 'DIN Pro Cond', sans-serif;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font: 400 var(--main-fs-text) / 1 var(--main-font-regular);
+}
+
+p {
+    margin-block-start: .5rem;
+    margin-block-end: .5rem;
+}

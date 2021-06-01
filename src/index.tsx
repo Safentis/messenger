@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './App/App';
+
+import 'normalize.css';
+import './fonts/DINPro/stylesheet.css'
 import './index.css';
-import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
