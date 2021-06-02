@@ -1,7 +1,8 @@
 import React from 'react';
+import Props from './Button.interface';
 import './Button.css';
 
-const Button = ({children, className = '', ...attrs}: any) => {
+const Button = ({children = 'button', className = '', ...attrs}: Props | any) => {
     return (
         <button className={`${className} button`} {...attrs}>
             {children}

@@ -1,17 +1,11 @@
 import React from 'react';
+import Props from './Label.interface';
 import './Label.css';
 
-type Props = {
-    children ?: any
-    className?: string
-    text     ?: string
-}
-
-const Label = ({children, className = '', text = ''}: Props) => {
+const Label = ({children, className = ''}: Props) => {
     return (
         <label className={`${className} label`}>
-            {text}
-            {children}
+            {[...children]}
         </label>
     );
 };

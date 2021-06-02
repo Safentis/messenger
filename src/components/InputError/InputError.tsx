@@ -1,15 +1,15 @@
 import React from 'react';
+import Props from './InputError.interface';
 import './InputError.css';
 
-type Props = {
-    message: string
-}
-
-const InputError = ({message}: Props) => {
+const InputError = ({error, touched}: Props) => {
     return (
-        <p className="input-error">
-            {message}
-        </p>
+        touched && error
+            ?
+                <p className="input-error">
+                    {error}
+                </p>
+            : null
     );
 };
 

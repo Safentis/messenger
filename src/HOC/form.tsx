@@ -11,18 +11,10 @@ const form = (Component: any, initialValues: any, onSubmit: any, validationSchem
         validationSchema: validationSchema,
     });
 
-    const { handleSubmit, handleChange, handleBlur } = formik;
-    const { errors, touched, values } = formik;
-
     return (
         <Component  
             {...props}
-            values={values} 
-            errors={errors} 
-            touched={touched}
-            handleSubmit={handleSubmit} 
-            handleChange={handleChange} 
-            handleBlure={handleBlur}
+            formik={formik}
         />
     );
 };
