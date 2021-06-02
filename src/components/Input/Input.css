@@ -1,0 +1,23 @@
+.input {
+    background: var(--main-white-color);
+    border: .1rem solid var(--main-lg-greu-color);
+    border-bottom: .1px solid var(--main-grey-color);
+    box-shadow: .1px .1px .1rem var(--main-grey-color);
+    border-radius: .35rem;
+
+    font-size: 1.6rem;
+    font-weight: 400;
+
+    outline: none;
+    padding: 1.25rem .75rem;
+    width: 100%;
+}
+
+.input::placeholder {
+    color: var(--main-grey-color);
+    text-transform: capitalize;
+}
+
+.input:focus {
+    border: .1rem solid var(--main-blue-color);
+}

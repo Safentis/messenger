@@ -1,11 +1,15 @@
-import React from 'react';
+import React    from 'react';
 import ReactDOM from 'react-dom';
+import Root     from './screens/Root';
+
+//* CSS Files
+import 'normalize.css';
+import './fonts/DINPro/stylesheet.css'
 import './index.css';
-import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Root />
   </React.StrictMode>,
   document.getElementById('root')
 );
