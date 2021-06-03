@@ -6,14 +6,14 @@ import { Props, Fields, Handlers, Validation } from './AuthenticationForm.interf
 import './AuthenticationForm.css';
 
 //* COMPONENTS
-import form       from '../../../HOC/form';
-import Label      from '../../../components/Label/Label';
-import Input      from '../../../components/Input/Input';
-import InputError from '../../../components/InputError/InputError';
-import Button     from '../../../components/Button/Button';
+import form       from '../../HOC/form';
+import Label      from '../../components/Label/Label';
+import Input      from '../../components/Input/Input';
+import InputError from '../../components/InputError/InputError';
+import Button     from '../../components/Button/Button';
 
 //* Action
-import { requestAuthentication as AUTH_REQUEST_ACTION } from '../../../redux/actionCreators/authentication';
+import { requestAuthentication as AUTH_REQUEST_ACTION } from '../../redux/actionCreators/authentication';
 
 //* Props for HOC form
 let AUTH_FORM_FIELDS: Fields = {
