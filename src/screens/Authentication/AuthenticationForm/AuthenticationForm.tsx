@@ -1,11 +1,6 @@
-import { FC }   from 'react';
+import { FC, Fragment } from 'react';
 import * as Yup from 'yup';
-import { 
-    Props, 
-    Fields, 
-    Handlers, 
-    Validation 
-} from './AuthenticationForm.interface';
+import { Props, Fields, Handlers, Validation } from './AuthenticationForm.interface';
 import './AuthenticationForm.css';
 
 //* COMPONENTS
@@ -14,7 +9,6 @@ import Label      from '../../../components/Label/Label';
 import Input      from '../../../components/Input/Input';
 import InputError from '../../../components/InputError/InputError';
 import Button     from '../../../components/Button/Button';
-
 
 //* Action
 import { requestAuthentication as AUTH_REQUEST_ACTION } from '../../../redux/actionCreators/authentication';
@@ -37,33 +31,35 @@ const AUTH_VALIDATION_SCHEMA: object = Yup.object({
 });
 
 const AuthenticationForm: FC <Props> = ({formik}): any => {
-    
-    //* handleSubmit, func for handle of form submit
+
+    //* HandleSubmit, func for handle of form submit
     const { handleSubmit    }: Handlers = formik;
     
-    //* validation input
+    //* Validation input
     const { errors, touched }: Validation = formik;
     
-    //* name for fields
+    //* Names for 'Form fields'
     const fields: string[] = ['email', 'password'];
-    //* Fields components
-
+    
+    //* 'Form fields'
     const FORM_FIELDS: any = (
         fields
             .map((name, index) => 
-                <Label className="form-auth__label" key={index}>
-                    {name}
-                    <Input 
-                        className="form-auth__input" 
-                        placeholder={name} 
-                        name={name}
-                        {...formik.getFieldProps(name)}
-                    />
+                <Fragment key={index}>
+                    <Label className="form-auth__label">
+                        {name}
+                        <Input 
+                            className="form-auth__input" 
+                            placeholder={name} 
+                            name={name}
+                            {...formik.getFieldProps(name)}
+                        />
+                    </Label>
                     <InputError 
                         touched={touched[name]} 
                         error={errors[name]} 
                     />
-                </Label>
+                </Fragment>
             )
     );
 
