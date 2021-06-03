@@ -1,8 +1,11 @@
 import { FC }   from 'react';
 import * as Yup from 'yup';
-import { Props, Fields, Handlers, Validation } from './AuthenticationForm.interface';
-
-//* CSS
+import { 
+    Props, 
+    Fields, 
+    Handlers, 
+    Validation 
+} from './AuthenticationForm.interface';
 import './AuthenticationForm.css';
 
 //* COMPONENTS
@@ -12,16 +15,17 @@ import Input      from '../../../components/Input/Input';
 import InputError from '../../../components/InputError/InputError';
 import Button     from '../../../components/Button/Button';
 
+
 //* Action
 import { requestAuthentication as AUTH_REQUEST_ACTION } from '../../../redux/actionCreators/authentication';
 
 //* Props for HOC form
-let AUTH_FORM_FIELDS: Fields = {
+const AUTH_FORM_FIELDS: Fields = {
     email   : '', 
     password: '',
 };
 
-let AUTH_VALIDATION_SCHEMA: object = Yup.object({
+const AUTH_VALIDATION_SCHEMA: object = Yup.object({
     email: Yup
         .string()
         .email('Invalid email format')
@@ -34,16 +38,16 @@ let AUTH_VALIDATION_SCHEMA: object = Yup.object({
 
 const AuthenticationForm: FC <Props> = ({formik}): any => {
     
-    //* name for fields
-    const fields: string[] = ['email', 'password'];
-
     //* handleSubmit, func for handle of form submit
     const { handleSubmit    }: Handlers = formik;
-
+    
     //* validation input
     const { errors, touched }: Validation = formik;
     
+    //* name for fields
+    const fields: string[] = ['email', 'password'];
     //* Fields components
+
     const FORM_FIELDS: any = (
         fields
             .map((name, index) => 
