@@ -18,6 +18,7 @@
     --main-fron-bold   : 'DIN Pro Cond', sans-serif;
     
     --error-color: crimson;
+    --success-color: #79aa6b;
 }
 
 *, ::after, ::before {
@@ -33,6 +34,7 @@ body {
 }
 
 p {
+    line-height: 1.5;
     margin-block-start: .5rem;
     margin-block-end: .5rem;
 }

@@ -12,20 +12,20 @@ import env      from 'react-dotenv';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-//* CSS Files
+//* CSS FILES
 import 'normalize.css';
 import './fonts/DINPro/stylesheet.css'
 import './index.css';
 
 firebase.initializeApp({
-  apiKey: env.FIREBASE_API_KEY,
-  authDomain: "messenger-b15ea.firebaseapp.com",
-  databaseURL: env.FIREBASE_DB_URL,
-  projectId: env.FIREBASE_PROJECT_ID,
-  storageBucket: "messenger-b15ea.appspot.com",
-  messagingSenderId: "476615363227",
-  appId: env.FIREBASE_APP_ID,
-  measurementId: env.FIREBASE_MEASUREMENT_ID
+  apiKey           : env.FIREBASE_API_KEY,
+  authDomain       : env.FIREBASE_AUTH_DOMAIN,
+  databaseURL      : env.FIREBASE_DB_URL,
+  projectId        : env.FIREBASE_PROJECT_ID,
+  storageBucket    : env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: env.FIREBASE_SENDING_ID,
+  appId            : env.FIREBASE_APP_ID,
+  measurementId    : env.FIREBASE_MEASUREMENT_ID
 });
 
 ReactDOM.render(

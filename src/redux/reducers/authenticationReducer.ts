@@ -1,11 +1,8 @@
+import { FETCH_MESSAGES_SUCCESS, FETCH_MESSAGES_FAILURE } from '../actions/authentication';
 import { State, Actions } from './authenticationReducerinterface';
-import {
-    FETCH_MESSAGES_SUCCESS,
-    FETCH_MESSAGES_FAILURE,
-} from '../actions/authentication';
 
 const initialState: State = {
-    loading : false,
+    success : false,
     error   : false,
 };
 
@@ -16,15 +13,15 @@ export const authenticationReducer = (state = initialState, action: Actions): St
     switch(type) {
         case FETCH_MESSAGES_SUCCESS:
             return {
-                ...state,
-                loading: true
+                success: true,
+                error  : false
             };
         case FETCH_MESSAGES_FAILURE:
             return {
-                ...state,
-                error: true
+                success: false,
+                error  : true
             };
         default:
             return state;
-    }
+    };
 };
