@@ -1,5 +1,6 @@
 import React from 'react';
 import './Authentication.css';
+
 import AuthenticationForm from './AuthenticationForm/AuthenticationForm';
 
 const Authentication = () => {
