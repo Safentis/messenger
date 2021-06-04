@@ -17,7 +17,7 @@ const signInAccount = ({email, password}: any): any => {
   );
 };
 
-function* requestAuthentication({type, payload: field}: any): Generator<
+function* requestAuthentication({payload: field}: any): Generator<
   StrictEffect,
   any,
   any
