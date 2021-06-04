@@ -9,16 +9,18 @@ const form = (Component: any, initialValues: any, action: any, validationSchema:
     const dispatch = useDispatch();
     const onSubmit = (values: any): void => {
 
+        //* setStatus function for handling status of request
+        const setStatus = formik.setStatus;
+
         //* With dispatch function we sending
         //* input values of form
         //* to the store
         dispatch(
-            action(
-                values
-            )
+            action({
+                values,
+                setStatus,
+            })
         );
-    
-        // alert(JSON.stringify(values, null, 2));
     }
 
     //* useFormik is hook 

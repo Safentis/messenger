@@ -9,6 +9,7 @@ import Label      from '../../../components/Label/Label';
 import Input      from '../../../components/Input/Input';
 import InputError from '../../../components/InputError/InputError';
 import Button     from '../../../components/Button/Button';
+import RequestStatus from '../../../components/RequestStatus/RequestStatus';
 
 //* Action
 import { requestAuthentication as AUTH_REQUEST_ACTION } from '../../../redux/actionCreators/authentication';
@@ -30,13 +31,13 @@ const AUTH_VALIDATION_SCHEMA: object = Yup.object({
         .required('Required'),
 });
 
-const AuthenticationForm: FC <Props> = ({formik}): any => {
-
-    //* HandleSubmit, func for handle of form submit
-    const { handleSubmit    }: Handlers = formik;
+const AuthenticationForm: FC <Props> = ({formik}: any): any => {
     
     //* Validation input
-    const { errors, touched }: Validation = formik;
+    const { errors, touched, status }: Validation = formik;
+    
+    //* HandleSubmit, func for handle of form submit
+    const { handleSubmit }: Handlers = formik;
     
     //* Names for 'Form fields'
     const fields: string[] = ['email', 'password'];
@@ -69,11 +70,18 @@ const AuthenticationForm: FC <Props> = ({formik}): any => {
         </Button>
     );
 
+    const FORM_STATUS: any = (
+        <RequestStatus status={status}/>
+    );
+
     return (
-        <form className="form" onSubmit={handleSubmit}>
-            {FORM_FIELDS}
-            {FORM_BUTTON}
-        </form>
+        <>
+            {FORM_STATUS}
+            <form className="form" onSubmit={handleSubmit}>
+                {FORM_FIELDS}
+                {FORM_BUTTON}
+            </form>
+        </>
     );
 };
 

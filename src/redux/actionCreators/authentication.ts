@@ -4,10 +4,11 @@ import {
     FETCH_MESSAGES_FAILURE,
 } from '../actions/authentication';
 
-export const requestAuthentication = (fields: any) => {
+export const requestAuthentication = (data: any) => {
+
     return {
         type: FETCH_MESSAGES_REQUEST,
-        payload: fields
+        payload: data
     };
 };
 

@@ -1,0 +1,10 @@
+.status {
+
+}
+
+.status-ok {
+    color: var(--success-color);
+}
+.status-bad {
+    color: var(--error-color);
+}
