@@ -1,6 +1,6 @@
 export interface State {
-    loading : boolean
-    error   : boolean
+    success: boolean
+    error  : boolean
 };
 
 export interface Actions {

@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase from 'firebase'; // FIREBASE
 import { put, takeEvery, all, call, StrictEffect } from 'redux-saga/effects'
 import {
   FETCH_MESSAGES_REQUEST,
@@ -24,10 +24,10 @@ function* requestAuthentication({payload: field}: any): Generator<
 > {
   try {
     const req: any = yield call(signInAccount, field);
-    console.log(req);
+    console.log('ok', req);
     yield put({type: FETCH_MESSAGES_SUCCESS});
   } catch (err) {
-    console.log(err);
+    console.log('error', err);
     yield put({type: FETCH_MESSAGES_FAILURE});
   }
 };
