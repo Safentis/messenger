@@ -1,5 +1,5 @@
 export interface Props {
-    formik : any
+    formik : any 
     handleSubmit: () => any
 };
 
@@ -15,4 +15,5 @@ export interface Handlers {
 export interface Validation {
     errors : any
     touched: any
+    status : boolean
 };

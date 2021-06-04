@@ -17,17 +17,17 @@ const signInAccount = ({email, password}: any): any => {
   );
 };
 
-function* requestAuthentication({payload: field}: any): Generator<
+function* requestAuthentication({payload: {values, setStatus}}: any): Generator<
   StrictEffect,
   any,
   any
 > {
   try {
-    const req: any = yield call(signInAccount, field);
-    console.log('ok', req);
+    const req: any = yield call(signInAccount, values);
+    setStatus(true);
     yield put({type: FETCH_MESSAGES_SUCCESS});
   } catch (err) {
-    console.log('error', err);
+    setStatus(false);
     yield put({type: FETCH_MESSAGES_FAILURE});
   }
 };
