@@ -5,6 +5,11 @@
     padding: .5rem 1rem;
 }
 
+.error-message__icon,
 .error-message__text {
     color: var(--error-color);
+}
+
+.error-message__icon {
+    margin: 0 .5rem 0 0;
 }
