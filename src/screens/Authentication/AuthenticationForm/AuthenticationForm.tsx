@@ -60,7 +60,7 @@ const AuthenticationForm: FC <Props> = ({formik}: any): any => {
                 : <RequestStatus className="form-auth__status" status={status}>
                     User was not found, please cheking email or password!  
                   </ RequestStatus>
-            : ''
+            : null
     );
 
     return (

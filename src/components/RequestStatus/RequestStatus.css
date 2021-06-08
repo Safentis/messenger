@@ -18,9 +18,9 @@
     align-items: center;
     display: flex;
     justify-content: center;
+    text-align: center;
     font-size: var(--main-fs-h3);
     font-weight: 400;
-    text-align: center;
 }
 
 .status__icon {
