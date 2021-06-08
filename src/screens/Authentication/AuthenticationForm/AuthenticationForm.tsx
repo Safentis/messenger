@@ -1,5 +1,7 @@
 import { FC, Fragment                } from 'react';
 import { Props, Handlers, Validation } from './AuthenticationForm.interface';
+import { FontAwesomeIcon             } from '@fortawesome/react-fontawesome';
+import { faSignInAlt                 } from '@fortawesome/free-solid-svg-icons';
 import './AuthenticationForm.css';
 
 //* COMPONENTS
@@ -44,7 +46,8 @@ const AuthenticationForm: FC <Props> = ({formik}: any): any => {
 
     const FORM_BUTTON: any = (
         <Button className="form-auth__button" type="submit">
-            login
+            Login
+            <FontAwesomeIcon className="button__icon" icon={faSignInAlt}/> 
         </Button>
     );
 
@@ -52,10 +55,10 @@ const AuthenticationForm: FC <Props> = ({formik}: any): any => {
         status != undefined  
             ? status 
                 ? <RequestStatus className="form-auth__status" status={status}>
-                    User was found, wellcome!
+                    Access is allowed, wellcome!
                   </ RequestStatus>
                 : <RequestStatus className="form-auth__status" status={status}>
-                    User was not found, please cheked email or password!  
+                    User was not found, please cheking email or password!  
                   </ RequestStatus>
             : ''
     );
