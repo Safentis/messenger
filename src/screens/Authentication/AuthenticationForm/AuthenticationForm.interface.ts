@@ -1,11 +1,5 @@
 export interface Props {
-    formik : any
-    handleSubmit: () => any
-};
-
-export interface Fields {
-    email   : string
-    password: string
+    formik : any 
 };
 
 export interface Handlers {
@@ -15,4 +9,5 @@ export interface Handlers {
 export interface Validation {
     errors : any
     touched: any
+    status : boolean
 };

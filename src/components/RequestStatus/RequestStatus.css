@@ -1,0 +1,27 @@
+.status {
+    background-color: var(--main-white-color);
+    padding: .5rem .1rem;
+    text-align: center;
+}
+
+.status_blue {
+    background-color: rgba(203, 203, 226, 0.789);
+    box-shadow: .1rem .1rem .25rem rgba(203, 203, 226, 0.789);
+}
+
+.status_brown {
+    background-color: var(--main-lg-brown-color);
+    box-shadow: .1rem .1rem .25rem var(--main-lg-brown-color);
+}
+
+.status__text {
+    font-size: var(--main-fs-h3);
+    font-weight: 400;
+}
+
+.status__text_green {
+    color: var(--success-color);
+}
+.status__text_red {
+    color: var(--error-color);
+}

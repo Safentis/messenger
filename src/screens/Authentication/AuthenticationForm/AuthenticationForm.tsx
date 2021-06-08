@@ -1,42 +1,21 @@
-import { FC, Fragment } from 'react';
-import * as Yup from 'yup';
-import { Props, Fields, Handlers, Validation } from './AuthenticationForm.interface';
+import { FC, Fragment                } from 'react';
+import { Props, Handlers, Validation } from './AuthenticationForm.interface';
 import './AuthenticationForm.css';
 
 //* COMPONENTS
-import form       from '../../../HOC/form';
-import Label      from '../../../components/Label/Label';
-import Input      from '../../../components/Input/Input';
-import InputError from '../../../components/InputError/InputError';
-import Button     from '../../../components/Button/Button';
+import RequestStatus from '../../../components/RequestStatus/RequestStatus';
+import Label         from '../../../components/Label/Label';
+import Input         from '../../../components/Input/Input';
+import ErrorMessage  from '../../../components/ErrorMessage/ErrorMessage';
+import Button        from '../../../components/Button/Button';
 
-//* Action
-import { requestAuthentication as AUTH_REQUEST_ACTION } from '../../../redux/actionCreators/authentication';
-
-//* Props for HOC form
-const AUTH_FORM_FIELDS: Fields = {
-    email   : '', 
-    password: '',
-};
-
-const AUTH_VALIDATION_SCHEMA: object = Yup.object({
-    email: Yup
-        .string()
-        .email('Invalid email format')
-        .required('Required'),
-    password: Yup
-        .string()
-        .min(6, 'Not less than 6 symbol')
-        .required('Required'),
-});
-
-const AuthenticationForm: FC <Props> = ({formik}): any => {
-
-    //* HandleSubmit, func for handle of form submit
-    const { handleSubmit    }: Handlers = formik;
+const AuthenticationForm: FC <Props> = ({formik}: any): any => {
     
     //* Validation input
-    const { errors, touched }: Validation = formik;
+    const { errors, touched, status }: Validation = formik;
+    
+    //* HandleSubmit, func for handle of form submit
+    const { handleSubmit }: Handlers = formik;
     
     //* Names for 'Form fields'
     const fields: string[] = ['email', 'password'];
@@ -55,7 +34,7 @@ const AuthenticationForm: FC <Props> = ({formik}): any => {
                             {...formik.getFieldProps(name)}
                         />
                     </Label>
-                    <InputError 
+                    <ErrorMessage 
                         touched={touched[name]} 
                         error={errors[name]} 
                     />
@@ -69,17 +48,27 @@ const AuthenticationForm: FC <Props> = ({formik}): any => {
         </Button>
     );
 
+    const FORM_REQUEST_STATUS: any = (
+        status != undefined  
+            ? status 
+                ? <RequestStatus className="form-auth__status" status={status}>
+                    User was found, wellcome!
+                  </ RequestStatus>
+                : <RequestStatus className="form-auth__status" status={status}>
+                    User was not found, please cheked email or password!  
+                  </ RequestStatus>
+            : ''
+    );
+
     return (
-        <form className="form" onSubmit={handleSubmit}>
-            {FORM_FIELDS}
-            {FORM_BUTTON}
-        </form>
+        <>
+            <form className="form" onSubmit={handleSubmit}>
+                {FORM_FIELDS}
+                {FORM_BUTTON}
+                {FORM_REQUEST_STATUS}
+            </form>
+        </>
     );
 };
 
-export default form(
-    AuthenticationForm, 
-    AUTH_FORM_FIELDS, 
-    AUTH_REQUEST_ACTION, 
-    AUTH_VALIDATION_SCHEMA
-);
+export default AuthenticationForm; 
