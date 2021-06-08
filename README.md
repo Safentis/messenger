@@ -1,1 +1,1 @@
-### The messanger - app for NSsoft company
+### The messenger - app for NSsoft company
