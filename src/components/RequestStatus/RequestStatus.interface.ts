@@ -1,3 +1,5 @@
 export default interface Props {
-    status: boolean
+    className?: string
+    status    : boolean
+    children  : any
 }

@@ -1,35 +1,13 @@
-import { FC, Fragment } from 'react';
-import * as Yup from 'yup';
-import { Props, Fields, Handlers, Validation } from './AuthenticationForm.interface';
+import { FC, Fragment                } from 'react';
+import { Props, Handlers, Validation } from './AuthenticationForm.interface';
 import './AuthenticationForm.css';
 
 //* COMPONENTS
-import form       from '../../../HOC/form';
-import Label      from '../../../components/Label/Label';
-import Input      from '../../../components/Input/Input';
-import InputError from '../../../components/InputError/InputError';
-import Button     from '../../../components/Button/Button';
 import RequestStatus from '../../../components/RequestStatus/RequestStatus';
-
-//* Action
-import { requestAuthentication as AUTH_REQUEST_ACTION } from '../../../redux/actionCreators/authentication';
-
-//* Props for HOC form
-const AUTH_FORM_FIELDS: Fields = {
-    email   : '', 
-    password: '',
-};
-
-const AUTH_VALIDATION_SCHEMA: object = Yup.object({
-    email: Yup
-        .string()
-        .email('Invalid email format')
-        .required('Required'),
-    password: Yup
-        .string()
-        .min(6, 'Not less than 6 symbol')
-        .required('Required'),
-});
+import Label         from '../../../components/Label/Label';
+import Input         from '../../../components/Input/Input';
+import ErrorMessage  from '../../../components/ErrorMessage/ErrorMessage';
+import Button        from '../../../components/Button/Button';
 
 const AuthenticationForm: FC <Props> = ({formik}: any): any => {
     
@@ -56,7 +34,7 @@ const AuthenticationForm: FC <Props> = ({formik}: any): any => {
                             {...formik.getFieldProps(name)}
                         />
                     </Label>
-                    <InputError 
+                    <ErrorMessage 
                         touched={touched[name]} 
                         error={errors[name]} 
                     />
@@ -70,24 +48,27 @@ const AuthenticationForm: FC <Props> = ({formik}: any): any => {
         </Button>
     );
 
-    const FORM_STATUS: any = (
-        <RequestStatus status={status}/>
+    const FORM_REQUEST_STATUS: any = (
+        status != undefined  
+            ? status 
+                ? <RequestStatus className="form-auth__status" status={status}>
+                    User was found, wellcome!
+                  </ RequestStatus>
+                : <RequestStatus className="form-auth__status" status={status}>
+                    User was not found, please cheked email or password!  
+                  </ RequestStatus>
+            : ''
     );
 
     return (
         <>
-            {FORM_STATUS}
             <form className="form" onSubmit={handleSubmit}>
                 {FORM_FIELDS}
                 {FORM_BUTTON}
+                {FORM_REQUEST_STATUS}
             </form>
         </>
     );
 };
 
-export default form(
-    AuthenticationForm, 
-    AUTH_FORM_FIELDS, 
-    AUTH_REQUEST_ACTION, 
-    AUTH_VALIDATION_SCHEMA
-);
+export default AuthenticationForm; 

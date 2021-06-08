@@ -1,17 +1,18 @@
 :root {
-    --main-black-color: #111016;
-    --main-white-color: #fff;
-    --main-grey-color: #757b92;
-    --main-lg-greu-color: #cccccc;
-    --main-blue-color: #30364a;
-    --main-lg-blue-color: #c4d0ee;
-    --main-brown-color: #d2a283;
+    --main-black-color   : #111016;
+    --main-white-color   : #fff;
+    --main-grey-color    : #757b92;
+    --main-lg-greu-color : #cccccc;
+    --main-blue-color    : #30364a;
+    --main-lg-blue-color : #c4d0ee;
+    --main-brown-color   : #d2a283;
+    --main-lg-brown-color: #d2a38395;
     
-    --main-fs-h1: 2.4rem;
-    --main-fs-h2: 2.2rem;
-    --main-fs-h3: 1.6rem;
-    
+    --main-fs-h1  : 2.4rem;
+    --main-fs-h2  : 2.2rem;
+    --main-fs-h3  : 1.6rem;
     --main-fs-text: 1.4rem;
+    
     
     --main-font-regular: 'DIN Pro', sans-serif;
     --main-font-medium : 'DIN Pro', sans-serif;

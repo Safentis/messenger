@@ -16,3 +16,7 @@
     padding: 1.25rem .75rem;
     width: 100%;
 }
+
+.form-auth__status {
+    margin-top: 1.5rem;
+}
