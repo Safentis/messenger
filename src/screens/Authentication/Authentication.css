@@ -1,4 +1,14 @@
-.page__card {
+.main__authentication-container {
+    align-items: center;
+    border-radius: .25rem;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    margin: 0 auto;
+    max-width: 90%;
+}
+
+.main__authentication {
     max-width: 45rem;
     width: 100%;
 }

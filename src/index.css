@@ -2,7 +2,7 @@
     --main-black-color   : #111016;
     --main-white-color   : #fff;
     --main-grey-color    : #757b92;
-    --main-lg-greu-color : #cccccc;
+    --main-lg-grey-color : #cccccc;
     --main-blue-color    : #30364a;
     --main-lg-blue-color : #c4d0ee;
     --main-brown-color   : #d2a283;
@@ -38,4 +38,10 @@ p {
     line-height: 1.5;
     margin-block-start: .5rem;
     margin-block-end: .5rem;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }

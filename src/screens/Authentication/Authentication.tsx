@@ -8,6 +8,9 @@ import form                      from '../../HOC/form';
 import { Fields                } from './Authentication.interface';
 import { requestAuthentication } from '../../redux/actionCreators/authentication';
 
+
+//* PROPERTY FOR HOC form
+//* which set up a formik
 const AUTH_FORM_FIELDS: Fields = {
     email   : '', 
     password: '',
@@ -24,7 +27,7 @@ const AUTH_VALIDATION_SCHEMA: object = Yup.object({
         .required('Required'),
 });
 
-const AuthenticationFormFormik: any = form(
+const AuthenticationFormHOC: any = form(
     AuthenticationForm, 
     AUTH_FORM_FIELDS, 
     requestAuthentication, 
@@ -33,12 +36,14 @@ const AuthenticationFormFormik: any = form(
 
 const Authentication = () => {
     return (
-        <section className="card page__card">
-            <h2 className="title card__title">
-                Authentication
-            </h2>
-            <AuthenticationFormFormik />
-        </section>
+        <div className="main__authentication-container">
+            <section className="card main__authentication">
+                <h2 className="title card__title">
+                    Authentication
+                </h2>
+                <AuthenticationFormHOC />
+            </section>
+        </div>
     );
 };
 

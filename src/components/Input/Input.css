@@ -1,23 +1,27 @@
 .input {
-    background: var(--main-white-color);
-    border: .1rem solid var(--main-lg-greu-color);
-    border-bottom: .1px solid var(--main-grey-color);
-    box-shadow: .1px .1px .1rem var(--main-grey-color);
-    border-radius: .35rem;
-
-    font-size: 1.6rem;
-    font-weight: 400;
-
     outline: none;
-    padding: 1.25rem .75rem;
+    border: none;
     width: 100%;
 }
 
-.input::placeholder {
+.input-auth::placeholder {
     color: var(--main-grey-color);
     text-transform: capitalize;
 }
 
-.input:focus {
+.input-auth:focus {
     border: .1rem solid var(--main-blue-color);
+}
+
+.input-auth {
+    background: var(--main-white-color);
+    border: .1rem solid var(--main-lg-grey-color);
+    border-bottom: .1px solid var(--main-grey-color);
+    border-radius: .35rem;
+    box-shadow: .1px .1px .1rem var(--main-grey-color);
+
+    padding: 1.25rem .75rem;
+
+    font-size: 1.6rem;
+    font-weight: 400;
 }

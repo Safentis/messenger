@@ -1,11 +1,5 @@
 .main {
-    align-items: center;
-    background-color: var(--main-white-color);
-    display: flex;
-    justify-content: center;
     height: 100vh;
-    margin: 0 auto;
-    max-width: 117.8rem;
 }
 
 .title {
