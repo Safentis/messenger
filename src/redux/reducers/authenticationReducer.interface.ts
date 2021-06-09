@@ -1,6 +1,5 @@
 export interface State {
     success: boolean
-    error  : boolean
 };
 
 export interface Actions {

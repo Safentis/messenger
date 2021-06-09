@@ -5,7 +5,7 @@ import './Label.css';
 const Label = ({children, className = '', attrs}: Props) => {
     return (
         <label className={`${className} label`} {...attrs}>
-            {[...children]}
+            {[children].length <= 1 ? children : [...children]}
         </label>
     );
 };

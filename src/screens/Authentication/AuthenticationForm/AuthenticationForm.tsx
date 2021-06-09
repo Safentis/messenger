@@ -4,12 +4,14 @@ import { FontAwesomeIcon             } from '@fortawesome/react-fontawesome';
 import { faSignInAlt                 } from '@fortawesome/free-solid-svg-icons';
 import './AuthenticationForm.css';
 
+
 //* COMPONENTS
 import RequestStatus from '../../../components/RequestStatus/RequestStatus';
 import Label         from '../../../components/Label/Label';
 import Input         from '../../../components/Input/Input';
 import ErrorMessage  from '../../../components/ErrorMessage/ErrorMessage';
 import Button        from '../../../components/Button/Button';
+
 
 const AuthenticationForm: FC <Props> = ({formik}: any): any => {
     
@@ -52,7 +54,7 @@ const AuthenticationForm: FC <Props> = ({formik}: any): any => {
     );
 
     const FORM_REQUEST_STATUS: any = (
-        status != undefined  
+        status !== undefined  
             ? status 
                 ? <RequestStatus className="form-auth__status" status={status}>
                     Access is allowed, wellcome!

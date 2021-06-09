@@ -24,6 +24,7 @@ function* requestAuthentication({payload: {values, setStatus}}: any): Generator<
 > {
   try {
     const req: any = yield call(signInAccount, values);
+    
     setStatus(true);
     yield put({type: FETCH_MESSAGES_SUCCESS});
   } catch (err) {
