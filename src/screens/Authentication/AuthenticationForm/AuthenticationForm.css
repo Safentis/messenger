@@ -19,4 +19,9 @@
 
 .form-auth__status {
     margin-top: 1.5rem;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: .5rem .1rem;
 }

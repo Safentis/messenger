@@ -1,22 +1,19 @@
-import React                   from 'react';
-import Props                   from './ErrorMessage.interface';
-import { FontAwesomeIcon     } from '@fortawesome/react-fontawesome';
-import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import React from 'react';
+import Props from './ErrorMessage.interface';
 import './ErrorMessage.css';
 
-const ErrorMessage = ({error, touched}: Props): any => {
+//* FONTAWESOME
+import { FontAwesomeIcon     } from '@fortawesome/react-fontawesome';
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+
+const ErrorMessage = ({children = 'Error', className = ''}: Props): any => {
     return (
-        touched && error
-            ?   <div className="error-message">
-                    <p className="error-message__text">
-                        <FontAwesomeIcon 
-                            className="error-message__icon" 
-                            icon={faExclamationCircle}
-                        /> 
-                        {error}
-                    </p>
-                </div>
-            : null
+        <div className={"error-message " + className}>
+            <p className="error-message__text error-message__text_red">
+                <FontAwesomeIcon className="error-message__icon_red" icon={faExclamationCircle}/>
+                {children}
+            </p>
+        </div>
     );
 };
 
