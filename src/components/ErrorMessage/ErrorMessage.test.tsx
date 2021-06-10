@@ -4,65 +4,64 @@ import '@testing-library/jest-dom/extend-expect';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-import { shallow } from 'enzyme';
+import { shallow }  from 'enzyme';
 import ErrorMessage from './ErrorMessage';
 
 describe('<ErrorMessage />', () => {
 
-    describe(`
-        ErrorMessage component with touched false value
-        <ErrorMessage error={"Required"} touched={false} />
-    `, () => {
-        let wrapper  : any;
-        let error    : string  = 'Required';
-        let touched  : boolean = false;
-        let component: any     = <ErrorMessage error={error} touched={touched} />
+    describe('Standart component', () => {
 
-        beforeEach(() => {
-            wrapper = shallow(component);
-        });
-
-        it('If error or toched is a false value, then component returns null', () => {
-            expect(wrapper.get(0)).toBeNull();
-        });
-    });
-
-    describe(`
-        ErrorMessage component with touched true value
-        <ErrorMessage error={"Required"} touched={true} />
-    `, () => {
-        let wrapper  : any;
-        let error    : string  = 'Required';
-        let touched  : boolean = true;
-        let component: any     = <ErrorMessage error={error} touched={touched} />
+        const component = <ErrorMessage />
+        const wrapper   = shallow(component);
     
-        beforeEach(() => {
-            wrapper = shallow(component);
+        //* Elements
+        it('JSX element ErrorMessage has div', () => {
+            expect(wrapper.find('div')).toHaveLength(1);            
         });
 
-        it(`
-            If error or toched is a true value, then component returns markup,
-            div, p, FontAwesomeIcon(svg-icon)
-        `, () => {
-            expect(wrapper.find('div')).toHaveLength(1);
-            expect(wrapper.find('p')).toHaveLength(1);
+        it('JSX element ErrorMessage has p', () => {
+            expect(wrapper.find('p')).toHaveLength(1);            
+        });
+        
+        it('JSX element ErrorMessage has element <FontAwesomeIcon />', () => {
             expect(wrapper.find('FontAwesomeIcon')).toHaveLength(1);
         });
 
-        it('Element div has className error-message', () => {
-            expect(wrapper.find('div').hasClass('error-message')).toBeTruthy();
+        //* Classes
+        it('JSX element ErrorMessage has className "error-message"', () => {
+            expect(wrapper.find('div').hasClass('error-message')).toBeTruthy();            
         });
 
-        it('Element p has className error-message__text', () => {
-            expect(wrapper.find('p').hasClass('error-message__text')).toBeTruthy();
+        it(`
+            JSX element ErrorMessage has both classNames 
+            "error-message__text" and "error-message__text_red"
+        `, () => {
+            expect(wrapper.find('p').hasClass('error-message__text')).toBeTruthy();            
+            expect(wrapper.find('p').hasClass('error-message__text_red')).toBeTruthy();            
         });
 
-        it('Element FontAwesomeIcon has className error-message__icon', () => {
-            expect(wrapper.find('FontAwesomeIcon').hasClass('error-message__icon')).toBeTruthy();
+        //* Text
+        it('JSX element ErrorMessage has text with fontawesome icon "<FontAwesomeIcon />Error"', () => {
+            expect(wrapper.find('p').text()).toBe('<FontAwesomeIcon />Error');            
+        });
+    });
+
+    describe('Custom component', () => {
+        const component = (
+            <ErrorMessage className="custom-class">
+                Custom error message
+            </ErrorMessage>
+        );
+
+        const wrapper   = shallow(component);
+
+        it('JSX element ErrorMessage has className "custom-class"', () => {
+            expect(wrapper.find('div').hasClass('custom-class')).toBeTruthy();            
         });
 
-        it('Element p has content <FontAwesomeIcon />Required', () => {
-            expect(wrapper.find('p').text()).toBe('<FontAwesomeIcon />Required');
+        //* Text
+        it('JSX element ErrorMessage has text with fontawesome icon "<FontAwesomeIcon />Custom error message"', () => {
+            expect(wrapper.find('p').text()).toBe('<FontAwesomeIcon />Custom error message');            
         });
     });
 });

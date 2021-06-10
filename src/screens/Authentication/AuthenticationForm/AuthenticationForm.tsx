@@ -5,11 +5,11 @@ import { faSignInAlt                 } from '@fortawesome/free-solid-svg-icons';
 import './AuthenticationForm.css';
 
 //* COMPONENTS
-import RequestStatus from '../../../components/RequestStatus/RequestStatus';
-import Label         from '../../../components/Label/Label';
-import Input         from '../../../components/Input/Input';
-import ErrorMessage  from '../../../components/ErrorMessage/ErrorMessage';
-import Button        from '../../../components/Button/Button';
+import Label          from '../../../components/Label/Label';
+import Input          from '../../../components/Input/Input';
+import Button         from '../../../components/Button/Button';
+import ErrorMessage   from '../../../components/ErrorMessage/ErrorMessage';
+import SuccessMessage from '../../../components/SuccessMessage/SuccessMessage';
 
 const AuthenticationForm: FC <Props> = ({formik}): any => {
     //* With destructuring we are taking object
@@ -40,10 +40,13 @@ const AuthenticationForm: FC <Props> = ({formik}): any => {
                             {...formik.getFieldProps(name)}
                         />
                     </Label>
-                    <ErrorMessage 
-                        touched={touched[name]} 
-                        error={errors[name]} 
-                    />
+                    {
+                        (touched[name] && errors[name])
+                            ? <ErrorMessage>
+                                {errors[name]}
+                              </ ErrorMessage>
+                            : null
+                    }
                 </Fragment>
             )
     );
@@ -61,27 +64,28 @@ const AuthenticationForm: FC <Props> = ({formik}): any => {
         </Button>
     );
 
+    const SUCCESS_MESSAGE = (
+        <SuccessMessage className="form-auth__status">
+            Access is allowed, 
+            wellcome!
+        </ SuccessMessage>
+    );
+
+    const ERROR_MESSAGE = (
+        <ErrorMessage className="form-auth__status">
+            User was not found, 
+            please cheking email or password!  
+        </ ErrorMessage>
+    );
+
     const FORM_REQUEST_STATUS: any = (
         //* If status true
         //* we view message about access login
         //* else we are seeing error message
         (status !== undefined)  
             ? (status)
-                ? <RequestStatus 
-                    className="form-auth__status" 
-                    status={status}
-                  >
-                    Access is allowed, 
-                    wellcome!
-                  </ RequestStatus>
-                  
-                : <RequestStatus 
-                    className="form-auth__status" 
-                    status={status}
-                  >
-                    User was not found, 
-                    please cheking email or password!  
-                  </ RequestStatus>
+                ? SUCCESS_MESSAGE
+                : ERROR_MESSAGE
             : null
     );
 

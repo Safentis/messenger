@@ -44,8 +44,8 @@ describe('<AuthenticationForm />', () => {
             expect(wrapper.find('form')).toHaveLength(1);
         });
     
-        it('Component has 1 requestStatus', () => {
-            expect(wrapper.find('RequestStatus')).toHaveLength(1);
+        it('Component has 1 SuccessMessage', () => {
+            expect(wrapper.find('SuccessMessage')).toHaveLength(0);
         });
 
         it('Component has 2 labels', () => {
@@ -57,34 +57,11 @@ describe('<AuthenticationForm />', () => {
         });
 
         it('Component has 2 errorMessage', () => {
-            expect(wrapper.find('ErrorMessage')).toHaveLength(2);
+            expect(wrapper.find('ErrorMessage')).toHaveLength(1);
         });
 
         it('Component has 1 button', () => {
             expect(wrapper.find('Button')).toHaveLength(1);
-        });
-    });
-
-
-    //* to write other tests!
-    describe('Inputs', () => {
-        
-        it('', () => {
-
-        });
-    });
-
-    describe('Labels', () => {
-
-        it('', () => {
-
-        });
-    });
-
-    describe('Button', () => {
-
-        it('', () => {
-
         });
     });
 });

@@ -20,6 +20,7 @@
     
     --error-color: crimson;
     --success-color: #79aa6b;
+    --success-bg-lg-color: rgba(203, 203, 226, 0.789);
 }
 
 *, ::after, ::before {

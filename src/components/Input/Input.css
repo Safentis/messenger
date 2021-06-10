@@ -4,15 +4,6 @@
     width: 100%;
 }
 
-.input-auth::placeholder {
-    color: var(--main-grey-color);
-    text-transform: capitalize;
-}
-
-.input-auth:focus {
-    border: .1rem solid var(--main-blue-color);
-}
-
 .input-auth {
     background: var(--main-white-color);
     border: .1rem solid var(--main-lg-grey-color);
@@ -24,4 +15,13 @@
 
     font-size: 1.6rem;
     font-weight: 400;
+}
+
+.input-auth::placeholder {
+    color: var(--main-grey-color);
+    text-transform: capitalize;
+}
+
+.input-auth:focus {
+    border: .1rem solid var(--main-blue-color);
 }
