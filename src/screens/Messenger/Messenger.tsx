@@ -2,14 +2,14 @@ import React from 'react';
 import './Messenger.css';
 
 //* COMPONENTS
-import Dialogs  from './Dialogs/Dialogs';
-import Wellcome from './Wellcome/Wellcome';
+import Menu from '../../layouts/Menu/Menu';
+import Home from '../../layouts/Home/Home';
 
 const Messenger = (): any => {
     return (
-        <div className="main__messenger-container">
-            <Dialogs />
-            <Wellcome />
+        <div className="messenger">
+            <Menu />
+            <Home />
         </div>
     );
 };

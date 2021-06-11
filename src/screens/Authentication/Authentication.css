@@ -1,4 +1,4 @@
-.main__authentication-container {
+.authentication {
     align-items: center;
     border-radius: .25rem;
     display: flex;
@@ -8,8 +8,9 @@
     max-width: 90%;
 }
 
-.main__authentication {
+.authentication__card {
     max-width: 45rem;
+    min-width: 15rem;
     width: 100%;
 }
 

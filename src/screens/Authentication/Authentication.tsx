@@ -36,14 +36,14 @@ const AuthenticationFormHOC: any = form(
 
 const Authentication = () => {
     return (
-        <div className="main__authentication-container">
-            <section className="card main__authentication">
+        <section className="authentication">
+            <div className="card authentication__card">
                 <h2 className="title card__title">
                     Authentication
                 </h2>
                 <AuthenticationFormHOC />
-            </section>
-        </div>
+            </div>
+        </section>
     );
 };
 

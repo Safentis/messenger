@@ -1,8 +1,11 @@
-.main__messenger-container {
+.messenger {
     align-content: top;
-    /* background-color: var(--main-lg-blue-color); */
     display: grid;
     justify-items: stretch;
     grid-template-columns: 1fr 2fr;
     height: 100%;
+}
+
+.icon {
+    font-size: 2rem;
 }
