@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom';
 import Root     from './screens/Root';
 
 // REDUX
-import { Provider } from 'react-redux';
-import { store    } from './redux/store/store';
+import { Provider    } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'
+import { store       } from './redux/store/store';
+import { persistor   } from './redux/store/store';
 
 //* FIREBASE
 import firebase from 'firebase';
@@ -31,7 +33,9 @@ firebase.initializeApp({
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Root />
+      <PersistGate loading={null} persistor={persistor}>
+        <Root />
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

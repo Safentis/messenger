@@ -1,7 +1,7 @@
 .menu {
     background-color: var(--main-blue-color);
     border-top-right-radius: .75rem;
-    border-top-left-radius: .75rem;
+    border-bottom-right-radius: .75rem;
     color: var(--main-white-color);
 }
 
