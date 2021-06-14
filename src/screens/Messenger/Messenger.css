@@ -2,7 +2,7 @@
     align-content: top;
     display: grid;
     justify-items: stretch;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: .6fr 2fr;
     height: 100%;
 }
 

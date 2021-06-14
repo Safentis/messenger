@@ -35,7 +35,7 @@ function* requestAuthentication({payload: {values, setStatus}}: any): Generator<
     const user : any    = yield call(signInAccount, values);
     const token: string = yield call(getIdToken);
     
-    //* If request is successful
+    //* If the request is successfuled
     //* we set status on true
     setStatus(true);
 
@@ -47,7 +47,10 @@ function* requestAuthentication({payload: {values, setStatus}}: any): Generator<
       },
     });
   } catch(err) {
+    //* If the request is rejected
+    //* we set status on false
     setStatus(false);
+    
     yield put({type: FETCH_MESSAGES_FAILURE});
   } finally {
     console.log('loading end');
