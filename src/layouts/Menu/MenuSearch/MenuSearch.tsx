@@ -1,4 +1,5 @@
-import React from 'react';
+import { FC    } from 'react';
+import { Props } from './MenuSearch.interface';
 import './MenuSearch.css';
 
 //* FONTAWESOME
@@ -9,17 +10,14 @@ import { faSearch        } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../../components/Button/Button';
 import Input  from '../../../components/Input/Input';
 
-const MenuSearch = (): any => {
+const MenuSearch: FC <Props> = ({className = ''}): any => {
     return (
-        <div className="search">
+        <div className={"search " + className}>
             <div className="search__input-wrapper">
                 <Button className="search__button">
-                    <FontAwesomeIcon 
-                        className="menu__icon search__icon icon" 
-                        icon={faSearch}
-                    />
+                    <FontAwesomeIcon className="menu__icon search__icon icon" icon={faSearch} />
                 </Button>
-                <Input className="input-search search__input"/>
+                <Input className="input-search search__input" placeholder="Search Here..." />
             </div>
         </div>
     );

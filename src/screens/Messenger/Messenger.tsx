@@ -8,7 +8,9 @@ import Home from '../../layouts/Home/Home';
 const Messenger = (): any => {
     return (
         <div className="messenger">
-            <Menu />
+            <Menu>
+                
+            </Menu>
             <Home />
         </div>
     );

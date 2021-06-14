@@ -22,3 +22,10 @@
 .menu__icon_dots {
     font-size: 1.6rem;
 }
+
+.menu__button-add-user {
+    margin-right: .5rem;
+}
+.menu__button-options {
+    padding-right: 0;
+}

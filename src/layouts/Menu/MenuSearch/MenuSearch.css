@@ -1,6 +1,26 @@
 .search {}
-.search__input-wrapper {}
-.search__button {}
+
+.search__input-wrapper {
+    position: relative;
+}
+
+.search__button {
+    position: absolute;
+    top: 20%;
+    left: 1.5%;
+}
+
 .search__icon {}
+
 .search__input {}
-.input-search {}
+
+.input-search {
+    background-color: var(--main-lg-blue-color);
+    border-radius: .35rem;
+    color: var(--main-white-color);
+    padding: 1rem 1.5rem 1rem 4rem;
+}
+
+.input-search::placeholder {
+    color: var(--main-white-color);
+}
