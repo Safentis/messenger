@@ -22,7 +22,6 @@ export const authenticationReducer = (state = initialState, action: Actions): St
             return {
                 ...state,
                 success: false,
-                token: '',
             };
         default:
             return state;
