@@ -1,6 +1,9 @@
 .label {
-    color: var(--main-blue-color);
     cursor: pointer;
+}
+
+.label-auth {
+    color: var(--main-blue-color);
     font-family: var(--main-fron-medium);
     font-size: var(--main-fs-h3);
     font-weight: 600;

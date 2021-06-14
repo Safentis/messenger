@@ -1,4 +1,4 @@
-export default interface Props {
+export interface Props {
     children ?: string | any
     className?: string
     attrs     : any

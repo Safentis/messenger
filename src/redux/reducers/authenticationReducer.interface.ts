@@ -1,9 +1,11 @@
 export interface State {
     success: boolean
-    error  : boolean
+    token  : string
 };
 
 export interface Actions {
     type    : string
-    payload?: any
+    payload : {
+        token: string
+    }
 };

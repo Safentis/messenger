@@ -11,7 +11,9 @@ jest.mock('formik');
 
 describe('<AuthenticationForm />', () => {
     //* Props that takes AuthenticationForm
-    const formik: any = {
+    let component: any;
+    let wrapper  : any;
+    const formik : any = {
         status: false,
         touched: {
             email: false,
@@ -29,38 +31,37 @@ describe('<AuthenticationForm />', () => {
         validationSchema: {},
         getFieldProps: jest.fn(),
         getStatus: jest.fn(),
-    }
-
+    };
     
     describe('Quantity of the rendered components', () => {
-        let component: any;
 
         beforeEach(() => {
-            component = shallow(<AuthenticationForm formik={formik}/>);
+            component = <AuthenticationForm formik={formik}/>;
+            wrapper   = shallow(component);
         });
     
         it('Component rendered and has 1 form', () => {
-            expect(component.find('form')).toHaveLength(1);
+            expect(wrapper.find('form')).toHaveLength(1);
         });
     
-        it('Component has 1 requestStatus', () => {
-            expect(component.find('RequestStatus')).toHaveLength(1);
+        it('Component has 1 SuccessMessage', () => {
+            expect(wrapper.find('SuccessMessage')).toHaveLength(0);
         });
 
         it('Component has 2 labels', () => {
-            expect(component.find('Label')).toHaveLength(2);
+            expect(wrapper.find('Label')).toHaveLength(2);
         });
     
         it('Component has 2 inputs', () => {
-            expect(component.find('Input')).toHaveLength(2);
+            expect(wrapper.find('Input')).toHaveLength(2);
         });
 
         it('Component has 2 errorMessage', () => {
-            expect(component.find('ErrorMessage')).toHaveLength(2);
+            expect(wrapper.find('ErrorMessage')).toHaveLength(1);
         });
 
         it('Component has 1 button', () => {
-            expect(component.find('Button')).toHaveLength(1);
+            expect(wrapper.find('Button')).toHaveLength(1);
         });
     });
 });

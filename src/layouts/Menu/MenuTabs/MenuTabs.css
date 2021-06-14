@@ -1,0 +1,10 @@
+.tabs {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tabs__item {}
+
+.tabs__button {}
+
+.tabs__icon {}

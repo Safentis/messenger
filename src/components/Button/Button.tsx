@@ -1,10 +1,10 @@
-import React from 'react';
-import Props from './Button.interface';
+import { FC    } from 'react';
+import { Props } from './Button.interface';
 import './Button.css';
 
-const Button = ({children = 'button', className = '', ...attrs}: Props | any) => {
+const Button: FC <Props | any> = ({children = '', className = '', ...attrs}): any => {
     return (
-        <button className={`${className} button`} {...attrs}>
+        <button className={`button ${className}`} {...attrs}>
             {children}
         </button>
     );

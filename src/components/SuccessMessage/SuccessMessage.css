@@ -1,0 +1,19 @@
+.success-message {
+    background-color: var(--success-bg-lg-color);
+    border-radius: .25rem;
+    box-shadow: .1rem .1rem .25rem var(--success-bg-lg-color);
+}
+
+.success-message__text {
+    font-size: var(--main-fs-h3);
+    font-weight: 400;
+}
+
+.success-message__icon_green,
+.success-message__text_green {
+    color: var(--success-color);
+}
+
+.success-message__icon_green {
+    margin: 0 .5rem;
+}

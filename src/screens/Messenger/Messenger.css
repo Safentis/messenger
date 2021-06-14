@@ -1,0 +1,11 @@
+.messenger {
+    align-content: top;
+    display: grid;
+    justify-items: stretch;
+    grid-template-columns: 1fr 2fr;
+    height: 100%;
+}
+
+.icon {
+    font-size: 2rem;
+}

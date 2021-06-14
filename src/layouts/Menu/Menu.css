@@ -1,0 +1,24 @@
+.menu {
+    background-color: var(--main-blue-color);
+    border-top-right-radius: .75rem;
+    border-top-left-radius: .75rem;
+    color: var(--main-white-color);
+}
+
+.menu__inner {
+    padding: 1.5rem;
+}
+
+.menu__icon {
+    color: var(--main-white-color);
+}
+
+.menu__header {}
+
+.menu__search {
+    margin-top: 1.5rem;
+}
+
+.menu__tabs {
+    margin-top: 2.5rem;
+}

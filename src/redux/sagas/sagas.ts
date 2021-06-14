@@ -9,11 +9,20 @@ import {
 const signInAccount = ({email, password}: any): any => {
   return (
     firebase
-    .auth()
-    .signInWithEmailAndPassword(
-      email, 
-      password
-    )
+      .auth()
+      .signInWithEmailAndPassword(
+        email, 
+        password
+      )
+  );
+};
+
+const getIdToken = (): any => {
+  return (
+    firebase
+      .auth()
+      .currentUser
+      ?.getIdToken()
   );
 };
 
@@ -23,17 +32,30 @@ function* requestAuthentication({payload: {values, setStatus}}: any): Generator<
   any
 > {
   try {
-    const req: any = yield call(signInAccount, values);
+    const user : any    = yield call(signInAccount, values);
+    const token: string = yield call(getIdToken);
+    
+    //* If request is successful
+    //* we set status on true
     setStatus(true);
-    yield put({type: FETCH_MESSAGES_SUCCESS});
-  } catch (err) {
+
+    //* We set token for authentication
+    yield put({
+      type: FETCH_MESSAGES_SUCCESS, 
+      payload: {
+        token: token
+      },
+    });
+  } catch(err) {
     setStatus(false);
     yield put({type: FETCH_MESSAGES_FAILURE});
+  } finally {
+    console.log('loading end');
   }
-};
+}
 
 export default function* rootSaga() {
   yield all([
     takeEvery(FETCH_MESSAGES_REQUEST, requestAuthentication),
   ]);
-};
+}
