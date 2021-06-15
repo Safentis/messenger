@@ -1,14 +1,12 @@
 import React from 'react';
 import './Root.css';
 
-import Authentification from './Authentication/Authentication';
-// import Messenger        from './Messenger/Messenger';
+import RootRouter       from './RootRoutes';
 
 function Root() {
   return (
     <main className="main">
-      {/* <Messenger /> */}
-      <Authentification />
+      <RootRouter />
     </main>
   );
 }

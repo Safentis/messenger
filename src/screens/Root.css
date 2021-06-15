@@ -1,4 +1,5 @@
 .main {
+    background-color: var(--main-lg-grey-color);
     height: 100vh;
 }
 
