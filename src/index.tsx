@@ -2,11 +2,14 @@ import React    from 'react';
 import ReactDOM from 'react-dom';
 import Root     from './screens/Root';
 
-// REDUX
+//* REDUX
 import { Provider    } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react'
 import { store       } from './redux/store/store';
 import { persistor   } from './redux/store/store';
+
+//* REACT ROUTER
+import { BrowserRouter } from 'react-router-dom';
 
 //* FIREBASE
 import firebase from 'firebase';
@@ -34,7 +37,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <Root />
+        <BrowserRouter>
+          <Root />
+        </BrowserRouter>
       </PersistGate>
     </Provider>
   </React.StrictMode>,
