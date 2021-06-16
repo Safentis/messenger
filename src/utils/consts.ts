@@ -1,2 +1,2 @@
 export const AUTHENTICATION_ROUTE = '/authentication';
-export const HOMEPAGE_ROUTE = '/homepage';
+export const MESSENGER_ROUTE = '/messenger';

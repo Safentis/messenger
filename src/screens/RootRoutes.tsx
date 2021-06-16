@@ -1,12 +1,12 @@
-import { FC                                   } from 'react';
-import { useSelector                          } from 'react-redux';
-import { AuthenticationRouter                 } from './RootRoutes.interface';
-import { Route, Switch, Redirect              } from 'react-router-dom';
-import { AUTHENTICATION_ROUTE, HOMEPAGE_ROUTE } from '../utils/consts';
-import { privateRoutes, publicRoutes          } from '../routes';
+import { FC                                    } from 'react';
+import { useSelector                           } from 'react-redux';
+import { Route, Switch, Redirect               } from 'react-router-dom';
+import { AuthenticationRouter                  } from './RootRoutes.interface';
+import { AUTHENTICATION_ROUTE, MESSENGER_ROUTE } from '../utils/consts';
+import { privateRoutes, publicRoutes           } from '../routes';
 
 const RootRouter: FC = (): any => {
-    const { success, token }: AuthenticationRouter = useSelector((state: any) => state.authenticationReducer);
+    const { success }: AuthenticationRouter = useSelector((state: any) => state.authenticationReducer);
 
     return success
     ?
@@ -22,7 +22,7 @@ const RootRouter: FC = (): any => {
                         />
                     )
                 }
-                <Redirect to={HOMEPAGE_ROUTE} />
+                <Redirect to={MESSENGER_ROUTE} />
             </Switch>
         )
     :   
