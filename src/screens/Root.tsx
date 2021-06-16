@@ -1,14 +1,14 @@
-import React from 'react';
+import { FC }     from 'react';
+import RootRouter from './RootRoutes';
 import './Root.css';
 
-import RootRouter       from './RootRoutes';
 
-function Root() {
+const Root: FC = () => {
   return (
     <main className="main">
       <RootRouter />
     </main>
   );
-}
+};
 
 export default Root;
