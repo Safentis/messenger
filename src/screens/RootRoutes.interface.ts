@@ -1,4 +1,4 @@
-export interface AuthenticationRouter {
+export interface AuthenticationReducer {
     success: boolean
     token  : string
 };
