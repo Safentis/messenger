@@ -1,4 +1,4 @@
-import React    from 'react';
+import { FC }   from 'react';
 import * as Yup from 'yup';
 import './Authentication.css';
 
@@ -34,7 +34,7 @@ const AuthenticationFormHOC: any = form(
     AUTH_VALIDATION_SCHEMA
 );
 
-const Authentication = () => {
+const Authentication: FC = (): any => {
     return (
         <section className="authentication">
             <div className="card authentication__card">
