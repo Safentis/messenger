@@ -15,7 +15,7 @@ const MenuSearch: FC <Props> = ({className = ''}): any => {
         <div className={"search " + className}>
             <div className="search__input-wrapper">
                 <Button className="search__button">
-                    <FontAwesomeIcon className="menu__icon search__icon icon" icon={faSearch} />
+                    <FontAwesomeIcon className="icon icon_white search__icon" icon={faSearch} />
                 </Button>
                 <Input className="input-search search__input" placeholder="Search Here..." />
             </div>

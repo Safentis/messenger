@@ -26,7 +26,7 @@ const MenuTabs: FC <Props> = ({className = ''}) => {
                         <li className="tabs__item" key={index}>
                             <Button className="tabs__button">
                                 <FontAwesomeIcon 
-                                    className="tabs__icon menu__icon icon" 
+                                    className="icon icon_white tabs__icon" 
                                     icon={icon}
                                 />
                             </Button>
