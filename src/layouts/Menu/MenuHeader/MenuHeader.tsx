@@ -18,12 +18,12 @@ const MenuHeader: FC <Props> = ({className = ''}): any => {
             <ul className="header__controls controls">
                 <li className="controls__button">
                     <Button className="menu__button-add-user">
-                        <FontAwesomeIcon className="menu__icon menu__icon_plus icon" icon={faPlusCircle}/>
+                        <FontAwesomeIcon className="icon icon_white menu__icon_plus " icon={faPlusCircle}/>
                     </Button>
                 </li>
                 <li className="controls__button">
                     <Button className="menu__button-options">
-                        <FontAwesomeIcon className="menu__icon menu__icon_dots icon" icon={faEllipsisV}/>
+                        <FontAwesomeIcon className="icon icon_white menu__icon_dots" icon={faEllipsisV}/>
                     </Button>
                 </li>
             </ul>
