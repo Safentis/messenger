@@ -1,5 +1,4 @@
 import React           from 'react';
-import 'react-redux';
 import { useFormik   } from 'formik';
 import { useDispatch } from 'react-redux';
 
@@ -14,8 +13,8 @@ const form = (Component: any, initialValues: object, action: any, validationSche
 
     //* We are using hook by name useDispatch
     //* that to take a dispatch function
-    const dispatch = useDispatch();
-    const onSubmit = (values: any): void => {
+    const dispatch: any = useDispatch();
+    const onSubmit: any = (values: any): void => {
 
         //* setStatus function for handling status of request
         const setStatus = formik.setStatus;
@@ -33,7 +32,7 @@ const form = (Component: any, initialValues: object, action: any, validationSche
 
     //* useFormik is hook 
     //* for handle of the form - fields state
-    const formik = useFormik({
+    const formik: any = useFormik({
         initialValues   : initialValues,
         onSubmit        : onSubmit,
         validationSchema: validationSchema,

@@ -1,8 +1,8 @@
-import { FC }     from 'react';
+import React      from 'react';
 import RootRouter from './RootRoutes';
 import './Root.css';
 
-const Root: FC = () => {
+function Root(): any {
   return (
     <main className="main">
       <RootRouter />

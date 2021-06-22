@@ -7,7 +7,7 @@ const Status: FC <Props> = ({className = '', status}): any => {
     return (
         <>
             {
-                status
+                status === 'active'
                     ? <StatusOnline className={className}/>
                     : <StatusOffline className={className}/>
             }

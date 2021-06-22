@@ -23,14 +23,14 @@ import './fonts/DINPro/stylesheet.css'
 import './index.css';
 
 firebase.initializeApp({
-  apiKey           : env.FIREBASE_API_KEY,
-  authDomain       : env.FIREBASE_AUTH_DOMAIN,
-  databaseURL      : env.FIREBASE_DB_URL,
-  projectId        : env.FIREBASE_PROJECT_ID,
-  storageBucket    : env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: env.FIREBASE_SENDING_ID,
-  appId            : env.FIREBASE_APP_ID,
-  measurementId    : env.FIREBASE_MEASUREMENT_ID
+  apiKey           : 'AIzaSyDSbXdhXT4bJ5E28Y98KFRHTsw0d6KFw2g' || env.FIREBASE_API_KEY,
+  authDomain       : 'messenger-b15ea.firebaseapp.com' || env.FIREBASE_AUTH_DOMAIN,
+  databaseURL      : 'https://messenger-b15ea-default-rtdb.europe-west1.firebasedatabase.app' || env.FIREBASE_DB_URL,
+  projectId        : '1:476615363227:web:c784b9a31d6931cf39543e' || env.FIREBASE_PROJECT_ID,
+  storageBucket    : 'G-Q02HRV150F' || env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: 'messenger-b15ea.appspot.com' || env.FIREBASE_SENDING_ID,
+  appId            : '476615363227' || env.FIREBASE_APP_ID,
+  measurementId    : 'messenger-b15ea' || env.FIREBASE_MEASUREMENT_ID
 });
 
 ReactDOM.render(
