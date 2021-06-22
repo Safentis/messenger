@@ -1,0 +1,51 @@
+.dialog {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    transition: .3s;
+    padding: 1.5rem 1rem;
+}
+
+.dialog:hover {
+    background-color: var(--main-brown-color);
+}
+
+.dialog__inner {
+    align-items: center;
+    display: flex;
+}
+
+.dialog__avatar {
+    position: relative;
+}
+
+.dialog__avatar-status {
+    position: absolute;
+    font-size: 1rem;
+    bottom: .5rem;
+    right: 0;
+}
+
+.dialog__content {
+    margin: 0 1rem;
+}
+
+.dialog__username {
+    text-transform: capitalize;
+    font-weight: 700;
+}
+
+.dialog__message {
+    
+}
+
+.dialog__newmessage-counter {
+    background-color: var(--main-white-color);
+    border-radius: 50%;
+    padding: .1rem .75rem;
+}
+
+.dialog__newmessage-value {
+    color: var(--main-blue-color);
+}

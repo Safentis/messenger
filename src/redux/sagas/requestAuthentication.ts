@@ -3,27 +3,48 @@ import { LOADER_OFF, LOADER_ON                          } from '../actions/loade
 import { put, call, StrictEffect                        } from 'redux-saga/effects'
 import firebase                                           from 'firebase';
 
+interface AuthenticationFields {
+  email   : string
+  password: string
+}
 
-const signInAccount = ({email, password}: any): any => {
-    return (
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(
-          email, 
-          password
-        )
-    );
-  };
+/**
+ * signInAccount
+ * @param {string} email 
+ * @param {string} password 
+ * @returns {any}    
+ */
+const signInAccount = ({email, password}: AuthenticationFields): any => {
+  return (
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(
+        email, 
+        password
+      )
+  );
+};
   
-  const getIdToken = (): any => {
-    return (
-      firebase
-        .auth()
-        .currentUser
-        ?.getIdToken()
-    );
-  };
+/**
+ * getIdToken
+ * @returns {string}    
+ */
+const getIdToken = (): any => {
+  return (
+    firebase
+      .auth()
+      .currentUser
+      ?.getIdToken()
+  );
+};
 
+/**
+ * getIdToken
+ * @param {object} payload
+ * @param {object} value contains email and password fields
+ * @param {function} setStatus is function for handle of form status with api formik
+ * @returns {Generator <StrictEffect, any, any>}  
+ */
 export default function* requestAuthentication({payload: {values, setStatus}}: any): Generator<
   StrictEffect,
   any,
@@ -31,7 +52,8 @@ export default function* requestAuthentication({payload: {values, setStatus}}: a
 > {
   try {
     yield put({ type: LOADER_ON });
-    const user : any    = yield call(signInAccount, values);
+    yield call(signInAccount, values);
+
     const token: string = yield call(getIdToken);
     
     //* If the request is successfuled
@@ -46,6 +68,8 @@ export default function* requestAuthentication({payload: {values, setStatus}}: a
       },
     });
   } catch(err) {
+    console.error('Code ', err.code)
+    console.error('Message ', err.message);
     //* If the request is rejected
     //* we set status on false
     setStatus(false);

@@ -10,14 +10,15 @@ import { FontAwesomeIcon           } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { faSignOutAlt              } from '@fortawesome/free-solid-svg-icons';
 
-//*REDUX
+//* REDUX
 import { useDispatch } from 'react-redux';
 import { exitingTheApplication } from '../../../redux/actionCreators/authentication';
 
 const MenuHeader: FC <Props> = ({className = ''}): any => {
-   
-    const dispatch = useDispatch();
-    const handleExit = () => dispatch(exitingTheApplication());
+    //* With handleExit function 
+    //* we exiting from account
+    const dispatch  : any = useDispatch();
+    const handleExit: any = () => dispatch(exitingTheApplication());
 
     return (
         <div className={"header " + className}>

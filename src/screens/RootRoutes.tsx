@@ -4,6 +4,7 @@ import { Route, Switch, Redirect               } from 'react-router-dom';
 import { AuthenticationReducer                 } from './RootRoutes.interface';
 import { AUTHENTICATION_ROUTE, MESSENGER_ROUTE } from '../utils/consts';
 import { privateRoutes, publicRoutes           } from '../routes';
+import { RouteAttributes                       } from '../routes';
 
 const RootRouter: FC = (): any => {
     const { success }: AuthenticationReducer = useSelector((state: any) => state.authenticationReducer);
@@ -13,11 +14,10 @@ const RootRouter: FC = (): any => {
         (
             <Switch>
                 {
-                    privateRoutes.map(({path, component}, i) => 
+                    privateRoutes.map(({path, component}: RouteAttributes, index: number) => 
                         <Route 
-                            key={i}
+                            key={index}
                             path={path} 
-                            exact={true}
                             component={component} 
                         />
                     )
@@ -29,11 +29,10 @@ const RootRouter: FC = (): any => {
         (
             <Switch>
                 {
-                    publicRoutes.map(({path, component}, i) => 
+                    publicRoutes.map(({path, component}: RouteAttributes, index: number) => 
                         <Route 
-                            key={i}
+                            key={index}
                             path={path}
-                            exact={true} 
                             component={component} 
                         />
                     )
