@@ -13,7 +13,6 @@ import { BrowserRouter } from 'react-router-dom';
 
 //* FIREBASE
 import firebase from 'firebase';
-import env      from 'react-dotenv';
 import 'firebase/firestore';
 import 'firebase/auth';
 
@@ -22,15 +21,17 @@ import 'normalize.css';
 import './fonts/DINPro/stylesheet.css'
 import './index.css';
 
+console.log(process.env.REACT_APP_FIREBASE_API_KEY)
+
 firebase.initializeApp({
-  apiKey           : 'AIzaSyDSbXdhXT4bJ5E28Y98KFRHTsw0d6KFw2g' || env.FIREBASE_API_KEY,
-  authDomain       : 'messenger-b15ea.firebaseapp.com' || env.FIREBASE_AUTH_DOMAIN,
-  databaseURL      : 'https://messenger-b15ea-default-rtdb.europe-west1.firebasedatabase.app' || env.FIREBASE_DB_URL,
-  projectId        : '1:476615363227:web:c784b9a31d6931cf39543e' || env.FIREBASE_PROJECT_ID,
-  storageBucket    : 'G-Q02HRV150F' || env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: 'messenger-b15ea.appspot.com' || env.FIREBASE_SENDING_ID,
-  appId            : '476615363227' || env.FIREBASE_APP_ID,
-  measurementId    : 'messenger-b15ea' || env.FIREBASE_MEASUREMENT_ID
+  apiKey           : process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain       : process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL      : process.env.REACT_APP_FIREBASE_DB_URL,
+  projectId        : process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket    : process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_SENDING_ID,
+  appId            : process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId    : process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 });
 
 ReactDOM.render(
