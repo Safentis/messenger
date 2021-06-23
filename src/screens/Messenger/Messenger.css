@@ -2,10 +2,15 @@
     align-content: top;
     display: grid;
     justify-items: stretch;
-    grid-template-columns: .6fr 2fr;
+    grid-template-columns: minmax(30rem, max-content) auto;
     height: 100%;
 }
 
 .icon {
     font-size: 2rem;
+    transition: .3s;
+}
+
+.icon:hover {
+    color: var(--main-lg-blue-color);
 }

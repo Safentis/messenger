@@ -41,9 +41,15 @@
 }
 
 .dialog__newmessage-counter {
+    align-items: center;
     background-color: var(--main-white-color);
     border-radius: 50%;
-    padding: .1rem .75rem;
+    display: flex;
+    justify-content: center;
+    min-height: 2rem;
+    min-width: 2rem;
+    font-weight: 500;
+    font-size: 1.2rem;
 }
 
 .dialog__newmessage-value {
