@@ -1,10 +1,9 @@
-import { FC    }      from 'react';
-import { Props }      from './Dialog.interface';
+import { FC    } from 'react';
+import { Props } from './Dialog.interface';
 import './Dialog.css';
 
-//COMPONENTS
-import Avatar         from '../Avatar/Avatar';
-import Status         from '../Status/Status';
+import Avatar    from '../Avatar/Avatar';
+import Status    from '../Status/Status';
 
 const Dialog: FC <Props> = ({client, messages, operatorId, status}): any => {
     const lastMessage: number = messages.length - 1;
@@ -26,7 +25,7 @@ const Dialog: FC <Props> = ({client, messages, operatorId, status}): any => {
                 </div>
                 <p className="dialog__newmessage-counter">
                     <span className="dialog__newmessage-value">
-                        {lastMessage}
+                        {12}
                     </span>
                 </p>
             </div>

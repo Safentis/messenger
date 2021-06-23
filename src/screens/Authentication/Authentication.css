@@ -3,9 +3,22 @@
     border-radius: .25rem;
     display: flex;
     justify-content: center;
+    position: relative;
     height: 100%;
     margin: 0 auto;
     max-width: 90%;
+}
+
+.authentication__loader {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    /* background-color: var(--main-lg-grey-color); */
+    left: 0%;
+    top: 0%;
+    height: 100%;
+    width: 100%;
 }
 
 .authentication__card {

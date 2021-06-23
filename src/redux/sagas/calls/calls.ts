@@ -1,4 +1,9 @@
-import firebase from "firebase";
+import firebase from 'firebase';
+
+interface FormFields {
+    email   : string
+    password: string
+}
 
 /**
  * reqValidationToken is
@@ -22,7 +27,7 @@ export function reqValidationToken(token: string): object {
  * requestChatrooms
  * @returns {object} chatsRef
  */
-export const requestChatrooms = (): any => {
+export const requestChatrooms = (): Promise <any> => {
     return new Promise((resolve, reject) => {
         const chatsRef: any = (
             firebase
@@ -38,7 +43,7 @@ export const requestChatrooms = (): any => {
  * @param {any} chatsRef
  * @returns {object} dataSnapshot.val()
  */
-export const requestDilaogs = (chatsRef: any): any => {
+export const requestDilaogs = (chatsRef: any): Promise <any> => {
     return new Promise((resolve, reject) => {
         chatsRef
             .on('value', (dataSnapshot: any) => {
@@ -53,7 +58,8 @@ export const requestDilaogs = (chatsRef: any): any => {
  * @param {string} text
  * @returns {object} dialogs
  */
-export const requestFilter = (chatsRef: any, text: string): any => {
+export const requestFilter = (chatsRef: any, search: string): Promise <any> => {
+    // console.log(search)
     return new Promise((resolve, reject) => {
         //* We create and return promise
         //* that allow creates assync request
@@ -61,22 +67,51 @@ export const requestFilter = (chatsRef: any, text: string): any => {
             .on('value', (snapshot: any): any => {
                 //* In array dialogs 
                 //* we are adding filtered dialogs 
-                const dialogs: any = [];
+                const dialogs: any = (
+                    snapshot
+                        .val()
+                        .filter((child: any, index: number): void => {
+                            //* We create filters to client and content
+                            const client : string = child.client.toLocaleLowerCase().trim();
+                            const content: string = child.messages[index].content.toLocaleLowerCase().trim();
 
-                snapshot
-                    .val()
-                    .forEach((child: any, index: number): void => {
-                        //* We create filters to client and content
-                        const client : string = child.client.toLocaleLowerCase().trim();
-                        const content: string = child.messages[index].content.toLocaleLowerCase().trim();
-                        const search : string = text.toLocaleLowerCase().trim();
-
-                        if (client.includes(search) || content.includes(search)) {
-                            dialogs.push(child);
-                        }
-                });
+                            if (client.includes(search) || content.includes(search)) {
+                                return child;
+                            }
+                    })
+                );
 
                 return resolve(dialogs);
             });
     });
 }
+
+/**
+ * signInAccount
+ * @param {string} email 
+ * @param {string} password 
+ * @returns {any}    
+ */
+export const signInAccount = ({email, password}: FormFields): any => {
+    return (
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(
+          email, 
+          password
+        )
+    );
+};
+    
+/**
+ * getIdToken
+ * @returns {string}    
+ */
+export const getIdToken = (): any => {
+    return (
+      firebase
+        .auth()
+        .currentUser
+        ?.getIdToken()
+    );
+};

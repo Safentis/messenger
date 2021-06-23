@@ -1,42 +1,7 @@
 import { FETCH_MESSAGES_SUCCESS, FETCH_MESSAGES_FAILURE } from '../actions/authentication';
 import { LOADER_OFF, LOADER_ON                          } from '../actions/loader';
 import { put, call, StrictEffect                        } from 'redux-saga/effects'
-import firebase                                           from 'firebase';
-
-interface AuthenticationFields {
-  email   : string
-  password: string
-}
-
-/**
- * signInAccount
- * @param {string} email 
- * @param {string} password 
- * @returns {any}    
- */
-const signInAccount = ({email, password}: AuthenticationFields): any => {
-  return (
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(
-        email, 
-        password
-      )
-  );
-};
-  
-/**
- * getIdToken
- * @returns {string}    
- */
-const getIdToken = (): any => {
-  return (
-    firebase
-      .auth()
-      .currentUser
-      ?.getIdToken()
-  );
-};
+import { getIdToken, signInAccount                      } from './calls/calls';
 
 /**
  * getIdToken

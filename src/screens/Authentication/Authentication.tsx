@@ -1,12 +1,11 @@
-import { FC }   from 'react';
-import * as Yup from 'yup';
-import './Authentication.css';
-
-//* REQUIRES
-import AuthenticationForm        from './AuthenticationForm/AuthenticationForm';
+import { FC                    } from 'react';
+import * as Yup                  from 'yup';
 import form                      from '../../HOC/form';
 import { Fields                } from './Authentication.interface';
 import { requestAuthentication } from '../../redux/actionCreators/authentication';
+import AuthenticationForm        from './AuthenticationForm/AuthenticationForm';
+import './Authentication.css';
+
 
 
 //* PROPERTY FOR HOC form

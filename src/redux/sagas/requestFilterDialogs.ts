@@ -1,7 +1,7 @@
 import { call, put, StrictEffect } from 'redux-saga/effects';
-import { SET_DIALOGS             } from '../actions/dialogs'
-import { requestChatrooms        } from './calls/calls'
-import { requestFilter           } from './calls/calls'
+import { SET_DIALOGS             } from '../actions/dialogs';
+import { requestChatrooms        } from './calls/calls';
+import { requestFilter           } from './calls/calls';
 
 /**
  * The requestFilterDialogs function filters dialogs
@@ -16,8 +16,10 @@ export default function* requestFilterDialogs({payload: { text }}: any): Generat
     any
 > {
     try {
+        const search  : string = text.toLocaleLowerCase().trim();
+
         const chatsRef: any = yield call(requestChatrooms);
-        const dialogs : any = yield call(requestFilter, chatsRef, text);
+        const dialogs : any = yield call(requestFilter, chatsRef, search);
 
         yield put({
             type: SET_DIALOGS, 
