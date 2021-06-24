@@ -1,7 +1,32 @@
 import { FETCH_MESSAGES_SUCCESS, FETCH_MESSAGES_FAILURE } from '../actions/authentication';
 import { LOADER_OFF, LOADER_ON                          } from '../actions/loader';
-import { put, call, StrictEffect                        } from 'redux-saga/effects'
-import { getIdToken, signInAccount                      } from './calls/calls';
+import { put, call, StrictEffect                        } from 'redux-saga/effects';
+import firebase                                           from 'firebase';
+
+interface FormFields {
+  email   : string
+  password: string
+}
+
+export const signInAccount = ({email, password}: FormFields): any => {
+  return (
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(
+        email, 
+        password
+      )
+  );
+};
+
+export const getIdToken = (): any => {
+  return (
+    firebase
+      .auth()
+      .currentUser
+      ?.getIdToken()
+  );
+};
 
 /**
  * getIdToken

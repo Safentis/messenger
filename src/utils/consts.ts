@@ -7,3 +7,7 @@ export const TABS_MENU_HISTORY    = '/history';
 export const TABS_MENU_DIALOGS    = '/dialogs';
 export const TABS_MENU_ADDRESSES  = '/addresses';
 export const TABS_MENU_CLIPBOARD  = '/clipboard';
+
+//* Pages
+export const PAGE_HOME            = '/:name';
+export const PAGE_CHAT            = '/:name/:chatId';
