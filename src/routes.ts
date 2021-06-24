@@ -1,8 +1,8 @@
 import { 
     AUTHENTICATION_ROUTE, MESSENGER_ROUTE,    
     TABS_MENU_HISTORY, TABS_MENU_DIALOGS,     
-    TABS_MENU_ADDRESSES, TABS_MENU_CLIPBOARD, 
-    PAGE_CHAT, PAGE_HOME                     
+    TABS_MENU_CLIPBOARD, TABS_MENU_SAVED,
+    PAGE_CHAT,                    
 } from './utils/consts';
 
 //* LAYOUTS
@@ -10,10 +10,9 @@ import Authentication from './screens/Authentication/Authentication';
 import Messenger      from './screens/Messenger/Messenger';
 import Dialogs        from './layouts/Tabs/Dialogs/Dialogs';
 import History        from './layouts/Tabs/History/History';
-import Addresses      from './layouts/Tabs/Addresses/Addresses';
 import Clipboard      from './layouts/Tabs/Clipboard/Clipboard';
 import Chat           from './layouts/Chat/Chat';
-// import Home           from './layouts/Pages/Home/Home';
+import Saved          from './layouts/Tabs/Saved/Saved';
 
 export interface RouteAttributes {
     path: string
@@ -44,8 +43,8 @@ export const tabsRoutes: RouteAttributes[] = [
         component: Dialogs
     },
     {
-        path: TABS_MENU_ADDRESSES,
-        component: Addresses
+        path: TABS_MENU_SAVED,
+        component: Saved
     },
     {
         path: TABS_MENU_CLIPBOARD,
@@ -54,10 +53,6 @@ export const tabsRoutes: RouteAttributes[] = [
 ];
 
 export const messengerRoutes: RouteAttributes[] = [
-    {
-        path: PAGE_HOME,
-        component: () => 'Home'
-    },
     {
         path: PAGE_CHAT,
         component: Chat

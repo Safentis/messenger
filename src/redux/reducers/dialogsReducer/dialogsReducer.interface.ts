@@ -1,5 +1,7 @@
 export interface State {
     dialogs: any[]
+    filter : any[]
+    saves  : any[]
 }
 
 export interface Actions {

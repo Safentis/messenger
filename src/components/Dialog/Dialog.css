@@ -4,8 +4,8 @@
     padding: 1.5rem 1rem;
 }
 
-.dialog:hover {
-    background-color: var(--main-brown-color);
+.dialog_active {
+    background-color: var(--main-grey-color);
 }
 
 .dialog__inner {
@@ -39,12 +39,23 @@
     
 }
 
+.dialog__functionality {
+    display: flex;
+    transition: .3s;
+}
+
+.dialog__save {
+    margin-right: .5rem;
+}
+
 .dialog__newmessage-counter {
     align-items: center;
     background-color: var(--main-white-color);
     border-radius: 50%;
     display: flex;
     justify-content: center;
+    max-height: 2rem;
+    max-width: 2rem;
     min-height: 2rem;
     min-width: 2rem;
     font-weight: 500;

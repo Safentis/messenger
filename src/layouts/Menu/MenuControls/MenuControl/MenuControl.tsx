@@ -6,11 +6,12 @@ import './MenuControl.css';
 
 const MenuControl: FC <Props> = ({path, icon}): any => {
     const { pathname }: any = useLocation();
+    const regExp: RegExp = new RegExp(path);
     
     //* If pathes are equals, 
     //* that we add of the active class
     const active: string = (
-        (pathname === path) 
+        (regExp.test(pathname)) 
             ? 'icon_active' 
             : 'icon_white'
     );

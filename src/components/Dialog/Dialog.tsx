@@ -1,19 +1,24 @@
-import { FC    } from 'react';
-import { Props } from './Dialog.interface';
+import { FC              } from 'react';
+import { Props           } from './Dialog.interface';
 import './Dialog.css';
 
-import Avatar    from '../Avatar/Avatar';
-import Status    from '../Status/Status';
+import { useLocation     } from 'react-router-dom';
+import Avatar              from '../Avatar/Avatar';
+import Status              from '../Status/Status';
 
-const Dialog: FC <Props> = ({client, messages, operatorId, status}): any => {
+const Dialog: FC <Props> = ({client, messages, operatorId, status, online, chatId}): any => {
     const lastMessage: number = messages.length - 1;
     const content    : string = messages[lastMessage].content;
     
+    const { pathname }: any = useLocation();
+    const regExp      : RegExp = new RegExp(chatId);
+    const classActive : string = regExp.test(pathname) ? 'dialog_active' : '';
+
     return (
-        <div className="dialog">
+        <div className={"dialog " + classActive}>
             <div className="dialog__inner">
                 <Avatar className="dialog__avatar" width="50" height="50">
-                    <Status className="dialog__avatar-status" status={status}/>
+                    <Status className="dialog__avatar-status" online={online}/>
                 </Avatar>
                 <div className="dialog__content">
                     <p className="dialog__username">

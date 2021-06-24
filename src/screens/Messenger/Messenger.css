@@ -1,7 +1,6 @@
 .messenger {
     align-content: top;
     display: grid;
-    justify-items: stretch;
     grid-template-columns: 35rem auto;
     height: 100%;
 }

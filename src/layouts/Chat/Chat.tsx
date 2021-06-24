@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { useParams   } from 'react-router';
 
 import ChatMessages    from './ChatMessages/ChatMessages';
+import ChatNamebar     from './ChatNamebar/ChatNamebar';
 
 const Chat: FC <Props> = () => {
     //* we get dialogs
@@ -18,12 +19,11 @@ const Chat: FC <Props> = () => {
         return (dialog.chatId === chatId) &&  dialog 
     });
 
-    const { messages }: any = dialog;
-
     return (
-        <>
-            <ChatMessages messages={messages}/>
-        </>
+        <div className="chat-wrapper">
+            <ChatNamebar {...dialog}/>
+            <ChatMessages {...dialog}/>
+        </div>
   );
 };
 

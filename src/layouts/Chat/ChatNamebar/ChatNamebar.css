@@ -1,0 +1,40 @@
+.namebar {
+    box-shadow: .1rem 0 1rem var(--main-grey-color);
+    padding: 2rem 2.5rem;
+}
+
+.namebar__inner {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.namebar__user {
+    align-items: center;
+    display: flex;
+}
+
+.namebar__status {
+    font-size: 1rem;
+}
+
+.namebar__username {
+    font-size: 4rem;
+    font-weight: 400;
+    text-transform: capitalize;
+    margin-left: 1rem;
+}
+
+.namebar__functionality {
+    
+}
+
+.namebar__button {
+    margin-right: 5rem;
+    background-color: var(--main-grey-color);
+    border-radius: 50%;
+    max-height: 3rem;
+    max-width: 3rem;
+    min-height: 3rem;
+    min-width: 3rem;
+}

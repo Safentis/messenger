@@ -33,6 +33,7 @@ html {
 
 body {
     font: 400 var(--main-fs-text) / 1 var(--main-font-regular);
+    overflow: hidden;
 }
 
 p {
@@ -50,4 +51,8 @@ ul {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
 }

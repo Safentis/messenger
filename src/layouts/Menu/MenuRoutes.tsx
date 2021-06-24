@@ -1,9 +1,10 @@
 import { FC                                     } from 'react';
-import { Route, Switch, useRouteMatch, Redirect } from 'react-router-dom';
+import { Route, Switch, useRouteMatch, Redirect, useParams } from 'react-router-dom';
 import { tabsRoutes, RouteAttributes            } from '../../routes';
 
 const MenuRoutes: FC = (): any => {
-    const { url }: any = useRouteMatch();
+    const { url    }: any = useRouteMatch();
+    const { chatId }: any = useParams();
 
     return (
         <Switch>

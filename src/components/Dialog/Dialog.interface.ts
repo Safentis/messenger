@@ -9,4 +9,6 @@ export interface Props {
     messages: Message[]
     operatorId: number
     status: string
+    chatId: string
+    online: boolean
 }

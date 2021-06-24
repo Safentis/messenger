@@ -3,11 +3,11 @@ import { Props }     from './Status.interface';
 import StatusOffline from './StatusOffline/StatusOffline';
 import StatusOnline  from './StatusOnline/StatusOnline';
 
-const Status: FC <Props> = ({className = '', status}): any => {
+const Status: FC <Props> = ({className = '', online}): any => {
     return (
         <>
             {
-                status === 'active'
+                online
                     ? <StatusOnline className={className}/>
                     : <StatusOffline className={className}/>
             }
