@@ -29,6 +29,10 @@
     
 }
 
+.namebar__last-visit {
+    margin-left: 4rem;
+}
+
 .namebar__button {
     margin-right: 5rem;
     background-color: var(--main-grey-color);

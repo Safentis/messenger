@@ -1,7 +1,10 @@
 import { FC    } from 'react';
 import { Props } from './ChatMessages.interface';
 import './ChatMessages.css';
-import Avatar from '../../../components/Avatar/Avatar';
+
+import moment    from 'moment'
+import Avatar    from '../../../components/Avatar/Avatar';
+
 
 const Message: FC = ({content, writenBy, timestamp}: any): any => {
     const author      : boolean = writenBy === 'client';
@@ -9,6 +12,10 @@ const Message: FC = ({content, writenBy, timestamp}: any): any => {
     const classContent: string = author ? 'message__content_lgblue' : 'message__content_grey';
     const classInfo   : string = author ? 'message__info_left' : 'message__info_right'
 
+    const date : any = moment(timestamp);
+    const hour : number = date.hours();
+    const minut: number = date.minute();
+    
     return (
         <div className={`message ${classMessage}`}> 
             <p className={`message__content ${classContent}`}>
@@ -17,7 +24,7 @@ const Message: FC = ({content, writenBy, timestamp}: any): any => {
             <div className={`message__info ${classInfo}`}>
                 <Avatar className="message__avatar" width="50" height="50"/>
                 <p className="message__time">
-                    {timestamp}
+                    {hour}:{minut}
                 </p>
             </div>
         </div>
