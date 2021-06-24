@@ -1,7 +1,19 @@
 import { call, put               } from '@redux-saga/core/effects';
 import { StrictEffect            } from '@redux-saga/types';
 import { EXITING_THE_APPLICATION } from '../actions/authentication';
-import { reqValidationToken      } from './calls/calls';
+
+// http://localhost:8080/
+// https://messenger-token-checker.herokuapp.com/
+export function reqValidationToken(token: string): object {
+  return fetch('http://localhost:8080/', {
+    method: 'POST',
+    headers: {
+        'Content-Type'  : 'application/json',
+        'x-access-token': token,
+    }
+  })
+    .then((res) => res.json());
+}
 
 /**
  * The function calls reqValidationToken and, 

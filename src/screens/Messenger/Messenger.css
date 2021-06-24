@@ -2,7 +2,7 @@
     align-content: top;
     display: grid;
     justify-items: stretch;
-    grid-template-columns: minmax(30rem, max-content) auto;
+    grid-template-columns: 35rem auto;
     height: 100%;
 }
 

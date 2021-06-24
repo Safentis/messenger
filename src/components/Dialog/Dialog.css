@@ -1,8 +1,5 @@
 .dialog {
-    align-items: center;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
     transition: .3s;
     padding: 1.5rem 1rem;
 }
@@ -14,6 +11,7 @@
 .dialog__inner {
     align-items: center;
     display: flex;
+    justify-content: space-between;
 }
 
 .dialog__avatar {
@@ -29,6 +27,7 @@
 
 .dialog__content {
     margin: 0 1rem;
+    width: 100%;
 }
 
 .dialog__username {

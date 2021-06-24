@@ -15,12 +15,6 @@ export const dialogsReducer = (state = initialState, action: Actions): State => 
                 ...state,
                 dialogs
             };
-        // case FETCH_FILTER_DIALOGS:
-        //     console.log(dialogs);
-        //     return {
-        //         ...state,
-        //         dialogs
-        //     }
         default:
             return state;
     }

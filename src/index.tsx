@@ -1,18 +1,18 @@
-import React    from 'react';
-import ReactDOM from 'react-dom';
-import Root     from './screens/Root';
+import React             from 'react';
+import ReactDOM          from 'react-dom';
+import Root              from './screens/Root';
 
 //* REDUX
-import { Provider    } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react'
-import { store       } from './redux/store/store';
-import { persistor   } from './redux/store/store';
+import { Provider    }   from 'react-redux';
+import { PersistGate }   from 'redux-persist/integration/react'
+import { store       }   from './redux/store/store';
+import { persistor   }   from './redux/store/store';
 
 //* REACT ROUTER
 import { BrowserRouter } from 'react-router-dom';
 
 //* FIREBASE
-import firebase from 'firebase';
+import firebase          from 'firebase';
 import 'firebase/firestore';
 import 'firebase/auth';
 
@@ -20,8 +20,6 @@ import 'firebase/auth';
 import 'normalize.css';
 import './fonts/DINPro/stylesheet.css'
 import './index.css';
-
-console.log(process.env.REACT_APP_FIREBASE_API_KEY)
 
 firebase.initializeApp({
   apiKey           : process.env.REACT_APP_FIREBASE_API_KEY,
