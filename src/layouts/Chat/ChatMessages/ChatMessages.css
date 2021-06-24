@@ -1,6 +1,7 @@
 .messages {
     padding: 0 5rem;
     overflow-y: scroll;
+    height: 100vh;
 }
 
 .message {
@@ -8,6 +9,10 @@
     min-width: auto;
     max-width: 45rem;
     position: relative;
+}
+
+.message:nth-of-type(1) {
+    margin-top: 4rem;
 }
 
 .message:nth-of-type(n + 2) {
@@ -37,6 +42,7 @@
     border-bottom-left-radius: 0;
 }
 .message__content_grey {
+    color: var(--main-white-color);
     border-bottom-right-radius: 0;
     margin-right: 10rem;
     background-color: var(--main-grey-color);

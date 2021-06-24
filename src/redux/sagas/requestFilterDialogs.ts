@@ -1,5 +1,6 @@
 import { call, put, StrictEffect } from 'redux-saga/effects';
-import { SET_DIALOGS        } from '../actions/dialogs';
+import { SET_DIALOGS, SET_FILTER } from '../actions/dialogs';
+import { LOADER_OFF, LOADER_ON } from '../actions/loader';
 
 export const filterDialogs = (dialogs: any[], search: string): Promise <any> => {
 
@@ -19,19 +20,19 @@ export const filterDialogs = (dialogs: any[], search: string): Promise <any> => 
     });
 }
 
-export default function* requestFilterDialogs({payload: { dialogs: arrayDialogs, text }}: any): Generator <
+export default function* requestFilterDialogs({payload: { dialogs, text }}: any): Generator <
     StrictEffect,
     any,
     any
 > {
     try {
         const search: string = text.toLowerCase().trim();
-        const dialogs: any[] = yield call(filterDialogs, arrayDialogs, search);
+        const filter: any[] = yield call(filterDialogs, dialogs, search);
 
         yield put({
-            type: SET_DIALOGS,
+            type: SET_FILTER,
             payload: {
-                dialogs
+                filter
             }
         });
     } catch(err) {

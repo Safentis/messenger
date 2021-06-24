@@ -13,7 +13,7 @@ const MenuControls: FC <Props> = ({className = ''}): any => {
     const controls: Controls = {
         history  : faHistory,
         dialogs  : faUserFriends,
-        addresses: faAddressBook,
+        saved    : faAddressBook,
         clipboard: faClipboardList
     };
     

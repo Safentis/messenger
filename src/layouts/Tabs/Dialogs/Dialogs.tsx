@@ -10,14 +10,13 @@ const Dialogs: FC <Props> = ({}): any => {
   const { url }: any = useRouteMatch();
 
   
-  const { loader, dialogs }: DialogsData = useSelector(
+  const { loader, filter }: DialogsData = useSelector(
     ({loaderReducer, dialogsReducer}: any) => {
       return {
-        dialogs: dialogsReducer.dialogs,
+        filter: dialogsReducer.filter,
         loader : loaderReducer.loader, 
       };
   });
-
 
   const LOADER: any = (
     <div className="dialogs-loader">
@@ -27,10 +26,14 @@ const Dialogs: FC <Props> = ({}): any => {
 
   
   const DIALOGS: any = (
-    dialogs?.length > 0
-      ? dialogs.map((dialog: any, index: number): any =>
+    filter?.length > 0
+      ? filter.map((dialog: any, index: number): any =>
           <Link key={index} to={`${url}/${dialog.chatId}`}>
-            <Dialog {...dialog}/>
+            { 
+              (dialog.status === 'active')
+                ? <Dialog {...dialog}/>
+                : null
+            }
           </Link>
         )
       : <p className="no-dialogs">

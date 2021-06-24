@@ -5,6 +5,6 @@ export interface Props {
 export interface Controls {
     history  : any
     dialogs  : any
-    addresses: any
+    saved    : any
     clipboard: any
 }
