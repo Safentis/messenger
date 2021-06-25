@@ -1,23 +1,21 @@
-import { FC            } from 'react';
+import { FC, Fragment  } from 'react';
 import { useSelector   } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
-import { Link          } from 'react-router-dom';
 import Dialog            from '../../../components/Dialog/Dialog';
 
 const Saved: FC = (): any => {
     const saves: any[] = useSelector(({dialogsReducer: { saves }}: any) => saves);
     const { url }: any = useRouteMatch();
 
+    console.log(saves);
+
     return (
         <div>
             {
                 saves.map((dialog: any, index: number) =>
-                    <Link 
-                        key={index} 
-                        to={`${url}/${dialog.chatId}`} 
-                    >
+                    <Fragment key={index}>
                         <Dialog {...dialog}/>
-                    </Link>
+                    </Fragment>
                 )
             }
         </div>

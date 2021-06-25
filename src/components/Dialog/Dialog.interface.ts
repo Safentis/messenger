@@ -11,4 +11,7 @@ export interface Props {
     status: string
     chatId: string
     online: boolean
+    timestamp: number
+    complite: boolean
+    score   : number
 }

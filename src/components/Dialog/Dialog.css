@@ -1,5 +1,8 @@
 .dialog {
+    align-items: center;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
     transition: .3s;
     padding: 1.5rem 1rem;
 }
@@ -39,6 +42,10 @@
     
 }
 
+.dialog__last-activity {
+    color: var(--main-brown-color);
+}
+
 .dialog__functionality {
     display: flex;
     transition: .3s;
@@ -64,4 +71,25 @@
 
 .dialog__newmessage-value {
     color: var(--main-blue-color);
+}
+
+.dialog__functionality {
+    align-items: center;
+    display: flex;
+
+}
+.dialog__button {
+    align-items: center;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    margin-right: .5rem;
+    max-height: 2rem;
+    max-width: 2rem;
+    min-height: 2rem;
+    min-width: 2rem;
+}
+
+.dialog__button-icon {
+    font-size: 1.6rem;
 }
