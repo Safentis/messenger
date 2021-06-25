@@ -1,18 +1,17 @@
-import { FC, useState        } from 'react';
-import { Props, DialogsData  } from './Dialogs.interface';
-import { useSelector         } from 'react-redux';
-import { Link, useRouteMatch } from 'react-router-dom';
-import firebase                from 'firebase';
-import Loader                  from 'react-loader-spinner';
-import InfiniteScroll          from 'react-infinite-scroller';
-import Dialog                  from '../../../components/Dialog/Dialog';
+import { FC, useState, Fragment        } from 'react';
+import { Props, DialogsData            } from './Dialogs.interface';
+import { useDispatch, useSelector      } from 'react-redux';
+import { Link, Redirect, useRouteMatch } from 'react-router-dom';
+import Loader                            from 'react-loader-spinner';
+import InfiniteScroll                    from 'react-infinite-scroller';
+import Dialog                            from '../../../components/Dialog/Dialog';
 
 import './Dialogs.css'; 
 
 const Dialogs: FC <Props> = ({}): any => {
-  const { url }: any = useRouteMatch();
-  const dialogs: any[] = [];
-  const [isLoading, setLoading] = useState(true)
+  const [isLoading, setLoading] = useState(true);
+  const { url } : any = useRouteMatch();
+  const dialogs : any[] = [];
 
   const filter = useSelector(({dialogsReducer}: any) => {
     return dialogsReducer.filter;
@@ -20,13 +19,8 @@ const Dialogs: FC <Props> = ({}): any => {
 
   const handleLoading = (): Promise <any> => {
     return new Promise((resolve, reject) => {
-      firebase
-        .database()
-        .ref('chatrooms')
-        .on('value', (snapShot: any) => {
-          setLoading(!isLoading);
-          return resolve(snapShot.val());
-        });
+      setLoading(!isLoading);
+      return resolve(filter);
     });
   }
 
@@ -35,17 +29,17 @@ const Dialogs: FC <Props> = ({}): any => {
       <Loader type="ThreeDots" color="#757b92" height={100} width={100}/>
     </div>
   );
-
+  
   filter?.length > 0
     ? filter.map((dialog: any, index: number): any =>
         dialogs.push(
-          <Link key={index} to={`${url}/${dialog.chatId}`}>
+          <Fragment key={index}>
             { 
-              (dialog.status === 'active')
+              (dialog.status === 'noactive')
                 ? <Dialog {...dialog}/>
                 : null
             }
-          </Link>
+          </ Fragment>
         )
       )
     : <p className="no-dialogs">
@@ -54,7 +48,7 @@ const Dialogs: FC <Props> = ({}): any => {
 
   return (
       <InfiniteScroll
-        pageStart={1}
+        pageStart={0}
         loadMore={handleLoading}
         hasMore={isLoading}
         loader={LOADER}

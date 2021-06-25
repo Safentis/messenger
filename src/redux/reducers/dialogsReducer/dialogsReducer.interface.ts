@@ -2,6 +2,8 @@ export interface State {
     dialogs: any[]
     filter : any[]
     saves  : any[]
+    actives: any[]
+    complites: any[]
 }
 
 export interface Actions {

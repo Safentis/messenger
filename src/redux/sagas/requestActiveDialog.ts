@@ -1,18 +1,19 @@
-import { put, StrictEffect     } from 'redux-saga/effects';
-import { COMPLITE_DIALOG, SET_DIALOGS           } from '../actions/dialogs';
+import { put, StrictEffect } from 'redux-saga/effects';
+import { COMPLITE_DIALOG, SET_ACTIVE_DIALOG } from '../actions/dialogs';
 
-export default function* requestAllDialogs({payload: { dialogs }}: any): Generator <
+export default function* requestActiveDialog({payload: { chatId }}: any): Generator <
     StrictEffect,
     any,
     any
 > {
     try {
+
         yield put({
-            type: SET_DIALOGS,
+            type: SET_ACTIVE_DIALOG,
             payload: {
-                dialogs,
+                chatId
             }
-        });
+        })
 
         yield put({
             type: COMPLITE_DIALOG,
