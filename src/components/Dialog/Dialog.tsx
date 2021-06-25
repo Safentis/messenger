@@ -43,7 +43,7 @@ const Dialog: FC <Props> = (dialog): any => {
     const dispatch = useDispatch();
     const handleDialogs = (): void => {
         dispatch(requestActiveDialog(chatId));  
-      }
+    }
 
     const handleSave = () => {
         dispatch(
@@ -83,7 +83,9 @@ const Dialog: FC <Props> = (dialog): any => {
         }
 
         BUTTON = (
-            stars.map((item) => item)
+            stars.map(
+                (item) => item
+            )
         )
     }
 
