@@ -1,10 +1,9 @@
-import { FC    } from 'react';
-import { Props } from './ChatMessages.interface';
+import { FC         } from 'react';
+import { Props      } from './ChatMessages.interface';
 import './ChatMessages.css';
 
-import moment    from 'moment'
-import Avatar    from '../../../components/Avatar/Avatar';
-
+import moment         from 'moment'
+import Avatar         from '../../../components/Avatar/Avatar';
 
 const Message: FC = ({content, writenBy, timestamp}: any): any => {
     const author      : boolean = writenBy === 'client';
