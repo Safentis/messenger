@@ -1,7 +1,5 @@
-import firebase         from 'firebase';
-import { put, StrictEffect } from 'redux-saga/effects';
-import { SET_DIALOGS  } from '../actions/dialogs';
-import { LOADER_OFF, LOADER_ON } from '../actions/loader';
+import { put, StrictEffect     } from 'redux-saga/effects';
+import { SET_DIALOGS           } from '../actions/dialogs';
 
 export default function* requestAllDialogs({payload: { dialogs }}: any): Generator <
     StrictEffect,
@@ -9,7 +7,6 @@ export default function* requestAllDialogs({payload: { dialogs }}: any): Generat
     any
 > {
     try {
-        yield put({ type: LOADER_ON });
         yield put({
             type: SET_DIALOGS,
             payload: {
@@ -20,7 +17,5 @@ export default function* requestAllDialogs({payload: { dialogs }}: any): Generat
     } catch(err) {
         console.error('Code ', err.code)
         console.error('Message ', err.message);
-    } finally {
-        yield put({ type: LOADER_OFF });
     }
 }
