@@ -3,13 +3,13 @@ export interface Props {
 }
 
 export interface Controls {
-    '2x': any
-    'lg': any
+    icon   : any
+    size   : string | any
+    handler: () => null | void
 }
 
 export interface Switches {
-    actives  : any
-    dialogs  : any
-    saved    : any
-    complited: any
+    icon: any
+    path: string
+    url : string
 }
