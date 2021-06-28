@@ -1,13 +1,14 @@
-import { FC                                    } from 'react';
-import { useSelector                           } from 'react-redux';
-import { Route, Switch, Redirect               } from 'react-router-dom';
-import { AuthenticationReducer                 } from './RootRoutes.interface';
-import { AUTHENTICATION_ROUTE, MESSENGER_ROUTE } from '../utils/consts';
-import { privateRoutes, publicRoutes           } from '../routes';
-import { RouteAttributes                       } from '../routes';
+import { FC                                     } from 'react';
+import { useSelector                            } from 'react-redux';
+import { Route, Switch, Redirect                } from 'react-router-dom';
+import { AuthenticationReducer, RouteAttributes } from './RootRoutes.interface';
+import { AUTHENTICATION_ROUTE, MESSENGER_ROUTE  } from '../utils/consts';
+import { privateRoutes, publicRoutes            } from '../routes';
 
 const RootRouter: FC = (): any => {
-    const { success }: AuthenticationReducer = useSelector((state: any) => state.authenticationReducer);
+    const { success }: AuthenticationReducer = useSelector((state: any) => {
+        return state.authenticationReducer
+    });
 
     return success
     ?

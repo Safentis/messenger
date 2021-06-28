@@ -1,39 +1,33 @@
-import { FC                       } from 'react';
-import { useEffect                } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { requestAllDialogs        } from '../../redux/actionCreators/dialogs';
-import { requestTokenCheck        } from '../../redux/actionCreators/authentication';
-import Menu                         from '../../layouts/Menu/Menu';
-import MessengerRoutes              from './MessengerRoutes';
-import firebase                     from 'firebase';
+import { FC, useEffect              } from 'react';
+import { useDispatch, useSelector   } from 'react-redux';
+import { requestTokenCheck          } from '../../redux/actionCreators/authentication';
 import './Messenger.css';
 
+import Menu from '../../layouts/Menu/Menu';
+import Chatroom from '../../layouts/Chatroom/Chatroom';
+import Information from '../../layouts/Information/Information';
+
 const Messenger: FC = (): any => {
-    const dispatch: any = useDispatch();
-    const token: string = useSelector(({authenticationReducer}: any) => authenticationReducer?.token);
-    const chatsRef: any = firebase.database().ref('chatrooms');
     
+    //* --------------------------------------------------------------------
+    //* We take of the token from the gloabal state by name storage
+    //* if component mounted, we test of the token, and if token is not valid
+    //* we exiting from account
+    const dispatch: any = useDispatch();
+    const token: string = useSelector((state: any) => {
+        return state.authenticationReducer.token; 
+    });
+
     useEffect(() => {
-        chatsRef.on('value', (dataSnapshot: any) => {
-            dispatch(requestAllDialogs(dataSnapshot.val()));
-        });
+        dispatch(requestTokenCheck(token));    
     }, []);
 
-    //* If user's token is not valid, 
-    //* we redirect user to the authentication page
-    useEffect(() => {
-        dispatch(
-            requestTokenCheck(
-                token
-            )
-        );
-    }, []);
-    
     return (
-        <div className="messenger">
+        <main className="main main_two-windows">
             <Menu />
-            <MessengerRoutes />
-        </div>
+            <Chatroom />
+            {/* <Information /> */}
+        </main>
     );
 };
 

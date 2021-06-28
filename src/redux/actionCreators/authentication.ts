@@ -3,7 +3,7 @@ import {
     FETCH_MESSAGES_SUCCESS,
     FETCH_MESSAGES_FAILURE,
     FETCH_TOKEN_CHECK,
-    EXITING_THE_APPLICATION,
+    FETCH_EXITING_APP,
 } from '../actions/authentication';
 
 export const requestAuthentication = (data: any) => {
@@ -34,8 +34,8 @@ export const requestTokenCheck = (token: string) => {
     }
 }
 
-export const exitingTheApplication = () => {
+export const requestExitingApp = () => {
     return {
-        type: EXITING_THE_APPLICATION,
+        type: FETCH_EXITING_APP,
     }
 }

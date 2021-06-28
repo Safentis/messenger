@@ -1,0 +1,19 @@
+.chatroom {
+    display: grid;
+    grid-template-rows: 10rem 1fr auto;
+    grid-row-gap: 0;
+    overflow-y: hidden;
+}
+
+.chatroom__header {
+
+}
+
+.chatroom__body {
+    padding: 1.5rem 4.5rem 1.5rem 2.5rem;
+    overflow-y: auto;
+}
+
+.chatroom__footer {
+
+}

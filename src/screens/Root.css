@@ -1,11 +1,7 @@
-.main {
-    background-color: var(--main-lg-grey-color);
-    height: 100vh;
+.icon {
+    font-size: 2rem;
 }
 
-.title {
-    font-size: var(--main-fs-h2);
-    font-family: var(--main-font-bold);
-    color: var(--main-blue-color);
-    text-transform: uppercase;
+.icon_white {
+    color: var(--main-white-color);
 }

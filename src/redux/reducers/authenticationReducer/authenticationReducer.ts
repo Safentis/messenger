@@ -1,5 +1,9 @@
-import { FETCH_MESSAGES_SUCCESS, FETCH_MESSAGES_FAILURE, EXITING_THE_APPLICATION } from '../../actions/authentication';
 import { State, Actions } from './authenticationReducer.interface';
+import { 
+    FETCH_MESSAGES_SUCCESS, 
+    FETCH_MESSAGES_FAILURE, 
+    FETCH_EXITING_APP 
+} from '../../actions/authentication';
 
 const initialState: State = {
     success: false,
@@ -7,7 +11,6 @@ const initialState: State = {
 };
 
 export const authenticationReducer = (state = initialState, action: Actions): State => {
-    //* Actions
     const type : string = action.type;
     const token: string = action?.payload?.token;
 
@@ -24,7 +27,7 @@ export const authenticationReducer = (state = initialState, action: Actions): St
                 success: false,
                 token: ''
             };
-        case EXITING_THE_APPLICATION:
+        case FETCH_EXITING_APP:
             return {
                 ...state,
                 success: false,
