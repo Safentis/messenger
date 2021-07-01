@@ -1,0 +1,50 @@
+.dialog {
+    align-items: center;
+    justify-items: stretch;
+    display: grid;
+    grid-template-columns: 5rem 1fr 2rem;
+    grid-column-gap: 1rem;
+    padding: .5rem 2rem;
+    position: relative;
+}
+
+.dialog:hover {
+    background-color: var(--main-lg-blue-color);
+}
+
+.dialog__avatar {
+
+}
+
+.dialog__avatar-online {
+    bottom: 1rem;
+    left: 4.1rem;
+    position: absolute;
+    font-size: 1rem;
+}
+
+.dialog__info,
+.dialog__client {
+    color: #fff;
+}
+
+.dialog__client {
+    font-size: 1.4rem;
+}
+
+.dialog__message {
+    font-size: 1.2rem;
+}
+
+.dialog__last-activity {
+    font-size: 1.2rem;
+}
+
+.dialog__stars {
+    margin: 1rem 0;
+}
+
+.stars {
+    align-items: center;
+    display: flex;
+}

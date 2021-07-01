@@ -3,15 +3,26 @@
     grid-template-rows: 10rem 1fr auto;
     grid-row-gap: 0;
     overflow-y: hidden;
+    width: 100%;
 }
+
 
 .chatroom__header {
 
 }
 
 .chatroom__body {
-    padding: 1.5rem 4.5rem 1.5rem 2.5rem;
-    overflow-y: auto;
+    padding: 5rem 4.5rem 10.5rem 4.5rem;
+    overflow-x: hidden;
+}
+
+.chatroom__body::-webkit-scrollbar {
+    width: .5rem;
+}
+
+.chatroom__body::-webkit-scrollbar-thumb {
+    background-color: var(--main-dk-grey-color);
+    border-radius: .5rem;
 }
 
 .chatroom__footer {

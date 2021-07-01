@@ -5,3 +5,7 @@
 .icon_white {
     color: var(--main-white-color);
 }
+
+.icon_active {
+    color: var(--main-lg-blue-color);
+}

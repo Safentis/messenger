@@ -3,7 +3,7 @@ export interface State {
     token  : string
 };
 
-export interface Actions {
+export interface Action {
     type    : string
     payload : {
         token: string

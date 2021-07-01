@@ -6,8 +6,9 @@ import { AUTHENTICATION_ROUTE, MESSENGER_ROUTE  } from '../utils/consts';
 import { privateRoutes, publicRoutes            } from '../routes';
 
 const RootRouter: FC = (): any => {
-    const { success }: AuthenticationReducer = useSelector((state: any) => {
-        return state.authenticationReducer
+    
+    const success = useSelector((state: any) => {
+        return state.authenticationReducer.success;
     });
 
     return success
@@ -23,7 +24,7 @@ const RootRouter: FC = (): any => {
                         />
                     )
                 }
-                <Redirect to={MESSENGER_ROUTE} />
+                <Redirect to={MESSENGER_ROUTE + '/dialogs'} />
             </Switch>
         )
     :   

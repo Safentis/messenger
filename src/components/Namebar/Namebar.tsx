@@ -9,7 +9,7 @@ import { faVideo         } from '@fortawesome/free-solid-svg-icons';
 import Status              from '../Status/Status';
 import Button              from '../Button/Button';
 
-const Namebar: FC <Props> = ({}): any => {
+const Namebar: FC <Props> = ({client, online}): any => {
 
     const controls: Controls = {
         'phone-call': faPhone,
@@ -36,10 +36,10 @@ const Namebar: FC <Props> = ({}): any => {
             <div className="namebar__user">
                 <Status 
                     className="namebar__status" 
-                    status={'active'}
+                    status={online}
                 />
                 <h2 className="namebar__username">
-                    Elizabeth Nelson
+                    {client}
                 </h2>
             </div>
             <ul className="namebar__list">

@@ -1,0 +1,38 @@
+.submenu {
+    align-items: center;
+    position: relative;
+    display: flex;
+    justify-self: flex-end;
+    max-width: 1.5rem;
+    min-width: 1.5rem;
+}
+
+.submenu__list {
+    align-items: center;
+    background-color: var(--main-dk-grey-color);
+    border-radius: 2rem;
+    justify-content: space-around;
+    display: flex;
+    position: absolute;
+    min-width: 10rem;
+    height: 3rem;
+    z-index: 10;
+    transition: .2s;
+    right: 2rem;
+}
+
+.submenu__list_open {
+    visibility: visible;
+    transform: translateX(-1rem);
+    opacity: 1;
+}
+
+.submenu__list_close {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(0rem);
+}
+
+.submenu__item {
+    
+}

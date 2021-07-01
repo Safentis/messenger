@@ -18,7 +18,7 @@
 .button-action {
     background-color: var(--main-brown-color);
     border-radius: 50%;
-    padding: .55rem .65rem;
+    padding: .55rem .65rem !important;
 }
 
 .button-auth:hover {

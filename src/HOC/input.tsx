@@ -11,7 +11,7 @@ const input = (Component: any) => (props: any) => {
 
         setValue(text);
     }
-
+    
     return (
         <Component 
             {...props} 

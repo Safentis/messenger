@@ -8,5 +8,5 @@
 }
 
 .main_two-windows {
-    grid-template-columns: 35rem 1fr;
+    grid-template-columns: 35rem auto;
 }
