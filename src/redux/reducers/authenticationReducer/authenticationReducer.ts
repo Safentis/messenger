@@ -1,4 +1,4 @@
-import { State, Actions } from './authenticationReducer.interface';
+import { State, Action } from './authenticationReducer.interface';
 import { 
     FETCH_MESSAGES_SUCCESS, 
     FETCH_MESSAGES_FAILURE, 
@@ -10,7 +10,7 @@ const initialState: State = {
     token  : '', 
 };
 
-export const authenticationReducer = (state = initialState, action: Actions): State => {
+export const authenticationReducer = (state = initialState, action: Action): State => {
     const type : string = action.type;
     const token: string = action?.payload?.token;
 

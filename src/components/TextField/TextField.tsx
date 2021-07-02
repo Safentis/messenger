@@ -7,7 +7,7 @@ import { faSmile         } from '@fortawesome/free-solid-svg-icons';
 import { faPaperclip     } from '@fortawesome/free-solid-svg-icons';
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 
-import TextArea            from '../TextArea/TextArea';
+import TextArea            from './TextArea/TextArea';
 import Button              from '../Button/Button';
 
 const TextField: FC <Props> = ({}): any => {

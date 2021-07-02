@@ -1,14 +1,14 @@
-import React from 'react';
-import Props from './Label.interface';
+import { Children } from 'react';
+import Props        from './Label.interface';
 import './Label.css';
 
 const Label = ({children = '', className = '', attrs}: Props) => {
     return (
         <label className={`label ${className}`} {...attrs}>
             {
-                ([children].length <= 1) 
-                    ? children 
-                    : [...children]
+                Children.map(children, (item) => 
+                    item
+                )
             }
         </label>
     );

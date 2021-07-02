@@ -5,15 +5,18 @@ import './Menu.css';
 
 import { useDispatch                } from 'react-redux';
 import { Link, useRouteMatch        } from 'react-router-dom';
+import { useLocation                } from 'react-router-dom';
 import { FontAwesomeIcon            } from '@fortawesome/react-fontawesome';
 import { faHistory, faUserFriends   } from '@fortawesome/free-solid-svg-icons';
 import { faClipboardList, faArchive } from '@fortawesome/free-solid-svg-icons';
 import { faSignOutAlt               } from '@fortawesome/free-solid-svg-icons';
-import { faPlusCircle, faEllipsisV  } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle               } from '@fortawesome/free-solid-svg-icons';
 import { requestExitingApp          } from '../../redux/actionCreators/authentication';
 
+import Content                        from './Content/Content';
 import Button                         from '../../components/Button/Button';
 import Search                         from '../../components/Search/Search'; 
+import Submenu                        from '../../components/Submenu/Submenu';
 
 const Menu: FC <Props> = ({}): any => {
     const dispatch: any = useDispatch();
@@ -23,28 +26,9 @@ const Menu: FC <Props> = ({}): any => {
         dispatch(requestExitingApp());
     }
 
-    const controls: Controls[] = [
-        { icon: faPlusCircle, size: '2x', handler: () => null },
-        { icon: faEllipsisV,  size: 'lg', handler: () => null },
-        { icon: faSignOutAlt, size: 'lg', handler: handleExit },
-    ];
-
-    const CONTROLS: any = (
-        controls
-            .map(({icon, size, handler}: Controls, index: number) => 
-                <li className="controls__item" key={index}>
-                    <Button className="controls__button" type="button" onClick={handler}>
-                        <FontAwesomeIcon className="icon_white" 
-                            icon={icon}
-                            size={size}
-                        />
-                    </Button>
-                </li>
-            )
-    );
-
     //* Url for links
-    const { url }: { url: string } = useRouteMatch();
+    const { url      }: { url: string      } = useRouteMatch();
+    const { pathname }: { pathname: string } = useLocation();
 
     const switches: Switches[] = [
         { path: 'actives',   icon: faHistory      , url },
@@ -59,7 +43,7 @@ const Menu: FC <Props> = ({}): any => {
                 <li className="switch__item" key={index}>
                     <Link className="switch__link" to={`${url}/${path}`}>
                         <FontAwesomeIcon 
-                            className="icon icon_white" 
+                            className={(new RegExp(path).test(pathname)) ? 'icon icon_active' : 'icon icon_white' } 
                             icon={icon}
                         />
                     </Link>
@@ -75,7 +59,22 @@ const Menu: FC <Props> = ({}): any => {
                         WEHELP
                     </h2>
                     <ul className="controls menu__controls">
-                        {CONTROLS}
+                        <li className="controls__item">
+                            <Button className="controls__button" type="button">
+                                <FontAwesomeIcon className="icon_white" 
+                                    icon={faPlusCircle}
+                                    size={'2x'}
+                                />
+                            </Button>
+                        </li>
+                        <Submenu className="controls__item controls__submenu">
+                            <Button className="controls__button controls__submenu-button" type="button" onClick={handleExit}>
+                                <FontAwesomeIcon className="icon_white" 
+                                    icon={faSignOutAlt}
+                                    size={'lg'}
+                                />
+                            </Button>
+                        </Submenu>
                     </ul>
                 </div>
                 <div className="menu__header-middle">
@@ -88,7 +87,7 @@ const Menu: FC <Props> = ({}): any => {
                 </div>
             </div>
             <div className="menu__content">
-                            
+                <Content />           
             </div>
         </section>
     );

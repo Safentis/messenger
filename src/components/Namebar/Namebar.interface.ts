@@ -1,5 +1,6 @@
 export interface Props {
-
+    client: string
+    online: string
 }
 
 export interface Controls {

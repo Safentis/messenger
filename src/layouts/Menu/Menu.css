@@ -1,7 +1,8 @@
 .menu {
     background: linear-gradient(to bottom, var(--main-blue-color), var(--main-blue-color));
-    border-bottom-right-radius: .7rem;
+    /* border-bottom-right-radius: .7rem; */
     border-top-right-radius: .7rem;
+    height: 100vh;
 }
 
 .menu__header {
@@ -28,14 +29,10 @@
     display: flex;
 }
 
-.controls__item {
-
+.controls__submenu {
+    margin-left: 2rem;
 }
 
-.controls__item:nth-of-type(1),
-.controls__item:nth-of-type(2) {
-    margin-right: 1.25rem;
-}
 
 .controls__button {
     padding-right: 0;
@@ -60,4 +57,19 @@
     color: var(--main-white-color);
     text-transform: uppercase;
     font-weight: 400;
+}
+
+.menu__content {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 70%;
+    /* height: 64vh; */
+}
+
+.menu__content::-webkit-scrollbar {
+    width: .5rem;
+}
+.menu__content::-webkit-scrollbar-thumb {
+    background-color: var(--main-dk-grey-color);
+    border-radius: .5rem;
 }

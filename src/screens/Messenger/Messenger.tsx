@@ -3,9 +3,9 @@ import { useDispatch, useSelector   } from 'react-redux';
 import { requestTokenCheck          } from '../../redux/actionCreators/authentication';
 import './Messenger.css';
 
-import Menu from '../../layouts/Menu/Menu';
-import Chatroom from '../../layouts/Chatroom/Chatroom';
-import Information from '../../layouts/Information/Information';
+import Menu                           from '../../layouts/Menu/Menu';
+import ChatroomRoutes                 from '../../layouts/Chatroom/ChatroomRoutes';
+import Information                    from '../../layouts/Information/Information';
 
 const Messenger: FC = (): any => {
     
@@ -22,10 +22,12 @@ const Messenger: FC = (): any => {
         dispatch(requestTokenCheck(token));    
     }, []);
 
+   
+
     return (
         <main className="main main_two-windows">
             <Menu />
-            <Chatroom />
+            <ChatroomRoutes />
             {/* <Information /> */}
         </main>
     );

@@ -2,22 +2,29 @@ import { FC        } from 'react';
 import { Props     } from './Message.interface';
 import './Message.css';
 
-import anonymousUser from '../../images/anonymous-user.png';
+import Avatar        from '../Avatar/Avatar';
+import moment from 'moment';
 
+const Message: FC <Props> = ({content, timestamp, writtenBy}): any => {
+    const date: any = moment(timestamp);
+    const lastActivity: string = date.fromNow();
+    
+    const isClient: boolean = writtenBy === 'client';
+    const messageClass: string = isClient ? 'message_left' : 'message_right';
+    const contentClass: string = isClient ? 'message__content_grey' : 'message__content_blue';
+    const avatarClass : string = isClient ? 'avatar_left' : 'avatar_right'
 
-const Message: FC <Props> = ({}): any => {
     return (
-        <div className="message">
-            <p className="message__content">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                Dolores saepe iure et, temporibus necessitatibus architecto odit 
-                ipsa numquam dolorem vitae.
+        <div className={`message ${messageClass}`}>
+            <p className={`message__content ${contentClass}`}>
+               {content}
             </p>
             <div className="message__user">
-                <img className="message__user-avatar" src={anonymousUser} alt="user" width="50" height="50"/>
-                <p className="message__user-last-activity">
-                    10:30 p.m.
-                </p>
+                <Avatar className={`message__user-avatar ${avatarClass}`} width="50" height="50">
+                    <p className="message__user-last-activity">
+                        {lastActivity}
+                    </p>
+                </Avatar>
             </div>
         </div>
     );
