@@ -1,0 +1,8 @@
+.dialog__stars {
+    margin: 1rem 0;
+}
+
+.stars {
+    align-items: center;
+    display: flex;
+}

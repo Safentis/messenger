@@ -2,12 +2,9 @@ import { useState } from 'react';
 import Loader       from 'react-loader-spinner';
 
 const infiniteScroll = (Component: any, Dialog: any) => (props: any) => {
-    //* all dialogs
-    const { dialogs = [] }: { dialogs: any[] } = props;
+    const { dialogs } = props;
 
-    
-    //* Preload count
-    const itemsPerPage: number = 3;
+    const itemsPerPage: number = 10;
     const [hasMoreItems, sethasMoreItems]: [boolean, Function] = useState(true);
     const [records, setRecords]: [number, Function] = useState(itemsPerPage);
 
@@ -58,6 +55,7 @@ const infiniteScroll = (Component: any, Dialog: any) => (props: any) => {
             />
         </div>
     );
+
     
     return (
         <Component 

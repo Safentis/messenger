@@ -39,12 +39,3 @@
 .dialog__last-activity {
     font-size: 1.2rem;
 }
-
-.dialog__stars {
-    margin: 1rem 0;
-}
-
-.stars {
-    align-items: center;
-    display: flex;
-}
