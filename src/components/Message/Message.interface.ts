@@ -1,5 +1,6 @@
 export interface Props {
     content  : string
-    timestamp: string, 
+    timestamp: string 
     writtenBy: string
+    src      : string[]
 }
