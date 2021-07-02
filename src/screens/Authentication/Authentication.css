@@ -1,3 +1,7 @@
+.main {
+    height: 100vh;
+}
+
 .authentication {
     align-items: center;
     border-radius: .25rem;
@@ -7,6 +11,7 @@
     height: 100%;
     margin: 0 auto;
     max-width: 90%;
+    min-width: 45rem;
 }
 
 .authentication__loader {

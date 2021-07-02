@@ -1,15 +1,12 @@
-.messenger {
-    align-content: top;
+.main {
     display: grid;
-    grid-template-columns: 35rem auto;
-    height: 100%;
+    background-color: var(--main-lg-grey-color);
 }
 
-.icon {
-    font-size: 2rem;
-    transition: .3s;
+.main_three-windows {
+    grid-template-columns: 35rem 1fr 1fr;
 }
 
-.icon:hover {
-    color: var(--main-lg-blue-color);
+.main_two-windows {
+    grid-template-columns: 35rem 1fr;
 }

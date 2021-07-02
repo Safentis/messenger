@@ -1,8 +1,9 @@
 :root {
     --main-black-color   : #111016;
     --main-white-color   : #fff;
-    --main-grey-color    : #757b92;
-    --main-lg-grey-color : #cccccc;
+    --main-grey-color    : #c0c0c0;
+    --main-lg-grey-color : #dcdcdc;
+    --main-dk-grey-color : #696969;
     --main-blue-color    : #30364a;
     --main-lg-blue-color : #c4d0ee;
     --main-brown-color   : #d2a283;
@@ -55,4 +56,5 @@ a {
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
+    color: var(--main-blue-color);
 }

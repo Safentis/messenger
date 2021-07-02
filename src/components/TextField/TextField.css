@@ -1,0 +1,42 @@
+.text-field {
+    background-color: var(--main-grey-color);
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 13.5rem;
+    padding: 0 2.5rem;
+}
+
+.text-field__textarea {
+
+}
+
+.text-field__list {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.text-field__button {
+    color: var(--main-dk-grey-color);
+}
+
+.text-field__button-smiles {}
+.text-field__button-enclose {}
+.text-field__button-send {
+    background-color: var(--main-blue-color);
+    border-radius: 50%;
+    max-width: 3.5rem;
+    max-height: 3.5rem;
+    min-width: 3.5rem;
+    min-height: 3.5rem;
+}
+
+.text-field__icon-smiles,
+.text-field__icon-enclose {
+    font-size: 2rem;
+}
+
+.text-field__icon-send {
+    color: var(--main-white-color);
+    font-size: 1.6rem;
+}
