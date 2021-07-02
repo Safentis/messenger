@@ -30,8 +30,20 @@
 }
 
 .message__content {
-    padding: 2rem;
     border-radius: 1rem;
+    box-shadow: .1rem .1rem .25rem var(--main-dk-grey-color);
+    font-weight: 400;
+    font-size: var(--main-fs-h3);
+    padding: 2rem;
+}
+
+.message__img {
+    box-shadow: .1rem .1rem .25rem var(--main-dk-grey-color);
+    max-width: 100%;
+    max-height: 100%;
+    min-width: 50%;
+    min-height: 50%;
+    margin-top: 2rem;
 }
 
 .message__content_grey {

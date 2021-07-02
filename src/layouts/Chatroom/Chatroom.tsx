@@ -27,9 +27,6 @@ const Chatroom: FC <Props> = (): any => {
         )
     );
 
-    console.log(dialog.messages);
-
-
     return (
         <section className="chatroom">
             <div className="chatroom__header">

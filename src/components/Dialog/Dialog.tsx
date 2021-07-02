@@ -14,9 +14,10 @@ import Avatar                       from '../Avatar/Avatar';
 import Status                       from '../Status/Status';
 import Button                       from '../Button/Button';
 import Submenu                      from '../Submenu/Submenu';
+import Stars                        from '../Stars/Stars';
 import { requestUpdate            } from '../../redux/actionCreators/menudialogs';
 
-const Dialog: FC <Props> = ({chatId, client, messages, online, operatorId, status, score = 1}): any => {
+const Dialog: FC <Props> = ({chatId, client, messages, online, operatorId, status, score}): any => {
     
     const dispatch = useDispatch();
     const userUid: string = useSelector((state: any) => {
@@ -29,7 +30,7 @@ const Dialog: FC <Props> = ({chatId, client, messages, online, operatorId, statu
     let content     : string; 
     let date        : any;
     let lastActivity: string;
-    let scoreArr    : any[];
+    let stars       : any[];
 
     if (messages?.length > 0) {
         lastMessage  = messages.length - 1;
@@ -37,12 +38,12 @@ const Dialog: FC <Props> = ({chatId, client, messages, online, operatorId, statu
         timestamp    = messages[lastMessage].timestamp;
         date         = moment(timestamp);
         lastActivity = date.fromNow()
-        scoreArr     = [...Array(score).keys()] 
+        stars        = [...Array(score).keys()] 
     } else {
         lastMessage  = 0;
         content      = 'no messages';
         lastActivity = '';
-        scoreArr     = [];
+        stars        = [];
     }
 
     const handleSave = () => {
@@ -58,56 +59,40 @@ const Dialog: FC <Props> = ({chatId, client, messages, online, operatorId, statu
     }
 
 
-    let SUBMENU: any;
-    let STARS: any;
+    let icon: any;
+    let handlerClick: () => void = () => {};
 
     if (status === 'noactive') {
-        SUBMENU = (
-            <Submenu>
-                <Link to={`${url}/${chatId}`} onClick={handleActive}>
-                    <FontAwesomeIcon className="icon icon_white" icon={faUserEdit}/>
-                </Link>
-            </Submenu>
-        );
-
+        handlerClick = handleActive;
+        icon = faUserEdit;
     } else if (status === 'active') {
-        SUBMENU = (
-            <Submenu>
-                <Link to={`${url}/${chatId}`} onClick={handleActive}>
-                    <FontAwesomeIcon className="icon icon_white" icon={faUserEdit}/>
-                </Link>
-                <Button onClick={handleSave}>
-                    <FontAwesomeIcon className="icon icon_white" icon={faSave}/>
-                </Button>
-            </Submenu>
-        );
+        handlerClick = handleSave;
+        icon = faSave;
     } else if (status === 'saved') {
-        SUBMENU = (
-            <Submenu>
-                <Link to={`${url}/${chatId}`} onClick={handleSave}>
-                    <FontAwesomeIcon className="icon icon_white" icon={faUserEdit}/>
-                </Link>
-                <Button onClick={handleDelete}>
-                    <FontAwesomeIcon className="icon icon_white" icon={faUserTimes}/>
-                </Button>
-            </Submenu>
-        );
-    } else if (status === 'complited') {
-        STARS = (
-            <ul className="dialog__stars stars">
-                {scoreArr.map((item: number, index: number) =>
-                    <li className="stars__item"  key={index}>
-                        <FontAwesomeIcon 
-                            className="stars__icon" 
-                            icon={faStar}
-                        />
-                    </li>
-                )}
-            </ul>
-        );
+        handlerClick = handleDelete;
+        icon = faUserTimes;
     } else {
         
     }
+
+    let SUBMENU = (
+        status === 'complited'
+            ? null
+            : <Submenu>
+                <Button onClick={handlerClick}>
+                    <FontAwesomeIcon className="icon icon_white" icon={icon}/>
+                </Button>
+              </Submenu>
+    );
+
+    const CONTENT: any = (
+        status === 'complited' 
+            ? <Stars className="dialog__stars" stars={stars}/> 
+            : <p className="dialog__message">
+                {content}
+            </p>
+        
+    )
 
     return (
         chatId
@@ -115,19 +100,17 @@ const Dialog: FC <Props> = ({chatId, client, messages, online, operatorId, statu
                 <Avatar className="dialog__avatar" width="50" height="50">
                     <Status className="dialog__avatar-online" status={online}/>
                 </Avatar>
-                <div className="dialog__info">
-                    <h2 className="dialog__client">
-                        {client}
-                    </h2>
-                    {
-                        status === 'complited' 
-                            ? STARS 
-                            : <p className="dialog__message">{content}</p>
-                    }                    
-                    <p className="dialog__last-activity">
-                        {lastActivity}
-                    </p>
-                </div>
+                <Link to={`${url}/${chatId}`} onClick={status === 'noactive' ? handleActive : () => {}}>
+                    <div className="dialog__info">
+                        <h2 className="dialog__client">
+                            {client}
+                        </h2>
+                        {CONTENT}
+                        <p className="dialog__last-activity">
+                            {lastActivity}
+                        </p>
+                    </div>
+                </Link>
                 {SUBMENU}
               </section>
             : null
