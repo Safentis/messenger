@@ -41,3 +41,21 @@
     color: var(--main-white-color);
     font-size: 1.6rem;
 }
+
+.text-field__emoji {
+    position: relative;
+}
+
+.text-field__emoji-picker {
+    position: absolute;
+    bottom: 5rem;
+    right: 1rem;
+}
+
+.text-field__emoji-picker_show {
+    display: block;
+}
+
+.text-field__emoji-picker_hide {
+    display: none;
+}   

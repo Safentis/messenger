@@ -1,19 +1,37 @@
-import { FC                  } from 'react';
+import { FC, useState        } from 'react';
 import { Controls, Props     } from './TextField.interface';
 import './TextField.css';
 
-import firebase                from 'firebase';
 import { FontAwesomeIcon     } from '@fortawesome/react-fontawesome';
 import { faSmile             } from '@fortawesome/free-solid-svg-icons';
 import { faPaperclip         } from '@fortawesome/free-solid-svg-icons';
 import { faLocationArrow     } from '@fortawesome/free-solid-svg-icons';
+import Picker                  from 'emoji-picker-react';
 
 import TextArea                from './TextArea/TextArea';
 import Button                  from '../Button/Button';
 import input                   from '../../HOC/input';
+import Submenu                 from '../Submenu/Submenu';
+
+const TextField: FC <Props> = ({chatId, handleSendMessage}): any => {
+
+    let [value, setValue] = useState('');
+    const handleChange = (event: any) => {
+        setValue(event.target.value);
+    }
+
+    
+    const onEmojiClick = (event: any, emojiObject: any) => {
+        setValue(value += ` ${emojiObject.emoji}`)
+    };
 
 
-const TextField: FC <Props> = ({chatId, value, handleChange, handleSendMessage}): any => {
+    const [isSubmenu, setSubmenu] = useState(false);
+    const handleSubmenu = () => {
+        setSubmenu(!isSubmenu);
+    }
+
+
     return (
         <div className="text-field">
             <TextArea 
@@ -23,17 +41,24 @@ const TextField: FC <Props> = ({chatId, value, handleChange, handleSendMessage})
                 value={value}
             />
             <ul className="text-field__list">
-                <li className="text-field__item">
+                <li className="text-field__item text-field__emoji">
                     <Button 
                         className={`text-field__button text-field__button-smiles`}
                         title="smiles"
                         type="button"
+                        onClick={handleSubmenu}
                     >
                         <FontAwesomeIcon 
                             className={`text-field__icon-smiles`} 
                             icon={faSmile}
                         />
                     </Button>
+                    <div className={`text-field__emoji-picker ${isSubmenu 
+                            ? 'text-field__emoji-picker_show' 
+                            : 'text-field__emoji-picker_hide'
+                        }`}>
+                        <Picker onEmojiClick={onEmojiClick} />
+                    </div>
                 </li>
                 <li className="text-field__item">
                     <Button 
@@ -65,4 +90,4 @@ const TextField: FC <Props> = ({chatId, value, handleChange, handleSendMessage})
     );
 }
 
-export default input(TextField);
+export default TextField;
