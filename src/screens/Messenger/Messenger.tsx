@@ -1,4 +1,4 @@
-import { FC, useEffect              } from 'react';
+import { FC, useEffect, useState    } from 'react';
 import { useDispatch, useSelector   } from 'react-redux';
 import { requestTokenCheck          } from '../../redux/actionCreators/authentication';
 import './Messenger.css';
@@ -28,7 +28,6 @@ const Messenger: FC = (): any => {
         <main className="main main_two-windows">
             <Menu />
             <ChatroomRoutes />
-            {/* <Information /> */}
         </main>
     );
 };
