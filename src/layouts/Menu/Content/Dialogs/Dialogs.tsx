@@ -2,16 +2,13 @@ import { FC            } from 'react';
 import { Props         } from './Dialogs.interface';
 import './Dialogs.css';
 
-import _                 from 'lodash';
 import InfiniteScroll    from 'react-infinite-scroller';
 import infiniteScroll    from '../../../../HOC/infinite-scroll';
 import Dialog            from '../../../../components/Dialog/Dialog';
 
-
-
 const Dialogs: FC <Props> = ({dialogs = [], status, uid, loadMore, hasMoreItems, loader, showItems}): any => {
 
-    const filteredContent: any[] = _.filter(dialogs, (dialog: any) => {
+    const filteredContent: any[] = dialogs.filter((dialog: any) => {
         return (dialog.status !== 'noactive')
             ? (
                 dialog.status === status && 

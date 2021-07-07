@@ -7,8 +7,8 @@ import './Stars.css';
 const Stars: FC <Props> = ({className = '', stars = []}): any => {
     return (
         <ul className={`stars ${className}`}>
-            {stars.map((item: number) =>
-                <li className="stars__item" key={item}>
+            {stars.map((item: number, index: number) =>
+                <li className="stars__item" key={index}>
                     <FontAwesomeIcon 
                         className="stars__icon" 
                         icon={faStar}

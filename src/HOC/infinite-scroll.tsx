@@ -9,14 +9,17 @@ const infiniteScroll = (Component: any, Dialog: any) => (props: any) => {
     const [records, setRecords]: [number, Function] = useState(itemsPerPage);
 
 
-    //* With this function we created of a Dialog components 
-    //* and added them to items array for preload
+    //* With this function we creat of a Dialog components 
+    //* and add them to items array for preload
     const showItems = (dialogs: any[]): any[] => {
         const items: any[] = [];
         
         if (dialogs?.length > 0) {
-            
+                
             for (var i = 0; i < records; i++) {
+                
+                if (typeof dialogs[i] === 'undefined') continue;
+
                 items.push(
                     <Dialog {...dialogs[i]} key={i}/>
                 );

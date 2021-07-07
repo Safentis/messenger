@@ -29,7 +29,7 @@ const Search: FC <Props> = ({value, handleChange}): any => {
         (_.debounce(() => {
             chatroomsRef
                 .on('value', (data: any) => {
-                    let database: any[] = data.val();
+                    let database: any[] = Object.values(data.val()) || data.val();
                     let search: string = value.trim().toLowerCase();
                     
                     let isFiltered: any[] = []; //* filtered messages

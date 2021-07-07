@@ -1,10 +1,11 @@
-import { call, put               } from '@redux-saga/core/effects';
-import { StrictEffect            } from '@redux-saga/types';
-import { FETCH_EXITING_APP       } from '../../actions/authentication';
+import { call, put         } from '@redux-saga/core/effects';
+import { StrictEffect      } from '@redux-saga/types';
+import { FETCH_EXITING_APP } from '../../actions/authentication';
+import firebase              from 'firebase';
 
 interface Validation {
   validation: boolean
-}
+};
 
 // http://localhost:8080/
 // https://messenger-token-checker.herokuapp.com/

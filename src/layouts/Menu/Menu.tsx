@@ -1,4 +1,4 @@
-import { FC                         } from 'react';
+import { FC, useState               } from 'react';
 import { Props, Switches, Controls  } from './Menu.interface';
 import './Menu.css';
 
@@ -19,6 +19,13 @@ import Search                         from '../../components/Search/Search';
 import Submenu                        from '../../components/Submenu/Submenu';
 
 const Menu: FC <Props> = ({}): any => {
+
+    const [isSubmenu, setSubmenu]: [boolean, Function] = useState(false);
+
+    const handleSubmenu = (): void => {
+        setSubmenu(!isSubmenu);
+    }
+
     const dispatch: any = useDispatch();
 
     //* App exit handler
@@ -67,7 +74,7 @@ const Menu: FC <Props> = ({}): any => {
                                 />
                             </Button>
                         </li>
-                        <Submenu className="controls__item controls__submenu">
+                        <Submenu className="controls__item controls__submenu" isSubmenu={isSubmenu} handleSubmenu={handleSubmenu}>
                             <Button className="controls__button controls__submenu-button" type="button" onClick={handleExit}>
                                 <FontAwesomeIcon className="icon_white" 
                                     icon={faSignOutAlt}
