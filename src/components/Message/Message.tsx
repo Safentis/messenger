@@ -3,7 +3,7 @@ import { Props     } from './Message.interface';
 import './Message.css';
 
 import Avatar        from '../Avatar/Avatar';
-import moment from 'moment';
+import moment        from 'moment';
 
 const Message: FC <Props> = ({content, timestamp, writtenBy, src}): any => {
     const date: any = moment(timestamp);
@@ -27,12 +27,18 @@ const Message: FC <Props> = ({content, timestamp, writtenBy, src}): any => {
         images?.map(img => img)
     );
 
+    const CONTENT: any = (
+        content.length < 1
+            ? null
+            : <p className={`message__content ${contentClass}`}>
+                {content}
+            </p>
+    );
+
     return (
         <div className={`message ${messageClass}`}>
-            <p className={`message__content ${contentClass}`}>
-               {content}
-            </p>
             {IMAGES}
+            {CONTENT}
             <div className="message__user">
                 <Avatar className={`message__user-avatar ${avatarClass}`} width="50" height="50">
                     <p className="message__user-last-activity">

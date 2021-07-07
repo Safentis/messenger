@@ -7,12 +7,7 @@ import { FontAwesomeIcon        } from '@fortawesome/react-fontawesome';
 import { faTimes                } from '@fortawesome/free-solid-svg-icons';
 import { faEllipsisV            } from '@fortawesome/free-solid-svg-icons';
 
-const Submenu: FC <Props> = ({children, className = ''}): any => {
-    const [isSubmenu, setSubmenu]: [boolean, Function] = useState(false);
-
-    const handleSubmenu = (): void => {
-        setSubmenu(!isSubmenu);
-    }
+const Submenu: FC <Props> = ({children, className = '', isSubmenu, handleSubmenu}): any => {
 
     const icon: any = isSubmenu ? faTimes : faEllipsisV;
     const isHidenClass: string = isSubmenu 

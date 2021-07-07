@@ -2,7 +2,7 @@ import { State, Action } from './authenticationReducer.interface';
 import { 
     FETCH_MESSAGES_SUCCESS, 
     FETCH_MESSAGES_FAILURE, 
-    FETCH_EXITING_APP 
+    EXITING_APP
 } from '../../actions/authentication';
 
 const initialState: State = {
@@ -27,7 +27,7 @@ export const authenticationReducer = (state = initialState, action: Action): Sta
                 success: false,
                 token: ''
             };
-        case FETCH_EXITING_APP:
+        case EXITING_APP:
             return {
                 ...state,
                 success: false,

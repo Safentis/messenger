@@ -3,6 +3,7 @@ import { useDispatch, useSelector   } from 'react-redux';
 import { requestTokenCheck          } from '../../redux/actionCreators/authentication';
 import './Messenger.css';
 
+import firebase                       from 'firebase';
 import Menu                           from '../../layouts/Menu/Menu';
 import ChatroomRoutes                 from '../../layouts/Chatroom/ChatroomRoutes';
 import Information                    from '../../layouts/Information/Information';
@@ -19,10 +20,9 @@ const Messenger: FC = (): any => {
     });
 
     useEffect(() => {
-        dispatch(requestTokenCheck(token));    
+        // dispatch(requestTokenCheck(token));    
     }, []);
-
-   
+    
 
     return (
         <main className="main main_two-windows">

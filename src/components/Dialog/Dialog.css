@@ -29,7 +29,8 @@
 }
 
 .dialog__client {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    font-weight: 500;
 }
 
 .dialog__message {
