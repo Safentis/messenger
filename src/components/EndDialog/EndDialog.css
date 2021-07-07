@@ -1,0 +1,10 @@
+.message-complite {
+    margin-top: 9rem;
+    display: flex;
+    justify-content: center;
+}
+
+.message-complite__content {
+    color: var(--main-black-color);
+    font-size: 2rem;
+}

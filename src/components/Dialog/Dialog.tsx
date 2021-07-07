@@ -1,4 +1,4 @@
-import { FC, useState             } from 'react';
+import { FC, useEffect, useState  } from 'react';
 import { Props                    } from './Dialog.interface';
 import './Dialog.css';
 
