@@ -34,6 +34,7 @@
     "react-firebase-hooks": "^3.0.4",
     "react-infinite-scroller": "^1.2.4",
     "react-loader-spinner": "^4.0.0",
+    "react-modal": "^3.14.3",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
