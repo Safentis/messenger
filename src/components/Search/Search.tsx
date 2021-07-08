@@ -51,7 +51,7 @@ const Search: FC <Props> = ({value, handleChange}): any => {
                     //* After search by client name, we make new filter
                     //* by the messages content
                     for (let dialog of noFiltered) {
-                        let messages: any[] = dialog.messages; 
+                        let messages: any[] = Object.values(dialog.messages) ?? []; 
 
                         if (messages) {
                             messages.filter((message: any) => {

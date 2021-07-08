@@ -1,5 +1,4 @@
 export interface Props {
-    chatId  : string
-    messages: any[]
-    handleSendMessage: (value: string, chatId: string) => void
+    messages   : any[]
+    sendMessage: (message: string) => void
 }

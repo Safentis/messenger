@@ -1,13 +1,14 @@
-import { FC, useEffect, useState             } from 'react';
-import { Props                               } from './ReadySolution.interface';
+import { FC, useEffect, useState } from 'react';
+import { Props                   } from './ReadySolution.interface';
 import './ReadySolution.css';
 
-import { Autocomplete                        } from '@material-ui/lab';
-import { TextField                           } from '@material-ui/core';
-import { useSelector                         } from 'react-redux';
-import firebase                                from 'firebase';
+import { Autocomplete            } from '@material-ui/lab';
+import { TextField               } from '@material-ui/core';
+import { useSelector             } from 'react-redux';
 
-const ReadySolution: FC <Props> = ({chatId, messages, handleSendMessage}): any => {
+import Button from '../../../components/Button/Button';
+
+const ReadySolution: FC <Props> = ({messages, sendMessage}): any => {
 
     const [solutions, setSolutions] = useState([]);
     const dialogs: any = useSelector((state: any) => {
@@ -15,12 +16,17 @@ const ReadySolution: FC <Props> = ({chatId, messages, handleSendMessage}): any =
     });
 
     useEffect(() => {
+
+        // if (!messages || !messages[0]?.content || !Object.values(messages)[0]?.content) return;
+
         //* The array of an all solutions from complited dialogs
         const solutions: any = []; 
 
         //* The current chat question of users
-        const question : any = Object.values(messages)[0].content;
+        const question : any = Object.values(messages)[0]?.content;
 
+
+        
 
         //* Each complited dialog we pushed to the solutions
         //* as object with fields "question" and "solution"
@@ -64,6 +70,9 @@ const ReadySolution: FC <Props> = ({chatId, messages, handleSendMessage}): any =
             }
         }
 
+        console.log(solutions)
+        console.log(question)
+
         setSolutions(results);
 
         return () => {
@@ -72,27 +81,32 @@ const ReadySolution: FC <Props> = ({chatId, messages, handleSendMessage}): any =
     }, [messages]);
 
 
-    const handleInputChange = (event: any, value: any) => {
-
-        if (value.length === 0) {
-            return;
-        }
-        else {
-            handleSendMessage(value, chatId);
-        }
+    const [autocomplite, setAutocomplite]: [string, Function] = useState('');
+    const handleInputChange = (event: any, content: string): void => {
+        setAutocomplite(content);
     }
- 
+    
+    const handleSolution = (): void => {
+        sendMessage(autocomplite);
+    }
+
     return (
-        <Autocomplete
-            options={solutions}
-            onInputChange={handleInputChange}
-            renderInput={(params) => (
-                <TextField 
-                    {...params} 
-                    label="Solutions"
-                />
-            )}
-        />
+        <div className="solution">
+            <Autocomplete
+                className="solution__autocomplete"
+                options={solutions}
+                onInputChange={handleInputChange}
+                renderInput={(params) => (
+                    <TextField 
+                        {...params} 
+                        label="Solutions"
+                    />
+                )}
+            />
+            <Button className="solution__button" onClick={handleSolution}>
+                send
+            </Button>
+        </div>
     );
 };
 
