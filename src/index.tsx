@@ -16,6 +16,10 @@ import firebase          from 'firebase';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+//* PUBNUB
+import PubNub             from 'pubnub';
+import { PubNubProvider } from 'pubnub-react';
+
 //* CSS FILES
 import 'normalize.css';
 import './fonts/DINPro/stylesheet.css'
@@ -32,13 +36,22 @@ firebase.initializeApp({
   measurementId    : process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 });
 
+const pubnub = new PubNub({
+  publishKey: process.env.REACT_APP_PUBLISH_KEY,
+  subscribeKey: process.env.REACT_APP_SUBSCRIBE_KEY as string,
+  uuid: PubNub.generateUUID(),
+  ssl: true
+});
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
-          <Root />
-        </BrowserRouter>
+        <PubNubProvider client={pubnub}>
+          <BrowserRouter>
+            <Root />
+          </BrowserRouter>
+        </PubNubProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>,

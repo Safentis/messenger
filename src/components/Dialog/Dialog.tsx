@@ -58,7 +58,9 @@ const Dialog: FC <Props> = ({ chatId, client, messages = [], online, status, sco
                 : 'No messages'
             : isComplite 
                 ? starsContent 
-                : lastMessage.slice(0, 33) + '...'
+                : lastMessage.length > 23 
+                    ? lastMessage.slice(0, 23)  + '...' 
+                    : lastMessage
     ); 
     
     
