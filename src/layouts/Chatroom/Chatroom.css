@@ -32,3 +32,9 @@
     grid-template-columns: 1fr .4fr;
     background-color: var(--main-grey-color);
 }
+
+.chatroom__typing {
+    display: flex;
+    justify-content: center;
+    margin: 8rem;
+}

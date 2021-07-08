@@ -1,5 +1,5 @@
 import { FC, useState        } from 'react';
-import { Controls, Props     } from './TextField.interface';
+import { Props               } from './TextField.interface';
 import './TextField.css';
 
 import { FontAwesomeIcon     } from '@fortawesome/react-fontawesome';
@@ -10,27 +10,18 @@ import Picker                  from 'emoji-picker-react';
 
 import TextArea                from './TextArea/TextArea';
 import Button                  from '../Button/Button';
-import input                   from '../../HOC/input';
-import Submenu                 from '../Submenu/Submenu';
 
-const TextField: FC <Props> = ({chatId, handleSendMessage}): any => {
-
-    let [value, setValue] = useState('');
-    const handleChange = (event: any) => {
-        setValue(event.target.value);
-    }
+const TextField: FC <Props> = ({message, setMessage, sendMessage, handleChange}): any => {
 
     
-    const onEmojiClick = (event: any, emojiObject: any) => {
-        setValue(value += ` ${emojiObject.emoji}`)
+    const onEmojiClick = (event: any, emojiObject: any): void => {
+        setMessage(message + ` ${emojiObject.emoji}`);
     };
 
-
     const [isSubmenu, setSubmenu] = useState(false);
-    const handleSubmenu = () => {
+    const handleSubmenu = (): void => {
         setSubmenu(!isSubmenu);
     }
-
 
     return (
         <div className="text-field">
@@ -38,7 +29,7 @@ const TextField: FC <Props> = ({chatId, handleSendMessage}): any => {
                 className="textare-chat text-field__textarea"
                 placeholder="Type your message here..."
                 onChange={handleChange}
-                value={value}
+                value={message}
             />
             <ul className="text-field__list">
                 <li className="text-field__item text-field__emoji">
@@ -75,7 +66,7 @@ const TextField: FC <Props> = ({chatId, handleSendMessage}): any => {
                 <li className="text-field__item">
                     <Button 
                         className={`text-field__button text-field__button-send`}
-                        onClick={() => handleSendMessage(value, chatId)}
+                        onClick={() => sendMessage(message)}
                         title="send"
                         type="button"
                     >

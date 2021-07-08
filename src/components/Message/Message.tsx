@@ -2,8 +2,8 @@ import { FC        } from 'react';
 import { Props     } from './Message.interface';
 import './Message.css';
 
-import moment        from 'moment';
 import Avatar        from '../Avatar/Avatar';
+import moment        from 'moment';
 
 const Message: FC <Props> = ({content, timestamp, writtenBy, src}): any => {
     const date: any = moment(timestamp);
