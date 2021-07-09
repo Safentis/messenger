@@ -1,4 +1,4 @@
-import { FETCH_DIALOGS, FETCH_DIALOGS_AVATAR, FETCH_DIALOGS_UPDATE } from '../actions/menudialogs';
+import { FETCH_DIALOGS, FETCH_DIALOGS_AVATAR, FETCH_DIALOGS_PHRASE, FETCH_DIALOGS_UPDATE } from '../actions/menudialogs';
 
 export const requestDialogs = (dialogs: any[]): any => {
     return {
@@ -25,6 +25,15 @@ export const requestAvatar = (uid: string) => {
         type: FETCH_DIALOGS_AVATAR,
         payload: {
             uid
+        }
+    }
+}
+
+export const requestSettings = (phrase: string) => {
+    return {
+        type: FETCH_DIALOGS_PHRASE,
+        payload: {
+            phrase,
         }
     }
 }

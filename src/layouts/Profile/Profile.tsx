@@ -46,7 +46,7 @@ const FileField = ({ name, ...props }: any) => (
     </Field>
   )
 
-const Profile: FC <Props> = ({ url }): any => {
+const Profile: FC <Props> = (): any => {
     const [isOpen, setIsOpen] = useState(false);
     const openModal = () => setIsOpen(true)
     const closeModal = () => setIsOpen(false);
@@ -191,4 +191,4 @@ const Profile: FC <Props> = ({ url }): any => {
     );
 };
 
-export default standartAvatar(Profile);
+export default Profile;

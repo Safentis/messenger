@@ -44,6 +44,8 @@ const Message: FC <Props> = ({content, timestamp, writtenBy, src, avatar}): any 
         ? avatar 
         : operator;
 
+    
+
     return (
         <div className={`message ${messageClass}`}>
             {IMAGES}

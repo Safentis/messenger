@@ -37,6 +37,10 @@ const Chatroom: FC <Props> = (): any => {
         return dialog.chatId === chatId;
     });
 
+    const phrase = useSelector((state: any) => {
+        return state.menudialogsReducer.phrase;
+    });
+
 
     //* Template for the firebase data
     const messageData = ({content, src = []}: { content: string, src?: string[] }): MessageData => {
@@ -140,6 +144,11 @@ const Chatroom: FC <Props> = (): any => {
     useEffect(() => {
         pubnub.addListener({ message: handleMessage, signal: handleSignals });
         pubnub.subscribe({ channels });
+        
+        if (dialog.status === 'noactive') {
+            handleSendMessage(phrase, dialog.chatId)
+        }
+        
         return () => {
             pubnub.unsubscribeAll();
         } 
@@ -149,7 +158,7 @@ const Chatroom: FC <Props> = (): any => {
     const MESSAGES: any = (
         messages.map((message: any, index: number) => {
             return (
-                <Message {...message} avatar={dialog.avatar} key={index}/>
+                <Message {...message} avatar={dialog.avatar} key={index} />
             );
         })
     );
@@ -171,6 +180,7 @@ const Chatroom: FC <Props> = (): any => {
             chatbody = null;
         }
     });
+
 
     return (
         <section className="chatroom">
