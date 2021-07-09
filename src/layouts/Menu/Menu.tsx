@@ -18,6 +18,7 @@ import Button                         from '../../components/Button/Button';
 import Search                         from '../../components/Search/Search'; 
 import Submenu                        from '../../components/Submenu/Submenu';
 import Profile                        from '../Profile/Profile';
+import Settings                       from '../Settings/Settings';
 
 const Menu: FC <Props> = ({}): any => {
 
@@ -82,7 +83,8 @@ const Menu: FC <Props> = ({}): any => {
                                     size={'lg'}
                                 />
                             </Button>
-                            <Profile />  
+                            <Profile />
+                            <Settings /> 
                         </Submenu>
                     </ul>
                 </div>
