@@ -6,11 +6,13 @@ import {
 } from '../actions/authentication';
 import { 
   FETCH_DIALOGS, 
-  FETCH_DIALOGS_UPDATE       
+  FETCH_DIALOGS_UPDATE,
+  FETCH_DIALOGS_AVATAR,      
 } from '../actions/menudialogs';
 import requestAuthentication from './authenticationSagas/requestAuthentication';
 import requestSignOut        from './authenticationSagas/requestSignOut';
 import requestTokenCheck     from './authenticationSagas/requestTokenCheck';
+import requestAvatar from './menudialogsReducer/requestAvatar';
 import requestDialogs        from './menudialogsReducer/requestDialogs';
 import requestUpdate         from './menudialogsReducer/requestUpdate';
 
@@ -21,5 +23,6 @@ export default function* rootSaga() {
     takeEvery(FETCH_DIALOGS, requestDialogs),
     takeEvery(FETCH_DIALOGS_UPDATE, requestUpdate),
     takeEvery(FETCH_EXITING_APP, requestSignOut),
+    takeEvery(FETCH_DIALOGS_AVATAR, requestAvatar),
   ]);
 }

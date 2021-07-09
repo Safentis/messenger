@@ -37,6 +37,7 @@ const Chatroom: FC <Props> = (): any => {
         return dialog.chatId === chatId;
     });
 
+
     //* Template for the firebase data
     const messageData = ({content, src = []}: { content: string, src?: string[] }): MessageData => {
         let writtenBy: string = 'operator';
@@ -148,7 +149,7 @@ const Chatroom: FC <Props> = (): any => {
     const MESSAGES: any = (
         messages.map((message: any, index: number) => {
             return (
-                <Message {...message} key={index}/>
+                <Message {...message} avatar={dialog.avatar} key={index}/>
             );
         })
     );

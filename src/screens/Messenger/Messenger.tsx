@@ -5,6 +5,7 @@ import './Messenger.css';
 import { usePubNub                  } from 'pubnub-react';
 
 
+import { requestAvatar              } from '../../redux/actionCreators/menudialogs';
 import Menu                           from '../../layouts/Menu/Menu';
 import ChatroomRoutes                 from '../../layouts/Chatroom/ChatroomRoutes';
 
@@ -30,6 +31,14 @@ const Messenger: FC = (): any => {
     });
     
     pubnub.setUUID(uid);
+
+    useEffect(() => {
+        dispatch(
+            requestAvatar(
+                uid
+            )
+        );
+    }, [])
 
     return (
         <main className="main main_two-windows">

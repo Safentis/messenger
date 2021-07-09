@@ -1,4 +1,4 @@
-import { FC, useState             } from 'react';
+import { FC, useEffect, useState  } from 'react';
 import { Props                    } from './Dialog.interface';
 import './Dialog.css';
 
@@ -16,9 +16,10 @@ import Status                       from '../Status/Status';
 import Button                       from '../Button/Button';
 import Submenu                      from '../Submenu/Submenu';
 import Stars                        from '../Stars/Stars';
+import firebase                     from 'firebase';
 
 
-const Dialog: FC <Props> = ({ chatId, client, messages = [], online, status, score, operatorId }): any => {
+const Dialog: FC <Props> = ({ chatId, client, messages = [], online, status, score, operatorId, avatar }): any => {
     
     const { url  }: any    = useRouteMatch();
     const dispatch: any    = useDispatch()
@@ -127,10 +128,18 @@ const Dialog: FC <Props> = ({ chatId, client, messages = [], online, status, sco
                 </Button>
         )
     );
+    
+    const operator = useSelector((state: any) => {
+        return state.menudialogsReducer.avatar;
+    });
+
+    const src = (lastContent.writtenBy === 'client') 
+        ? avatar 
+        : operator;
 
     return (
         <div className="dialog">
-            <Avatar className="dialog__avatar" width="50" height="50">
+            <Avatar className="dialog__avatar" src={src} width="50" height="50">
                 <Status className="dialog__avatar-online" status={online}/>
             </Avatar>
             <div className="dialog__info">
