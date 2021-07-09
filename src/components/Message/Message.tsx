@@ -1,11 +1,12 @@
-import { FC        } from 'react';
-import { Props     } from './Message.interface';
+import { FC          } from 'react';
+import { Props       } from './Message.interface';
 import './Message.css';
 
-import Avatar        from '../Avatar/Avatar';
-import moment        from 'moment';
+import { useSelector } from 'react-redux';
+import Avatar          from '../Avatar/Avatar';
+import moment          from 'moment';
 
-const Message: FC <Props> = ({content, timestamp, writtenBy, src}): any => {
+const Message: FC <Props> = ({content, timestamp, writtenBy, src, avatar}): any => {
     const date: any = moment(timestamp);
     const lastActivity: string = date.fromNow();
     
@@ -35,12 +36,20 @@ const Message: FC <Props> = ({content, timestamp, writtenBy, src}): any => {
             </p>
     );
 
+    const operator = useSelector((state: any) => {
+        return state.menudialogsReducer.avatar;
+    });
+
+    const userAvatar = (writtenBy === 'client') 
+        ? avatar 
+        : operator;
+
     return (
         <div className={`message ${messageClass}`}>
             {IMAGES}
             {CONTENT}
             <div className="message__user">
-                <Avatar className={`message__user-avatar ${avatarClass}`} width="50" height="50">
+                <Avatar className={`message__user-avatar ${avatarClass}`} src={userAvatar} width="50" height="50">
                     <p className="message__user-last-activity">
                         {lastActivity}
                     </p>

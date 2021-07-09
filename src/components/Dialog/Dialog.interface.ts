@@ -1,4 +1,5 @@
 export interface Props {
+    avatar    : string
     chatId    : string
     client    : string
     messages  : any[]

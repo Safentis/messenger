@@ -26,7 +26,6 @@ const ReadySolution: FC <Props> = ({messages, sendMessage}): any => {
         const question : any = Object.values(messages)[0]?.content;
 
 
-        
 
         //* Each complited dialog we pushed to the solutions
         //* as object with fields "question" and "solution"
