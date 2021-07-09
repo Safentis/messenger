@@ -1,10 +1,11 @@
 import { State, Action     } from './menudialogsReducer.interface';
-import { FETCH_AVATAR_SET, FETCH_DIALOGS_SET } from '../../actions/menudialogs';
+import { FETCH_AVATAR_SET, FETCH_DIALOGS_SET, FETCH_PHRASE_SET } from '../../actions/menudialogs';
 
 const initialState: State = {
     dialogs: [],
     uid: '',
     avatar: '',
+    phrase: '',
 }
 
 export const menudialogsReducer = (state = initialState, action: Action): State => {
@@ -13,7 +14,8 @@ export const menudialogsReducer = (state = initialState, action: Action): State 
     const uid: string = action?.payload?.uid;
     const dialogs: any = action?.payload?.dialogs;
     const avatar: any = action?.payload?.avatar;
-    
+    const phrase: string = action?.payload?.phrase;
+
     switch (type) {
 
         case FETCH_DIALOGS_SET:
@@ -26,6 +28,11 @@ export const menudialogsReducer = (state = initialState, action: Action): State 
             return {
                 ...state,
                 avatar,
+            }
+        case FETCH_PHRASE_SET:
+            return {
+                ...state,
+                phrase,
             }
         default:
             return state;

@@ -1,0 +1,14 @@
+.settings {
+    display: flex;
+    flex-direction: column;
+}
+
+.settings__autocompite {
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.settings__submit {
+    padding: .5rem;
+    margin-top: 1rem;
+}

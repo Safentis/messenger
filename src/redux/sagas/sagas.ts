@@ -7,14 +7,16 @@ import {
 import { 
   FETCH_DIALOGS, 
   FETCH_DIALOGS_UPDATE,
-  FETCH_DIALOGS_AVATAR,      
+  FETCH_DIALOGS_AVATAR,
+  FETCH_DIALOGS_PHRASE,      
 } from '../actions/menudialogs';
 import requestAuthentication from './authenticationSagas/requestAuthentication';
 import requestSignOut        from './authenticationSagas/requestSignOut';
 import requestTokenCheck     from './authenticationSagas/requestTokenCheck';
-import requestAvatar from './menudialogsReducer/requestAvatar';
+import requestAvatar         from './menudialogsReducer/requestAvatar';
 import requestDialogs        from './menudialogsReducer/requestDialogs';
 import requestUpdate         from './menudialogsReducer/requestUpdate';
+import requestPhrase         from './menudialogsReducer/reqyestPhrase';
 
 export default function* rootSaga() {
   yield all([
@@ -24,5 +26,6 @@ export default function* rootSaga() {
     takeEvery(FETCH_DIALOGS_UPDATE, requestUpdate),
     takeEvery(FETCH_EXITING_APP, requestSignOut),
     takeEvery(FETCH_DIALOGS_AVATAR, requestAvatar),
+    takeEvery(FETCH_DIALOGS_PHRASE, requestPhrase),
   ]);
 }
