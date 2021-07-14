@@ -1,13 +1,10 @@
-import { FC, useEffect              } from 'react';
-import { useDispatch, useSelector   } from 'react-redux';
-import { requestTokenCheck          } from '../../redux/actionCreators/authentication';
+import { FC, useEffect, useState  } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { requestTokenCheck        } from '../../redux/actionCreators/authentication';
+import { requestDialogs           } from '../../redux/actionCreators/dialogs';
+import Aside                        from '../../layouts/Aside/Aside';
+import MessengerRoutes              from './MessengerRoutes';
 import './Messenger.css';
-import { usePubNub                  } from 'pubnub-react';
-
-
-import { requestAvatar              } from '../../redux/actionCreators/menudialogs';
-import Menu                           from '../../layouts/Menu/Menu';
-import ChatroomRoutes                 from '../../layouts/Chatroom/ChatroomRoutes';
 
 const Messenger: FC = (): any => {
     
@@ -19,32 +16,23 @@ const Messenger: FC = (): any => {
     const token: string = useSelector((state: any) => {
         return state.authenticationReducer.token; 
     });
-
+    
     useEffect(() => {
         // dispatch(requestTokenCheck(token));    
     }, []);
 
 
-    const pubnub: any = usePubNub();
-    const uid: string = useSelector((state: any) => {
-        return state.menudialogsReducer.uid;
-    });
-    
-    pubnub.setUUID(uid);
-
+    //* --------------------------------------------------------------------
+    //* We get of the all dialogs from database and saves them to store
     useEffect(() => {
-        dispatch(
-            requestAvatar(
-                uid
-            )
-        );
+        dispatch(requestDialogs());
     }, [])
 
     return (
-        <main className="main main_two-windows">
-            <Menu />
-            <ChatroomRoutes />
-        </main>
+        <div className="messenger">
+            <Aside />
+            <MessengerRoutes />             
+        </div>
     );
 };
 

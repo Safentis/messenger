@@ -1,0 +1,13 @@
+.content {
+    overflow-y: auto;
+    height: 100vh;
+}
+
+::-webkit-scrollbar {
+    width: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--main-blue-color);
+    border-radius: .5rem;
+}

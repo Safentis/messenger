@@ -1,0 +1,62 @@
+.namebar {
+    background-color: var(--main-dk-grey-color);
+    box-shadow: .1rem .1rem .1rem var(--main-dk-grey-color);
+    padding: 1rem;
+}
+
+.namebar__inner {
+   
+}
+
+.namebar__bottom,
+.namebar__top {
+    align-items: center;
+    display: flex;
+}
+
+.namebar__top {
+    justify-content: flex-end;
+}
+
+.namebar__bottom {
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+.namebar__search {
+
+}
+
+.namebar__name {
+    color: var(--main-white-color);
+    margin-right: 10rem;
+    font-size: 3rem;
+}
+
+.namebar__controls {
+    align-items: center;
+    display: flex;
+}
+
+.namebar__button {
+    align-items: center;
+    color: var(--main-white-color);
+    display: flex;
+    font-weight: 500;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+.namebar__button,
+.namebar__icon {
+    transition: .4s;
+}
+
+.namebar__button:hover, 
+.namebar__button:hover> .namebar__icon {
+    color: var(--main-lg-blue-color);
+}
+
+.namebar__icon {
+    margin-left: 1rem;
+}

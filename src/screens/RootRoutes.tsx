@@ -24,7 +24,7 @@ const RootRouter: FC = (): any => {
                         />
                     )
                 }
-                <Redirect to={MESSENGER_ROUTE + '/dialogs'} />
+                <Redirect to={MESSENGER_ROUTE} />
             </Switch>
         )
     :   

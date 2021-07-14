@@ -1,3 +1,7 @@
+.main {
+    height: 100vh;
+}
+
 .icon {
     font-size: 2rem;
 }
@@ -8,4 +12,8 @@
 
 .icon_active {
     color: var(--main-lg-blue-color);
+}
+
+.loader {
+    text-align: center;
 }

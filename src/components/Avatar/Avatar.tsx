@@ -1,6 +1,5 @@
-import { FC           } from 'react';
-import { Props        } from './Avatar.interface';
-import standartAvatar   from '../../HOC/standart-avatar';
+import { FC    } from 'react';
+import { Props } from './Avatar.interface';
 import './Avatar.css';
 
 const Avatar: FC <Props | any> = ({className = '', url, children = '', ...attrs}): any => {
@@ -20,4 +19,4 @@ const Avatar: FC <Props | any> = ({className = '', url, children = '', ...attrs}
     );
 };
 
-export default standartAvatar(Avatar);
+export default Avatar;

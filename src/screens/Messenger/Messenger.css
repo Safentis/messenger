@@ -1,14 +1,26 @@
-.main {
-    display: grid;
+.messenger {
     background-color: var(--main-lg-grey-color);
-    max-width: 148.0rem;
+    display: grid;
+    grid-template-columns: 25rem auto;
+    grid-template-rows: .2fr 1fr;
+    grid-template-areas: 
+        'aside namebar'
+        'aside content'
+        'aside content'
+    ;
+    height: 100%;
     margin: 0 auto;
+    max-width: 148.0rem;
 }
 
-.main_three-windows {
-    grid-template-columns: 35rem 1fr 1fr;
+.aside {
+    grid-area: aside;
 }
 
-.main_two-windows {
-    grid-template-columns: 35rem auto;
+.namebar {
+    grid-area: namebar;
+}
+
+.content {
+    grid-area: content;
 }

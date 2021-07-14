@@ -4,9 +4,9 @@ import './Root.css';
 
 function Root(): any {
   return (
-    <>
+    <main className="main">
       <RootRouter />
-    </>
+    </main>
   );
 };
 

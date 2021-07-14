@@ -1,4 +1,4 @@
 export interface Props {
-    className?: string
-    stars     : number[]
+    className?: string 
+    score     : number | null | undefined
 }

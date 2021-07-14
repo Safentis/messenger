@@ -1,0 +1,38 @@
+.aside {
+    background-color: var(--main-blue-color);
+    border-top-right-radius: .75rem;
+    border-bottom-right-radius: .75rem;
+    padding: 1rem;
+}
+
+.aside__innder {}
+
+.aside__header {}
+
+.aside__title {
+    color: var(--main-white-color);
+    font-weight: 400;
+    font-size: var(--main-fs-h2);
+    text-transform: uppercase;
+}
+
+.aside__body {
+    margin-top: 5rem;
+}
+
+.aside__controls {}
+
+.controls__button {
+    color: var(--main-white-color);
+    font-size: 1.6rem;
+    text-transform: uppercase;
+}
+
+.controls__button:nth-of-type(1n + 2) {
+    margin-top: 2rem;
+}
+
+.controls__icon {
+    margin-right: 1rem;
+    min-width: 2.5rem;
+}
