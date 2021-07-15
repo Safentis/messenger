@@ -25,8 +25,6 @@ const fetchActions = async ({chatId, body}: FetchActions) => {
 
         const request = await fetch(`https://messenger-b15ea-default-rtdb.europe-west1.firebasedatabase.app/chatrooms/${chatId}.json`, update);
         const respone = await request.json();
-
-        console.log('ok', respone);
     } catch (error) {
         console.error(error.code);
         console.error(error.message);

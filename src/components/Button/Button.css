@@ -5,6 +5,7 @@
     outline: none;
 }
 
+.button-main,
 .button-auth {
     background-color: var(--main-blue-color);
     border: .15rem solid var(--main-grey-color);
@@ -28,20 +29,24 @@
     color: var(--main-white-color);
 }
 
+.button-main:hover,
 .button-auth:hover {
     background-color: var(--main-white-color);
     color: var(--main-blue-color);
 }
 
+.button-main:hover > .button__icon,
 .button-auth:hover > .button__icon {
     color: var(--main-blue-color);
 }
 
+.button-main:active,
 .button-auth:active {
     background-color: var(--main-lg-blue-color);
     color: var(--main-white-color);
 }
 
+.button-main:active > .button__icon,
 .button-auth:active > .button__icon {
     color: var(--main-white-color);
 }
@@ -51,6 +56,7 @@
     margin: 0 .5rem;
 }
 
+.button-main,
 .button-auth,
 .button__icon {
     transition: .3s;

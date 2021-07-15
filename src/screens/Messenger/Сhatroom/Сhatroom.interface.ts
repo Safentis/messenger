@@ -1,6 +1,7 @@
 export interface Props {
-    dialogs: any[]
-    user   : any
+    dialogs : any[]
+    user    : any
+    settings: any
 }
 
 export interface Message {

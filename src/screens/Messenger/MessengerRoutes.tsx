@@ -14,10 +14,11 @@ const MessengerRoutes: FC = () => {
 
     //* -----------------------------------------------------
     //* We get of the all dialogs and user information
-    const { dialogs, user } = useSelector((state: any) => {
+    const { dialogs, user, settings } = useSelector((state: any) => {
         return {
-            dialogs: state.dialogsReducer.filtered,
-            user   : state.userReducer.user,
+            dialogs : state.dialogsReducer.filtered,
+            user    : state.userReducer.user,
+            settings: state.userReducer.settings,
         };
     });
 
@@ -40,7 +41,7 @@ const MessengerRoutes: FC = () => {
                     exact={true}
                     key={index}  
                 >
-                    <Component dialogs={dialogs} user={user}/>
+                    <Component dialogs={dialogs} user={user} settings={settings}/>
                 </Route>
             )}
             <Redirect to={MESSENGER_ROUTE} />

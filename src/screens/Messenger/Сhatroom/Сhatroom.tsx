@@ -11,7 +11,7 @@ import Solution                    from '../../../components/Solution/Solution';
 import Typing                      from '../../../components/Typing/Typing'; 
 import './Сhatroom.css';
 
-const Сhatroom: FC <Props> = ({dialogs, user}) => {
+const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
 
     //* ---------------------------------------------
     //* We get a key of url
@@ -96,7 +96,6 @@ const Сhatroom: FC <Props> = ({dialogs, user}) => {
     }
 
     const sendMessage = (message: any) => {
-        console.log(messages)
         if (message) {
             pubnub
             .publish({channel: channels[0], message})
@@ -114,10 +113,27 @@ const Сhatroom: FC <Props> = ({dialogs, user}) => {
     }, [pubnub, channels]);
 
 
+    //* ---------------------------------------------
+    //* If we have a new dialogs, 
+    //* we push them to state
     useEffect(() => {
         addMessage([...letters])
+
+        return () => {
+            addMessage([]);
+        }
     }, [dialogs]);
 
+
+    //* ---------------------------------------------
+    //* Auto greeting
+    useEffect(() => {
+        if (status === 'noactive') {
+           sendMessage(settings.greeting);
+        }
+    }, []);
+
+    
     //* ---------------------------------------------
     //* Content
     const MESSAGES = (
@@ -135,6 +151,7 @@ const Сhatroom: FC <Props> = ({dialogs, user}) => {
           </p>
         : null
     );
+
 
     return (
         <>

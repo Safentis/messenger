@@ -1,5 +1,6 @@
 export interface State {
-    user: any
+    user    : any
+    settings: any
 };
 
 export interface Action {

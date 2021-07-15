@@ -13,7 +13,7 @@ const savePhoto = (uid: string, file: any): Promise<any> => {
     return new Promise((resolve) => {
         const storageRef: any = firebase.storage();
         const avatarsRef: any = storageRef.ref('avatars/' + uid);
-    
+        
         avatarsRef.put(file as Blob);
         avatarsRef.getDownloadURL().then((res: any  ) => {
             return resolve(res);

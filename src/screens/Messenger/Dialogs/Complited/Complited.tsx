@@ -57,7 +57,7 @@ const Complited: FC <Props> = ({ dialogs, user: { uid } }) => {
     return (
         <>
             <Namebar>
-                {/* <Search /> */}
+                <Search />
             </Namebar>
             <Content>
                 {CONTENT}

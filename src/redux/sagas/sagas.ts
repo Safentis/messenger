@@ -9,6 +9,7 @@ import requestActions        from './dialogsSagas/requestActions';
 
 import requestUser           from './userSaga/requestUser';
 import requestUpdate         from './userSaga/requestUpdate';
+import requestSettings       from './userSaga/requestSettings';
 
 import { 
   FETCH_EXITING_APP, 
@@ -23,7 +24,9 @@ import {
 } from '../actions/dialogs';
 
 import { 
-  FETCH_USER, FETCH_USER_UPDATE 
+  FETCH_USER, 
+  FETCH_USER_UPDATE, 
+  FETCH_USER_SETTINGS, 
 } from '../actions/user';
 
 export default function* rootSaga() {
@@ -35,6 +38,7 @@ export default function* rootSaga() {
     takeEvery(FETCH_FILTERED_DIALOGS, requestFiltered),
     takeEvery(FETCH_ACTIONS, requestActions),
     takeEvery(FETCH_USER, requestUser),
-    takeEvery(FETCH_USER_UPDATE, requestUpdate)
+    takeEvery(FETCH_USER_UPDATE, requestUpdate),
+    takeEvery(FETCH_USER_SETTINGS, requestSettings)
   ]);
 }

@@ -7,6 +7,7 @@ import { FontAwesomeIcon   } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt      } from '@fortawesome/free-solid-svg-icons';
 import Button                from '../../components/Button/Button';
 import Profile               from '../../screens/options/Profile/Profile';
+import Settings              from '../../screens/options/Settings/Settings';
 import './Namebar.css';
 
 
@@ -36,6 +37,7 @@ const Namebar: FC <Props> = ({children}) => {
                         {user.email}
                     </div>
                     <div className="namebar__controls">
+                        <Settings />
                         <Profile />
                         <Button className="namebar__button" onClick={handleExit}>
                             exit

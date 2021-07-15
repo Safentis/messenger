@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Field, Form              } from 'react-final-form';
 
 import Popup                        from '../../../layouts/Popup/Popup';
+import Label                        from '../../../components/Label/Label';
 import Button                       from '../../../components/Button/Button';
 import Input                        from '../../../components/Input/Input';
 import Avatar                       from '../../../components/Avatar/Avatar';
@@ -82,11 +83,14 @@ const Profile: FC <Props> = ({}) => {
                     <form className="profile" action="none" onSubmit={handleSubmit}>
                         <Field name="name">
                             {({input}) => (
-                                <Input 
-                                    className="input-auth profile__input" 
-                                    placeholder="Name" 
-                                    {...input}
-                                />
+                                <Label className="label-main  profile__label">
+                                    Name
+                                    <Input 
+                                        className="input-main profile__input" 
+                                        placeholder="Name" 
+                                        {...input}
+                                    />
+                                </Label>
                             )}
                         </Field>
                         <div className="profile__user">
@@ -97,29 +101,38 @@ const Profile: FC <Props> = ({}) => {
                                 src={avatar} 
                             />
                             <FileField 
-                                className="profile__image" 
+                                className="profile__image"
                                 onChange={handleFile}
                             />
                         </div>
                         <Field name="password">
                             {({input}) => (
-                                <Input 
-                                    className="input-auth profile__input" 
-                                    placeholder="Password" 
-                                    {...input}
-                                />
+                                <Label className="label-main profile__label">
+                                    Password
+                                    <Input 
+                                        className="input-main profile__input" 
+                                        placeholder="Password" 
+                                        {...input}
+                                    />
+                                </Label>
                             )}
                         </Field>
                         <Field name="passwordRepeat">
                             {({input}) => (
-                                <Input 
-                                    className="input-auth profile__input" 
-                                    placeholder="Repeat Password" 
-                                    {...input}
-                                />
+                                <Label className="label-main profile__label">
+                                    Repeat password
+                                    <Input 
+                                        className="input-main profile__input" 
+                                        placeholder="Repeat Password" 
+                                        {...input}
+                                    />
+                                </Label>
                             )}
                         </Field>
-                        <Button className="button-auth profile__update" type="submit">
+                        <Button 
+                            className="button-main profile__update" 
+                            type="submit"
+                        >
                             Update
                         </Button>
                     </form>

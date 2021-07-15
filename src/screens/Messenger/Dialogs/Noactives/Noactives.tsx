@@ -65,7 +65,12 @@ const Noactives: FC <Props> = ({ dialogs, user: { uid } }) => {
                     const [key, value] = dialogs[i];
                     items.push(
                         <Dialog key={i} {...value}>
-                            <Link className="button-action" onClick={handleEnter} data-id={key} to={url + '/' + key}>
+                            <Link 
+                                className="button-action" 
+                                onClick={handleEnter} 
+                                to={url + '/' + key}
+                                data-id={key} 
+                            >
                                 start a dialogue
                             </Link>
                         </Dialog>
@@ -81,7 +86,7 @@ const Noactives: FC <Props> = ({ dialogs, user: { uid } }) => {
         <>
             <Namebar>
                 <Line className="noactive__line"/>
-                {/* <Search /> */}
+                <Search />
             </Namebar>
             <Content>
                 <InfiniteScroll
