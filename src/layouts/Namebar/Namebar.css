@@ -43,13 +43,13 @@
 
 .namebar__button,
 .namebar__icon {
-    color: var(--main-blue-color);
+    color: var(--main-white-color);
     transition: .4s;
 }
 
 .namebar__button:hover, 
 .namebar__button:hover> .namebar__icon {
-    color: var(--main-white-color);
+    color: var(--main-blue-color);
 }
 
 .namebar__icon {

@@ -7,6 +7,9 @@ import requestDialogs        from './dialogsSagas/requestDialogs';
 import requestFiltered       from './dialogsSagas/requestFiltered';
 import requestActions        from './dialogsSagas/requestActions';
 
+import requestUser           from './userSaga/requestUser';
+import requestUpdate         from './userSaga/requestUpdate';
+
 import { 
   FETCH_EXITING_APP, 
   FETCH_MESSAGES_REQUEST, 
@@ -20,9 +23,8 @@ import {
 } from '../actions/dialogs';
 
 import { 
-  FETCH_USER 
+  FETCH_USER, FETCH_USER_UPDATE 
 } from '../actions/user';
-import requestUser from './userSaga/requestUser';
 
 export default function* rootSaga() {
   yield all([
@@ -32,6 +34,7 @@ export default function* rootSaga() {
     takeEvery(FETCH_DIALOGS, requestDialogs),
     takeEvery(FETCH_FILTERED_DIALOGS, requestFiltered),
     takeEvery(FETCH_ACTIONS, requestActions),
-    takeEvery(FETCH_USER, requestUser)
+    takeEvery(FETCH_USER, requestUser),
+    takeEvery(FETCH_USER_UPDATE, requestUpdate)
   ]);
 }

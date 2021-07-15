@@ -3,7 +3,10 @@ import { Props             } from './Namebar.interface';
 import { useDispatch       } from 'react-redux';
 import { useSelector       } from 'react-redux';
 import { requestExitingApp } from '../../redux/actionCreators/authentication';
+import { FontAwesomeIcon   } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt      } from '@fortawesome/free-solid-svg-icons';
 import Button                from '../../components/Button/Button';
+import Profile               from '../../screens/options/Profile/Profile';
 import './Namebar.css';
 
 
@@ -33,8 +36,13 @@ const Namebar: FC <Props> = ({children}) => {
                         {user.email}
                     </div>
                     <div className="namebar__controls">
-                        <Button className="namebar__button button-action" onClick={handleExit}>
+                        <Profile />
+                        <Button className="namebar__button" onClick={handleExit}>
                             exit
+                            <FontAwesomeIcon 
+                                className="icon icon_white namebar__icon" 
+                                icon={faSignOutAlt}
+                            />
                         </Button>
                     </div>
                 </div>

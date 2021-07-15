@@ -1,10 +1,9 @@
-import { call, put, StrictEffect  } from 'redux-saga/effects';
-import { FETCH_USER_SET     } from '../../actions/user';
-import firebase               from 'firebase';
+import { put, StrictEffect } from 'redux-saga/effects';
+import { FETCH_USER_SET    } from '../../actions/user';
 
 /**
  * @param {object} payload 
- * @param {object} payload.dialogs 
+ * @param {object} payload.user 
  * @returns {Generator <StrictEffect, any, any>}
  */
 export default function* requestUser({payload: { user }}: any): Generator<
@@ -14,10 +13,10 @@ export default function* requestUser({payload: { user }}: any): Generator<
 > {
     try {
         const info = {
-           email: user.email,
-           name : user.displayName,
-           photo: user.photoURL,
-           uid  : user.uid,
+           email   : user.email,
+           name    : user.displayName,
+           photo   : user.photoURL,
+           uid     : user.uid,
         };
 
         yield put({

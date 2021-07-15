@@ -2,11 +2,13 @@ import { FC, useState, useEffect } from 'react'
 import { Props                   } from './Сhatroom.interface';
 import { useParams               } from 'react-router-dom';
 import { usePubNub               } from 'pubnub-react';
+import firebase                    from 'firebase';
 import Inputbar                    from './Inputbar/Inputbar';
 import Messages                    from './Messages/Messages';
 import Message                     from '../../../components/Message/Message';
 import Namebar                     from '../../../layouts/Namebar/Namebar';
 import Solution                    from '../../../components/Solution/Solution';
+import Typing                      from '../../../components/Typing/Typing'; 
 import './Сhatroom.css';
 
 const Сhatroom: FC <Props> = ({dialogs, user}) => {
@@ -25,10 +27,10 @@ const Сhatroom: FC <Props> = ({dialogs, user}) => {
 
     const [key, value] = isFinded;
 
-    const messages: any[]  = Object.values(value.messages);
-    const question: string = messages[0].content;
-    const client  : string = value.client;
-    const status  : string = value.status;
+    const letters   : any[]  = Object.values(value.messages);
+    const question  : string = letters[0].content; //* Question for Solution element
+    const client    : string = value.client;
+    const status    : string = value.status;
 
 
     //* ---------------------------------------------
@@ -40,7 +42,8 @@ const Сhatroom: FC <Props> = ({dialogs, user}) => {
     //* ---------------------------------------------
     //* Pubnub state
     const isChatroomChannel = `room-${path}`;
-    const pubnub = usePubNub();
+    const pubnub: any = usePubNub();
+    const [messages, addMessage]: any = useState(letters);
     const [channels] = useState([isChatroomChannel, isTypingChannel]);
 
 
@@ -60,12 +63,28 @@ const Сhatroom: FC <Props> = ({dialogs, user}) => {
             });
         }
     }
-    
 
+    
     //* ---------------------------------------------
     //* Pubnub handlers
     const handleMessage = (event: any) => {
+        let content  : string = event.message;
+        let timetoken: string = event.timetoken;
+        let timestamp: any    = new Date();
+        
         setIsTyping(false);
+
+        if (content.length > 0 || event.hasOwnProperty('message')) {
+            const template = {
+                writtenBy: 'operator',
+                timestamp,
+                content
+            }
+
+            addMessage((messages: any) => (
+                [...messages, template]
+            ));
+        }
     }
 
     const handleSignal = (signal: any) => {
@@ -77,6 +96,7 @@ const Сhatroom: FC <Props> = ({dialogs, user}) => {
     }
 
     const sendMessage = (message: any) => {
+        console.log(messages)
         if (message) {
             pubnub
             .publish({channel: channels[0], message})
@@ -95,8 +115,7 @@ const Сhatroom: FC <Props> = ({dialogs, user}) => {
 
 
     useEffect(() => {
-
-        console.log('new dialogs');
+        addMessage([...letters])
     }, [dialogs]);
 
     //* ---------------------------------------------
@@ -104,9 +123,8 @@ const Сhatroom: FC <Props> = ({dialogs, user}) => {
     const MESSAGES = (
         <>
             {messages.map((message: any, index: number) => 
-                <Message {...message} key={index}/>
+                <Message {...message} {...user} key={index}/>
             )}
-            {isTyping ? <p>print message...</p> : null}
         </>
     );
 
@@ -130,14 +148,22 @@ const Сhatroom: FC <Props> = ({dialogs, user}) => {
                     <Messages className="chatroom__messages">
                         {MESSAGES}
                         {MESSAGE_COMPLITED}
+                        <Typing 
+                            className="chatroom__typing" 
+                            isTyping={isTyping}
+                        />
                     </Messages>
                     <Inputbar 
                         className="chatroom__inputbar" 
                         inputbar={inputbar}
                         setInputbar={setInputbar}
                         handleKeyUp={handleKeyUp}
+                        sendMessage={sendMessage}
                     >
-                        <Solution question={question} sendMessage={sendMessage}/>
+                        <Solution 
+                            question={question} 
+                            sendMessage={sendMessage}
+                        />
                     </Inputbar>
                 </div>
             </section>

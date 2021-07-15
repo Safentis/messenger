@@ -10,25 +10,22 @@ import Button                  from '../../../../components/Button/Button';
 
 import './Inputbar.css';
 
-const Inputbar: FC <Props> = ({children, className = '', inputbar, setInputbar, handleKeyUp}) => {
+const Inputbar: FC <Props> = ({children, className = '', inputbar, setInputbar, handleKeyUp, sendMessage}) => {
 
     //* ---------------------------------------------
-    //* Emoji show logic
+    //* Emoji handlers
     const [isEmoji, setEmoji] = useState(false);
-    const handleEmojiShow = () => {
-        setEmoji(!isEmoji);
-    }
     
-
-    //* ---------------------------------------------
-    //* Inputbar and emoji handlers
-    const handleChange = (event: any) => {
-        setInputbar(event.target.value);
-    }
-
     const onEmojiClick = (event: any, emojiObject: any) => {
         setInputbar(inputbar + ' ' + emojiObject.emoji);
     };
+
+
+    //* ---------------------------------------------
+    //* Input handlers
+    const handleChange = (event: any) => {
+        setInputbar(event.target.value);
+    }
 
 
     //* ---------------------------------------------
@@ -52,7 +49,7 @@ const Inputbar: FC <Props> = ({children, className = '', inputbar, setInputbar, 
             />
             <ul className="inputbar__list">
                 <li className="inputbar__item">
-                    <Button className="inputbar__button" onClick={handleEmojiShow}>
+                    <Button className="inputbar__button" onClick={() => setEmoji(!isEmoji)}>
                         <FontAwesomeIcon 
                             className="icon_white inputbar__icon" 
                             icon={faSmile}
@@ -69,7 +66,7 @@ const Inputbar: FC <Props> = ({children, className = '', inputbar, setInputbar, 
                     </Button>
                 </li>
                 <li className="inputbar__item">
-                    <Button className="inputbar__button">
+                    <Button className="inputbar__button" onClick={() => sendMessage(inputbar)}>
                         <FontAwesomeIcon 
                             className="icon_white inputbar__icon" 
                             icon={faLocationArrow}

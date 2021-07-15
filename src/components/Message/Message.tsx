@@ -11,13 +11,18 @@ const Message: FC <Props> = ({content, timestamp, writtenBy, images = [], photo}
     //* With useLastActivity we got a activity
     const activity: any = useLastActivity(timestamp);
     
-    
 
     //* -----------------------------------------------------------
     //* Classes
     const isClient: boolean = writtenBy === 'client';
     const messageClass: string = isClient ? 'message-client' : 'message-operator';
     const contentClass: string = isClient ? 'text-client' : 'text-operator'
+
+
+    //* -----------------------------------------------------------
+    //* Avatar
+    const avatar: string = isClient ? null : photo;
+    
 
     //* -----------------------------------------------------------
     //* Content
@@ -35,7 +40,7 @@ const Message: FC <Props> = ({content, timestamp, writtenBy, images = [], photo}
     return (
         <div className={"message " + messageClass}>
             <div className="message__user">
-                <Avatar/>
+                <Avatar src={avatar}/>
                 <p className="message__activity">
                     {activity}
                 </p>

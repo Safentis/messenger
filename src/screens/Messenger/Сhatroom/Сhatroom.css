@@ -30,3 +30,7 @@
     height: .1rem;
     width: 100%;
 }
+
+.chatroom__typing {
+    text-align: center;
+}

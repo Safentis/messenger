@@ -1,5 +1,5 @@
 export interface Props {
-    url         ?: string
+    url         ?: string | null
     className   ?: string
     children    ?: any
     attrs       ?: any
