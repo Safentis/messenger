@@ -35,7 +35,7 @@ const AuthenticationFormHOC: any = form(
 
 const Authentication: FC = (): any => {
     return (
-        <main className="main">
+        <>
             <section className="authentication">
                 <div className="card authentication__card">
                     <h2 className="title card__title">
@@ -44,7 +44,7 @@ const Authentication: FC = (): any => {
                     <AuthenticationFormHOC />
                 </div>
             </section>
-        </main>
+        </>
     );
 };
 

@@ -4,6 +4,7 @@
     width: 100%;
 }
 
+.input-main,
 .input-auth {
     background: var(--main-white-color);
     border: .1rem solid var(--main-lg-grey-color);
@@ -17,11 +18,13 @@
     font-weight: 400;
 }
 
+.input-main::placeholder,
 .input-auth::placeholder {
     color: var(--main-grey-color);
     text-transform: capitalize;
 }
 
+.input-main:focus,
 .input-auth:focus {
     border: .1rem solid var(--main-blue-color);
 }

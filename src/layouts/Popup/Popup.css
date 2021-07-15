@@ -1,0 +1,24 @@
+.popup {
+    position: relative;
+}
+
+.popup__expose {
+    
+}
+
+.popup__expose-icon {
+    
+}
+
+.popup__title {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.modal__button-close {
+    color: var(--main-blue-color);
+    font-size: 1.6rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}

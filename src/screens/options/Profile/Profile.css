@@ -1,0 +1,49 @@
+.profile {
+
+}
+
+.profile__input {
+    
+}
+
+.profile__label {
+    display: block;
+}
+
+.profile__label:nth-of-type(1) {
+    margin-top: 2rem;
+}
+
+.profile__label:nth-of-type(2n + 1) {
+    margin-top: .5rem;
+}
+
+.profile__input:nth-of-type(1) {
+    margin: .5rem 0 1.5rem 0;
+}
+
+.profile__input:nth-of-type(2n + 1) {
+    margin: .5rem 0 1.5rem 0;
+}
+
+.profile__user {
+    display: grid;
+    align-items: center;
+    grid-template-columns: .5fr auto;
+    margin: 1.5rem 0;
+}
+
+.profile__avatar {
+    justify-self: start;
+}
+
+.profile__image {
+    align-self: end;
+    justify-self: start;
+}
+
+.profile__update {
+    padding: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+}

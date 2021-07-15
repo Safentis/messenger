@@ -1,0 +1,19 @@
+.line {
+
+}
+
+.line__content {
+    color: var(--main-blue-color);
+    font-size: 3rem;
+    margin: 0;
+}
+
+.line__count {
+    color: var(--main-brown-color);
+    font-weight: 600;
+    margin: 0rem 1rem;
+}
+
+.noactive__line {
+    margin-right: auto;
+}

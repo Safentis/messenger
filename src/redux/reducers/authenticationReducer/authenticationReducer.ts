@@ -7,7 +7,7 @@ import {
 
 const initialState: State = {
     success: false,
-    token  : '', 
+    token  : '',
 };
 
 export const authenticationReducer = (state = initialState, action: Action): State => {

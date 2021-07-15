@@ -1,0 +1,62 @@
+.settings {
+    display: grid;
+    grid-template-areas: 
+        'greetings headers'
+        'greetings subheaders'
+    ;
+    grid-gap: 1rem;
+}
+
+.settings__greetings {}
+
+.greetings{
+    grid-area: greetings;
+} 
+
+.headers {
+    grid-area: headers;
+}
+
+.subheaders {
+    grid-area: subheaders;
+}
+
+.greetings__button {
+    margin-top: 1rem;
+    padding: 1rem;
+}
+
+.greetings__phrase {
+    margin-top: 2rem;
+}
+
+.greetings__item {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.greeting {} 
+
+
+.greeting__input {
+
+}
+
+.greeting__button {
+
+}
+
+.greeting__button {
+    margin: 0 .5rem;
+}
+
+.phrase {}
+.phrase__label {}
+.phrase__input {
+    margin-top: 1rem;
+}
+
+.phrase__button {
+    margin-top: 1rem;
+    padding: 1rem;
+}

@@ -3,7 +3,7 @@
 }
 
 .search__icon {
-    color: var(--main-blue-color);
+    color: var(--main-brown-color);
     transition: .3s;
     position: absolute;
     top: 26.3%;
@@ -12,6 +12,8 @@
 
 .search__input {
     color: var(--main-white-color);
+    box-shadow: .1rem .1rem .1rem var(--main-blue-color);
+    border: .1px solid var(--main-blue-color);
     padding: 1.5rem 1.5rem 1.5rem 4.5rem;
     font-size: 1.6rem;
 }
@@ -23,5 +25,5 @@
 .search,
 .search__input {
     border-radius: .35rem;
-    background-color: var(--main-lg-blue-color);
+    background-color: var(--main-grey-color);
 }

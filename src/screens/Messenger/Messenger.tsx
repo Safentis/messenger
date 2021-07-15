@@ -1,13 +1,13 @@
-import { FC, useEffect              } from 'react';
-import { useDispatch, useSelector   } from 'react-redux';
-import { requestTokenCheck          } from '../../redux/actionCreators/authentication';
+import { FC, useEffect, useState  } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { requestDialogs           } from '../../redux/actionCreators/dialogs';
+import { setFilteredDialogs       } from '../../redux/actionCreators/dialogs';
+import { requestUser              } from '../../redux/actionCreators/user';
+import { requestTokenCheck        } from '../../redux/actionCreators/authentication';
+import firebase                     from 'firebase';
+import Aside                        from '../../layouts/Aside/Aside';
+import MessengerRoutes              from './MessengerRoutes';
 import './Messenger.css';
-import { usePubNub                  } from 'pubnub-react';
-
-
-import { requestAvatar              } from '../../redux/actionCreators/menudialogs';
-import Menu                           from '../../layouts/Menu/Menu';
-import ChatroomRoutes                 from '../../layouts/Chatroom/ChatroomRoutes';
 
 const Messenger: FC = (): any => {
     
@@ -19,32 +19,45 @@ const Messenger: FC = (): any => {
     const token: string = useSelector((state: any) => {
         return state.authenticationReducer.token; 
     });
-
+    
     useEffect(() => {
         // dispatch(requestTokenCheck(token));    
     }, []);
 
 
-    const pubnub: any = usePubNub();
-    const uid: string = useSelector((state: any) => {
-        return state.menudialogsReducer.uid;
-    });
-    
-    pubnub.setUUID(uid);
-
+    //* --------------------------------------------------------------------
+    //* We get of the all dialogs from database and saves them to store
+    //* and create long connection
     useEffect(() => {
-        dispatch(
-            requestAvatar(
-                uid
-            )
-        );
-    }, [])
+        let database : any = firebase.database();
+        let chatrooms: any = database.ref('chatrooms');
+
+        chatrooms.on('value', (snapshot: any) => {
+            let dialogs: any = snapshot.val();
+
+            dispatch(requestDialogs(dialogs));
+            dispatch(setFilteredDialogs(dialogs));
+        });
+    }, []);
+
+
+    //* --------------------------------------------------------------------
+    //* We get of the users information
+    useEffect(() => {
+        firebase
+        .auth()
+        .onAuthStateChanged((user) => {
+            if (user) {
+                dispatch(requestUser({user}));
+            }
+        });
+    }, []);
 
     return (
-        <main className="main main_two-windows">
-            <Menu />
-            <ChatroomRoutes />
-        </main>
+        <div className="messenger">
+            <Aside />
+            <MessengerRoutes />             
+        </div>
     );
 };
 

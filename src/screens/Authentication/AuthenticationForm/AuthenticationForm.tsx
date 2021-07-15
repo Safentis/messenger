@@ -27,14 +27,6 @@ const AuthenticationForm: FC <Props> = ({formik}): any => {
     //* and provide names for form fields
     const fields: string[] = ['email', 'password'];
     
-
-    // const handleKeyPress: any = (event: React.KeyboardEvent): void => {
-        
-    //     if (event.code === 'Enter') {
-    //         handleSubmit();
-    //     } 
-    // }
-
     const FORM_FIELDS: any = (
         fields
             .map((name, index) => 

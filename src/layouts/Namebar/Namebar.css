@@ -1,0 +1,57 @@
+.namebar {
+    background-color: var(--main-grey-color);
+    box-shadow: .1rem .1rem .5rem var(--main-dk-grey-color);
+    padding: 1rem 5rem;
+}
+
+.namebar__inner {
+   
+}
+
+.namebar__bottom,
+.namebar__top {
+    align-items: center;
+    display: flex;
+}
+
+.namebar__top {
+    justify-content: flex-end;
+}
+
+.namebar__bottom {
+    justify-content: flex-end;
+    margin: 1rem 0;
+}
+
+.namebar__name {
+    color: var(--main-blue-color);
+    margin-right: 2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.namebar__controls {
+    align-items: center;
+    display: flex;
+}
+
+.namebar__button {
+    align-items: center;
+    display: flex;
+    text-transform: uppercase;
+}
+
+.namebar__button,
+.namebar__icon {
+    color: var(--main-white-color);
+    transition: .4s;
+}
+
+.namebar__button:hover, 
+.namebar__button:hover> .namebar__icon {
+    color: var(--main-blue-color);
+}
+
+.namebar__icon {
+    margin-left: 1rem;
+}
