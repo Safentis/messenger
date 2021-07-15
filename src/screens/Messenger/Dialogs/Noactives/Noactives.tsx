@@ -1,30 +1,27 @@
-import { FC, MouseEvent } from 'react';
-import { useDispatch    } from 'react-redux';
-import InfiniteScroll     from 'react-infinite-scroller';
-import { requestActions } from '../../../../redux/actionCreators/dialogs';
-import Dialog             from '../../../../components/Dialog/Dialog';
-import Line               from '../../../../components/Line/Line';
-import Search             from '../../../../components/Search/Search';
-import Button             from '../../../../components/Button/Button';
-import Content            from '../../../../layouts/Content/Content';
-import Namebar            from '../../../../layouts/Namebar/Namebar';
-import useFilterDialogs   from '../../../../Hooks/useFilterDialogs';
-import useInfiniteScroll  from '../../../../Hooks/useInfiniteScroll';
+import { FC, MouseEvent      } from 'react';
+import { Props               } from './Noactive.interface';
+import { useDispatch         } from 'react-redux';
+import { Link, useRouteMatch } from 'react-router-dom';
+import InfiniteScroll          from 'react-infinite-scroller';
+import { requestActions      } from '../../../../redux/actionCreators/dialogs';
+import Dialog                  from '../../../../components/Dialog/Dialog';
+import Line                    from '../../../../components/Line/Line';
+import Search                  from '../../../../components/Search/Search';
+import Content                 from '../../../../layouts/Content/Content';
+import Namebar                 from '../../../../layouts/Namebar/Namebar';
+import useFilterDialogs        from '../../../../Hooks/useFilterDialogs';
+import useInfiniteScroll       from '../../../../Hooks/useInfiniteScroll';
 
-interface Props {
-    dialogs: any[]
-}
+const Noactives: FC <Props> = ({ dialogs, user: { uid } }) => {
 
-const Noactives: FC <Props> = ({ dialogs }) => {
-
-    
+    const { url } = useRouteMatch();
     const dispatch = useDispatch();
 
 
     //* -------------------------------------------------------
     //* We create filter
     const status: string = 'noactive';
-    const result: any[] = useFilterDialogs({dialogs, status});
+    const result: any[] = useFilterDialogs({dialogs, status, uid});
 
 
 
@@ -35,6 +32,7 @@ const Noactives: FC <Props> = ({ dialogs }) => {
         const chatId = target.dataset.id;
         const body = {
             status: 'active',
+            operatorId: uid
         };
     
         dispatch(requestActions({chatId, body}));
@@ -67,9 +65,9 @@ const Noactives: FC <Props> = ({ dialogs }) => {
                     const [key, value] = dialogs[i];
                     items.push(
                         <Dialog key={i} {...value}>
-                            <Button onClick={handleEnter} data-id={key}>
+                            <Link className="button-action" onClick={handleEnter} data-id={key} to={url + '/' + key}>
                                 start a dialogue
-                            </Button>
+                            </Link>
                         </Dialog>
                     );
                 }
@@ -83,7 +81,7 @@ const Noactives: FC <Props> = ({ dialogs }) => {
         <>
             <Namebar>
                 <Line className="noactive__line"/>
-                <Search />
+                {/* <Search /> */}
             </Namebar>
             <Content>
                 <InfiniteScroll

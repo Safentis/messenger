@@ -12,15 +12,15 @@ const fetchDialogs = async () => {
  * @param {object} payload 
  * @returns {Generator <StrictEffect, any, any>}
  */
-export default function* requestDialogs(): Generator<
+export default function* requestDialogs({ payload: { dialogs } }: any): Generator<
     StrictEffect,
     any,
     any
 > {
     try {
         
-        const dialogs: any[] = yield call(fetchDialogs);
-
+        // const dialogs: any[] = yield call(fetchDialogs);
+        
         yield put({
             type: FETCH_DIALOGS_SET,
             payload: {

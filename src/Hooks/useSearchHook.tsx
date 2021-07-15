@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import _, { values }                       from 'lodash';
+import { useEffect           } from 'react';
+import _                       from 'lodash';
 import { useDispatch         } from 'react-redux';
 import { setFilteredDialogs  } from '../redux/actionCreators/dialogs';
 
@@ -16,8 +16,9 @@ const useSearchHook = ({dialogs, search}: Props) => {
 
     const searchFunc = () => {
         let lowerSearchCase: string = search.toLowerCase();
-        let isFiltered     : any[] = [];
-        let noFiltered     : any[] = [];
+        let isFiltered     : any[]  = [];
+        let noFiltered     : any[]  = [];
+        let isEntries      : any
     
         
         //* We search by customer name and if we find 
@@ -38,7 +39,6 @@ const useSearchHook = ({dialogs, search}: Props) => {
 
         //* In this case we search by content of a message
         //* and if we searching, we push the result into isFiltered array
-        
         noFiltered.length > 0 && 
         noFiltered.forEach((dialog: any) => {
             let [key, value] = dialog;
@@ -53,8 +53,9 @@ const useSearchHook = ({dialogs, search}: Props) => {
         
 
         isFiltered = [...new Set(isFiltered)];
+        isEntries  = Object.fromEntries(isFiltered);
 
-        dispatch(setFilteredDialogs(isFiltered));
+        dispatch(setFilteredDialogs(isEntries));
     }
 
     useEffect(() => {

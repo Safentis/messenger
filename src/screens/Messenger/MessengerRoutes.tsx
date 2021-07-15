@@ -1,6 +1,7 @@
-import { FC,                                     } from 'react';
+import { FC, useState                            } from 'react';
 import { useSelector                             } from 'react-redux';
 import { Route, Switch, Redirect, useRouteMatch  } from 'react-router-dom';
+import { usePubNub                               } from 'pubnub-react';
 import { messengerRoutes                         } from '../../routes';
 import { MESSENGER_ROUTE                         } from '../../utils/consts';
 
@@ -12,14 +13,24 @@ interface Routes {
 const MessengerRoutes: FC = () => {
 
     //* -----------------------------------------------------
-    //* We get of the all filtered dialogs
-    const dialogs = useSelector((state: any) => {
-        return state.dialogsReducer.filtered;
+    //* We get of the all dialogs and user information
+    const { dialogs, user } = useSelector((state: any) => {
+        return {
+            dialogs: state.dialogsReducer.filtered,
+            user   : state.userReducer.user,
+        };
     });
 
-    //* ------------------------------------------------------
+
+    //* -----------------------------------------------------
     //* Base URL for routes
-    const { url } = useRouteMatch();
+    const { url }: any = useRouteMatch();
+    
+    
+    //* -----------------------------------------------------
+    //* Set UUID for pubnub
+    const pubnub = usePubNub();
+    pubnub.setUUID(user.uid); 
 
     return (
         <Switch>
@@ -29,11 +40,9 @@ const MessengerRoutes: FC = () => {
                     exact={true}
                     key={index}  
                 >
-                    <Component dialogs={dialogs}/>
+                    <Component dialogs={dialogs} user={user}/>
                 </Route>
             )}
-
-            {/* If path is no correct we redirect user to home page*/}
             <Redirect to={MESSENGER_ROUTE} />
         </Switch>
     );

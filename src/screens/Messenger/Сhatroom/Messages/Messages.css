@@ -1,0 +1,8 @@
+.messages {
+    overflow-y: scroll;
+    height: 72vh;
+}
+
+.messages__inner {
+    margin: 2rem;
+}

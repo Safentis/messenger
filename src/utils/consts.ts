@@ -9,4 +9,4 @@ export const MENU_CONTENT_SAVED     = '/saved';
 export const MENU_CONTENT_COMPLITED = '/complited';
 
 
-export const MESSENGER_CHAT         = '/:name/:chatId';
+export const MESSENGER_CHAT         = '/:name/:key';

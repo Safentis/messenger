@@ -1,5 +1,9 @@
 import { FC             } from 'react';
+import { Props          } from './Saved.interface';
 import { useDispatch    } from 'react-redux';
+import { Link           } from 'react-router-dom';
+import { useRouteMatch  } from 'react-router-dom';
+import { requestActions } from '../../../../redux/actionCreators/dialogs';
 import Button             from '../../../../components/Button/Button';
 import Dialog             from '../../../../components/Dialog/Dialog';
 import Search             from '../../../../components/Search/Search';
@@ -7,17 +11,12 @@ import Stars              from '../../../../components/Stars/Stars';
 import useFilterDialogs   from '../../../../Hooks/useFilterDialogs';
 import Content            from '../../../../layouts/Content/Content';
 import Namebar            from '../../../../layouts/Namebar/Namebar';
-import { requestActions } from '../../../../redux/actionCreators/dialogs';
 
-interface Props {
-    dialogs: any[]
-}
-
-const Saved: FC <Props> = ({ dialogs }) => {
+const Saved: FC <Props> = ({ dialogs, user: { uid } }) => {
 
 
     const dispatch = useDispatch();
-
+    const { url }  = useRouteMatch()
 
     //* -------------------------------------------------------
     //* Handle of delete
@@ -36,7 +35,7 @@ const Saved: FC <Props> = ({ dialogs }) => {
     //* -------------------------------------------------------
     //* We create filter
     const status: string = 'saved';
-    const result: any[] = useFilterDialogs({dialogs, status});
+    const result: any[] = useFilterDialogs({dialogs, status, uid});
 
     
 
@@ -44,17 +43,20 @@ const Saved: FC <Props> = ({ dialogs }) => {
     //* Content
     const CONTENT: any = result.map(([key, value]: any, index: number) => 
         <Dialog key={index} {...value}>
-            <Button onClick={handleDelete} data-id={key}>
+            <Stars score={value.score}/>
+            <Link className="button-action" to={url + '/' + key}>
+                proceed
+            </Link>
+            <Button className="button-action" onClick={handleDelete} data-id={key}>
                 delete
             </Button>
-            <Stars score={value.score}/>
         </Dialog>
     );
 
     return (
         <>
             <Namebar>
-                <Search />
+                {/* <Search /> */}
             </Namebar>
             <Content>
                 {CONTENT}

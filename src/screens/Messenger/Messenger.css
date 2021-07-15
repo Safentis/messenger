@@ -2,7 +2,7 @@
     background-color: var(--main-lg-grey-color);
     display: grid;
     grid-template-columns: 25rem auto;
-    grid-template-rows: .2fr 1fr;
+    grid-template-rows: .1fr 1fr;
     grid-template-areas: 
         'aside namebar'
         'aside content'
@@ -10,7 +10,6 @@
     ;
     height: 100%;
     margin: 0 auto;
-    max-width: 148.0rem;
 }
 
 .aside {
@@ -22,5 +21,9 @@
 }
 
 .content {
+    grid-area: content;
+}
+
+.chatroom {
     grid-area: content;
 }

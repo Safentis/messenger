@@ -11,7 +11,6 @@ import './Search.css';
 
 const Search: FC <Props> = (): any => {
 
-    
     //* ---------------------------------------------------
     //* State search handler
     const [search, setSearch] = useState('');
@@ -22,7 +21,6 @@ const Search: FC <Props> = (): any => {
     
     //* ---------------------------------------------------
     //* Search requests
-    const dispatch = useDispatch();
     const dialogs = useSelector((state: any): any[] => {
         return state.dialogsReducer.dialogs;
     });

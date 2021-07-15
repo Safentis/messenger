@@ -1,5 +1,8 @@
 import { FC             } from 'react';
+import { Props          } from './Complited.interface';
 import { useDispatch    } from 'react-redux';
+import { Link           } from 'react-router-dom';
+import { useRouteMatch  } from 'react-router-dom';
 import { requestActions } from '../../../../redux/actionCreators/dialogs';
 import Button             from '../../../../components/Button/Button';
 import Dialog             from '../../../../components/Dialog/Dialog';
@@ -9,14 +12,10 @@ import Content            from '../../../../layouts/Content/Content';
 import Namebar            from '../../../../layouts/Namebar/Namebar';
 import Stars              from '../../../../components/Stars/Stars';
 
-interface Props {
-    dialogs: any[]
-}
-
-const Complited: FC <Props> = ({ dialogs }) => {
+const Complited: FC <Props> = ({ dialogs, user: { uid } }) => {
 
     const dispatch = useDispatch();
-
+    const { url }  = useRouteMatch()
 
 
     //* -------------------------------------------------------
@@ -36,7 +35,7 @@ const Complited: FC <Props> = ({ dialogs }) => {
     //* -------------------------------------------------------
     //* We create filter
     const status: string = 'complited';
-    const result: any[] = useFilterDialogs({dialogs, status});
+    const result: any[] = useFilterDialogs({dialogs, status, uid});
 
 
 
@@ -44,16 +43,21 @@ const Complited: FC <Props> = ({ dialogs }) => {
     //* Content
     const CONTENT: any = result.map(([key, value]: any, index: number) => 
         <Dialog key={index} {...value}>
-            <Button onClick={handleSave} data-id={key}>
+            <Stars score={value.score}/>
+            <Link className="button-action" to={url + '/' + key}>
+                proceed
+            </Link>
+            <Button className="button-action" onClick={handleSave} data-id={key}>
                 save
             </Button>
-            <Stars score={value.score}/>
         </Dialog>
     );
+
+
     return (
         <>
             <Namebar>
-                <Search />
+                {/* <Search /> */}
             </Namebar>
             <Content>
                 {CONTENT}

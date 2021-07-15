@@ -2,16 +2,40 @@
     padding: 1rem;
 }
 
+.dialog:nth-of-type(n + 2) {
+    margin-top: 1rem;
+}
+
 .dialog__inner {
     align-items: center;
     display: grid;
     grid-template-columns: 10rem 1fr 15rem;
 }
 
-.dialog__client {}
+.dialog__client {
+    
+}
+
 .dialog__avatar {}
-.dialog__name {}
+
+.dialog__name {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
 .dialog__content {}
-.dialog__author {}
-.dialog__message {}
-.dialog__controls {}
+
+.dialog__author {
+    font-weight: 1.4rem;
+    font-weight: 600;
+}
+
+.dialog__message {
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.dialog__controls {
+    display: flex;
+    flex-direction: column;
+}

@@ -19,6 +19,11 @@ import {
   FETCH_FILTERED_DIALOGS 
 } from '../actions/dialogs';
 
+import { 
+  FETCH_USER 
+} from '../actions/user';
+import requestUser from './userSaga/requestUser';
+
 export default function* rootSaga() {
   yield all([
     takeEvery(FETCH_MESSAGES_REQUEST, requestAuthentication),
@@ -26,6 +31,7 @@ export default function* rootSaga() {
     takeEvery(FETCH_EXITING_APP, requestSignOut),
     takeEvery(FETCH_DIALOGS, requestDialogs),
     takeEvery(FETCH_FILTERED_DIALOGS, requestFiltered),
-    takeEvery(FETCH_ACTIONS, requestActions)
+    takeEvery(FETCH_ACTIONS, requestActions),
+    takeEvery(FETCH_USER, requestUser)
   ]);
 }

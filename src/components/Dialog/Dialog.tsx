@@ -1,7 +1,7 @@
-import { FC     } from 'react';
-import { Props  } from './Dialog.interface';
-import Avatar     from '../Avatar/Avatar';
-import moment     from 'moment';
+import { FC          } from 'react';
+import { Props       } from './Dialog.interface';
+import Avatar          from '../Avatar/Avatar';
+import useLastActivity from '../../Hooks/useLastActivity';
 import './Dialog.css';
 
 const Dialog: FC <Props> = ({children, client, messages}) => {
@@ -17,8 +17,7 @@ const Dialog: FC <Props> = ({children, client, messages}) => {
     
     //* -------------------------------------------------------------------
     //* Library moment and correct a date
-    const dateMoment   : any = moment(lastTimestamp);
-    const lastActivity : any = dateMoment.fromNow();
+    const lastActivity = useLastActivity(lastTimestamp);
 
     return (
         <>

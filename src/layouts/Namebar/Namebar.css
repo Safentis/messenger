@@ -1,7 +1,7 @@
 .namebar {
-    background-color: var(--main-dk-grey-color);
-    box-shadow: .1rem .1rem .1rem var(--main-dk-grey-color);
-    padding: 1rem;
+    background-color: var(--main-grey-color);
+    box-shadow: .1rem .1rem .5rem var(--main-dk-grey-color);
+    padding: 1rem 5rem;
 }
 
 .namebar__inner {
@@ -20,17 +20,14 @@
 
 .namebar__bottom {
     justify-content: flex-end;
-    margin-top: 2rem;
-}
-
-.namebar__search {
-
+    margin: 1rem 0;
 }
 
 .namebar__name {
-    color: var(--main-white-color);
-    margin-right: 10rem;
-    font-size: 3rem;
+    color: var(--main-blue-color);
+    margin-right: 2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
 }
 
 .namebar__controls {
@@ -40,21 +37,19 @@
 
 .namebar__button {
     align-items: center;
-    color: var(--main-white-color);
     display: flex;
-    font-weight: 500;
-    font-size: 2rem;
     text-transform: uppercase;
 }
 
 .namebar__button,
 .namebar__icon {
+    color: var(--main-blue-color);
     transition: .4s;
 }
 
 .namebar__button:hover, 
 .namebar__button:hover> .namebar__icon {
-    color: var(--main-lg-blue-color);
+    color: var(--main-white-color);
 }
 
 .namebar__icon {

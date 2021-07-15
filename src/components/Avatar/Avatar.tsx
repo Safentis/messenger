@@ -1,8 +1,9 @@
-import { FC    } from 'react';
-import { Props } from './Avatar.interface';
+import { FC         } from 'react';
+import { Props      } from './Avatar.interface';
+import standartAvatar from '../../images/anonymous-user.png';
 import './Avatar.css';
 
-const Avatar: FC <Props | any> = ({className = '', url, children = '', ...attrs}): any => {
+const Avatar: FC <Props | any> = ({className = '', url = standartAvatar, children = '', ...attrs}): any => {
     
     return (
         <div className={"avatar " + className}>

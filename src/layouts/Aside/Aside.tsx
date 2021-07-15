@@ -1,4 +1,5 @@
 import { FC                  } from 'react';
+import { useLocation         } from 'react-router-dom';
 import { Link, useRouteMatch } from 'react-router-dom';
 import {
     MENU_CONTENT_ACTIVES, 
@@ -23,6 +24,35 @@ const Aside: FC = () => {
     const COMPLITED: string = url + MENU_CONTENT_COMPLITED;
     const SAVED    : string = url + MENU_CONTENT_SAVED;
     const NOACTIVES: string = url + MENU_CONTENT_NOACTIVES;
+    
+    
+    //* ------------------------------------
+    //* Location for link
+    const location: any = useLocation();
+
+    const links = [
+        { path: ACTIVES  , content: 'actives'  , icon: faHistory       },
+        { path: NOACTIVES, content: 'noactives', icon: faUserFriends   },
+        { path: SAVED    , content: 'saved'    , icon: faClipboardList },
+        { path: COMPLITED, content: 'complited', icon: faArchive       },
+    ];
+
+
+    //* ------------------------------------
+    //* Content
+    const LINKS = (
+        links.map(({path, content, icon}: any, index: number) => (
+            <li className="controls__button" key={index}>
+                <Link to={path}>
+                    <FontAwesomeIcon 
+                        className={`icon ${new RegExp(path).test(location.pathname) ? 'icon_brown' : 'icon_white'} controls__icon`} 
+                        icon={icon}
+                    />
+                    {content}
+                </Link>
+            </li>
+        ))
+    );
 
     return (
         <section className="aside">
@@ -34,42 +64,7 @@ const Aside: FC = () => {
                 </div>
                 <div className="aside__body">
                     <ul className="controls aside__controls">
-                        <li className="controls__button">
-                            <Link to={ACTIVES}>
-                                <FontAwesomeIcon 
-                                    className="icon icon_white controls__icon" 
-                                    icon={faHistory}
-                                />
-                                actives
-                            </Link>
-                        </li>
-                        <li className="controls__button">
-                            <Link to={NOACTIVES}>
-                                <FontAwesomeIcon 
-                                    className="icon icon_white controls__icon" 
-                                    icon={faUserFriends}
-                                />
-                                noactives
-                            </Link>
-                        </li>
-                        <li className="controls__button">
-                            <Link to={SAVED}>
-                                <FontAwesomeIcon 
-                                    className="icon icon_white controls__icon" 
-                                    icon={faClipboardList}
-                                />
-                                saved
-                            </Link>
-                        </li>
-                        <li className="controls__button">
-                            <Link to={COMPLITED}>
-                                <FontAwesomeIcon 
-                                    className="icon icon_white controls__icon" 
-                                    icon={faArchive}
-                                />
-                                complited
-                            </Link>
-                        </li>
+                        {LINKS}
                     </ul>
                 </div>
             </div>

@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 
 interface Props {
     dialogs: any[]
-    status : string;
+    status : string
+    uid    : string
 }
 
-const useFilterDialogs = ({dialogs, status}: Props) => {
+const useFilterDialogs = ({dialogs, status, uid}: Props) => {
     
     //* State of the custom-hook
     const [result, setResult] = useState([]);
@@ -13,15 +14,20 @@ const useFilterDialogs = ({dialogs, status}: Props) => {
     useEffect(() => {
         //* We are getting all dialogs and filter them
         //* to a status, and return result back 
-        const filtered: any = dialogs.filter(([key, value]: any) => {
-            return (
-                value.status === status || 
-                value.saved  === status || 
-                value.saved  === status && value.status === 'complited' 
-            );
-        });
-
-        setResult(filtered);
+        if (dialogs) {
+            const noFiltered: any = Object.entries(dialogs);
+            const isFiltered: any = noFiltered.filter(([key, value]: any) => {
+                return (value.status !== 'noactive')
+                    ? (
+                        value.status === status && value.operatorId === uid || 
+                        value.saved  === status && value.operatorId === uid ||
+                        value.saved  === status && value.status === 'complited' && value.operatorId === uid 
+                    )
+                    : value.status === status
+            });
+    
+            setResult(isFiltered);
+        }
 
         return () => {
             setResult([]);

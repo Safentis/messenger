@@ -45,15 +45,15 @@ export default function* requestActions({ payload: { chatId, body }}: any ): Gen
 > {
     try {
         
-        const result  = yield call(fetchActions, {chatId, body});
-        const dialogs = yield call(fetchDialogs);
+        yield call(fetchActions, {chatId, body});
+        // const dialogs = yield call(fetchDialogs);
 
-        yield put({
-            type: FETCH_DIALOGS_SET,
-            payload: {
-                dialogs
-            }
-        });
+        // yield put({
+        //     type: FETCH_DIALOGS_SET,
+        //     payload: {
+        //         dialogs
+        //     }
+        // });
 
 
     } catch(err) {

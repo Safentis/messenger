@@ -4,7 +4,8 @@ import {
     MENU_CONTENT_ACTIVES, 
     MENU_CONTENT_COMPLITED, 
     MENU_CONTENT_NOACTIVES, 
-    MENU_CONTENT_SAVED, 
+    MENU_CONTENT_SAVED,
+    MESSENGER_CHAT, 
 } from './utils/consts';
 
 import Authentication from './screens/Authentication/Authentication';
@@ -15,6 +16,7 @@ import Actives        from './screens/Messenger/Dialogs/Actives/Actives';
 import Noactives      from './screens/Messenger/Dialogs/Noactives/Noactives';
 import Complited      from './screens/Messenger/Dialogs/Complited/Complited';
 import Saved          from './screens/Messenger/Dialogs/Saved/Saved';
+import Сhatroom       from './screens/Messenger/Сhatroom/Сhatroom';
 
 export const publicRoutes = [
     {
@@ -51,4 +53,8 @@ export const messengerRoutes = [
         path: MENU_CONTENT_SAVED,
         component: Saved,
     },
+    {
+        path: MESSENGER_CHAT,
+        component: Сhatroom
+    }
 ]

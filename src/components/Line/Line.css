@@ -3,13 +3,14 @@
 }
 
 .line__content {
-    color: var(--main-white-color);
+    color: var(--main-blue-color);
     font-size: 3rem;
+    margin: 0;
 }
 
 .line__count {
-    color: var(--main-lg-blue-color);
-    font-weight: 500;
+    color: var(--main-brown-color);
+    font-weight: 600;
     margin: 0rem 1rem;
 }
 

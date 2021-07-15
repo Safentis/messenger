@@ -5,7 +5,9 @@ import './Content.css';
 const Content: FC <Props> = ({children}) => {
     return (
         <section className="content">
-            {children}
+            <div className="content__inner">
+                {children}
+            </div>
         </section>
     );
 };
