@@ -3,7 +3,8 @@
     background-color: var(--main-dk-grey-color);
     bottom: 0;
     display: grid;
-    grid-template-columns: 1fr 15rem 1fr;
+    grid-column-gap: 2rem;
+    grid-template-columns: .7fr 15rem 1fr;
     position: fixed;
     width: 100%;
 }
@@ -32,6 +33,14 @@
     
 }
 
+.inputbar__button {
+    transition: .3s;
+}
+
+.inputbar__button:hover > .inputbar__icon {
+    color: var(--main-brown-color);
+}
+
 .inputbar__icon {
     cursor: pointer;
     font-size: 2rem;
@@ -42,9 +51,18 @@
 .inputbar__emoji {
     position: absolute;
     bottom: 8rem;
-    left: 46%;
+    left: 25%;
 }
 
 .emoji {
 
+}
+
+.inputbar__picture {
+    position: absolute;
+}
+
+.picture {
+    bottom: 8rem;
+    left: 34%;
 }

@@ -19,7 +19,7 @@ export default function* requestDialogs({ payload: { dialogs } }: any): Generato
 > {
     try {
         
-        // const dialogs: any[] = yield call(fetchDialogs);
+        const dialogs: any[] = yield call(fetchDialogs);
         
         yield put({
             type: FETCH_DIALOGS_SET,

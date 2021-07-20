@@ -5,10 +5,20 @@ import { faStar          } from '@fortawesome/free-solid-svg-icons';
 import './Stars.css';
 
 const Stars: FC <Props> = ({className = '', score = undefined}): any => {
+    
+    const stars: number[] = [];
+
+    if (score) {
+
+        for (let i = 0; i < score; i++) {
+            stars.push(i);
+        }
+    }
+
     return (
-        score
+        stars.length > 0
             ? <ul className={`stars ${className}`}>
-                {[...Array(score).keys()].map((item: number, index: number) =>
+                {stars.map((item: number, index: number) =>
                     <li className="stars__item" key={index}>
                         <FontAwesomeIcon 
                             className="stars__icon" 

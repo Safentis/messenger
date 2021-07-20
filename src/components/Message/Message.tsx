@@ -1,16 +1,16 @@
-import { FC          } from 'react';
-import { Props       } from './Message.interface';
-import Avatar          from '../Avatar/Avatar';
-import useLastActivity from '../../Hooks/useLastActivity';
+import { FC              } from 'react';
+import { Props           } from './Message.interface';
+import Avatar              from '../Avatar/Avatar';
+import useLastActivity     from '../../Hooks/useLastActivity';
+import { STANDART_AVATAR } from '../../utils/consts';
 import './Message.css';
 
-const Message: FC <Props> = ({content, timestamp, writtenBy, images = [], photo}) => {
+const Message: FC <Props> = ({content, timestamp, writtenBy, image = '', photo}) => {
 
 
     //* -----------------------------------------------------------
     //* With useLastActivity we got a activity
     const activity: any = useLastActivity(timestamp);
-    
 
     //* -----------------------------------------------------------
     //* Classes
@@ -26,21 +26,19 @@ const Message: FC <Props> = ({content, timestamp, writtenBy, images = [], photo}
 
     //* -----------------------------------------------------------
     //* Content
-    const pictures: string[] = Object.values(images);
     const PICTURES: any = (
-        pictures.map((src: string, inedx: number) => (
-            <img 
+        image
+            ? <img 
                 className="message__image"
-                key={inedx} 
-                src={src}
-            />
-        ))
+                src={image}
+              />
+            : null
     );
 
     return (
         <div className={"message " + messageClass}>
             <div className="message__user">
-                <Avatar src={avatar}/>
+                <Avatar src={avatar ?? STANDART_AVATAR}/>
                 <p className="message__activity">
                     {activity}
                 </p>

@@ -34,7 +34,7 @@ const Namebar: FC <Props> = ({children}) => {
             <div className="namebar__inner">
                 <div className="namebar__top">
                     <div className="namebar__name">
-                        {user.email}
+                        {user.name || user.email}
                     </div>
                     <div className="namebar__controls">
                         <Settings />
@@ -42,7 +42,7 @@ const Namebar: FC <Props> = ({children}) => {
                         <Button className="namebar__button" onClick={handleExit}>
                             exit
                             <FontAwesomeIcon 
-                                className="icon icon_white namebar__icon" 
+                                className="icon namebar__icon" 
                                 icon={faSignOutAlt}
                             />
                         </Button>

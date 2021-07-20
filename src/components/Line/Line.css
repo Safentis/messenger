@@ -1,5 +1,5 @@
 .line {
-
+    
 }
 
 .line__content {
@@ -9,7 +9,7 @@
 }
 
 .line__count {
-    color: var(--main-brown-color);
+    color: var(--main-dark-grey-color);
     font-weight: 600;
     margin: 0rem 1rem;
 }

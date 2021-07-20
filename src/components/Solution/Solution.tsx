@@ -31,7 +31,7 @@ const Solution: FC <Props> = ({question, sendMessage}) => {
 
     const sendSolution = () => {
         if (solution.length > 0) {
-            sendMessage(solution)
+            sendMessage(solution);
         }
     }
 

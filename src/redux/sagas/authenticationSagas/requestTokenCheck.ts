@@ -10,7 +10,7 @@ interface Validation {
 // http://localhost:8080/
 // https://messenger-token-checker.herokuapp.com/
 export function reqValidationToken(token: string): object {
-  return fetch('http://localhost:8080/', {
+  return fetch('https://messenger-token-checker.herokuapp.com/', {
     method: 'POST',
     headers: {
         'Content-Type'  : 'application/json',

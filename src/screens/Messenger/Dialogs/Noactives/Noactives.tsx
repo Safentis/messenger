@@ -3,7 +3,6 @@ import { Props               } from './Noactive.interface';
 import { useDispatch         } from 'react-redux';
 import { Link, useRouteMatch } from 'react-router-dom';
 import InfiniteScroll          from 'react-infinite-scroller';
-import { requestActions      } from '../../../../redux/actionCreators/dialogs';
 import Dialog                  from '../../../../components/Dialog/Dialog';
 import Line                    from '../../../../components/Line/Line';
 import Search                  from '../../../../components/Search/Search';
@@ -11,6 +10,8 @@ import Content                 from '../../../../layouts/Content/Content';
 import Namebar                 from '../../../../layouts/Namebar/Namebar';
 import useFilterDialogs        from '../../../../Hooks/useFilterDialogs';
 import useInfiniteScroll       from '../../../../Hooks/useInfiniteScroll';
+import { requestActions      } from '../../../../redux/actionCreators/dialogs';
+
 
 const Noactives: FC <Props> = ({ dialogs, user: { uid } }) => {
 
@@ -53,8 +54,7 @@ const Noactives: FC <Props> = ({ dialogs, user: { uid } }) => {
 
         if (dialogs.length > 0) {
                 
-            for (let i = 0; i < records; i++) {
-                
+            for (let i = 0; i <= records; ++i) {
                 //* If the dialogue is undefined, we skip it
                 if (typeof dialogs[i] === 'undefined') 
                 {
@@ -71,7 +71,7 @@ const Noactives: FC <Props> = ({ dialogs, user: { uid } }) => {
                                 to={url + '/' + key}
                                 data-id={key} 
                             >
-                                start a dialogue
+                                start
                             </Link>
                         </Dialog>
                     );
@@ -90,7 +90,6 @@ const Noactives: FC <Props> = ({ dialogs, user: { uid } }) => {
             </Namebar>
             <Content>
                 <InfiniteScroll
-                    pageStart={0}
                     loadMore={loadMore}
                     hasMore={hasMoreItems}
                     loader={loader}

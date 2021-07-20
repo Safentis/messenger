@@ -57,7 +57,7 @@ const Profile: FC <Props> = ({}) => {
         if (isExtension && isCompare) {
             let user = { uid, file, name, password };
 
-            dispatch(requestUpdate({user}));
+            dispatch(requestUpdate({user, closeModal}));
         }
     }
 
@@ -74,8 +74,26 @@ const Profile: FC <Props> = ({}) => {
         title: 'Profile' 
     };
     
+
+    //* ------------------------------------------------
+    //* Modal handlers
+    const [isOpen, setIsOpen] = useState(false);
+    const openModal  = () => {
+        setIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsOpen(false);
+    }
+
     return (
-        <Popup popupTitle={popupTitle} popupExpose={popupExpose}>
+        <Popup 
+            popupTitle={popupTitle} 
+            popupExpose={popupExpose} 
+            isOpen={isOpen} 
+            openModal={openModal} 
+            closeModal={closeModal}
+        >
             <Form 
                 onSubmit={handleSubmit} 
                 initialValues={initialValues}>
