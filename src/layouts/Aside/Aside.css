@@ -40,3 +40,32 @@
 .icon_brown {
     color: var(--main-brown-color);
 }
+
+@media screen and (max-width: 768px) {
+    .aside__controls {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 1rem 0;
+    }
+
+    .controls__button:nth-of-type(1n + 2) {
+        margin: 0 0 0 2rem;
+    }
+}
+
+@media screen and (max-width: 581px) {
+    .aside__controls {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 3rem 3rem;
+    }
+
+    .controls__button {
+        justify-self: left;
+    }
+
+    .controls__button:nth-of-type(1n + 2) {
+        margin: 0;
+    }
+}

@@ -2,13 +2,13 @@ import { FC           } from 'react';
 import { Props        } from './Solution.interface';
 import { Autocomplete } from '@material-ui/lab';
 import { TextField    } from '@material-ui/core';
-import Button           from '../Button/Button';
-import './Solution.css';
-import useSolution      from '../../Hooks/useSolution';
-import { useSelector  } from 'react-redux';
 import { useState     } from 'react';
+import { useSelector  } from 'react-redux';
+import Button           from '../Button/Button';
+import useSolution      from '../../Hooks/useSolution';
+import './Solution.css';
 
-const Solution: FC <Props> = ({question, sendMessage}) => {
+const Solution: FC <Props> = ({className = '', question, sendMessage}) => {
 
     //* ---------------------------------------------------------
     //* We get all dialogs
@@ -36,7 +36,7 @@ const Solution: FC <Props> = ({question, sendMessage}) => {
     }
 
     return (
-        <div className="solution">
+        <div className={"solution " + className}>
             <Autocomplete
                 className="solution__autocomplete"
                 options={solutions}

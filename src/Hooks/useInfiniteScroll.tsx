@@ -3,7 +3,7 @@ import Loader        from 'react-loader-spinner';
 
 const useInfiniteScroll = ({result}: any) => {
 
-    const itemsPerPage: number = 5;
+    const itemsPerPage: number = 1;
     const [hasMoreItems, sethasMoreItems]: [boolean, Function] = useState(true);
     const [records, setRecords]: [number, Function] = useState(itemsPerPage);
 
@@ -18,7 +18,9 @@ const useInfiniteScroll = ({result}: any) => {
         } else if (records >= result.length) {
             sethasMoreItems(false);
         } else {
-            setRecords(records + itemsPerPage);
+            setTimeout(() => {
+                setRecords(records + itemsPerPage);
+            }, 2000);
         }
     };
 

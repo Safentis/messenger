@@ -63,3 +63,9 @@
 .button__icon {
     transition: .3s;
 }
+
+@media screen and (max-width: 480px) {
+    .button-action {
+        font-size: 1.4rem;
+    }
+}

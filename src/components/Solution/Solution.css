@@ -1,7 +1,5 @@
 .solution {
-    display: grid;
-    grid-template-columns: .5fr 5rem;
-    grid-column-gap: 1rem;
+    
 }
 
 .MuiInputBase-input,
@@ -13,6 +11,7 @@
 
 .solution__button {
     color: var(--main-white-color);
+    margin-left: auto;
 }
 
 .solution__button:hover {
