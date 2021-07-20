@@ -1,12 +1,12 @@
 import { FC, useEffect, useState  } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import firebase                     from 'firebase';
+import MessengerRoutes              from './MessengerRoutes';
+import Aside                        from '../../layouts/Aside/Aside';
 import { requestDialogs           } from '../../redux/actionCreators/dialogs';
 import { setFilteredDialogs       } from '../../redux/actionCreators/dialogs';
 import { requestUser              } from '../../redux/actionCreators/user';
 import { requestTokenCheck        } from '../../redux/actionCreators/authentication';
-import firebase                     from 'firebase';
-import Aside                        from '../../layouts/Aside/Aside';
-import MessengerRoutes              from './MessengerRoutes';
 import './Messenger.css';
 
 const Messenger: FC = (): any => {
@@ -21,7 +21,7 @@ const Messenger: FC = (): any => {
     });
     
     useEffect(() => {
-        dispatch(requestTokenCheck(token));    
+        // dispatch(requestTokenCheck(token));    
     }, []);
 
 

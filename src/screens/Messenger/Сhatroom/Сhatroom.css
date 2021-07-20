@@ -6,10 +6,11 @@
 }
 
 .chatroom {
-    position: relative;
+
 }
 
 .chatroom__inner {
+    position: relative;
     
 }
 
@@ -33,4 +34,11 @@
 
 .chatroom__typing {
     text-align: center;
+}
+
+.chatroom__images {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    z-index: 1;
 }

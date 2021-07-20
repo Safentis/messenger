@@ -10,8 +10,11 @@ import Message                     from '../../../components/Message/Message';
 import Namebar                     from '../../../layouts/Namebar/Namebar';
 import Solution                    from '../../../components/Solution/Solution';
 import Typing                      from '../../../components/Typing/Typing'; 
+import useLastActivity             from '../../../Hooks/useLastActivity';
 import './Сhatroom.css';
-import useLastActivity from '../../../Hooks/useLastActivity';
+
+//* SUPPORTS
+import { messageTemplate         } from './Chatroom.support';
 
 const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
 
@@ -30,60 +33,50 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
 
     const [key, value] = isFinded;
 
-    const letters : any[]  = Object.values(value.messages);
-    const activity: any    = useLastActivity(letters[letters.length - 1].timestamp);
-    const question: string = letters[0].content; //* Question for Solution element
-    const status  : string = value.status;
-    const client  : string = value.client;
+    const letters                : any[]  = Object.values(value.messages);
+    const activity               : any    = useLastActivity(letters[letters.length - 1].timestamp);
+    const question               : string = letters[0].content; //* Question for Solution element
+    const status                 : string = value.status;
+    const client                 : string = value.client;
     
 
     //* ---------------------------------------------
     //* Typing state
-    const [isTyping, setIsTyping] = useState(false);
-    const isTypingChannel = 'is-typing';
+    type IsTyping = [boolean, Function];
+
+    const [isTyping, setIsTyping]: IsTyping = useState(false);
+    const isTypingChannel        : string   = 'is-typing';
 
 
     //* ---------------------------------------------
     //* Pubnub state
-    const isChatroomChannel = `room-${path}`;
-    const pubnub: any = usePubNub();
-    const [messages, addMessage]: any = useState(letters);
-    const [channels] = useState([isChatroomChannel, isTypingChannel]);
+    type Messages = [any, Function];
+
+    const isChatroomChannel     : string    = `room-${path}`;
+    const pubnub                : any       = usePubNub();
+    const [messages, addMessage]: Messages  = useState(letters);
+    const [channels]            : any[]     = useState([isChatroomChannel, isTypingChannel]);
 
 
     //* ---------------------------------------------
     //* Picture handler
-    const [picture, setPictures]: [string, Function] = useState('');
-    const handleDrop = (picture: any) => {
-        let file: any   = picture[0];
-        let url: string = window.URL.createObjectURL(file);
+    type Picture = [string, Function];
 
-        setPictures(url);
+    const [picture, setPicture]: Picture = useState('');
+    const handleDrop = (picture: any) => {
+        // We convert file in a path
+        let file: any    = picture[picture.length - 1];
+        let url : string = window.URL.createObjectURL(file);
+
+        setPicture(url);
     }
 
 
     //* ---------------------------------------------
     //* Inputbar state and typing logic
-    const [inputbar, setInputbar] = useState('');
+    type InputbarField = [string, Function];
 
-    const handleSendMessage = (content: string) => {
-        let timestamp: any = new Date();
-        let writtenBy: string = 'operator';
-        let image: string | null = picture ?? null;
-
-        let body: any = {
-            writtenBy,
-            timestamp,
-            content,
-            image, 
-        };
-        
-        dispatch(requestMessages({
-            chatId: path, 
-            body
-        }));
-    }
-
+    const [inputbar, setInputbar]: InputbarField = useState('');
     const handleKeyUp = () => {
         const inputHasText = inputbar.length > 0
 
@@ -100,9 +93,20 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
     
     //* ---------------------------------------------
     //* Pubnub handlers
-    const handleMessage = (event: any) => {
+    const handleSendMessage = (content: string) => {
+        //* Template of a message
+        let body = messageTemplate({content, picture});
+
+        dispatch(requestMessages({
+            chatId: path, 
+            body
+        }));
+    }
+
+    const handleMessage = ({message}: any) => {
         setIsTyping(false);
         setInputbar('');
+        setPicture('');
     }
 
     const handleSignal = (signal: any) => {
@@ -114,11 +118,12 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
     }
 
     const sendMessage = (message: any) => {
+        let isMessage: boolean = message.trim() !== '';
 
-        if (message) {
+        if (isMessage) {
             pubnub.publish({
                 channel: channels[0], 
-                message
+                message: message,
             });
 
             //* Message add to the db
@@ -162,7 +167,11 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
     const MESSAGES = (
         <>
             {messages.map((message: any, index: number) => 
-                <Message {...message} {...user} key={index}/>
+                <Message 
+                    key={index}
+                    {...message} 
+                    {...user} 
+                />
             )}
         </>
     );
@@ -172,6 +181,17 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
         ? <p className="chatroom__complited">
             Dialog complited {activity}
           </p>
+        : null
+    );
+
+    const MESSAGE_IMAGE = (
+        picture
+        ? <img 
+            className="chatroom__images" 
+            src={picture} 
+            height="150"
+            width="150" 
+          />
         : null
     );
 
@@ -192,6 +212,7 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
                             className="chatroom__typing" 
                             isTyping={isTyping}
                         />
+                        {MESSAGE_IMAGE}
                     </Messages>
                     <Inputbar 
                         className="chatroom__inputbar" 
