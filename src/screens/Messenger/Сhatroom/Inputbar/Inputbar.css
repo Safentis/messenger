@@ -6,7 +6,7 @@
     grid-column-gap: 2rem;
     grid-template-columns: .7fr 15rem 1fr;
     position: fixed;
-    width: 100%;
+    width: 100vw;
 }
 
 .inputbar__field {
@@ -65,4 +65,40 @@
 .picture {
     bottom: 8rem;
     left: 34%;
+}
+
+@media screen and (max-width: 1280px) {
+    .inputbar {
+        grid-column-gap: 2rem;
+        grid-template-columns: .7fr 15rem auto;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .inputbar {
+        grid-column-gap: 2rem;
+        grid-template-columns: .5fr 15rem .35fr;
+    }
+
+    .inputbar__field {
+        font-size: 1.6rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .inputbar {
+        grid-column-gap: 2rem;
+        grid-template-columns: .5fr 15rem .5fr;
+    }
+
+    .inputbar__icon {
+        margin: .2rem;
+    }
+}
+
+@media screen and (max-width: 581px) {
+    .inputbar {
+        grid-column-gap: 0rem;
+        grid-template-columns: auto .5fr;
+    }
 }

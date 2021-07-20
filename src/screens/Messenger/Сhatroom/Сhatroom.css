@@ -42,3 +42,45 @@
     left: 1rem;
     z-index: 1;
 }
+
+.chatroom__solution {
+    display: grid;
+    grid-template-columns: .5fr .2fr;
+    grid-column-gap: 1rem;
+    width: 40vw;
+}
+
+@media screen and (max-width: 1240px) {
+    .chatroom__solution {
+        width: 30vw;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .chatroom__solution {
+        font-size: 1.6rem;
+        grid-template-columns: .6fr .3fr;
+        margin: 0 1rem;
+    }
+    
+    .MuiInputBase-input,
+    .MuiFormLabel-root {
+        font-size: 1.4rem !important;
+    }
+
+    .solution__button {
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (max-width: 581px) {
+    .inputbar__content {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+
+    .chatroom__solution {
+        width: 80%;
+        grid-template-columns: 1fr .5fr;
+    }    
+}

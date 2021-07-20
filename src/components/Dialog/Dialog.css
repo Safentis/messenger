@@ -16,7 +16,9 @@
     justify-self: center;
 }
 
-.dialog__avatar {}
+.dialog__avatar {
+
+}
 
 .dialog__name {
     font-size: 1.8rem;
@@ -44,4 +46,23 @@
     flex-direction: column-reverse;
     align-items: center;
     text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+    .dialog__inner {
+        grid-template-columns: 10rem 1fr 15rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .dialog__inner {
+        grid-template-columns: 10rem 1fr;
+    }
+    
+    .dialog__controls {
+        flex-direction: row-reverse;
+        justify-content: space-around;
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
 }

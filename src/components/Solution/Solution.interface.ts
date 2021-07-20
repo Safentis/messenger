@@ -1,4 +1,5 @@
 export interface Props {
-    question: string
-    sendMessage: Function
+    className  ?: string
+    question    : string
+    sendMessage : Function
 }

@@ -1,14 +1,51 @@
-import { FC, useState    } from 'react';
-import { Props           } from './Popup.interface';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes         } from '@fortawesome/free-solid-svg-icons';
-import Modal               from 'react-modal';
-import Button              from '../../components/Button/Button';
+import { FC, useEffect, useState } from 'react';
+import { Props                   } from './Popup.interface';
+import { FontAwesomeIcon         } from '@fortawesome/react-fontawesome';
+import { faTimes                 } from '@fortawesome/free-solid-svg-icons';
+import Modal                       from 'react-modal';
+import Button                      from '../../components/Button/Button';
 import './Popup.css';
 
 Modal.setAppElement('#root');
 
 const Popup: FC <Props> = ({children, popupTitle, popupExpose, isOpen, openModal, closeModal}) => {
+
+    const [innerWidth, setInnerWidth] = useState(0);
+    const handleResize = (event: any) => {
+        setInnerWidth(event.currentTarget.innerWidth);
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => {
+            return window.removeEventListener('resize', handleResize);
+        }
+    });
+
+    let customStyles = {
+        content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          padding: '2.5rem',
+          minWidth: '50%',
+          maxWidth: '50%',
+          minHeight: '30%',
+          marginRight: '-50%',
+          backgroundColor: 'white',
+          transform: 'translate(-50%, -50%)',
+        },
+    };
+
+    if (innerWidth <= 1024 && innerWidth >= 768) {
+        customStyles.content.maxWidth = '70%'
+    } else if (innerWidth <= 768 && innerWidth >= 480) {
+        customStyles.content.maxWidth = '90%'
+    } else if (innerWidth <= 480 && innerWidth >= 320) {
+        customStyles.content.maxWidth = '95%'
+    }
+
 
     //* ------------------------------------------------
     //* Content
@@ -30,7 +67,7 @@ const Popup: FC <Props> = ({children, popupTitle, popupExpose, isOpen, openModal
             </Button>
             <Modal 
                 onRequestClose={closeModal} 
-                style={customStyles} 
+                style={customStyles}
                 isOpen={isOpen}
             >
                 {MODAL_TITLE}          
@@ -43,19 +80,6 @@ const Popup: FC <Props> = ({children, popupTitle, popupExpose, isOpen, openModal
     );
 }
 
-const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      padding: '2.5rem',
-      minWidth: '50%',
-      maxWidth: '50%',
-      minHeight: '30%',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
-};
+
 
 export default Popup;

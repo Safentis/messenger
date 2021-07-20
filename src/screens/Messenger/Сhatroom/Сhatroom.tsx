@@ -223,6 +223,7 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
                         handleDrop={handleDrop}
                     >
                         <Solution 
+                            className="chatroom__solution"
                             question={question} 
                             sendMessage={sendMessage}
                         />

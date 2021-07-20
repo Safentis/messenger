@@ -15,6 +15,7 @@
 
 .namebar__top {
     justify-content: flex-end;
+    flex-wrap: wrap;
 }
 
 .namebar__bottom {
@@ -24,7 +25,7 @@
 
 .namebar__name {
     color: var(--main-blue-color);
-    margin-right: 2rem;
+    margin: 0 2rem 0 0;
     font-size: 1.8rem;
     font-weight: 600;
 }
@@ -53,4 +54,16 @@
 
 .namebar__icon {
     margin-left: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    .namebar {
+        padding: 1rem;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .namebar__name {
+        margin: 1rem 0;
+    }
 }

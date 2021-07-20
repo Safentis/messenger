@@ -1,5 +1,5 @@
 .content {
-
+    
 }
 
 .content__inner {
@@ -15,4 +15,10 @@
 ::-webkit-scrollbar-thumb {
     background-color: var(--main-blue-color);
     border-radius: .5rem;
+}
+
+@media screen and (max-width: 1024px) {
+    .content__inner {
+        padding: 0;
+    }
 }
