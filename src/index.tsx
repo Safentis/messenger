@@ -20,6 +20,10 @@ import 'firebase/auth';
 import PubNub             from 'pubnub';
 import { PubNubProvider } from 'pubnub-react';
 
+//* SENTRY
+import { Integrations   } from '@sentry/tracing';
+import * as Sentry        from '@sentry/react';
+
 //* CSS FILES
 import 'normalize.css';
 import './fonts/DINPro/stylesheet.css'
@@ -37,10 +41,20 @@ firebase.initializeApp({
 });
 
 const pubnub = new PubNub({
-  publishKey: process.env.REACT_APP_PUBLISH_KEY,
-  subscribeKey: process.env.REACT_APP_SUBSCRIBE_KEY as string,
-  uuid: PubNub.generateUUID(),
-  ssl: true
+  publishKey       : process.env.REACT_APP_PUBLISH_KEY,
+  subscribeKey     : process.env.REACT_APP_SUBSCRIBE_KEY as string,
+  uuid             : PubNub.generateUUID(),
+  ssl              : true
+});
+
+Sentry.init({
+  dsn: 'https://01ee9dbbbb5643e0936eb2d97ec6f7b0@o924546.ingest.sentry.io/5872755',
+  integrations: [new Integrations.BrowserTracing()],
+
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
 });
 
 ReactDOM.render(
