@@ -3,5 +3,8 @@ export interface Props {
     popupExpose: {
         icon : any
         title: string
-    }
+    },
+    isOpen    : boolean
+    closeModal: () => void
+    openModal : () => void
 }

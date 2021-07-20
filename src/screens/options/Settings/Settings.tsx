@@ -1,14 +1,14 @@
 import { FC, useState                    } from 'react';
 import { Props                           } from './Settings.interface';
 import { faCog                           } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch, useSelector                     } from 'react-redux';
+import { useDispatch, useSelector        } from 'react-redux';
 import { Formik, Form, Field, FieldArray } from 'formik';
+import { requestSettings                 } from '../../../redux/actionCreators/user';
 import Popup                               from '../../../layouts/Popup/Popup';
 import Button                              from '../../../components/Button/Button';
 import Label                               from '../../../components/Label/Label';
 import Input                               from '../../../components/Input/Input';
 import './Settings.css';
-import { requestSettings } from '../../../redux/actionCreators/user';
 
 
 const Settings: FC <Props> = ({}) => {
@@ -22,7 +22,7 @@ const Settings: FC <Props> = ({}) => {
     //* ------------------------------------------------
     //* Handler of the form, that set data to the store
     const handleSubmit = (settings: any) => {
-        dispatch(requestSettings({settings}));
+        dispatch(requestSettings({settings, closeModal}));
     }
 
 
@@ -40,8 +40,26 @@ const Settings: FC <Props> = ({}) => {
         title: 'Settings' 
     };
 
+
+    //* ------------------------------------------------
+    //* Modal handlers
+    const [isOpen, setIsOpen] = useState(false);
+    const openModal  = () => {
+        setIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsOpen(false);
+    }
+
     return (
-        <Popup popupTitle={popupTitle} popupExpose={popupExpose}>
+        <Popup 
+            popupTitle={popupTitle} 
+            popupExpose={popupExpose} 
+            isOpen={isOpen} 
+            openModal={openModal} 
+            closeModal={closeModal}
+        >
             <Formik
                 enableReinitialize={true}
                 initialValues={initialValues}

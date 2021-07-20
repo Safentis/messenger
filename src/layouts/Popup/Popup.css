@@ -15,6 +15,10 @@
     text-align: center;
 }
 
+.popup__icon {
+    color: var(--main-brown-color);
+}
+
 .modal__button-close {
     color: var(--main-blue-color);
     font-size: 1.6rem;

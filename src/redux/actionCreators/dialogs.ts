@@ -1,7 +1,8 @@
 import { 
     FETCH_ACTIONS,
     FETCH_DIALOGS, 
-    FETCH_FILTERED_DIALOGS 
+    FETCH_FILTERED_DIALOGS, 
+    FETCH_MESSAGES
 } from '../actions/dialogs';
 
 export const requestDialogs = (dialogs: any) => {
@@ -16,6 +17,16 @@ export const requestDialogs = (dialogs: any) => {
 export const requestActions = ({chatId, body}: any) => {
     return {
         type: FETCH_ACTIONS,
+        payload: {
+            chatId,
+            body
+        }
+    }
+}
+
+export const requestMessages = ({chatId, body}: any) => {
+    return {
+        type: FETCH_MESSAGES,
         payload: {
             chatId,
             body

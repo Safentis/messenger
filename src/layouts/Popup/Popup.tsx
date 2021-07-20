@@ -8,13 +8,7 @@ import './Popup.css';
 
 Modal.setAppElement('#root');
 
-const Popup: FC <Props> = ({children, popupTitle, popupExpose}) => {
-
-    //* ------------------------------------------------
-    //* Modal handlers
-    const [isOpen, setIsOpen] = useState(false);
-    const openModal  = () => setIsOpen(true);
-    const closeModal = () => setIsOpen(false);
+const Popup: FC <Props> = ({children, popupTitle, popupExpose, isOpen, openModal, closeModal}) => {
 
     //* ------------------------------------------------
     //* Content
@@ -29,7 +23,7 @@ const Popup: FC <Props> = ({children, popupTitle, popupExpose}) => {
             <Button className="popup__expose namebar__button" onClick={openModal}>
                 {popupExpose.title}
                 <FontAwesomeIcon 
-                    className="icon icon_white popup__expose-icon namebar__icon" 
+                    className="icon popup__icon popup__expose-icon namebar__icon" 
                     icon={popupExpose.icon}
                     size={'lg'}
                 />

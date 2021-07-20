@@ -25,15 +25,15 @@ const Dialog: FC <Props> = ({children, client, messages}) => {
                 <div className="dialog__inner">
                     <div className="dialog__client">
                         <Avatar className="dialog__avatar"/>
+                    </div>
+                    <div className="dialog__content">
                         <p className="dialog__name">
                             {client}
                         </p>
-                    </div>
-                    <div className="dialog__content">
-                        <p className="dialog__author">
-                            {lastWritter}:
-                        </p>
                         <p className="dialog__message">
+                            <span className="dialog__author">
+                                {lastWritter}:
+                            </span>
                             {lastContent}
                         </p>
                     </div>

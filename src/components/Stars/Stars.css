@@ -4,5 +4,6 @@
 
 .stars {
     align-items: center;
+    color: var(--main-gold-color);
     display: flex;
 }

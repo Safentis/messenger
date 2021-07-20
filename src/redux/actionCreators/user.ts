@@ -9,20 +9,22 @@ export const requestUser = ({user}: any) => {
     };
 };
 
-export const requestUpdate = ({user}: any) => {
+export const requestUpdate = ({user, closeModal}: any) => {
     return {
         type: FETCH_USER_UPDATE,
         payload: {
-            user
+            user,
+            closeModal
         }
     }
 }
 
-export const requestSettings = ({settings}: any) => {
+export const requestSettings = ({settings, closeModal}: any) => {
     return {
         type: FETCH_USER_SETTINGS,
         payload: {
-            settings
+            settings,
+            closeModal
         }
     }
 }

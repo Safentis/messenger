@@ -1,6 +1,5 @@
 .namebar {
-    background-color: var(--main-grey-color);
-    box-shadow: .1rem .1rem .5rem var(--main-dk-grey-color);
+    box-shadow: 0rem .1rem .5rem var(--main-dk-grey-color);
     padding: 1rem 5rem;
 }
 
@@ -43,13 +42,13 @@
 
 .namebar__button,
 .namebar__icon {
-    color: var(--main-white-color);
+    color: var(--main-blue-color);
     transition: .4s;
 }
 
 .namebar__button:hover, 
 .namebar__button:hover> .namebar__icon {
-    color: var(--main-blue-color);
+    color: var(--main-brown-color);
 }
 
 .namebar__icon {

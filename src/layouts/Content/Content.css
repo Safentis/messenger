@@ -1,5 +1,10 @@
 .content {
+
+}
+
+.content__inner {
     overflow-y: auto;
+    height: 100%;
     padding: 5rem;
 }
 
