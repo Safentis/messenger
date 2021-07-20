@@ -22,11 +22,13 @@
     font-size: 1.8rem;
     font-weight: 400;
     transition: .3s;
+    text-transform: uppercase;
+    margin: .5rem 0;
     padding: 0;
 }
 
 .button-action:hover {
-    color: var(--main-white-color);
+    color: var(--main-brown-color);
 }
 
 .button-main:hover,

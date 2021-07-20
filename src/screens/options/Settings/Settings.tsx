@@ -22,7 +22,7 @@ const Settings: FC <Props> = ({}) => {
     //* ------------------------------------------------
     //* Handler of the form, that set data to the store
     const handleSubmit = (settings: any) => {
-        dispatch(requestSettings({settings}));
+        dispatch(requestSettings({settings, closeModal}));
     }
 
 
@@ -40,8 +40,26 @@ const Settings: FC <Props> = ({}) => {
         title: 'Settings' 
     };
 
+
+    //* ------------------------------------------------
+    //* Modal handlers
+    const [isOpen, setIsOpen] = useState(false);
+    const openModal  = () => {
+        setIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsOpen(false);
+    }
+
     return (
-        <Popup popupTitle={popupTitle} popupExpose={popupExpose}>
+        <Popup 
+            popupTitle={popupTitle} 
+            popupExpose={popupExpose} 
+            isOpen={isOpen} 
+            openModal={openModal} 
+            closeModal={closeModal}
+        >
             <Formik
                 enableReinitialize={true}
                 initialValues={initialValues}

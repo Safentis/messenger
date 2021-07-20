@@ -5,7 +5,7 @@
 
 .message-client {
     margin-right: auto;
-    grid-template-columns: 7.5rem 1fr;
+    grid-template-columns: 10rem 1fr;
     grid-template-areas: 
         '.  content'
         'user     .'
@@ -14,7 +14,7 @@
 
 .message-operator {
     margin-left: auto;
-    grid-template-columns: 1fr 7.5rem;
+    grid-template-columns: 1fr 10rem;
     grid-template-areas: 
         'content  .'
         '.     user'
@@ -29,7 +29,7 @@
 }
 
 .message__activity {
-
+    text-align: center;
 }
 
 .message__content {
@@ -55,13 +55,13 @@
 }
 
 .text-client{
-    background-color: var(--main-dk-grey-color);
+    background-color: var(--main-blue-color);
     border-bottom-left-radius: 0;
     color: var(--main-white-color);
 }
 
 .text-operator {
-    background-color: var(--main-lg-blue-color);
+    background-color: var(--main-white-color);
     border-bottom-right-radius: 0;
-    color: var(--main-black-color);
+    color: var(--main-blue-color);
 }

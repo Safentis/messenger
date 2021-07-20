@@ -43,7 +43,7 @@ const updateProfile = (profile: any, name: string, photo: string) => {
  * @param {object} payload.user
  * @returns {Generator <StrictEffect, any, any>}
  */
-export default function* requestUpdate({payload: { user }}: any): Generator<
+export default function* requestUpdate({payload: { user, closeModal }}: any): Generator<
     StrictEffect,
     any,
     any
@@ -60,6 +60,7 @@ export default function* requestUpdate({payload: { user }}: any): Generator<
         yield call(updatePassword, profile, password);
         yield call(updateProfile, profile, name, photo);
 
+        yield closeModal();
         yield put({
             type: FETCH_USER_SET,
             payload: {

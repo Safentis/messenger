@@ -2,7 +2,8 @@ import { FC, useState, useEffect } from 'react'
 import { Props                   } from './Сhatroom.interface';
 import { useParams               } from 'react-router-dom';
 import { usePubNub               } from 'pubnub-react';
-import firebase                    from 'firebase';
+import { useDispatch             } from 'react-redux';
+import { requestMessages         } from '../../../redux/actionCreators/dialogs';
 import Inputbar                    from './Inputbar/Inputbar';
 import Messages                    from './Messages/Messages';
 import Message                     from '../../../components/Message/Message';
@@ -10,12 +11,14 @@ import Namebar                     from '../../../layouts/Namebar/Namebar';
 import Solution                    from '../../../components/Solution/Solution';
 import Typing                      from '../../../components/Typing/Typing'; 
 import './Сhatroom.css';
+import useLastActivity from '../../../Hooks/useLastActivity';
 
 const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
 
     //* ---------------------------------------------
     //* We get a key of url
     const { key: path }: any = useParams();
+    const dispatch: Function = useDispatch();
 
 
     //* ---------------------------------------------
@@ -27,11 +30,12 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
 
     const [key, value] = isFinded;
 
-    const letters   : any[]  = Object.values(value.messages);
-    const question  : string = letters[0].content; //* Question for Solution element
-    const client    : string = value.client;
-    const status    : string = value.status;
-
+    const letters : any[]  = Object.values(value.messages);
+    const activity: any    = useLastActivity(letters[letters.length - 1].timestamp);
+    const question: string = letters[0].content; //* Question for Solution element
+    const status  : string = value.status;
+    const client  : string = value.client;
+    
 
     //* ---------------------------------------------
     //* Typing state
@@ -48,8 +52,37 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
 
 
     //* ---------------------------------------------
+    //* Picture handler
+    const [picture, setPictures]: [string, Function] = useState('');
+    const handleDrop = (picture: any) => {
+        let file: any   = picture[0];
+        let url: string = window.URL.createObjectURL(file);
+
+        setPictures(url);
+    }
+
+
+    //* ---------------------------------------------
     //* Inputbar state and typing logic
     const [inputbar, setInputbar] = useState('');
+
+    const handleSendMessage = (content: string) => {
+        let timestamp: any = new Date();
+        let writtenBy: string = 'operator';
+        let image: string | null = picture ?? null;
+
+        let body: any = {
+            writtenBy,
+            timestamp,
+            content,
+            image, 
+        };
+        
+        dispatch(requestMessages({
+            chatId: path, 
+            body
+        }));
+    }
 
     const handleKeyUp = () => {
         const inputHasText = inputbar.length > 0
@@ -68,23 +101,8 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
     //* ---------------------------------------------
     //* Pubnub handlers
     const handleMessage = (event: any) => {
-        let content  : string = event.message;
-        let timetoken: string = event.timetoken;
-        let timestamp: any    = new Date();
-        
         setIsTyping(false);
-
-        if (content.length > 0 || event.hasOwnProperty('message')) {
-            const template = {
-                writtenBy: 'operator',
-                timestamp,
-                content
-            }
-
-            addMessage((messages: any) => (
-                [...messages, template]
-            ));
-        }
+        setInputbar('');
     }
 
     const handleSignal = (signal: any) => {
@@ -96,15 +114,20 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
     }
 
     const sendMessage = (message: any) => {
+
         if (message) {
-            pubnub
-            .publish({channel: channels[0], message})
-            .then(() => setInputbar(''));
+            pubnub.publish({
+                channel: channels[0], 
+                message
+            });
+
+            //* Message add to the db
+            handleSendMessage(message);
         }
     }
 
     useEffect(() => {
-        pubnub.addListener({ message: handleMessage, signal: handleSignal });
+        pubnub.addListener({ message: handleMessage, signal : handleSignal });
         pubnub.subscribe({ channels });
 
         return () => {
@@ -133,7 +156,7 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
         }
     }, []);
 
-    
+
     //* ---------------------------------------------
     //* Content
     const MESSAGES = (
@@ -147,7 +170,7 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
     const MESSAGE_COMPLITED = (
         status === 'complited' 
         ? <p className="chatroom__complited">
-            Dialog complited
+            Dialog complited {activity}
           </p>
         : null
     );
@@ -176,6 +199,7 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
                         setInputbar={setInputbar}
                         handleKeyUp={handleKeyUp}
                         sendMessage={sendMessage}
+                        handleDrop={handleDrop}
                     >
                         <Solution 
                             question={question} 

@@ -4,4 +4,5 @@ export interface Props {
     setInputbar : Function
     handleKeyUp : Function
     sendMessage : Function
+    handleDrop  : any
 }
