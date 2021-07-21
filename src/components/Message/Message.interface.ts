@@ -1,7 +1,7 @@
 export interface Props {
     content  : string
     timestamp: string | number
-    image   ?: string
+    images  ?: string[]
     writtenBy: string
     photo    : any
 }

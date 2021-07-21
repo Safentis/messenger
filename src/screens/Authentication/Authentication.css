@@ -39,3 +39,13 @@
 .card__title {
     margin: 3.5rem 0;
 }
+
+@media screen and (max-width: 480px) {
+    .authentication {
+        min-width: 25rem;
+    }
+
+    .card {
+        padding: 2rem 1.5rem;
+    }
+}

@@ -1,23 +1,11 @@
+import firebase                    from 'firebase';
 import { call, put, StrictEffect } from 'redux-saga/effects';
 import { FETCH_USER_SET          } from '../../actions/user';
-import firebase                  from 'firebase';
-
+import { getDownloadURL          } from '../../../utils/functions';
 
 const currentUser = () => {
     return new Promise((resolve) => {
         return resolve(firebase.auth().currentUser);
-    });
-};
-
-const savePhoto = (uid: string, file: any): Promise<any> => {
-    return new Promise((resolve) => {
-        const storageRef: any = firebase.storage();
-        const avatarsRef: any = storageRef.ref('avatars/' + uid);
-        
-        avatarsRef.put(file as Blob);
-        avatarsRef.getDownloadURL().then((res: any  ) => {
-            return resolve(res);
-        });
     });
 };
 
@@ -50,11 +38,13 @@ export default function* requestUpdate({payload: { user, closeModal }}: any): Ge
 > {
     try {
         const { file, uid, password, name } = user;
+        const storageRef = firebase.storage().ref();
+        const child: string = 'avatars/';
         
         //* first we get the user
         const profile = yield call(currentUser);
         //* than we set photo to store and get url on store
-        const photo   = yield call(savePhoto, uid, file);
+        const photo   = yield call(getDownloadURL, storageRef, file, child);
         
         //* after we change the pasword and update the profile
         yield call(updatePassword, profile, password);
