@@ -42,7 +42,7 @@ const Popup: FC <Props> = ({children, popupTitle, popupExpose, isOpen, openModal
         customStyles.content.maxWidth = '70%'
     } else if (innerWidth <= 768 && innerWidth >= 480) {
         customStyles.content.maxWidth = '90%'
-    } else if (innerWidth <= 480 && innerWidth >= 320) {
+    } else if (innerWidth <= 480) {
         customStyles.content.maxWidth = '95%'
     }
 

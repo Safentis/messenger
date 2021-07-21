@@ -1,8 +1,11 @@
 import { FC, useState, useEffect } from 'react'
+import { Fragment                } from 'react'
 import { Props                   } from './Сhatroom.interface';
 import { useParams               } from 'react-router-dom';
 import { usePubNub               } from 'pubnub-react';
 import { useDispatch             } from 'react-redux';
+import { FontAwesomeIcon         } from '@fortawesome/react-fontawesome';
+import { faTimes                 } from '@fortawesome/free-solid-svg-icons';
 import { requestMessages         } from '../../../redux/actionCreators/dialogs';
 import Inputbar                    from './Inputbar/Inputbar';
 import Messages                    from './Messages/Messages';
@@ -15,6 +18,8 @@ import './Сhatroom.css';
 
 //* SUPPORTS
 import { messageTemplate         } from './Chatroom.support';
+import { messageImageSave        } from './Chatroom.support';
+import Button from '../../../components/Button/Button';
 
 const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
 
@@ -60,15 +65,17 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
 
     //* ---------------------------------------------
     //* Picture handler
-    type Picture = [string, Function];
+    type Picture = [any[], Function];
 
-    const [picture, setPicture]: Picture = useState('');
+    const [pictures, setPictures]: Picture = useState([]);
     const handleDrop = (picture: any) => {
-        // We convert file in a path
-        let file: any    = picture[picture.length - 1];
-        let url : string = window.URL.createObjectURL(file);
+        setPictures(picture);
+    }
 
-        setPicture(url);
+    const handleDeletePicture = (index: number) => {
+        let newPictures = [...pictures];
+        newPictures.splice(index, 1)
+        setPictures(newPictures);
     }
 
 
@@ -93,9 +100,20 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
     
     //* ---------------------------------------------
     //* Pubnub handlers
-    const handleSendMessage = (content: string) => {
-        //* Template of a message
-        let body = messageTemplate({content, picture});
+    interface HandleSendMessagesProps {
+        message : string
+        pictures: any[]
+    }
+
+    const handleSendMessage = async ({message, pictures}: HandleSendMessagesProps) => {
+        let urls: any;
+        let body: any;
+
+        if (pictures.length > 0) {
+            urls = await messageImageSave({pictures});
+        }
+
+        body = messageTemplate({content: message, pictures: urls});
 
         dispatch(requestMessages({
             chatId: path, 
@@ -103,12 +121,7 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
         }));
     }
 
-    const handleMessage = ({message}: any) => {
-        setIsTyping(false);
-        setInputbar('');
-        setPicture('');
-    }
-
+    const handleMessage = (message: any) => {}
     const handleSignal = (signal: any) => {
         setIsTyping(true);
 
@@ -118,17 +131,10 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
     }
 
     const sendMessage = (message: any) => {
-        let isMessage: boolean = message.trim() !== '';
-
-        if (isMessage) {
-            pubnub.publish({
-                channel: channels[0], 
-                message: message,
-            });
-
-            //* Message add to the db
-            handleSendMessage(message);
-        }
+        handleSendMessage({message, pictures});
+        setPictures([]);
+        setIsTyping(false);
+        setInputbar('');
     }
 
     useEffect(() => {
@@ -142,10 +148,11 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
 
 
     //* ---------------------------------------------
-    //* If we have a new dialogs, 
-    //* we push them to state
+    //* If we have a new changes, 
+    //* we push dialogs to state
     useEffect(() => {
         addMessage([...letters])
+        console.log('addMessage update');
 
         return () => {
             addMessage([]);
@@ -185,13 +192,28 @@ const Сhatroom: FC <Props> = ({dialogs, user, settings}) => {
     );
 
     const MESSAGE_IMAGE = (
-        picture
-        ? <img 
-            className="chatroom__images" 
-            src={picture} 
-            height="150"
-            width="150" 
-          />
+        pictures.length > 0
+        ? 
+            <div className="chatroom__images">
+                {pictures.map((picture: any, index: number) => 
+                    (
+                        <Fragment key={index}>
+                            <img 
+                                className="chatroom__image"
+                                src={window.URL.createObjectURL(picture)} 
+                                height="150"
+                                width="150" 
+                            />    
+                            <Button onClick={() => handleDeletePicture(index)}>
+                                <FontAwesomeIcon 
+                                    className="icon icon_brown" 
+                                    icon={faTimes}
+                                />
+                            </Button>
+                        </Fragment>
+                    )
+                )}
+            </div>
         : null
     );
 

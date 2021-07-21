@@ -1,26 +1,57 @@
-type image = string | null
+import firebase from 'firebase';
+import { getDownloadURL } from '../../../utils/functions';
+
+type image = string[] | null
 
 interface MessageTemplateProps {
     content: string
-    picture: string    
+    pictures: string[] | null  
 }
 
 interface messageTemplate {
     writtenBy: string
     timestamp: string | any
     content  : string
-    image    : image
+    images   : image
 }
 
-export const messageTemplate = ({content, picture}: MessageTemplateProps): messageTemplate => {
+export const messageTemplate = ({content, pictures}: MessageTemplateProps): messageTemplate => {
     let timestamp: any       = new Date();
     let writtenBy: string    = 'operator';
-    let image    : image     = picture ?? null;
+    let images   : image     = pictures;
 
     return {
         writtenBy,
         timestamp,
         content,
-        image, 
+        images, 
     };
 };
+
+
+//* ---------------------------------------------------------------
+//* Functions for saving of the images in the store and getting url
+interface MessageImageSaveProps {
+    pictures: any[];
+}
+
+export const messageImageSave = async ({pictures}: MessageImageSaveProps) => {
+    let storageRef = firebase.storage().ref();
+    let child: string = 'images/';
+    let urls: string[] = [];
+
+    try {
+        
+        for await (let picture of pictures) {
+            //* We get one url 
+            let url: any = await getDownloadURL(storageRef, picture, child);
+    
+            urls.push(url);
+        }
+
+        return urls;
+
+    } catch(error) {
+        throw new Error(`${error}`);
+    }
+}

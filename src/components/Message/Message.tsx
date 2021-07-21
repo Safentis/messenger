@@ -5,7 +5,7 @@ import useLastActivity     from '../../Hooks/useLastActivity';
 import { STANDART_AVATAR } from '../../utils/consts';
 import './Message.css';
 
-const Message: FC <Props> = ({content, timestamp, writtenBy, image = '', photo}) => {
+const Message: FC <Props> = ({content, timestamp, writtenBy, images = [], photo}) => {
 
 
     //* -----------------------------------------------------------
@@ -26,12 +26,25 @@ const Message: FC <Props> = ({content, timestamp, writtenBy, image = '', photo})
 
     //* -----------------------------------------------------------
     //* Content
+    // console.log(images);
     const PICTURES: any = (
-        image
-            ? <img 
-                className="message__image"
-                src={image}
-              />
+        images.length > 0
+            ? images.map((image: any, index: number) => (
+                <p className={"message__images"} key={index}>
+                    <img 
+                        className="message__image"
+                        src={image}
+                    />
+                </p>
+            ))
+            : null
+    );
+
+    const CONTENT: any = (
+        content.length > 0
+            ? <p className={"message__text " + contentClass}>
+                {content}
+              </p>
             : null
     );
 
@@ -44,12 +57,8 @@ const Message: FC <Props> = ({content, timestamp, writtenBy, image = '', photo})
                 </p>
             </div>
             <div className="message__content">
-                <p className={"message__images"}>
-                    {PICTURES}
-                </p>
-                <p className={"message__text " + contentClass}>
-                    {content}
-                </p>
+                {PICTURES}
+                {CONTENT}
             </div>
         </div>
     );
