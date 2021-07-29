@@ -4,11 +4,11 @@ import Avatar          from '../Avatar/Avatar';
 import useLastActivity from '../../Hooks/useLastActivity';
 import './Dialog.css';
 
-const Dialog: FC <Props> = ({children, client, messages = { content: '', writtenBy: '', timestamp: '' }}) => {
+const Dialog: FC <Props> = ({children, client, messages}) => {
 
     //* -------------------------------------------------------------------
     //* Content of the dialog
-    const allMessages  : any[]  = messages ? Object.values(messages) : [];
+    const allMessages  : any[]  = Object.values(messages);
     const lastIndex    : number = allMessages.length - 1;
     const lastContent  : string = allMessages[lastIndex].content;
     const lastTimestamp: string = allMessages[lastIndex].timestamp;

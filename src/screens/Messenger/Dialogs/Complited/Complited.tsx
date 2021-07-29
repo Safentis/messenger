@@ -56,12 +56,13 @@ const Complited: FC <Props> = ({ dialogs, user: { uid } }) => {
 
     return (
         <>
-            <Namebar>
+            {/* <Namebar>
                 <Search />
             </Namebar>
             <Content>
                 {CONTENT}
-            </Content>
+            </Content> */}
+            {CONTENT}
         </>
     );
 };

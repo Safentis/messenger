@@ -33,10 +33,10 @@ export const privateRoutes = [
 ];
 
 export const messengerRoutes = [
-    {
-        path: MESSENGER_ROUTE,
-        component: Home
-    },
+    // {
+    //     path: MESSENGER_ROUTE,
+    //     component: Home
+    // },
     {
         path: MENU_CONTENT_ACTIVES,
         component: Actives,

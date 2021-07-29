@@ -6,6 +6,9 @@ interface fetchMessages {
 }
 
 const fetchMessages = async ({chatId, body}: fetchMessages) => {
+
+    console.log(body);
+
     try {
         const update = {
             method: 'POST',

@@ -12,23 +12,6 @@ import useFilterDialogs        from '../../../../Hooks/useFilterDialogs';
 import useInfiniteScroll       from '../../../../Hooks/useInfiniteScroll';
 import { requestActions      } from '../../../../redux/actionCreators/dialogs';
 
-const requestPush = async (chatId: string) => {
-    try {
-        await fetch('http://localhost:8080/push', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                key: chatId
-            }),
-        });
-    } catch(error) {
-        console.error(error);
-        console.error(error.message);
-        throw new Error(`ERROR with requestPushUser: ${error}`)
-    }
-}
 
 const Noactives: FC <Props> = ({ dialogs, user: { uid } }) => {
 
@@ -47,14 +30,13 @@ const Noactives: FC <Props> = ({ dialogs, user: { uid } }) => {
     //* Handle of enter
     const handleEnter = async (event: MouseEvent) => {
         const target = event.target as HTMLElement;
-        const chatId = target.dataset.id as string;
+        const chatId = target.dataset.id;
         const body = {
             status: 'active',
             operatorId: uid
         };
     
-        await dispatch(requestActions({chatId, body}));
-        await requestPush(chatId);
+        dispatch(requestActions({chatId, body}));
     }
 
     
@@ -102,7 +84,7 @@ const Noactives: FC <Props> = ({ dialogs, user: { uid } }) => {
 
     return (
         <>
-            <Namebar>
+            {/* <Namebar>
                 <Line className="noactive__line"/>
                 <Search />
             </Namebar>
@@ -115,7 +97,15 @@ const Noactives: FC <Props> = ({ dialogs, user: { uid } }) => {
                 >
                     {showItems(result)}
                 </InfiniteScroll>
-            </Content>
+            </Content> */}
+            <InfiniteScroll
+                loadMore={loadMore}
+                hasMore={hasMoreItems}
+                loader={loader}
+                useWindow={false}
+            >
+                {showItems(result)}
+            </InfiniteScroll>
         </>
     );
 };

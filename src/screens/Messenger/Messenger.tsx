@@ -21,7 +21,7 @@ const Messenger: FC = (): any => {
     });
     
     useEffect(() => {
-        dispatch(requestTokenCheck(token));    
+        // dispatch(requestTokenCheck(token));    
     }, []);
 
 
@@ -55,7 +55,9 @@ const Messenger: FC = (): any => {
 
     return (
         <div className="messenger">
-            <Aside />
+            <Aside>
+                
+            </Aside>
             <MessengerRoutes />             
         </div>
     );
