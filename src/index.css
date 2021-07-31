@@ -1,61 +1,67 @@
 :root {
-    --main-black-color   : #111016;
-    --main-white-color   : #fff;
-    --main-grey-color    : #c0c0c0;
-    --main-lg-grey-color : #f7f7f7;
-    --main-dk-grey-color : #696969;
-    --main-blue-color    : #30364a;
-    --main-lg-blue-color : #c4d0ee;
-    --main-brown-color   : #d2a283;
-    --main-lg-brown-color: #d2a38395;
-    --main-gold-color    : gold;
-    
-    --main-fs-h1  : 3.4rem;
-    --main-fs-h2  : 2.2rem;
-    --main-fs-h3  : 1.6rem;
-    --main-fs-text: 1.4rem;
-    
-    
-    --main-font-regular: 'DIN Pro', sans-serif;
-    --main-font-medium : 'DIN Pro', sans-serif;
-    --main-fron-bold   : 'DIN Pro Cond', sans-serif;
-    
-    --error-color: crimson;
-    --success-color: #79aa6b;
-    --success-bg-lg-color: rgba(203, 203, 226, 0.789);
+  --main-black-color: #111016;
+  --main-white-color: #fff;
+  --main-grey-color: #c0c0c0;
+  --main-lg-grey-color: #f7f7f7;
+  --main-dk-grey-color: #696969;
+  --main-blue-color: #30364a;
+  --main-lg-blue-color: #c4d0ee;
+  --main-brown-color: #d2a283;
+  --main-lg-brown-color: #d2a38395;
+  --main-gold-color: gold;
+
+  --main-fs-h1: 3.4rem;
+  --main-fs-h2: 2.2rem;
+  --main-fs-h3: 1.6rem;
+  --main-fs-text: 1.4rem;
+
+  --main-font-regular: "DIN Pro", sans-serif;
+  --main-font-medium: "DIN Pro", sans-serif;
+  --main-fron-bold: "DIN Pro Cond", sans-serif;
+
+  --error-color: crimson;
+  --success-color: #79aa6b;
+  --success-bg-lg-color: rgba(203, 203, 226, 0.789);
 }
 
-*, ::after, ::before {
-    box-sizing: border-box;
+*,
+::after,
+::before {
+  box-sizing: border-box;
 }
 
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
-    font: 400 var(--main-fs-text) / 1 var(--main-font-regular);
-    overflow: hidden;
+  font: 400 var(--main-fs-text) / 1 var(--main-font-regular);
+  overflow: hidden;
 }
 
 p {
-    line-height: 1.5;
-    margin-block-start: .5rem;
-    margin-block-end: .5rem;
+  line-height: 1.5;
+  margin-block-start: 0.5rem;
+  margin-block-end: 0.5rem;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    color: var(--main-blue-color);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  color: var(--main-blue-color);
 }

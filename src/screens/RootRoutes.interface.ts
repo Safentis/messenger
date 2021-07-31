@@ -1,9 +1,9 @@
 export interface AuthenticationReducer {
-    success: boolean
-    token  : string
-};
+  success: boolean;
+  token: string;
+}
 
 export interface RouteAttributes {
-    path: string
-    component: any
+  path: string;
+  component: any;
 }

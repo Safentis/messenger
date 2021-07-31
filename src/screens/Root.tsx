@@ -1,6 +1,6 @@
-import React      from 'react';
-import RootRouter from './RootRoutes';
-import './Root.css';
+import React from "react";
+import RootRouter from "./RootRoutes";
+import "./Root.css";
 
 function Root(): any {
   return (
@@ -8,6 +8,6 @@ function Root(): any {
       <RootRouter />
     </main>
   );
-};
+}
 
 export default Root;

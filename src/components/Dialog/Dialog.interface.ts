@@ -1,4 +1,6 @@
+import { Message } from "../../screens/Root.interface";
+
 export interface Props {
-    client  : any
-    messages: any[]
+  client: string;
+  messages: Message[];
 }

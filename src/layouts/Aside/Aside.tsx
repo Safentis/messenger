@@ -13,13 +13,13 @@ import { faArchive } from "@fortawesome/free-solid-svg-icons";
 
 import "./Aside.css";
 import {
-    MENU_CONTENT_ACTIVES,
-    MENU_CONTENT_COMPLITED,
-    MENU_CONTENT_NOACTIVES,
-    MENU_CONTENT_SAVED,
+  MENU_CONTENT_ACTIVES,
+  MENU_CONTENT_COMPLITED,
+  MENU_CONTENT_NOACTIVES,
+  MENU_CONTENT_SAVED,
 } from "../../utils/consts";
 
-const Aside: FC = ({children}) => {
+const Aside: FC = ({ children }) => {
   //* ------------------------------------
   //* URL's for links
   const { url } = useRouteMatch();
@@ -66,9 +66,7 @@ const Aside: FC = ({children}) => {
         <div className="aside__body">
           <ul className="controls aside__controls">{LINKS}</ul>
         </div>
-        <div className="aside__content">
-          {children}
-        </div>
+        <div className="aside__content">{children}</div>
       </div>
     </section>
   );

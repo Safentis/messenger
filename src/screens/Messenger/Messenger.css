@@ -1,46 +1,44 @@
 .messenger {
-    background-color: var(--main-lg-grey-color);
-    display: grid;
-    grid-template-columns: 25rem auto;
-    grid-template-rows: .1fr 1fr;
-    grid-template-areas: 
-        'aside namebar'
-        'aside content'
-        'aside content'
-    ;
-    height: 100%;
-    margin: 0 auto;
+  background-color: var(--main-lg-grey-color);
+  display: grid;
+  grid-template-columns: 25rem auto;
+  grid-template-rows: 0.1fr 1fr;
+  grid-template-areas:
+    "aside namebar"
+    "aside content"
+    "aside content";
+  height: 100%;
+  margin: 0 auto;
 }
 
 .aside {
-    grid-area: aside;
+  grid-area: aside;
 }
 
 .namebar {
-    grid-area: namebar;
+  grid-area: namebar;
 }
 
 .content {
-    grid-area: content;
+  grid-area: content;
 }
 
 .chatroom {
-    grid-area: content;
+  grid-area: content;
 }
 
 @media screen and (max-width: 1024px) {
-    .messenger {
-        grid-template-columns: 20rem auto;
-    }
+  .messenger {
+    grid-template-columns: 20rem auto;
+  }
 }
 
 @media screen and (max-width: 768px) {
-    .messenger {
-        grid-template-areas: 
-            'aside aside    '
-            'namebar namebar'
-            'content content'
-        ;
-        grid-template-rows: .1fr .2fr .1fr;
-    }
+  .messenger {
+    grid-template-areas:
+      "aside aside    "
+      "namebar namebar"
+      "content content";
+    grid-template-rows: 0.1fr 0.2fr 0.1fr;
+  }
 }

@@ -1,4 +1,4 @@
 export interface Props {
-    className: string
-    isTyping : boolean
+  className: string;
+  isTyping: boolean;
 }

@@ -1,51 +1,51 @@
-
 .authentication {
-    align-items: center;
-    border-radius: .25rem;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    height: 100%;
-    margin: 0 auto;
-    max-width: 90%;
-    min-width: 45rem;
+  align-items: center;
+  border-radius: 0.25rem;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 90%;
+  min-width: 45rem;
 }
 
 .authentication__loader {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    /* background-color: var(--main-lg-grey-color); */
-    left: 0%;
-    top: 0%;
-    height: 100%;
-    width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  /* background-color: var(--main-lg-grey-color); */
+  left: 0%;
+  top: 0%;
+  height: 100%;
+  width: 100%;
 }
 
 .authentication__card {
-    max-width: 45rem;
-    min-width: 15rem;
-    width: 100%;
+  max-width: 45rem;
+  min-width: 15rem;
+  width: 100%;
 }
 
 .card {
-    background-color: var(--main-white-color);
-    border-radius: .25rem;
-    box-shadow: .15rem .15rem .1rem var(--main-grey-color), -.1px -.1px .1rem var(--main-grey-color);
-    padding: 2rem 3.5rem;
+  background-color: var(--main-white-color);
+  border-radius: 0.25rem;
+  box-shadow: 0.15rem 0.15rem 0.1rem var(--main-grey-color),
+    -0.1px -0.1px 0.1rem var(--main-grey-color);
+  padding: 2rem 3.5rem;
 }
 
 .card__title {
-    margin: 3.5rem 0;
+  margin: 3.5rem 0;
 }
 
 @media screen and (max-width: 480px) {
-    .authentication {
-        min-width: 25rem;
-    }
+  .authentication {
+    min-width: 25rem;
+  }
 
-    .card {
-        padding: 2rem 1.5rem;
-    }
+  .card {
+    padding: 2rem 1.5rem;
+  }
 }

@@ -1,9 +1,9 @@
 export interface State {
-    dialogs: any[]
-    filtered: any[]
-};
+  dialogs: any[];
+  filtered: any[];
+}
 
 export interface Action {
-    type    : string
-    payload : any
-};
+  type: string;
+  payload: any;
+}

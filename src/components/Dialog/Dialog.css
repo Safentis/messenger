@@ -1,68 +1,67 @@
 .dialog {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 .dialog:nth-of-type(n + 2) {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .dialog__inner {
-    align-items: center;
-    display: grid;
-    grid-template-columns: 20rem 1fr 15rem;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 20rem 1fr 15rem;
 }
 
 .dialog__client {
-    justify-self: center;
+  justify-self: center;
 }
 
 .dialog__avatar {
-
 }
 
 .dialog__name {
-    font-size: 1.8rem;
-    font-weight: 600;
+  font-size: 1.8rem;
+  font-weight: 600;
 }
 
 .dialog__content {
-    color: var(--main-blue-color);
-    font-size: 1.6rem;
+  color: var(--main-blue-color);
+  font-size: 1.6rem;
 }
 
 .dialog__author {
-    font-weight: 400;
-    margin-right: 1rem;
-    text-transform: capitalize;
+  font-weight: 400;
+  margin-right: 1rem;
+  text-transform: capitalize;
 }
 
 .dialog__message {
-    font-weight: 400;
-    font-size: 1.6rem;
+  font-weight: 400;
+  font-size: 1.6rem;
 }
 
 .dialog__controls {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    text-align: center;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  text-align: center;
 }
 
 @media screen and (max-width: 1024px) {
-    .dialog__inner {
-        grid-template-columns: 10rem 1fr 15rem;
-    }
+  .dialog__inner {
+    grid-template-columns: 10rem 1fr 15rem;
+  }
 }
 
 @media screen and (max-width: 480px) {
-    .dialog__inner {
-        grid-template-columns: 10rem 1fr;
-    }
-    
-    .dialog__controls {
-        flex-direction: row-reverse;
-        justify-content: space-around;
-        grid-column-start: 1;
-        grid-column-end: 3;
-    }
+  .dialog__inner {
+    grid-template-columns: 10rem 1fr;
+  }
+
+  .dialog__controls {
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
 }

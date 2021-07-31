@@ -1,19 +1,17 @@
 .solution {
-    
 }
 
 .MuiInputBase-input,
 .MuiFormLabel-root {
-    color: var(--main-white-color) !important;
-    font-size: 1.6rem !important;
+  color: var(--main-white-color) !important;
+  font-size: 1.6rem !important;
 }
 
-
 .solution__button {
-    color: var(--main-white-color);
-    margin-left: auto;
+  color: var(--main-white-color);
+  margin-left: auto;
 }
 
 .solution__button:hover {
-    opacity: .6;
+  opacity: 0.6;
 }

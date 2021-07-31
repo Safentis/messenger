@@ -1,9 +1,9 @@
 export interface State {
-    user    : any
-    settings: any
-};
+  user: any;
+  settings: any;
+}
 
 export interface Action {
-    type    : string
-    payload : any
-};
+  type: string;
+  payload: any;
+}

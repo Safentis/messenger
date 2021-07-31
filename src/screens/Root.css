@@ -1,19 +1,19 @@
 .main {
-    height: 100vh;
+  height: 100vh;
 }
 
 .icon {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 .icon_white {
-    color: var(--main-white-color);
+  color: var(--main-white-color);
 }
 
 .icon_active {
-    color: var(--main-lg-blue-color);
+  color: var(--main-lg-blue-color);
 }
 
 .loader {
-    text-align: center;
+  text-align: center;
 }

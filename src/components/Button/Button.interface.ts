@@ -1,5 +1,7 @@
+import React from "react";
+
 export interface Props {
-    children ?: string | any
-    className?: string
-    attrs     : any
-};
+  children?: string | React.ReactNode | React.ReactElement;
+  className?: string;
+  attrs?: object;
+}

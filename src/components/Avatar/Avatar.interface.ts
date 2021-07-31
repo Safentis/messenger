@@ -1,7 +1,9 @@
 export interface Props {
-    url         ?: string | null
-    className   ?: string
-    children    ?: any
-    attrs       ?: any
-    defaultAvatar: string
+  url?: string;
+  className?: string;
+  children?: any;
+  attrs?: object;
+  src?: string;
+  height?: number | string;
+  width?: number | string;
 }

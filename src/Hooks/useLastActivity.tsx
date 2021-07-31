@@ -1,23 +1,28 @@
-import { useState, useEffect }  from 'react';
-import moment from 'moment';
+import { useState, useEffect } from "react";
+import moment, { Moment } from "moment";
 
-const useLastActivity = (timestamp: number | string): number | string => {
+type dataType = number | string | Date;
 
-    const [lastActivity, setLastActivity] = useState('');
+const useLastActivity = (timestamp: dataType): dataType => {
+  const [lastActivity, setLastActivity] = useState("");
 
-    useEffect(() => {
-        const dateMoment  : any = moment(timestamp);
-        const lastActivity: any = dateMoment.fromNow();
+  const callLastActivity = () => {
+    let lastActivity: string = moment(timestamp).fromNow();
+    setLastActivity(lastActivity);
+  };
 
-        setLastActivity(lastActivity);
+  useEffect(() => {
+    callLastActivity();
+    const id = setInterval(() => {
+      callLastActivity();
+    }, 1000);
 
-        return () => {
-            setLastActivity('');
-        }
-    }, [timestamp])
+    return () => {
+      clearTimeout(id);
+    };
+  });
 
-
-    return lastActivity;
+  return lastActivity;
 };
 
 export default useLastActivity;

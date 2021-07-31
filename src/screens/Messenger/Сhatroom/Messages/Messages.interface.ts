@@ -1,6 +1,6 @@
 export interface Props {
-    className?: string
+  className?: string;
 }
 
 export type MessagesElement = HTMLElement | null;
-export type ScrollHeight    = number | null;
+export type ScrollHeight = number | null;

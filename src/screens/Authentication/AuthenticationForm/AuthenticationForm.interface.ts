@@ -1,13 +1,13 @@
 export interface Props {
-    formik : any 
-};
+  formik: any;
+}
 
 export interface Handlers {
-    handleSubmit: () => any
-};
+  handleSubmit: () => any;
+}
 
 export interface Validation {
-    errors : any
-    touched: any
-    status : boolean
-};
+  errors: any;
+  touched: any;
+  status: boolean;
+}

@@ -1,12 +1,12 @@
 .label {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .label-main,
 .label-auth {
-    color: var(--main-blue-color);
-    font-family: var(--main-fron-medium);
-    font-size: var(--main-fs-h3);
-    font-weight: 600;
-    text-transform: uppercase;
+  color: var(--main-blue-color);
+  font-family: var(--main-fron-medium);
+  font-size: var(--main-fs-h3);
+  font-weight: 600;
+  text-transform: uppercase;
 }

@@ -1,72 +1,71 @@
 .settings {
-    display: grid;
-    grid-template-areas: 
-        'greetings headers'
-        'greetings subheaders'
-    ;
-    grid-gap: 1rem;
+  display: grid;
+  grid-template-areas:
+    "greetings headers"
+    "greetings subheaders";
+  grid-gap: 1rem;
 }
 
-.settings__greetings {}
+.settings__greetings {
+}
 
-.greetings{
-    grid-area: greetings;
-} 
+.greetings {
+  grid-area: greetings;
+}
 
 .headers {
-    grid-area: headers;
+  grid-area: headers;
 }
 
 .subheaders {
-    grid-area: subheaders;
+  grid-area: subheaders;
 }
 
 .greetings__button {
-    margin-top: 1rem;
-    padding: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
 }
 
 .greetings__phrase {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .greetings__item {
-    display: flex;
-    margin-top: 1rem;
+  display: flex;
+  margin-top: 1rem;
 }
 
-.greeting {} 
-
+.greeting {
+}
 
 .greeting__input {
-
 }
 
 .greeting__button {
-
 }
 
 .greeting__button {
-    margin: 0 .5rem;
+  margin: 0 0.5rem;
 }
 
-.phrase {}
-.phrase__label {}
+.phrase {
+}
+.phrase__label {
+}
 .phrase__input {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .phrase__button {
-    margin-top: 1rem;
-    padding: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
 }
 
 @media screen and (max-width: 768px) {
-    .settings {
-        grid-template-areas: 
-            'greetings   greetings'
-            'headers       headers'
-            'subheaders subheaders'
-        ;
-    }
+  .settings {
+    grid-template-areas:
+      "greetings   greetings"
+      "headers       headers"
+      "subheaders subheaders";
+  }
 }
