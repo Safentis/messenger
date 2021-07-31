@@ -1,6 +1,7 @@
 .messages {
   overflow-y: scroll;
-  height: 75.5vh;
+  height: 79.5vh;
+  padding: 2.5% 0;
 }
 
 .messages__inner {

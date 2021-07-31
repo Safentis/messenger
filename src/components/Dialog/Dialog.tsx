@@ -41,11 +41,9 @@ const Dialog: FC<Props> = ({ children, client, messages = {} }) => {
               lastContent
             )}
           </p>
-        </div>
-        <div className="dialog__controls">
           <p className="dialog__activity">{lastActivity}</p>
-          {children}
         </div>
+        <div className="dialog__controls">{children}</div>
       </div>
     </div>
   );

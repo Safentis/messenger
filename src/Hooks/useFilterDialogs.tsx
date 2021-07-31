@@ -8,7 +8,7 @@ interface Props {
   uid: string;
 }
 
-type chatroomType = [string, Chatroom]
+type chatroomType = [string, Chatroom];
 
 const useFilterDialogs = ({ dialogs, status, uid }: Props) => {
   //* State of the custom-hook
@@ -19,15 +19,17 @@ const useFilterDialogs = ({ dialogs, status, uid }: Props) => {
     //* to a status, and return result back
     if (dialogs) {
       const noFiltered: chatroomType[] = Object.entries(dialogs);
-      const isFiltered: chatroomType[] = noFiltered.filter(([key, value]: chatroomType) => {
-        return value.status !== "noactive"
-          ? (value.status === status && value.operatorId === uid) ||
-              (value.saved === status && value.operatorId === uid) ||
-              (value.saved === status &&
-                value.status === "complited" &&
-                value.operatorId === uid)
-          : value.status === status;
-      });
+      const isFiltered: chatroomType[] = noFiltered.filter(
+        ([key, value]: chatroomType) => {
+          return value.status !== "noactive"
+            ? (value.status === status && value.operatorId === uid) ||
+                (value.saved === status && value.operatorId === uid) ||
+                (value.saved === status &&
+                  value.status === "complited" &&
+                  value.operatorId === uid)
+            : value.status === status;
+        }
+      );
 
       setResult(isFiltered);
     }

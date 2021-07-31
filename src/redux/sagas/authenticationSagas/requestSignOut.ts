@@ -1,6 +1,6 @@
 import firebase from "firebase";
 import { call, put, StrictEffect } from "redux-saga/effects";
-import { EXITING_APP, FETCH_EXITING_APP } from "../../actions/authentication";
+import { EXITING_APP } from "../../actions/authentication";
 
 export const signOutAccount = () => {
   return firebase.auth().signOut();

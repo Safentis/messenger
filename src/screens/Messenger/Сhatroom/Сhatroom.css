@@ -52,10 +52,10 @@
   display: grid;
   grid-template-columns: 0.5fr 0.2fr;
   grid-column-gap: 1rem;
-  width: 40vw;
+  width: 30vw;
 }
 
-@media screen and (max-width: 1240px) {
+/* @media screen and (max-width: 1240px) {
   .chatroom__solution {
     width: 30vw;
   }
@@ -88,4 +88,4 @@
     width: 80%;
     grid-template-columns: 1fr 0.5fr;
   }
-}
+} */

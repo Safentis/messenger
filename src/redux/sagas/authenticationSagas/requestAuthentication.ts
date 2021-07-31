@@ -1,16 +1,20 @@
+import { put, call, StrictEffect } from "redux-saga/effects";
+import firebase from "firebase";
+
+import { Fields } from "../../../screens/Authentication/Authentication.interface";
 import {
   FETCH_MESSAGES_SUCCESS,
   FETCH_MESSAGES_FAILURE,
 } from "../../actions/authentication";
-import { put, call, StrictEffect } from "redux-saga/effects";
-import firebase from "firebase";
 
-interface FormFields {
-  email: string;
-  password: string;
+export interface RequestAuthenticationProps {
+  payload: {
+    values: Fields;
+    setStatus: Function;
+  };
 }
 
-export const signInAccount = ({ email, password }: FormFields): any => {
+export const signInAccount = ({ email, password }: Fields): any => {
   return firebase.auth().signInWithEmailAndPassword(email, password);
 };
 
@@ -27,7 +31,7 @@ export const getIdToken = (): any => {
  */
 export default function* requestAuthentication({
   payload: { values, setStatus },
-}: any): Generator<StrictEffect, any, any> {
+}: RequestAuthenticationProps): Generator<StrictEffect, any, any> {
   try {
     yield call(signInAccount, values);
 

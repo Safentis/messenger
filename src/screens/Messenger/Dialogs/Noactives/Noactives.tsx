@@ -15,12 +15,12 @@ import { requestActions } from "../../../../redux/actionCreators/dialogs";
 import { Props } from "./Noactive.interface";
 import { Chatroom } from "../../../Root.interface";
 
-type dateType = string | number | Date
+type dateType = string | number | Date;
 type chatroomType = [string, Chatroom];
 type dispatchType = {
   status: string;
   operatorId: string;
-  begun: dateType
+  begun: dateType;
 };
 
 const Noactives: FC<Props> = ({ dialogs, user: { uid } }) => {
@@ -41,7 +41,7 @@ const Noactives: FC<Props> = ({ dialogs, user: { uid } }) => {
     const body: dispatchType = {
       status: "active",
       operatorId: uid,
-      begun
+      begun,
     };
 
     await dispatch(requestActions({ chatId, body }));

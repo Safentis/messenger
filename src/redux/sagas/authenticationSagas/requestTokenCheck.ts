@@ -1,15 +1,21 @@
 import { call, put } from "@redux-saga/core/effects";
 import { StrictEffect } from "@redux-saga/types";
+
 import { FETCH_EXITING_APP } from "../../actions/authentication";
-import firebase from "firebase";
 
 interface Validation {
   validation: boolean;
 }
 
+interface RequestTokenCheckProps {
+  payload: {
+    token: string;
+  };
+}
+
 // http://localhost:8080/
 // https://messenger-token-checker.herokuapp.com/
-export function reqValidationToken(token: string): object {
+export function reqValidationToken(token: string): Promise<object> {
   return fetch("https://messenger-token-checker.herokuapp.com/", {
     method: "POST",
     headers: {
@@ -30,7 +36,7 @@ export function reqValidationToken(token: string): object {
  */
 export default function* requestTokenCheck({
   payload: { token },
-}: any): Generator<StrictEffect, any, any> {
+}: RequestTokenCheckProps): Generator<StrictEffect, any, any> {
   try {
     const { validation }: Validation = yield call(reqValidationToken, token);
 

@@ -34,8 +34,8 @@ import {
 
 export default function* rootSaga() {
   yield all([
-    takeEvery(FETCH_MESSAGES_REQUEST, requestAuthentication),
-    takeEvery(FETCH_TOKEN_CHECK, requestTokenCheck),
+    takeEvery(FETCH_MESSAGES_REQUEST as any, requestAuthentication),
+    takeEvery(FETCH_TOKEN_CHECK as any, requestTokenCheck),
     takeEvery(FETCH_EXITING_APP, requestSignOut),
     takeEvery(FETCH_DIALOGS, requestDialogs),
     takeEvery(FETCH_FILTERED_DIALOGS, requestFiltered),

@@ -23,6 +23,13 @@
 }
 
 .aside__controls {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.aside__search {
+  margin: 2rem 0;
 }
 
 .controls__button {
@@ -32,19 +39,15 @@
 }
 
 .controls__button:nth-of-type(1n + 2) {
-  margin-top: 2rem;
 }
-
 .controls__icon {
-  margin-right: 1rem;
-  min-width: 2.5rem;
 }
 
 .icon_brown {
   color: var(--main-brown-color);
 }
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .aside__controls {
     align-items: center;
     display: flex;
@@ -71,4 +74,4 @@
   .controls__button:nth-of-type(1n + 2) {
     margin: 0;
   }
-}
+} */

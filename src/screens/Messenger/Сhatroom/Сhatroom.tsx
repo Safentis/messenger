@@ -19,8 +19,9 @@ import { messageTemplate } from "./Chatroom.support";
 import { messageImageSave } from "./Chatroom.support";
 
 import { Chatroom, Message as MessageInterface } from "../../Root.interface";
-import { Props } from "./Сhatroom.interface";
+import { Props, Signal, Envelope } from "./Сhatroom.interface";
 import "./Сhatroom.css";
+import Content from "../../../layouts/Content/Content";
 
 type useparamsType = {
   key: string;
@@ -31,20 +32,6 @@ type typingType = [boolean, Function];
 type messagesType = [MessageInterface[], Function];
 type pictureType = [object[], Function];
 type inputbarType = [string, Function];
-
-export interface Signal {
-  channel: string;
-  message: number;
-  publisher: string;
-  subscription: null | string;
-  timetoken: string | number | Date;
-}
-
-export interface Envelope {
-  message: MessageInterface;
-  publisher: string;
-  timetoken: string | number | Date;
-}
 
 const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
   //* ---------------------------------------------
@@ -164,6 +151,7 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
       signal: handleSignal,
     };
 
+    pubnub.setUUID(user.uid);
     pubnub.addListener(listener);
     pubnub.subscribe({ channels });
     return () => {
@@ -215,35 +203,28 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
     ) : null;
 
   return (
-    <>
-      <Namebar>
-        <h2 className="client-name">{client}</h2>
-      </Namebar>
-      <section className="chatroom">
-        <div className="chatroom__inner">
-          <Messages className="chatroom__messages">
-            {MESSAGES}
-            {MESSAGE_COMPLITED}
-            <Typing className="chatroom__typing" isTyping={isTyping} />
-            {MESSAGE_IMAGE}
-          </Messages>
-          <Inputbar
-            className="chatroom__inputbar"
-            inputbar={inputbar}
-            setInputbar={setInputbar}
-            handleKeyUp={handleKeyUp}
-            sendMessage={sendMessage}
-            handleDrop={handleDrop}
-          >
-            <Solution
-              className="chatroom__solution"
-              question={question}
-              sendMessage={sendMessage}
-            />
-          </Inputbar>
-        </div>
-      </section>
-    </>
+    <Content className="chatroom">
+      <Messages className="chatroom__messages">
+        {MESSAGES}
+        {MESSAGE_COMPLITED}
+        {MESSAGE_IMAGE}
+        <Typing className="chatroom__typing" isTyping={isTyping} />
+      </Messages>
+      <Inputbar
+        className="chatroom__inputbar"
+        inputbar={inputbar}
+        setInputbar={setInputbar}
+        handleKeyUp={handleKeyUp}
+        sendMessage={sendMessage}
+        handleDrop={handleDrop}
+      >
+        <Solution
+          className="chatroom__solution"
+          question={question}
+          sendMessage={sendMessage}
+        />
+      </Inputbar>
+    </Content>
   );
 };
 

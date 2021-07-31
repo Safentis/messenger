@@ -7,10 +7,7 @@ import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
 import { faClipboardList } from "@fortawesome/free-solid-svg-icons";
 import { faArchive } from "@fortawesome/free-solid-svg-icons";
 
-// import {
-//     Link as LinkInterface
-// } from './Aside.interface'
-
+import { Props, LinkInterface } from "./Aside.interface";
 import "./Aside.css";
 import {
   MENU_CONTENT_ACTIVES,
@@ -18,8 +15,9 @@ import {
   MENU_CONTENT_NOACTIVES,
   MENU_CONTENT_SAVED,
 } from "../../utils/consts";
+import Search from "../../components/Search/Search";
 
-const Aside: FC = ({ children }) => {
+const Aside: FC<Props> = ({ children }): React.ReactElement => {
   //* ------------------------------------
   //* URL's for links
   const { url } = useRouteMatch();
@@ -32,30 +30,32 @@ const Aside: FC = ({ children }) => {
   //* Location for link
   const location: any = useLocation();
 
-  const links: any[] = [
-    { path: ACTIVES, content: "actives", icon: faHistory },
-    { path: NOACTIVES, content: "noactives", icon: faUserFriends },
-    { path: SAVED, content: "saved", icon: faClipboardList },
-    { path: COMPLITED, content: "complited", icon: faArchive },
+  const links: LinkInterface[] = [
+    { path: ACTIVES, content: "", icon: faHistory },
+    { path: NOACTIVES, content: "", icon: faUserFriends },
+    { path: SAVED, content: "", icon: faClipboardList },
+    { path: COMPLITED, content: "", icon: faArchive },
   ];
 
   //* ------------------------------------
   //* Content
-  const LINKS = links.map(({ path, content, icon }: any, index: number) => (
-    <li className="controls__button" key={index}>
-      <Link to={path}>
-        <FontAwesomeIcon
-          className={`icon ${
-            new RegExp(path).test(location.pathname)
-              ? "icon_brown"
-              : "icon_white"
-          } controls__icon`}
-          icon={icon}
-        />
-        {content}
-      </Link>
-    </li>
-  ));
+  const LINKS = links.map(
+    ({ path, content, icon }: LinkInterface, index: number) => (
+      <li className="controls__button" key={index}>
+        <Link to={path}>
+          <FontAwesomeIcon
+            className={`icon ${
+              new RegExp(path).test(location.pathname)
+                ? "icon_brown"
+                : "icon_white"
+            } controls__icon`}
+            icon={icon}
+          />
+          {content}
+        </Link>
+      </li>
+    )
+  );
 
   return (
     <section className="aside">
@@ -65,6 +65,9 @@ const Aside: FC = ({ children }) => {
         </div>
         <div className="aside__body">
           <ul className="controls aside__controls">{LINKS}</ul>
+        </div>
+        <div className="aside__search">
+          <Search />
         </div>
         <div className="aside__content">{children}</div>
       </div>

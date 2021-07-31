@@ -6,14 +6,14 @@ import { Chatroom } from "../screens/Root.interface";
 type chatroomType = [string, Chatroom];
 
 interface Props {
-  result: chatroomType[]
+  result: chatroomType[];
 }
 
 interface InfiniteScrollReturns {
-  records: number,
-  loadMore: () => void,
-  hasMoreItems: boolean,
-  loader: React.ReactElement,
+  records: number;
+  loadMore: () => void;
+  hasMoreItems: boolean;
+  loader: React.ReactElement;
 }
 
 const useInfiniteScroll = ({ result }: Props): InfiniteScrollReturns => {
@@ -28,7 +28,7 @@ const useInfiniteScroll = ({ result }: Props): InfiniteScrollReturns => {
   //* which will bring up more dialogues
   const loadMore = (): void => {
     if (result.length === 0) {
-      sethasMoreItems(false);
+      sethasMoreItems(true);
     } else if (records >= result.length) {
       sethasMoreItems(false);
     } else {

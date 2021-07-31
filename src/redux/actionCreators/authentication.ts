@@ -1,3 +1,4 @@
+import { Fields } from "../../screens/Authentication/Authentication.interface";
 import {
   FETCH_MESSAGES_REQUEST,
   FETCH_MESSAGES_SUCCESS,
@@ -6,7 +7,7 @@ import {
   FETCH_EXITING_APP,
 } from "../actions/authentication";
 
-export const requestAuthentication = (data: any) => {
+export const requestAuthentication = (data: Fields) => {
   return {
     type: FETCH_MESSAGES_REQUEST,
     payload: data,

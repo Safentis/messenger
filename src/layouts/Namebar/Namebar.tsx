@@ -2,12 +2,15 @@ import { FC } from "react";
 import { Props } from "./Namebar.interface";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { requestExitingApp } from "../../redux/actionCreators/authentication";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+
+import { requestExitingApp } from "../../redux/actionCreators/authentication";
 import Button from "../../components/Button/Button";
 import Profile from "../../screens/options/Profile/Profile";
 import Settings from "../../screens/options/Settings/Settings";
+
+import { RootReducerState } from "../../redux/reducers/rootReducer.interface";
 import "./Namebar.css";
 
 const Namebar: FC<Props> = ({ children }) => {
@@ -20,7 +23,7 @@ const Namebar: FC<Props> = ({ children }) => {
 
   //* ---------------------------------------------------
   //* Application user information
-  const user = useSelector((state: any) => {
+  const user = useSelector((state: RootReducerState) => {
     return state.userReducer.user;
   });
 

@@ -17,9 +17,9 @@
 }
 
 .button-action {
-  color: var(--main-blue-color);
+  color: var(--main-white-color);
   margin-right: auto;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: 400;
   transition: 0.3s;
   text-transform: uppercase;
@@ -28,7 +28,7 @@
 }
 
 .button-action:hover {
-  color: var(--main-brown-color);
+  color: var(--main-lg-blue-color);
 }
 
 .button-main:hover,
