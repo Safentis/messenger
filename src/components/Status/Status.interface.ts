@@ -1,4 +1,4 @@
 export interface Props {
-    className?: string
-    status    : string
+  className?: string;
+  status: string;
 }

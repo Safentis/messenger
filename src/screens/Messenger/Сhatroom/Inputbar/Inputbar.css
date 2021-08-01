@@ -1,104 +1,101 @@
 .inputbar {
-    align-items: center;
-    background-color: var(--main-dk-grey-color);
-    bottom: 0;
-    display: grid;
-    grid-column-gap: 2rem;
-    grid-template-columns: .7fr 15rem 1fr;
-    position: fixed;
-    width: 100vw;
+  align-items: center;
+  background-color: var(--main-dk-grey-color);
+  display: grid;
+  grid-column-gap: 2rem;
+  grid-template-columns: 3fr 15rem 0.5fr;
+  padding: 1;
+  bottom: 0;
+  position: fixed;
 }
 
 .inputbar__field {
-    background-color: inherit;
-    color: var(--main-white-color);
-    resize: none;
-    height: 100%;
-    padding: 2rem 1rem;
-    font-size: 2rem;
-    font-weight: 200;
+  background-color: inherit;
+  color: var(--main-white-color);
+  resize: none;
+  height: 100%;
+  padding: 2rem 1rem;
+  font-size: 2rem;
+  font-weight: 200;
 }
 
 .inputbar__field::placeholder {
-    color: var(--main-white-color);
+  color: var(--main-white-color);
 }
 
 .inputbar__list {
-    align-items: center;
-    display: flex;
-    margin: 0 .5rem;
+  align-items: center;
+  display: flex;
+  margin: 0 0.5rem;
 }
 
 .inputbar__item {
-    
 }
 
 .inputbar__button {
-    transition: .3s;
+  transition: 0.3s;
 }
 
 .inputbar__button:hover > .inputbar__icon {
-    color: var(--main-brown-color);
+  color: var(--main-lg-blue-color);
 }
 
 .inputbar__icon {
-    cursor: pointer;
-    font-size: 2rem;
-    margin: 0 1rem;
+  cursor: pointer;
+  font-size: 2rem;
+  margin: 0 1rem;
 }
 
-
 .inputbar__emoji {
-    position: absolute;
-    bottom: 8rem;
-    left: 25%;
+  position: absolute;
+  bottom: 8rem;
+  left: 25%;
 }
 
 .emoji {
-
 }
 
 .inputbar__picture {
-    position: absolute;
+  position: absolute;
 }
 
 .picture {
-    bottom: 8rem;
-    left: 34%;
+  bottom: 8rem;
+  left: 34%;
 }
 
-@media screen and (max-width: 1280px) {
-    .inputbar {
-        grid-column-gap: 2rem;
-        grid-template-columns: .7fr 15rem auto;
-    }
+/* @media screen and (max-width: 1280px) {
+  .inputbar {
+    grid-column-gap: 2rem;
+    grid-template-columns: 0.7fr 15rem auto;
+  }
 }
 
 @media screen and (max-width: 1024px) {
-    .inputbar {
-        grid-column-gap: 2rem;
-        grid-template-columns: .5fr 15rem .35fr;
-    }
+  .inputbar {
+    grid-column-gap: 2rem;
+    grid-template-columns: 0.5fr 15rem 0.35fr;
+  }
 
-    .inputbar__field {
-        font-size: 1.6rem;
-    }
+  .inputbar__field {
+    font-size: 1.6rem;
+  }
 }
 
 @media screen and (max-width: 768px) {
-    .inputbar {
-        grid-column-gap: 2rem;
-        grid-template-columns: .5fr 15rem .5fr;
-    }
+  .inputbar {
+    grid-column-gap: 2rem;
+    grid-template-columns: 0.5fr 15rem 0.5fr;
+  }
 
-    .inputbar__icon {
-        margin: .2rem;
-    }
+  .inputbar__icon {
+    margin: 0.2rem;
+  }
 }
 
 @media screen and (max-width: 581px) {
-    .inputbar {
-        grid-column-gap: 0rem;
-        grid-template-columns: auto .5fr;
-    }
-}
+  .inputbar {
+    grid-column-gap: 0rem;
+    grid-template-columns: auto 0.5fr;
+  }
+} */

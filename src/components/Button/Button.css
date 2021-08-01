@@ -1,71 +1,71 @@
 .button {
-    background-color: inherit;
-    border: none;
-    cursor: pointer;
-    outline: none;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  outline: none;
 }
 
 .button-main,
 .button-auth {
-    background-color: var(--main-blue-color);
-    border: .15rem solid var(--main-grey-color);
-    border-radius: .35rem;
-    color: var(--main-white-color);
-    font-size: var(--main-fs-h3);
-    font-weight: 400;
-    text-transform: uppercase;
+  background-color: var(--main-blue-color);
+  border: 0.15rem solid var(--main-grey-color);
+  border-radius: 0.35rem;
+  color: var(--main-white-color);
+  font-size: var(--main-fs-h3);
+  font-weight: 400;
+  text-transform: uppercase;
 }
 
 .button-action {
-    color: var(--main-blue-color);
-    margin-right: auto;
-    font-size: 1.8rem;
-    font-weight: 400;
-    transition: .3s;
-    text-transform: uppercase;
-    margin: .5rem 0;
-    padding: 0;
+  color: var(--main-white-color);
+  margin-right: auto;
+  font-size: 1.4rem;
+  font-weight: 400;
+  transition: 0.3s;
+  text-transform: uppercase;
+  margin: 0.5rem 0;
+  padding: 0;
 }
 
 .button-action:hover {
-    color: var(--main-brown-color);
+  color: var(--main-lg-blue-color);
 }
 
 .button-main:hover,
 .button-auth:hover {
-    background-color: var(--main-white-color);
-    color: var(--main-blue-color);
+  background-color: var(--main-white-color);
+  color: var(--main-blue-color);
 }
 
 .button-main:hover > .button__icon,
 .button-auth:hover > .button__icon {
-    color: var(--main-blue-color);
+  color: var(--main-blue-color);
 }
 
 .button-main:active,
 .button-auth:active {
-    background-color: var(--main-lg-blue-color);
-    color: var(--main-white-color);
+  background-color: var(--main-lg-blue-color);
+  color: var(--main-white-color);
 }
 
 .button-main:active > .button__icon,
 .button-auth:active > .button__icon {
-    color: var(--main-white-color);
+  color: var(--main-white-color);
 }
 
 .button__icon {
-    color: var(--main-white-color);
-    margin: 0 .5rem;
+  color: var(--main-white-color);
+  margin: 0 0.5rem;
 }
 
 .button-main,
 .button-auth,
 .button__icon {
-    transition: .3s;
+  transition: 0.3s;
 }
 
 @media screen and (max-width: 480px) {
-    .button-action {
-        font-size: 1.4rem;
-    }
+  .button-action {
+    font-size: 1.4rem;
+  }
 }

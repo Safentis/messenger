@@ -1,71 +1,77 @@
 .aside {
-    background-color: var(--main-blue-color);
-    border-top-right-radius: .75rem;
-    border-bottom-right-radius: .75rem;
-    padding: 1rem;
+  background-color: var(--main-blue-color);
+  border-top-right-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+  padding: 1rem;
 }
 
-.aside__innder {}
+.aside__innder {
+}
 
-.aside__header {}
+.aside__header {
+}
 
 .aside__title {
-    color: var(--main-white-color);
-    font-weight: 400;
-    font-size: var(--main-fs-h2);
-    text-transform: uppercase;
+  color: var(--main-white-color);
+  font-weight: 400;
+  font-size: var(--main-fs-h2);
+  text-transform: uppercase;
 }
 
 .aside__body {
-    margin-top: 5rem;
+  margin-top: 5rem;
 }
 
-.aside__controls {}
+.aside__controls {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.aside__search {
+  margin: 2rem 0;
+}
 
 .controls__button {
-    color: var(--main-white-color);
-    font-size: 1.6rem;
-    text-transform: uppercase;
+  color: var(--main-white-color);
+  font-size: 1.6rem;
+  text-transform: uppercase;
 }
 
 .controls__button:nth-of-type(1n + 2) {
-    margin-top: 2rem;
 }
-
 .controls__icon {
-    margin-right: 1rem;
-    min-width: 2.5rem;
 }
 
 .icon_brown {
-    color: var(--main-brown-color);
+  color: var(--main-lg-blue-color);
 }
 
-@media screen and (max-width: 768px) {
-    .aside__controls {
-        align-items: center;
-        display: flex;
-        flex-wrap: wrap;
-        padding: 1rem 0;
-    }
+/* @media screen and (max-width: 768px) {
+  .aside__controls {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+  }
 
-    .controls__button:nth-of-type(1n + 2) {
-        margin: 0 0 0 2rem;
-    }
+  .controls__button:nth-of-type(1n + 2) {
+    margin: 0 0 0 2rem;
+  }
 }
 
 @media screen and (max-width: 581px) {
-    .aside__controls {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 3rem 3rem;
-    }
+  .aside__controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 3rem 3rem;
+  }
 
-    .controls__button {
-        justify-self: left;
-    }
+  .controls__button {
+    justify-self: left;
+  }
 
-    .controls__button:nth-of-type(1n + 2) {
-        margin: 0;
-    }
-}
+  .controls__button:nth-of-type(1n + 2) {
+    margin: 0;
+  }
+} */

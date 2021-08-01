@@ -1,4 +1,4 @@
 export interface Props {
-    dialogs: any[]
-    user   : any
+  dialogs: any[];
+  user: any;
 }

@@ -1,8 +1,9 @@
 .messages {
-    overflow-y: scroll;
-    height: 75.5vh;
+  overflow-y: scroll;
+  height: 75.7vh;
+  /* padding: 2.5% 0; */
 }
 
 .messages__inner {
-    margin: 2rem;
+  margin: 2rem;
 }

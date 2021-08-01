@@ -1,52 +1,52 @@
-import { FC          } from 'react';
-import { Props       } from './Dialog.interface';
-import Avatar          from '../Avatar/Avatar';
-import useLastActivity from '../../Hooks/useLastActivity';
-import './Dialog.css';
+import { FC } from "react";
 
-const Dialog: FC <Props> = ({children, client, messages}) => {
+import Avatar from "../Avatar/Avatar";
+import useLastActivity from "../../Hooks/useLastActivity";
 
-    //* -------------------------------------------------------------------
-    //* Content of the dialog
-    const allMessages  : any[]  = Object.values(messages);
-    const lastIndex    : number = allMessages.length - 1;
-    const lastContent  : string = allMessages[lastIndex].content;
-    const lastTimestamp: string = allMessages[lastIndex].timestamp;
-    const lastWritter  : string = allMessages[lastIndex].writtenBy;
+import { Props } from "./Dialog.interface";
+import { Message } from "../../screens/Root.interface";
+import "./Dialog.css";
 
-    
-    //* -------------------------------------------------------------------
-    //* Library moment and correct a date
-    const lastActivity = useLastActivity(lastTimestamp);
+const Dialog: FC<Props> = ({ children, client, messages = {} }) => {
+  //* -------------------------------------------------------------------
+  //* Content of the dialog
+  const defaultContent: string = "no messages";
 
-    return (
-        <>
-            <div className="dialog">
-                <div className="dialog__inner">
-                    <div className="dialog__client">
-                        <Avatar className="dialog__avatar"/>
-                    </div>
-                    <div className="dialog__content">
-                        <p className="dialog__name">
-                            {client}
-                        </p>
-                        <p className="dialog__message">
-                            <span className="dialog__author">
-                                {lastWritter}:
-                            </span>
-                            {lastContent}
-                        </p>
-                    </div>
-                    <div className="dialog__controls">
-                        <p className="dialog__activity">
-                            {lastActivity}
-                        </p>
-                        {children}
-                    </div>
-                </div>
-            </div>
-        </>
-    );
+  const allMessages: Message[] = Object.values(messages);
+  const lastIndex: number = allMessages.length - 1;
+  const lastContent: string = allMessages[lastIndex]?.content || defaultContent;
+  const lastTimestamp: string | number | Date =
+    allMessages[lastIndex]?.timestamp;
+  const lastWritter: string = allMessages[lastIndex]?.writtenBy;
+
+  //* -------------------------------------------------------------------
+  //* Library moment and correct a date
+  const lastActivity = useLastActivity(lastTimestamp);
+
+  return (
+    <div className="dialog">
+      <div className="dialog__inner">
+        <div className="dialog__client">
+          <Avatar className="dialog__avatar" />
+        </div>
+        <div className="dialog__content">
+          <p className="dialog__name">{client}</p>
+          <p className="dialog__message">
+            {lastWritter ? (
+              <>
+                <span className="dialog__author">{lastWritter}:</span>
+                {lastContent}
+              </>
+            ) : (
+              lastContent
+            )}
+          </p>
+          <p className="dialog__activity">{lastActivity}</p>
+        </div>
+        <div className="dialog__controls">{children}</div>
+      </div>
+    </div>
+  );
 };
 
 export default Dialog;

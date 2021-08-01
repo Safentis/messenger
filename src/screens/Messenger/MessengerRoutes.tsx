@@ -1,52 +1,29 @@
-import { FC, useState                            } from 'react';
-import { useSelector                             } from 'react-redux';
-import { Route, Switch, Redirect, useRouteMatch  } from 'react-router-dom';
-import { usePubNub                               } from 'pubnub-react';
-import { messengerRoutes                         } from '../../routes';
-import { MESSENGER_ROUTE                         } from '../../utils/consts';
+import React, { FC } from "react";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
 
-interface Routes {
-    path: string
-    component: any
-}
+import { messengerRoutes, Route as RouteInterface } from "../../routes";
 
-const MessengerRoutes: FC = () => {
+const MessengerRoutes = ({
+  dialogs,
+  user,
+  settings,
+  routes,
+}: any): React.ReactElement => {
+  //* -----------------------------------------------------
+  //* Base URL for routes
+  const { url }: any = useRouteMatch();
 
-    //* -----------------------------------------------------
-    //* We get of the all dialogs and user information
-    const { dialogs, user, settings } = useSelector((state: any) => {
-        return {
-            dialogs : state.dialogsReducer.filtered,
-            user    : state.userReducer.user,
-            settings: state.userReducer.settings,
-        };
-    });
-
-
-    //* -----------------------------------------------------
-    //* Base URL for routes
-    const { url }: any = useRouteMatch();
-    
-    
-    //* -----------------------------------------------------
-    //* Set UUID for pubnub
-    const pubnub = usePubNub();
-    pubnub.setUUID(user.uid); 
-
-    return (
-        <Switch>
-            {messengerRoutes.map(({path, component: Component}: Routes, index: number) =>
-                <Route 
-                    path={(MESSENGER_ROUTE === path) ? path : url + path} 
-                    exact={true}
-                    key={index}  
-                >
-                    <Component dialogs={dialogs} user={user} settings={settings}/>
-                </Route>
-            )}
-            <Redirect to={MESSENGER_ROUTE} />
-        </Switch>
-    );
-}
+  return (
+    <Switch>
+      {routes.map(
+        ({ path, component: Component }: RouteInterface, index: number) => (
+          <Route path={url + path} exact={false} key={index}>
+            <Component settings={settings} dialogs={dialogs} user={user} />
+          </Route>
+        )
+      )}
+    </Switch>
+  );
+};
 
 export default MessengerRoutes;

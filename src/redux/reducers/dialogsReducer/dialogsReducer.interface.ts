@@ -1,9 +1,14 @@
+import { Chatroom } from "../../../screens/Root.interface";
+
 export interface State {
-    dialogs: any[]
-    filtered: any[]
-};
+  dialogs: Chatroom[];
+  filtered: Chatroom[];
+}
 
 export interface Action {
-    type    : string
-    payload : any
-};
+  type: string;
+  payload: {
+    dialogs: Chatroom[]
+    filtered: Chatroom[]
+  };
+}
