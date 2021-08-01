@@ -1,20 +1,22 @@
-import { State, Action } from "./userReducer.interface";
+import { State, Action, User, Settings } from "./userReducer.interface";
 import { FETCH_USER_SET, FETCH_USER_SETTINGS_SET } from "../../actions/user";
 
 const initialState: State = {
-  user: {},
+  user: {
+    email: "",
+    name: "",
+    photo: "",
+    uid: "",
+  },
   settings: {
-    greeting: "Hello man!",
-    greetings: ["Olla"],
+    greeting: "",
+    greetings: [""],
   },
 };
 
-export const userReducer = (
-  state = initialState,
-  { type, payload }: Action
-): State => {
-  const user: any = payload?.user;
-  const settings: any = payload?.settings;
+export const userReducer = (state = initialState, { type, payload }: Action): State => {
+  const user: User = payload?.user;
+  const settings: Settings = payload?.settings;
 
   switch (type) {
     case FETCH_USER_SET:

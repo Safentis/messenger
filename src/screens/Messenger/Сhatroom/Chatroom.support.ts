@@ -9,13 +9,6 @@ interface MessageTemplateProps {
   images: string[];
 }
 
-interface messageTemplate {
-  writtenBy: string;
-  timestamp: string | any;
-  content: string;
-  images: image;
-}
-
 export const messageTemplate = ({
   content,
   images,
@@ -34,7 +27,7 @@ export const messageTemplate = ({
 //* ---------------------------------------------------------------
 //* Functions for saving of the images in the store and getting url
 interface MessageImageSaveProps {
-  pictures: any[];
+  pictures: object[];
 }
 
 export const messageImageSave = async ({ pictures }: MessageImageSaveProps) => {
@@ -50,6 +43,7 @@ export const messageImageSave = async ({ pictures }: MessageImageSaveProps) => {
       urls.push(url);
     }
 
+    console.log(urls)
     return urls;
   } catch (error) {
     throw new Error(`${error}`);

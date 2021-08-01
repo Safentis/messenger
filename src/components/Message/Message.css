@@ -51,13 +51,13 @@
   text-align: left;
 }
 
-.text-client {
+.content-client {
   background-color: var(--main-blue-color);
   border-bottom-left-radius: 0;
   color: var(--main-white-color);
 }
 
-.text-operator {
+.content-operator {
   background-color: var(--main-white-color);
   border-bottom-right-radius: 0;
   color: var(--main-blue-color);

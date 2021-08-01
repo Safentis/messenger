@@ -1,7 +1,9 @@
 import { FC } from "react";
-import { Props } from "./Message.interface";
+
 import Avatar from "../Avatar/Avatar";
 import useLastActivity from "../../Hooks/useLastActivity";
+
+import { Props } from "./Message.interface";
 import { STANDART_AVATAR } from "../../utils/consts";
 import "./Message.css";
 
@@ -20,25 +22,25 @@ const Message: FC<Props> = ({
   //* Classes
   const isClient: boolean = writtenBy === "client";
   const messageClass: string = isClient ? "message-client" : "message-operator";
-  const contentClass: string = isClient ? "text-client" : "text-operator";
+  const contentClass: string = isClient ? "content-client" : "content-operator";
 
   //* -----------------------------------------------------------
   //* Avatar
-  const avatar: string = isClient ? null : photo;
+  const avatar: string | null = isClient ? null : photo;
 
   //* -----------------------------------------------------------
   //* Content
   // console.log(images);
-  const PICTURES: any =
+  const PICTURES: React.ReactNode | null =
     images.length > 0
-      ? images.map((image: any, index: number) => (
+      ? images.map((image: string, index: number) => (
           <p className={"message__images"} key={index}>
             <img className="message__image" src={image} />
           </p>
         ))
       : null;
 
-  const CONTENT: any =
+  const CONTENT: React.ReactNode | null =
     content.length > 0 ? (
       <p className={"message__text " + contentClass}>{content}</p>
     ) : null;

@@ -6,6 +6,7 @@
 }
 
 .chatroom {
+  height: 100vh;
 }
 
 .chatroom__inner {
@@ -32,6 +33,7 @@
 
 .chatroom__typing {
   text-align: center;
+  margin-top: auto;
 }
 
 .chatroom__images {

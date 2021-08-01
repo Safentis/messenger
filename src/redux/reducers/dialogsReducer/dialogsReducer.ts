@@ -1,4 +1,5 @@
 import { State, Action } from "./dialogsReducer.interface";
+import { Chatroom } from "../../../screens/Root.interface";
 import { FETCH_DIALOGS_SET, FETCH_FILTERED_SET } from "../../actions/dialogs";
 
 const initialState: State = {
@@ -10,8 +11,8 @@ export const dialogsReducer = (
   state = initialState,
   { type, payload }: Action
 ): State => {
-  const dialogs: any[] = payload?.dialogs;
-  const filtered: any[] = payload?.filtered;
+  const dialogs: Chatroom[] = payload?.dialogs;
+  const filtered: Chatroom[] = payload?.filtered;
 
   switch (type) {
     case FETCH_DIALOGS_SET:

@@ -3,5 +3,5 @@ export interface Props {
   timestamp: string | number;
   images?: string[];
   writtenBy: string;
-  photo: any;
+  photo: string;
 }

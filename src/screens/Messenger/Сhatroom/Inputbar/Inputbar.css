@@ -1,12 +1,12 @@
 .inputbar {
   align-items: center;
   background-color: var(--main-dk-grey-color);
-  bottom: 0;
   display: grid;
   grid-column-gap: 2rem;
   grid-template-columns: 3fr 15rem 0.5fr;
+  padding: 1;
+  bottom: 0;
   position: fixed;
-  /* width: 100vw; */
 }
 
 .inputbar__field {
@@ -37,7 +37,7 @@
 }
 
 .inputbar__button:hover > .inputbar__icon {
-  color: var(--main-brown-color);
+  color: var(--main-lg-blue-color);
 }
 
 .inputbar__icon {

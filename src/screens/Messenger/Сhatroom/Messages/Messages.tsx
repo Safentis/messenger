@@ -1,7 +1,6 @@
 import { FC, useEffect } from "react";
-
-import { Props, MessagesElement, ScrollHeight } from "./Messages.interface";
 import "./Messages.css";
+import { Props, MessagesElement, ScrollHeight } from "./Messages.interface";
 
 const Messages: FC<Props> = ({ children, className = "" }) => {
   //* --------------------------------------------------------

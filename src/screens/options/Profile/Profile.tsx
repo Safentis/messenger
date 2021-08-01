@@ -1,22 +1,23 @@
 import { FC, useState } from "react";
-import { Props } from "./Profile.interface";
-import { faUserAlt } from "@fortawesome/free-solid-svg-icons";
-import "./Profile.css";
-
 import { useDispatch, useSelector } from "react-redux";
 import { Field, Form } from "react-final-form";
+import { faUserAlt } from "@fortawesome/free-solid-svg-icons";
 
 import Popup from "../../../layouts/Popup/Popup";
 import Label from "../../../components/Label/Label";
 import Button from "../../../components/Button/Button";
 import Input from "../../../components/Input/Input";
 import Avatar from "../../../components/Avatar/Avatar";
-import { STANDART_AVATAR } from "../../../utils/consts";
 import { requestUpdate } from "../../../redux/actionCreators/user";
+
+import { STANDART_AVATAR } from "../../../utils/consts";
+import { RootReducerState } from "../../../redux/reducers/rootReducer.interface";
+import { avatarType, fileType, Props } from "./Profile.interface";
+import "./Profile.css";
 
 const Profile: FC<Props> = ({}) => {
   const dispatch = useDispatch();
-  const user = useSelector((state: any) => {
+  const user = useSelector((state: RootReducerState) => {
     return state.userReducer.user;
   });
 
@@ -26,9 +27,9 @@ const Profile: FC<Props> = ({}) => {
 
   //* ------------------------------------------------
   //* Handler of the file load
-  const [avatar, setAvatar] = useState(user.photo || STANDART_AVATAR);
-  const [file, setFile] = useState({});
-  const handleFile = (event: any) => {
+  const [avatar, setAvatar]: avatarType = useState(user.photo || STANDART_AVATAR);
+  const [file, setFile]: fileType = useState({});
+  const handleFile = (event: Event) => {
     let target: any = event.target;
     let file: any = target.files[0];
 
@@ -63,7 +64,7 @@ const Profile: FC<Props> = ({}) => {
   };
 
   const popupTitle: string = "Update profile";
-  const popupExpose: any = {
+  const popupExpose = {
     icon: faUserAlt,
     title: "Profile",
   };

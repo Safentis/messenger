@@ -48,7 +48,7 @@
 
 .namebar__button:hover,
 .namebar__button:hover > .namebar__icon {
-  color: var(--main-brown-color);
+  color: var(--main-lg-blue-color);
 }
 
 .namebar__icon {
