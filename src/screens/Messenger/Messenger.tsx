@@ -1,11 +1,10 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import firebase from "firebase";
 
 import MessengerRoutes from "./MessengerRoutes";
-import Namebar from "../../layouts/Namebar/Namebar";
-import Aside from "../../layouts/Aside/Aside";
-import Content from "../../layouts/Content/Content";
+import Namebar from "../../layouts/Namebar/index";
+import Aside from "../../layouts/Aside/index";
 import { requestDialogs } from "../../redux/actionCreators/dialogs";
 import { setFilteredDialogs } from "../../redux/actionCreators/dialogs";
 import { requestUser } from "../../redux/actionCreators/user";
@@ -81,14 +80,12 @@ const Messenger: FC = (): any => {
           routes={namebarRoutes}
         />
       </Namebar>
-      <Content>
-        <MessengerRoutes
-          settings={settings}
-          dialogs={dialogs}
-          user={user}
-          routes={contentRoutes}
-        />
-      </Content>
+      <MessengerRoutes
+        settings={settings}
+        dialogs={dialogs}
+        user={user}
+        routes={contentRoutes}
+      />
     </div>
   );
 };

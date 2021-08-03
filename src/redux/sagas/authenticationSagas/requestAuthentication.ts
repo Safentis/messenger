@@ -14,24 +14,24 @@ export interface RequestAuthenticationProps {
   };
 }
 
-export const signInAccount = ({ email, password }: Fields): any => {
+export const signInAccount = ({ email, password }: Fields): Promise<firebase.auth.UserCredential> => {
   return firebase.auth().signInWithEmailAndPassword(email, password);
 };
 
-export const getIdToken = (): any => {
+export const getIdToken = (): Promise<string> | undefined => {
   return firebase.auth().currentUser?.getIdToken();
 };
 
 /**
  * getIdToken
  * @param {object} payload
- * @param {object} value contains email and password fields
+ * @param {Fields} values contains email and password fields
  * @param {function} setStatus is function for handle of form status with api formik
- * @returns {Generator <StrictEffect, any, any>}
+ * @returns {Generator <StrictEffect, void, any>}
  */
 export default function* requestAuthentication({
   payload: { values, setStatus },
-}: RequestAuthenticationProps): Generator<StrictEffect, any, any> {
+}: RequestAuthenticationProps): Generator<StrictEffect, void, any> {
   try {
     yield call(signInAccount, values);
 

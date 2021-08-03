@@ -1,14 +1,15 @@
 import { FC, useState } from "react";
-import { Props } from "./Inputbar.interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Picker from "emoji-picker-react";
+import ImageUploader from "react-images-upload";
 import { faSmile } from "@fortawesome/free-solid-svg-icons";
 import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
-import Picker from "emoji-picker-react";
-import ImageUploader from "react-images-upload";
+
 import Input from "../../../../components/Input/Input";
 import Button from "../../../../components/Button/Button";
 
+import { Props } from "./Inputbar.interface";
 import "./Inputbar.css";
 
 const Inputbar: FC<Props> = ({
@@ -24,6 +25,12 @@ const Inputbar: FC<Props> = ({
   //* Input handlers
   const handleChange = (event: any) => {
     setInputbar(event.target.value);
+  };
+
+  const handleKeyPress = (event: any) => {
+    if (event.key === "Enter" || event.code === 13) {
+      sendMessage(inputbar);
+    }
   };
 
   //* ---------------------------------------------
@@ -64,6 +71,7 @@ const Inputbar: FC<Props> = ({
         value={inputbar}
         onKeyUp={handleKeyUp}
         onChange={handleChange}
+        onKeyPress={handleKeyPress}
       />
       <ul className="inputbar__list">
         <li className="inputbar__item">

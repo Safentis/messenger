@@ -27,7 +27,7 @@ const Dialog: FC<Props> = ({ children, client, messages = {} }) => {
     <div className="dialog">
       <div className="dialog__inner">
         <div className="dialog__client">
-          <Avatar className="dialog__avatar" />
+          <Avatar className="dialog__avatar" width={45} height={45}/>
         </div>
         <div className="dialog__content">
           <p className="dialog__name">{client}</p>

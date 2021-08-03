@@ -1,15 +1,16 @@
+import React, { FC, Fragment } from "react";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { FC, Fragment } from "react";
+
 import Button from "../../../../components/Button/Button";
 
 import { Props } from "./ImagesList.interface";
 
 const ImagesList: FC<Props> = ({ pictures, setPictures }): React.ReactElement => {
   const handleDeletePicture = (index: number) => {
-    const newPictures = [...pictures];
-    newPictures.splice(index, 1);
-    setPictures(newPictures);
+    const statePictures = [...pictures];
+    statePictures.splice(index, 1);
+    setPictures(statePictures);
   };
 
   return (

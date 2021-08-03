@@ -1,17 +1,20 @@
 import React from "react";
 
 import Authentication from "./screens/Authentication/Authentication";
+import Registration from "./screens/Registration/Registration";
 import Messenger from "./screens/Messenger/Messenger";
-import Home from "./screens/Messenger/Dialogs/Home/Home";
-import Actives from "./screens/Messenger/Dialogs/Actives/Actives";
-import Noactives from "./screens/Messenger/Dialogs/Noactives/Noactives";
 import Complited from "./screens/Messenger/Dialogs/Complited/Complited";
-import Saved from "./screens/Messenger/Dialogs/Saved/Saved";
+import Noactives from "./screens/Messenger/Dialogs/Noactives/Noactives";
 import Сhatroom from "./screens/Messenger/Сhatroom/Сhatroom";
+import Actives from "./screens/Messenger/Dialogs/Actives/Actives";
+import Saved from "./screens/Messenger/Dialogs/Saved/Saved";
+import Home from "./screens/Messenger/Dialogs/Home/Home";
 import Line from "./components/Line/Line";
+import Name from "./components/Name/Name";
 
 import {
   AUTHENTICATION_ROUTE,
+  REGISTRATION_ROUTE,
   MESSENGER_ROUTE,
   MENU_CONTENT_ACTIVES,
   MENU_CONTENT_COMPLITED,
@@ -19,15 +22,10 @@ import {
   MENU_CONTENT_SAVED,
   MESSENGER_CHAT,
 } from "./utils/consts";
-import Name from "./components/Name/Name";
 
 export interface Route {
   path: string;
-  component:
-    | React.FunctionComponent
-    | React.ReactElement
-    | React.JSXElementConstructor<any>
-    | any;
+  component: any
 }
 
 export const publicRoutes: Route[] = [
@@ -35,6 +33,10 @@ export const publicRoutes: Route[] = [
     path: AUTHENTICATION_ROUTE,
     component: Authentication,
   },
+  {
+    path: REGISTRATION_ROUTE,
+    component: Registration,
+  }
 ];
 
 export const privateRoutes: Route[] = [

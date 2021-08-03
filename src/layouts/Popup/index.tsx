@@ -1,10 +1,10 @@
 import { FC, useEffect, useState } from "react";
-import { Props } from "./Popup.interface";
+import { Props } from "./index.interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-modal";
 import Button from "../../components/Button/Button";
-import "./Popup.css";
+import "./index.css";
 
 Modal.setAppElement("#root");
 

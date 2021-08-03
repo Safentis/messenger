@@ -1,14 +1,15 @@
 import { put, StrictEffect } from "redux-saga/effects";
+import { handleError } from "../../../utils/functions";
 import { FETCH_USER_SETTINGS_SET } from "../../actions/user";
 
 /**
  * @param {object} payload
  * @param {object} payload.settings
- * @returns {Generator <StrictEffect, any, any>}
+ * @returns {Generator <StrictEffect, void, any>}
  */
 export default function* requestSettings({
   payload: { settings, closeModal },
-}: any): Generator<StrictEffect, any, any> {
+}: any): Generator<StrictEffect, void, any> {
   try {
     yield closeModal();
     yield put({
@@ -17,8 +18,7 @@ export default function* requestSettings({
         settings,
       },
     });
-  } catch (err) {
-    console.error("Code ", err.code);
-    console.error("Message ", err.message);
+  } catch (error) {
+    handleError(error);
   }
 }

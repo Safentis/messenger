@@ -7,8 +7,8 @@ import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
 import { faClipboardList } from "@fortawesome/free-solid-svg-icons";
 import { faArchive } from "@fortawesome/free-solid-svg-icons";
 
-import { Props, LinkInterface } from "./Aside.interface";
-import "./Aside.css";
+import { Props, LinkInterface } from "./index.interface";
+import "./index.css";
 import {
   MENU_CONTENT_ACTIVES,
   MENU_CONTENT_COMPLITED,
@@ -69,7 +69,11 @@ const Aside: FC<Props> = ({ children }): React.ReactElement => {
         <div className="aside__search">
           <Search />
         </div>
-        <div className="aside__content">{children}</div>
+        <div className="aside__content">
+          <div className="aside__content-inner">
+            {children}
+          </div>
+        </div>
       </div>
     </section>
   );

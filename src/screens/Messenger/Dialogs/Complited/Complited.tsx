@@ -1,16 +1,15 @@
 import { FC } from "react";
-import { Props } from "./Complited.interface";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useRouteMatch } from "react-router-dom";
-import { requestActions } from "../../../../redux/actionCreators/dialogs";
+
 import Button from "../../../../components/Button/Button";
 import Dialog from "../../../../components/Dialog/Dialog";
-import Search from "../../../../components/Search/Search";
-import useFilterDialogs from "../../../../Hooks/useFilterDialogs";
-import Content from "../../../../layouts/Content/Content";
-import Namebar from "../../../../layouts/Namebar/Namebar";
 import Stars from "../../../../components/Stars/Stars";
+import useFilterDialogs from "../../../../Hooks/useFilterDialogs";
+import { requestActions } from "../../../../redux/actionCreators/dialogs";
+
+import { Props } from "./Complited.interface";
 
 const Complited: FC<Props> = ({ dialogs, user: { uid } }) => {
   const dispatch = useDispatch();

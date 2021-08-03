@@ -1,7 +1,7 @@
 import { Chatroom, Message } from "../../Root.interface";
 
 export interface Props {
-  dialogs: any[];
+  dialogs: Chatroom[];
   user: any;
   settings: any;
 }
@@ -27,5 +27,5 @@ export type messagesType = [Message[], Function];
 export type pictureType = [object[], Function];
 export type inputbarType = [string, Function];
 export type useparamsType = {
-  key: string;
+  key: any;
 };

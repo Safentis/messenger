@@ -2,7 +2,7 @@ export interface User {
   email: string;
   name: string;
   photo: string;
-  uid: string
+  uid: string; 
 }
 
 export interface Settings {

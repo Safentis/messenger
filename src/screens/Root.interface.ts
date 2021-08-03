@@ -25,7 +25,7 @@ export interface Message {
 }
 
 export interface Database {
-  chatrooms: Chatroom | null;
+  chatrooms: Chatroom | boolean;
   client: Client;
 }
 

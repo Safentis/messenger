@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Props } from "./Namebar.interface";
+import { Props } from "./index.interface";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,7 +11,7 @@ import Profile from "../../screens/options/Profile/Profile";
 import Settings from "../../screens/options/Settings/Settings";
 
 import { RootReducerState } from "../../redux/reducers/rootReducer.interface";
-import "./Namebar.css";
+import "./index.css";
 
 const Namebar: FC<Props> = ({ children }) => {
   //* ---------------------------------------------------
