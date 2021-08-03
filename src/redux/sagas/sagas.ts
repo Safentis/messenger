@@ -33,11 +33,14 @@ import {
   FETCH_USER_SETTINGS,
 } from "../actions/user";
 import requestGoogle from "./registrationSagas/requestGoogle";
+import requestRestore from "./restoreSagas/restoreRequest";
+import { FETCH_RESTORE_PASSWORD } from "../actions/restore";
 
 export default function* rootSaga() {
   yield all([
     takeEvery(FETCH_MESSAGES_REQUEST as any, requestAuthentication),
     takeEvery(FETCH_REGISTRATION_REQUEST as any, requestRegistration),
+    takeEvery(FETCH_RESTORE_PASSWORD as any, requestRestore),
     takeEvery(FETCH_REGISTRATION_GOOGLE, requestGoogle),
     takeEvery(FETCH_TOKEN_CHECK as any, requestTokenCheck),
     takeEvery(FETCH_EXITING_APP, requestSignOut),

@@ -1,0 +1,5 @@
+.restore__links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.6rem;
+}

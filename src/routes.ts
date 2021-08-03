@@ -21,7 +21,9 @@ import {
   MENU_CONTENT_NOACTIVES,
   MENU_CONTENT_SAVED,
   MESSENGER_CHAT,
+  RESTORE_PASSWORD_ROUTE,
 } from "./utils/consts";
+import Restore from "./screens/Restore/Restore";
 
 export interface Route {
   path: string;
@@ -37,6 +39,10 @@ export const publicRoutes: Route[] = [
     path: REGISTRATION_ROUTE,
     component: Registration,
   },
+  {
+    path: RESTORE_PASSWORD_ROUTE,
+    component: Restore,
+  }
 ];
 
 export const privateRoutes: Route[] = [

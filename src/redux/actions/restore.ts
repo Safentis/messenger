@@ -1,0 +1,1 @@
+export const FETCH_RESTORE_PASSWORD: string = 'FETCH_RESTORE_PASSWORD';

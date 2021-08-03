@@ -75,7 +75,7 @@ const Registration: FC<Props> = (): React.ReactElement => {
           authentication
         </Link>
         <Link
-          className="card-link authentication__link"
+          className="card-link registration__link"
           to={RESTORE_PASSWORD_ROUTE}
         >
           Forgot your password?
