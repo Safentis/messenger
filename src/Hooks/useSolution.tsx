@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
+import { Chatroom, Message } from "../screens/Root.interface";
 
 interface Props {
-  dialogs: any[];
+  dialogs: Chatroom[];
   question: string;
 }
 
-const useSolution = ({ dialogs, question }: Props): any[] => {
-  const [solutions, setSolutions]: [any[], Function] = useState([]);
+const useSolution = ({ dialogs, question }: Props): string[] => {
+  const [solutions, setSolutions]: [string[], Function] = useState<string[]>([]);
 
   useEffect(() => {
-    const complited: any[] = [];
+    const complited: string[] = [];
 
     //* We take all complted dialogs and search final message
-    Object.values(dialogs).map(({ messages, status }) => {
-      if (status === "complited" && messages.length > 1) {
-        let arrMessages: any[] = Object.values(messages);
-        let lstIndex: number = arrMessages.length - 1;
-
-        let frsMessage: string = arrMessages[1]?.content;
-        let lstMessage: string = arrMessages[lstIndex]?.content;
-
+    Object.values(dialogs).map(({ messages = {}, status }) => {
+      let values: Message[] = Object.values(messages);
+     
+      if (status === "complited" && values.length > 0) {
+        let lstIndex: number = values.length - 1;
+        let frsMessage: string = values[1]?.content;
+        let lstMessage: string = values[lstIndex]?.content;
         let regExp: RegExp = new RegExp(question, "igu");
 
         if (frsMessage.match(regExp)) {
@@ -33,7 +33,7 @@ const useSolution = ({ dialogs, question }: Props): any[] => {
     return () => {
       setSolutions([]);
     };
-  }, []);
+  }, [dialogs]);
 
   return solutions;
 };

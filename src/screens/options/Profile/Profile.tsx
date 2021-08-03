@@ -13,7 +13,7 @@ import { requestUpdate } from "../../../redux/actionCreators/user";
 import "./Profile.css";
 import { STANDART_AVATAR } from "../../../utils/consts";
 import { RootReducerState } from "../../../redux/reducers/rootReducer.interface";
-import { User } from "../../../redux/reducers/userReducer/userReducer.interface";
+import { UserStore } from "../../../redux/reducers/userReducer/userReducer.interface";
 import {
   avatarType,
   fileType,
@@ -24,7 +24,7 @@ import {
 
 const Profile: FC<Props> = ({}): React.ReactElement => {
   const dispatch = useDispatch();
-  const user = useSelector((state: RootReducerState): User => {
+  const user = useSelector((state: RootReducerState): UserStore => {
     return state.userReducer.user;
   });
 

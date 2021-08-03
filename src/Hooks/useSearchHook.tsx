@@ -5,25 +5,25 @@ import { useDispatch } from "react-redux";
 import { setFilteredDialogs } from "../redux/actionCreators/dialogs";
 import { Chatroom, Message } from "../screens/Root.interface";
 
+type chatroomType = [string, Chatroom];
 interface Props {
-  dialogs: any[];
+  dialogs: Chatroom[];
   search: string;
 }
 
-type chatroomType = [string, Chatroom];
 
-const useSearchHook = ({ dialogs, search }: Props) => {
+const useSearchHook = ({ dialogs, search }: Props): null => {
   //* ---------------------------------------------------
   //* Search result
   let dispatch: Function = useDispatch();
 
   const searchFunc = () => {
-    if (dialogs) {
+    if (dialogs && Object.keys(dialogs).length > 0) {
     
       let lowerSearchCase: string = search.toLowerCase();
       let isFiltered: chatroomType[] = [];
       let noFiltered: chatroomType[] = [];
-      let isEntries: any;
+      let isEntries: object;
   
       //* We search by customer name and if we find
       //* matches we push the result into the isFiltered array
@@ -42,7 +42,7 @@ const useSearchHook = ({ dialogs, search }: Props) => {
       //* and if we searching, we push the result into isFiltered array
       noFiltered.length > 0 &&
         noFiltered.forEach((dialog: chatroomType) => {
-          let [key, value] = dialog;
+          let [key, value]: chatroomType = dialog;
           let messages: Message[] = Object.values(value.messages);
   
           messages.forEach((message: Message) => {

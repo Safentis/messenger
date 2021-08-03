@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 import form from "../../HOC/form";
 import Card from "../../layouts/Card/index";
@@ -14,10 +15,14 @@ import {
   RESTORE_PASSWORD_ROUTE,
 } from "../../utils/consts";
 import "./Registration.css";
-import { faRegistered } from "@fortawesome/free-solid-svg-icons";
 
 //* PROPERTY FOR HOC form
 //* which set up a formik
+const regExpPassword: RegExp =
+  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]$/;
+const passwordMessage: string =
+  "Password must will be with one Uppercase, one Lowercase, one Number and one special case Character";
+
 const AUTH_FORM_FIELDS: Fields = {
   email: "",
   password: "",
@@ -26,11 +31,15 @@ const AUTH_FORM_FIELDS: Fields = {
 
 const AUTH_VALIDATION_SCHEMA: object = Yup.object({
   email: Yup.string().email("Invalid email format").required("Required"),
-  password: Yup.string().min(8, "Not less than 8 symbol").required("Required"),
+  password: Yup.string()
+    .min(8, "Not less than 8 symbol")
+    .required("Required")
+    .matches(regExpPassword, passwordMessage),
   "password repeat": Yup.string()
     .min(8, "Not less than 8 symbol")
     .required("Required")
-    .oneOf([Yup.ref("password"), null], "Passwords must match"),
+    .oneOf([Yup.ref("password"), null], "Passwords must match")
+    .matches(regExpPassword, passwordMessage),
 });
 
 const RegistrationForm = form(
@@ -41,6 +50,8 @@ const RegistrationForm = form(
 );
 
 const Registration: FC<Props> = (): React.ReactElement => {
+  
+  //* --------------------------------------------------
   //* fields props for Form components, that is template
   const fields: FieldsParams[] = [
     { name: "email", type: "text" },
@@ -50,7 +61,7 @@ const Registration: FC<Props> = (): React.ReactElement => {
 
   const buttonParams: ButtonParams = {
     text: "Registration",
-    icon: faRegistered,
+    icon: faUserPlus,
   };
 
   return (

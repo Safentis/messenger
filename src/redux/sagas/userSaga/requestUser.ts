@@ -1,14 +1,24 @@
 import { put, StrictEffect } from "redux-saga/effects";
 import { FETCH_USER_SET } from "../../actions/user";
+import { UserStore } from "../../reducers/userReducer/userReducer.interface";
+import { RequestProps } from '../sagas.interface';
+import firebase from 'firebase';
+import { handleError } from "../../../utils/functions";
+
+interface RequestUser {
+  user: firebase.User;
+}
 
 /**
  * @param {object} payload
- * @param {object} payload.user
- * @returns {Generator <StrictEffect, any, any>}
+ * @param {RequestUser} payload.user
+ * @returns {Generator <StrictEffect, void, any>}
  */
-export default function* requestUser({
-  payload: { user },
-}: any): Generator<StrictEffect, any, any> {
+export default function* requestUser({ payload: { user }}: RequestProps<RequestUser>): Generator<
+  StrictEffect, 
+  void, 
+  any
+> {
   try {
     const info = {
       email: user.email,
@@ -23,8 +33,7 @@ export default function* requestUser({
         user: info,
       },
     });
-  } catch (err) {
-    console.error("Code ", err.code);
-    console.error("Message ", err.message);
+  } catch (error) {
+    handleError(error);
   }
 }

@@ -1,4 +1,4 @@
-export interface User {
+export interface UserStore {
   email: string;
   name: string;
   photo: string;
@@ -11,7 +11,7 @@ export interface Settings {
 };
 
 export interface State {
-  user: User;
+  user: UserStore;
   settings: Settings;
 }
 

@@ -1,5 +1,7 @@
 import { put, StrictEffect } from "redux-saga/effects";
+
 import { FETCH_DIALOGS_SET } from "../../actions/dialogs";
+import { RequestProps } from '../sagas.interface';
 
 /**
  * @param {object} payload
@@ -8,7 +10,7 @@ import { FETCH_DIALOGS_SET } from "../../actions/dialogs";
  */
 export default function* requestDialogs({
   payload: { dialogs },
-}: any): Generator<StrictEffect, void, any> {
+}: RequestProps<any>): Generator<StrictEffect, void, any> {
   try {
     yield put({
       type: FETCH_DIALOGS_SET,
