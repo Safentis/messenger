@@ -4,10 +4,6 @@ import { Link, useRouteMatch } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroller";
 
 import Dialog from "../../../../components/Dialog/Dialog";
-import Line from "../../../../components/Line/Line";
-import Search from "../../../../components/Search/Search";
-import Content from "../../../../layouts/Content/Content";
-import Namebar from "../../../../layouts/Namebar/Namebar";
 import useFilterDialogs from "../../../../Hooks/useFilterDialogs";
 import useInfiniteScroll from "../../../../Hooks/useInfiniteScroll";
 import { requestActions } from "../../../../redux/actionCreators/dialogs";
@@ -69,7 +65,7 @@ const Noactives: FC<Props> = ({ dialogs, user: { uid } }) => {
               <Link
                 className="button-action"
                 onClick={handleEnter}
-                to={url + "/" + key}
+                to={"actives" + "/" + key}
                 data-id={key}
               >
                 start

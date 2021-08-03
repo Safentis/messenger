@@ -1,17 +1,40 @@
 import React, { FC, Fragment } from "react";
-import { Props, Handlers, Validation } from "./AuthenticationForm.interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
-import "./AuthenticationForm.css";
+import * as Yup from "yup";
 
 //* COMPONENTS
+import form from "../../../HOC/form";
 import Label from "../../../components/Label/Label";
 import Input from "../../../components/Input/Input";
 import Button from "../../../components/Button/Button";
 import ErrorMessage from "../../../components/ErrorMessage/ErrorMessage";
 import SuccessMessage from "../../../components/SuccessMessage/SuccessMessage";
+import { requestAuthentication } from "../../../redux/actionCreators/authentication";
 
-const AuthenticationForm: FC<Props> = ({ formik }): any => {
+import "./AuthenticationForm.css";
+import {
+  Props,
+  Handlers,
+  Validation,
+  Fields,
+  FieldsParams,
+} from "./AuthenticationForm.interface";
+
+//* PROPERTY FOR HOC form
+//* which set up a formik
+const AUTH_FORM_FIELDS: Fields = {
+  email: "",
+  password: "",
+};
+
+const AUTH_VALIDATION_SCHEMA: object = Yup.object({
+  email: Yup.string().email("Invalid email format").required("Required"),
+  password: Yup.string().min(8, "Not less than 8 symbol").required("Required"),
+});
+
+const AuthenticationForm: FC<Props> = ({ formik }): React.ReactElement => {
+  console.log(typeof formik)
   //* With destructuring we are taking object
   //* errors : object that contains error-messages
   //* touched: object which marks the fields visited
@@ -25,45 +48,51 @@ const AuthenticationForm: FC<Props> = ({ formik }): any => {
 
   //* fields is variable, that equal fields of formik component
   //* and provide names for form fields
-  const fields: string[] = ["email", "password"];
+  const fields: FieldsParams[] = [
+    { name: "email", type: "text" },
+    { name: "password", type: "password" },
+  ];
 
-  const FORM_FIELDS: any = fields.map((name, index) => (
-    <Fragment key={index}>
-      <Label className="label-auth form-auth__label">
-        {name}
-        <Input
-          className="input-auth form-auth__input"
-          placeholder={name}
-          name={name}
-          {...formik.getFieldProps(name)}
-        />
-      </Label>
-      {touched[name] && errors[name] ? (
-        <ErrorMessage>{errors[name]}</ErrorMessage>
-      ) : null}
-    </Fragment>
-  ));
+  const FORM_FIELDS: React.ReactNode = fields.map(
+    ({ name, type }: FieldsParams, index: number): React.ReactNode => (
+      <Fragment key={index}>
+        <Label className="label-auth form-auth__label">
+          {name}
+          <Input
+            className="input-auth form-auth__input"
+            placeholder={name}
+            name={name}
+            type={type}
+            {...formik.getFieldProps(name)}
+          />
+        </Label>
+        {touched[name] && errors[name] ? (
+          <ErrorMessage>{errors[name]}</ErrorMessage>
+        ) : null}
+      </Fragment>
+    )
+  );
 
-  const FORM_BUTTON: any = (
+  const FORM_BUTTON: React.ReactNode = (
     <Button className="button-auth form-auth__button" type="submit">
       Login
       <FontAwesomeIcon className="button__icon" icon={faSignInAlt} />
     </Button>
   );
 
-  const SUCCESS_MESSAGE = (
+  const SUCCESS_MESSAGE: React.ReactNode = (
     <SuccessMessage className="form-auth__status">
       Access is allowed, wellcome!
     </SuccessMessage>
   );
 
-  const ERROR_MESSAGE = (
+  const ERROR_MESSAGE: React.ReactNode = (
     <ErrorMessage className="form-auth__status">
       User was not found, please cheking email or password!
     </ErrorMessage>
   );
 
-  const FORM_REQUEST_STATUS: any =
+  const FORM_REQUEST_STATUS: React.ReactNode =
     //* If status true
     //* we view message about access login
     //* else we are seeing error message
@@ -78,4 +107,9 @@ const AuthenticationForm: FC<Props> = ({ formik }): any => {
   );
 };
 
-export default AuthenticationForm;
+export default form(
+  AuthenticationForm,
+  AUTH_FORM_FIELDS,
+  requestAuthentication,
+  AUTH_VALIDATION_SCHEMA
+);

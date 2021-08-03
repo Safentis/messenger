@@ -1,7 +1,7 @@
 import { FC } from "react";
 
-import { Props } from "./Content.interface";
-import "./Content.css";
+import { Props } from "./index.interface";
+import "./index.css";
 
 const Content: FC<Props> = ({ children, className = "" }) => {
   return (

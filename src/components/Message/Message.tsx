@@ -41,7 +41,7 @@ const Message: FC<Props> = ({
       : null;
 
   const CONTENT: React.ReactNode | null =
-    content.length > 0 ? (
+    content?.length > 0 ? (
       <p className={"message__text " + contentClass}>{content}</p>
     ) : null;
 

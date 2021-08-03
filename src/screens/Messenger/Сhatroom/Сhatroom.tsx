@@ -1,18 +1,13 @@
 import { FC, useState, useEffect } from "react";
-import { Fragment } from "react";
 import { useParams } from "react-router-dom";
 import { usePubNub } from "pubnub-react";
 import { useDispatch } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-import Button from "../../../components/Button/Button";
 import Inputbar from "./Inputbar/Inputbar";
 import Messages from "./Messages/Messages";
 import Message from "../../../components/Message/Message";
-import Namebar from "../../../layouts/Namebar/Namebar";
 import ImagesList from "./ImagesList/ImagesList";
-import Content from "../../../layouts/Content/Content";
+import Content from "../../../layouts/Content/index";
 import Solution from "../../../components/Solution/Solution";
 import Typing from "../../../components/Typing/Typing";
 import useLastActivity from "../../../Hooks/useLastActivity";
@@ -36,28 +31,48 @@ import {
 import "./Сhatroom.css";
 
 const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
+
   //* ---------------------------------------------
   //* We get a key of url
-  const { key: path }: useparamsType = useParams();
+  const { key }: useparamsType = useParams();
   const dispatch = useDispatch();
 
   //* ---------------------------------------------
-  //* And search with key of a dialog
-  const isEntrie: chatroomType[] = Object.entries(dialogs);
-  const isFinded: chatroomType = isEntrie.find(
-    ([key, value]: [string, any]) => {
-      return path === key;
-    }
-  ) as chatroomType;
+  //* Main state
+  interface ChatroomState {
+    messages: MessageInterface[];
+    chatroomChannel: string;
+    question: string;
+    status: string;
+  }
 
-  const [key, value]: chatroomType = isFinded;
+  const [chatroom, setChatroom]: [ChatroomState, Function] = useState({
+    chatroomChannel: `room-${key}`,
+    messages: Object.values(dialogs[key]?.messages || []),
+    question: Object.values(dialogs[key]?.messages || [])[1],
+    status: dialogs[key]?.status,
+  });
 
-  const letters: MessageInterface[] = Object.values(value?.messages ?? []);
-  const activity: activityType = useLastActivity(
-    letters[letters.length - 1]?.timestamp
+  let activity: activityType = useLastActivity(
+    chatroom.messages[chatroom.messages.length - 1]?.timestamp
   );
-  const question: string = letters[1]?.content; //* Question for Solution element
-  const status: string = value.status;
+
+  useEffect(() => {
+    let chatroom = dialogs[key];
+    let messages = Object.values(chatroom.messages || []);
+
+    //* ---------------------------------------------
+    //* Auto greeting
+    if (chatroom.status === "noactive") {
+      sendMessage(settings.greeting);
+    }
+
+    setChatroom({
+      messages: messages,
+      question: messages[1]?.content,
+      status: chatroom?.status,
+    });
+  }, [key]);
 
   //* ---------------------------------------------
   //* Typing state
@@ -65,17 +80,14 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
 
   //* ---------------------------------------------
   //* Pubnub state
-  const ChatroomChannel: string = `room-${path}`;
+  const chatroomChannel = `room-${key}`;
   const pubnub: any = usePubNub();
-  const [messages, setMessages]: messagesType = useState(letters);
-  const [channels]: any[] = useState([ChatroomChannel]);
+  const [channels]: any[] = useState([chatroomChannel]);
 
   //* ---------------------------------------------
   //* Picture handler
   const [pictures, setPictures]: pictureType = useState([]);
   const handleDrop = async (picture: object): Promise<void> => {
-    // let src: string[] = await messageImageSave({ pictures: [picture] });
-    // setPictures((srcs: string[]) => [...srcs, src[0]]);
     setPictures(picture)
   };
 
@@ -87,7 +99,7 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
 
     if (inputHasText || !inputHasText) {
       pubnub.signal({
-        channel: ChatroomChannel,
+        channel: chatroomChannel,
         message: inputHasText ? "1" : "0",
       });
     }
@@ -96,7 +108,7 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
   //* ---------------------------------------------
   //* Pubnub handlers
   const sendMessage = async (message: string) => {
-    if (inputbar.trim().length !== 0 || pictures.length > 0) {
+    if (message.trim().length !== 0 || pictures.length > 0) {
       setInputbar("");
       let images: string[] = [];
       let body: MessageInterface;
@@ -109,23 +121,25 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
       body = messageTemplate({ content: message, images });
   
       pubnub.publish({
-        channel: ChatroomChannel,
+        channel: chatroomChannel,
         message: { ...body },
       });
       pubnub.signal({
-        channel: ChatroomChannel,
+        channel: chatroomChannel,
         message: "0",
       });
     } 
   };
 
   const handleMessage = ({ message }: Envelope) => {
-    setMessages((msgs: MessageInterface[]) => [...msgs, message]);
+    let state = { ...chatroom };
+    state.messages.push(message);
+    setChatroom(state);
 
     if (message.writtenBy === "operator") {
       dispatch(
         requestMessages({
-          chatId: path,
+          chatId: key,
           body: {
             ...message,
           },
@@ -145,38 +159,30 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
   };
 
   useEffect(() => {
-    if (pubnub) {
-      const listener = {
-        message: handleMessage,
-        signal: handleSignal,
-      };
+    const listener = {
+      message: handleMessage,
+      signal: handleSignal,
+    };
   
-      pubnub.setUUID(user.uid);
-      pubnub.addListener(listener);
-      pubnub.subscribe({ channels });
-      return () => {
-        pubnub.removeListener(listener);
-        pubnub.unsubscribeAll();
-      };
-    }
+    pubnub.setUUID('operator');
+    pubnub.addListener(listener);
+    pubnub.subscribe({ channels });
+    return () => {
+      pubnub.removeListener(listener);
+      pubnub.unsubscribeAll();
+    };
   }, [pubnub, channels]);
 
-  //* ---------------------------------------------
-  //* Auto greeting
-  useEffect(() => {
-    if (status === "noactive") {
-      sendMessage(settings.greeting);
-    }
-  }, []);
+ 
 
   //* ---------------------------------------------
   //* Content
-  const MESSAGES = messages.map((message: MessageInterface, index: number) => (
+  const MESSAGES = chatroom.messages.map((message: MessageInterface, index: number) => (
     <Message key={index} {...message} {...user} />
   ));
 
   const MESSAGE_COMPLITED =
-    status === "complited" ? (
+    chatroom.status === "complited" ? (
       <p className="chatroom__complited">Dialog complited {activity}</p>
     ) : null;
 
@@ -187,7 +193,7 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
 
   return (
     <Content className="chatroom">
-      <Messages className="chatroom__messages" messages={messages}>
+      <Messages className="chatroom__messages">
         {MESSAGES}
         {MESSAGE_COMPLITED}
         {MESSAGE_IMAGE}
@@ -203,7 +209,7 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
       >
         <Solution
           className="chatroom__solution"
-          question={question}
+          question={chatroom.question}
           sendMessage={sendMessage}
         />
       </Inputbar>

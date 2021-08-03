@@ -1,42 +1,31 @@
 import { FC } from "react";
-import * as Yup from "yup";
+import { Link } from "react-router-dom";
 
-import form from "../../HOC/form";
-import { requestAuthentication } from "../../redux/actionCreators/authentication";
+import Card from "../../layouts/Card/index";
 import AuthenticationForm from "./AuthenticationForm/AuthenticationForm";
 
-import { Fields } from "./Authentication.interface";
 import "./Authentication.css";
+import { REGISTRATION_ROUTE, RESTORE_PASSWORD_ROUTE } from "../../utils/consts";
 
-//* PROPERTY FOR HOC form
-//* which set up a formik
-const AUTH_FORM_FIELDS: Fields = {
-  email: "",
-  password: "",
-};
-
-const AUTH_VALIDATION_SCHEMA: object = Yup.object({
-  email: Yup.string().email("Invalid email format").required("Required"),
-  password: Yup.string().min(6, "Not less than 6 symbol").required("Required"),
-});
-
-const AuthenticationFormHOC: any = form(
-  AuthenticationForm,
-  AUTH_FORM_FIELDS,
-  requestAuthentication,
-  AUTH_VALIDATION_SCHEMA
-);
-
-const Authentication: FC = (): any => {
+const Authentication: FC = (): React.ReactElement => {
   return (
-    <>
-      <section className="authentication">
-        <div className="card authentication__card">
-          <h2 className="title card__title">Authentication</h2>
-          <AuthenticationFormHOC />
-        </div>
-      </section>
-    </>
+    <Card className="authentication" title="Authentication">
+      <AuthenticationForm />
+      <div className="authentication__links">
+        <Link 
+          className="card-link authentication__link" 
+          to={REGISTRATION_ROUTE}
+        >
+          registration
+        </Link>
+        <Link
+          className="card-link authentication__link"
+          to={RESTORE_PASSWORD_ROUTE}
+        >
+          Forgot your password?
+        </Link>
+      </div>
+    </Card>
   );
 };
 

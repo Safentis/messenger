@@ -30,6 +30,10 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 1rem;
+}
+
 html {
   font-size: 62.5%;
 }

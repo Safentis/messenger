@@ -1,7 +1,7 @@
 import { put, call, StrictEffect } from "redux-saga/effects";
 import firebase from "firebase";
 
-import { Fields } from "../../../screens/Authentication/Authentication.interface";
+import { Fields } from "../../../screens/Authentication/AuthenticationForm/AuthenticationForm.interface";
 import {
   FETCH_MESSAGES_SUCCESS,
   FETCH_MESSAGES_FAILURE,

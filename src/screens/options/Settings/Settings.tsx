@@ -4,7 +4,7 @@ import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field, FieldArray } from "formik";
 import { requestSettings } from "../../../redux/actionCreators/user";
-import Popup from "../../../layouts/Popup/Popup";
+import Popup from "../../../layouts/Popup";
 import Button from "../../../components/Button/Button";
 import Label from "../../../components/Label/Label";
 import Input from "../../../components/Input/Input";

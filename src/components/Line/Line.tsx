@@ -10,7 +10,7 @@ const Line: FC<Props> = ({ className }) => {
 
   let index: number = 0;
   let count: number = 0;
-  let array: any[] = Object.values(dialogs);
+  let array: any[] = Object.values(dialogs || []);
 
   while (index < array.length) {
     if (array[index].status === "noactive") {

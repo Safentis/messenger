@@ -1,14 +1,13 @@
-import { FC, MouseEvent, useState } from "react";
-import { Props } from "./Actives.interface";
+import { FC, MouseEvent } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useRouteMatch } from "react-router-dom";
+
 import { requestActions } from "../../../../redux/actionCreators/dialogs";
 import Dialog from "../../../../components/Dialog/Dialog";
-import Search from "../../../../components/Search/Search";
-import Content from "../../../../layouts/Content/Content";
-import Namebar from "../../../../layouts/Namebar/Namebar";
 import Button from "../../../../components/Button/Button";
 import useFilterDialogs from "../../../../Hooks/useFilterDialogs";
+
+import { Props } from "./Actives.interface";
 
 const Actives: FC<Props> = ({ dialogs, user: { uid } }) => {
   const dispatch = useDispatch();
@@ -46,12 +45,6 @@ const Actives: FC<Props> = ({ dialogs, user: { uid } }) => {
 
   return (
     <>
-      {/* <Namebar>
-                <Search />
-            </Namebar>
-            <Content>
-                {CONTENT}
-            </Content> */}
       {CONTENT}
     </>
   );
