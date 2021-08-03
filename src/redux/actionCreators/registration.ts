@@ -1,9 +1,13 @@
-import { Fields } from "../../screens/Registration/RegistrationForm/RegistrationForm.interface";
 import { FETCH_REGISTRATION_REQUEST } from "../actions/registration";
+import { RequestRegistration } from "../sagas/registrationSagas/requestRegistration";
+import { ActionCreator } from "./actionCreators.interface";
 
-export const requestRegistration = (data: Fields) => {
+export const requestRegistration = ({values, setStatus}: RequestRegistration): ActionCreator<RequestRegistration> => {
   return {
     type: FETCH_REGISTRATION_REQUEST,
-    payload: data,
+    payload: {
+      values,
+      setStatus,
+    },
   };
 };

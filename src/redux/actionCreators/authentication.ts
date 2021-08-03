@@ -1,4 +1,4 @@
-import { Fields } from "../../screens/Authentication/AuthenticationForm/AuthenticationForm.interface";
+import { Fields } from "../../screens/Authentication/Authentication.interface";
 import {
   FETCH_MESSAGES_REQUEST,
   FETCH_MESSAGES_SUCCESS,

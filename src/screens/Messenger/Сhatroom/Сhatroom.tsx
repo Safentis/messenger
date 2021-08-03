@@ -64,7 +64,9 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
     //* ---------------------------------------------
     //* Auto greeting
     if (chatroom.status === "noactive") {
-      sendMessage(settings.greeting);
+      setTimeout(() => {
+        sendMessage(settings.greeting);
+      }, 0)
     }
 
     setChatroom({

@@ -5,23 +5,18 @@ interface fetchMessages {
   body: any;
 }
 
-const fetchMessages = async ({ chatId, body }: fetchMessages) => {
-  console.log(body);
-
+const fetchMessages = async ({ chatId, body }: fetchMessages): Promise<void> => {
   try {
-    const update = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    };
-
-    const request = await fetch(
+    await fetch(
       `https://messenger-b15ea-default-rtdb.europe-west1.firebasedatabase.app/chatrooms/${chatId}/messages.json`,
-      update
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      }
     );
-    const respone = await request.json();
   } catch (error) {
     console.error(error.code);
     console.error(error.message);
@@ -30,11 +25,13 @@ const fetchMessages = async ({ chatId, body }: fetchMessages) => {
 
 /**
  * @param {object} payload
- * @returns {Generator <StrictEffect, any, any>}
+ * @param {string} payload.chatId 
+ * @param {object} payload.body 
+ * @returns {Generator <StrictEffect, void, any>}
  */
 export default function* requestMessages({
   payload: { chatId, body },
-}: any): Generator<StrictEffect, any, any> {
+}: any): Generator<StrictEffect, void, any> {
   try {
     yield call(fetchMessages, { chatId, body });
   } catch (error) {

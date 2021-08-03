@@ -2,6 +2,7 @@
 export const AUTHENTICATION_ROUTE = "/authentication";
 export const REGISTRATION_ROUTE = "/registration";
 export const RESTORE_PASSWORD_ROUTE = "/restore";
+export const UPDATE_PASSWORD_ROUTE = "/update";
 export const MESSENGER_ROUTE = "/messenger";
 
 export const MENU_CONTENT_ACTIVES = "/actives";
