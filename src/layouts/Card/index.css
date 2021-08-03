@@ -10,6 +10,7 @@
   min-width: 45rem;
 }
 
+.card-button,
 .card-link {
   color: var(--main-blue-color);
   text-transform: uppercase;
@@ -17,10 +18,12 @@
   font-size: 1.6rem;
 }
 
+.card-button:hover,
 .card-link:hover {
-  color: var(--main-lg-blue-color);
+  color: var(--main-blue-color);
 }
 
+.card-button::after,
 .card-link::after {
   content: '';
   display: block;
@@ -30,6 +33,7 @@
   background-color: var(--main-lg-blue-color);
 }
 
+.card-button:hover::after,
 .card-link:hover::after {
   width: 100%;
   transition: .3s;

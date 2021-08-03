@@ -1,16 +1,19 @@
 import { FC } from "react";
-import { Props } from "./Line.interface";
 import { useSelector } from "react-redux";
-import "./Line.css";
 
-const Line: FC<Props> = ({ className }) => {
-  const dialogs = useSelector((state: any): any[] => {
+import "./Line.css";
+import { Props } from "./Line.interface";
+import { Chatroom } from "../../screens/Root.interface";
+import { RootReducerState } from "../../redux/reducers/rootReducer.interface";
+
+const Line: FC<Props> = ({ className = '' }): React.ReactElement => {
+  const dialogs = useSelector((state: RootReducerState): Chatroom[] => {
     return state.dialogsReducer.dialogs;
   });
 
   let index: number = 0;
   let count: number = 0;
-  let array: any[] = Object.values(dialogs || []);
+  let array: Chatroom[] = Object.values(dialogs || []);
 
   while (index < array.length) {
     if (array[index].status === "noactive") {
@@ -22,10 +25,10 @@ const Line: FC<Props> = ({ className }) => {
 
   return (
     <div className={`line ${className}`}>
-      <p className="line__content">
+      <h2 className="line__content">
         Customer in line:
         <span className="line__count">{count}</span>
-      </p>
+      </h2>
     </div>
   );
 };

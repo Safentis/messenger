@@ -17,7 +17,10 @@ import {
   FETCH_MESSAGES_REQUEST,
   FETCH_TOKEN_CHECK,
 } from "../actions/authentication";
-import { FETCH_REGISTRATION_REQUEST } from "../actions/registration";
+import {
+  FETCH_REGISTRATION_GOOGLE,
+  FETCH_REGISTRATION_REQUEST,
+} from "../actions/registration";
 import {
   FETCH_ACTIONS,
   FETCH_DIALOGS,
@@ -29,17 +32,19 @@ import {
   FETCH_USER_UPDATE,
   FETCH_USER_SETTINGS,
 } from "../actions/user";
+import requestGoogle from "./registrationSagas/requestGoogle";
 
 export default function* rootSaga() {
   yield all([
     takeEvery(FETCH_MESSAGES_REQUEST as any, requestAuthentication),
     takeEvery(FETCH_REGISTRATION_REQUEST as any, requestRegistration),
+    takeEvery(FETCH_REGISTRATION_GOOGLE, requestGoogle),
     takeEvery(FETCH_TOKEN_CHECK as any, requestTokenCheck),
     takeEvery(FETCH_EXITING_APP, requestSignOut),
-    takeEvery(FETCH_DIALOGS, requestDialogs),
+    takeEvery(FETCH_DIALOGS as any, requestDialogs),
     takeEvery(FETCH_FILTERED_DIALOGS, requestFiltered),
     takeEvery(FETCH_ACTIONS, requestActions),
-    takeEvery(FETCH_USER, requestUser),
+    takeEvery(FETCH_USER as any, requestUser),
     takeEvery(FETCH_USER_UPDATE as any, requestUpdate),
     takeEvery(FETCH_USER_SETTINGS, requestSettings),
     takeEvery(FETCH_MESSAGES, requestMessages),

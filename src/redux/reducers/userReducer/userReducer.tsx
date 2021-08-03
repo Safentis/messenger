@@ -1,4 +1,4 @@
-import { State, Action, User, Settings } from "./userReducer.interface";
+import { State, Action, UserStore, Settings } from "./userReducer.interface";
 import { FETCH_USER_SET, FETCH_USER_SETTINGS_SET } from "../../actions/user";
 
 const initialState: State = {
@@ -15,7 +15,7 @@ const initialState: State = {
 };
 
 export const userReducer = (state = initialState, { type, payload }: Action): State => {
-  const user: User = payload?.user;
+  const user: UserStore = payload?.user;
   const settings: Settings = payload?.settings;
 
   switch (type) {
