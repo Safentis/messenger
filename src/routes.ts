@@ -36,7 +36,7 @@ export const publicRoutes: Route[] = [
   {
     path: REGISTRATION_ROUTE,
     component: Registration,
-  }
+  },
 ];
 
 export const privateRoutes: Route[] = [

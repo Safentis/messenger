@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 
-import { messengerRoutes, Route as RouteInterface } from "../../routes";
+import { Route as RouteInterface } from "../../routes";
 
 const MessengerRoutes = ({
   dialogs,
