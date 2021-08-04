@@ -2,17 +2,25 @@ import { FC } from "react";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
-import form from "../../HOC/form";
-import Form from "../../layouts/Form";
-import Card from "../../layouts/Card";
-import { requestRestore } from "../../redux/actionCreators/restore";
+import form from "../../../HOC/form";
+import Form from "../../../layouts/Form";
+import Card from "../../../layouts/Card";
+import { requestRestore } from "../../../redux/actionCreators/restore";
 
 import "./Restore.css";
 import { Fields, Props } from "./Restore.interface";
-import { AUTHENTICATION_ROUTE, REGISTRATION_ROUTE } from "../../utils/consts";
-import { ButtonParams, FieldsParams } from "../../layouts/Form/index.interface";
+import {
+  AUTHENTICATION_ROUTE,
+  REGISTRATION_ROUTE,
+  UPDATE_PASSWORD_ROUTE,
+} from "../../../utils/consts";
+import {
+  ButtonParams,
+  FieldsParams,
+  FormLink,
+} from "../../../layouts/Form/index.interface";
 
 //* PROPERTY FOR HOC form
 //* which set up a formik
@@ -42,25 +50,23 @@ const Restore: FC<Props> = (): React.ReactElement => {
     icon: faEnvelope,
   };
 
+  const links: FormLink[] = [
+    { to: AUTHENTICATION_ROUTE, content: "Authentication" },
+    { to: REGISTRATION_ROUTE, content: "Registration" },
+    { to: UPDATE_PASSWORD_ROUTE, content: "Update" },
+  ];
+
   return (
     <Card className="restore" title="Restore">
-      <RestoreForm 
-        fields={fields} 
-        buttonParams={buttonParams}
-      />
-      <div className="restore__links">
-        <Link
-          className="card-link restore__link"
-          to={AUTHENTICATION_ROUTE}
-        >
-          Authentication
-        </Link>
-        <Link
-          className="card-link restore__link"
-          to={REGISTRATION_ROUTE}
-        >
-          Registration
-        </Link>
+      <RestoreForm fields={fields} buttonParams={buttonParams} />
+      <div className="card-links restore__links">
+        {links.map(
+          ({ to, content }: FormLink, index: number): React.ReactNode => (
+            <Link className="card-link restore__link" key={index} to={to}>
+              {content}
+            </Link>
+          )
+        )}
       </div>
     </Card>
   );

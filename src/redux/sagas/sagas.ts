@@ -1,18 +1,18 @@
 import { takeEvery, all } from "redux-saga/effects";
 
-import requestAuthentication from "./authenticationSagas/requestAuthentication";
-import requestGoogle from "./registrationSagas/requestGoogle";
-import requestRestore from "./restoreSagas/restoreRequest";
-import requestSignOut from "./authenticationSagas/requestSignOut";
-import requestTokenCheck from "./authenticationSagas/requestTokenCheck";
-import requestDialogs from "./dialogsSagas/requestDialogs";
-import requestFiltered from "./dialogsSagas/requestFiltered";
-import requestActions from "./dialogsSagas/requestActions";
-import requestMessages from "./dialogsSagas/requestMessages";
-import requestUser from "./userSaga/requestUser";
-import requestUpdate from "./userSaga/requestUpdate";
-import requestSettings from "./userSaga/requestSettings";
-import requestRegistration from "./registrationSagas/requestRegistration";
+import requestAuthentication from "./enter/authentication/requestAuthentication";
+import requestGoogle from "./enter/registration/requestGoogle";
+import requestRestore from "./enter/restore/restoreRequest";
+import requestSignOut from "./enter/authentication/requestSignOut";
+import requestTokenCheck from "./enter/authentication/requestTokenCheck";
+import requestDialogs from "./dialogs/requestDialogs";
+import requestFiltered from "./dialogs/requestFiltered";
+import requestActions from "./dialogs/requestActions";
+import requestMessages from "./dialogs/requestMessages";
+import requestUser from "./user/requestUser";
+import requestUpdate from "./user/requestUpdate";
+import requestSettings from "./user/requestSettings";
+import requestRegistration from "./enter/registration/requestRegistration";
 
 import {
   FETCH_EXITING_APP,

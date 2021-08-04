@@ -1,7 +1,9 @@
 import React from "react";
 
-import Authentication from "./screens/Authentication/Authentication";
-import Registration from "./screens/Registration/Registration";
+import Authentication from "./screens/enter/Authentication/Authentication";
+import Registration from "./screens/enter/Registration/Registration";
+import Restore from "./screens/enter/Restore/Restore";
+import Update from "./screens/enter/Update/Update";
 import Messenger from "./screens/Messenger/Messenger";
 import Complited from "./screens/Messenger/Dialogs/Complited/Complited";
 import Noactives from "./screens/Messenger/Dialogs/Noactives/Noactives";
@@ -22,8 +24,8 @@ import {
   MENU_CONTENT_SAVED,
   MESSENGER_CHAT,
   RESTORE_PASSWORD_ROUTE,
+  UPDATE_PASSWORD_ROUTE,
 } from "./utils/consts";
-import Restore from "./screens/Restore/Restore";
 
 export interface Route {
   path: string;
@@ -42,6 +44,10 @@ export const publicRoutes: Route[] = [
   {
     path: RESTORE_PASSWORD_ROUTE,
     component: Restore,
+  },
+  {
+    path: UPDATE_PASSWORD_ROUTE,
+    component: Update
   }
 ];
 

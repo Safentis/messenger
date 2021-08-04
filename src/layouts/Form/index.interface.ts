@@ -29,3 +29,8 @@ export interface ButtonParams {
   text: string;
   icon: IconDefinition;
 }
+
+export interface FormLink {
+  to: string;
+  content: string;
+}

@@ -1,7 +1,7 @@
 import { call, put } from "@redux-saga/core/effects";
 import { StrictEffect } from "@redux-saga/types";
 
-import { FETCH_EXITING_APP } from "../../actions/authentication";
+import { FETCH_EXITING_APP } from "../../../actions/authentication";
 
 interface Validation {
   validation: boolean;

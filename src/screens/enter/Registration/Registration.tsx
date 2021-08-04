@@ -3,26 +3,28 @@ import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
-import form from "../../HOC/form";
-import Card from "../../layouts/Card/index";
-import Form from "../../layouts/Form";
-import { requestRegistration } from "../../redux/actionCreators/registration";
+import form from "../../../HOC/form";
+import Card from "../../../layouts/Card/index";
+import Form from "../../../layouts/Form";
+import { requestRegistration } from "../../../redux/actionCreators/registration";
 
 import "./Registration.css";
-import { ButtonParams, FieldsParams } from "../../layouts/Form/index.interface";
+import {
+  ButtonParams,
+  FieldsParams,
+  FormLink,
+} from "../../../layouts/Form/index.interface";
 import { Fields, Props } from "./Registration.interface";
 import {
   AUTHENTICATION_ROUTE,
+  PASSWORD_VALIDATION_MESSAGE,
+  REG_EXP_PASSWORD,
   RESTORE_PASSWORD_ROUTE,
-} from "../../utils/consts";
+  UPDATE_PASSWORD_ROUTE,
+} from "../../../utils/consts";
 
 //* PROPERTY FOR HOC form
 //* which set up a formik
-const regExpPassword: RegExp =
-  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-const passwordMessage: string =
-  "Password must will be with one Uppercase, one Lowercase, one Number and special Symbol";
-
 const AUTH_FORM_FIELDS: Fields = {
   email: "",
   password: "",
@@ -34,12 +36,12 @@ const AUTH_VALIDATION_SCHEMA: object = Yup.object({
   password: Yup.string()
     .min(8, "Not less than 8 symbol")
     .required("Required")
-    .matches(regExpPassword, passwordMessage),
+    .matches(REG_EXP_PASSWORD, PASSWORD_VALIDATION_MESSAGE),
   "password repeat": Yup.string()
     .min(8, "Not less than 8 symbol")
     .required("Required")
     .oneOf([Yup.ref("password"), null], "Passwords must match")
-    .matches(regExpPassword, passwordMessage),
+    .matches(REG_EXP_PASSWORD, PASSWORD_VALIDATION_MESSAGE),
 });
 
 const RegistrationForm = form(
@@ -50,7 +52,6 @@ const RegistrationForm = form(
 );
 
 const Registration: FC<Props> = (): React.ReactElement => {
-  
   //* --------------------------------------------------
   //* fields props for Form components, that is template
   const fields: FieldsParams[] = [
@@ -65,25 +66,23 @@ const Registration: FC<Props> = (): React.ReactElement => {
     icon: faUserPlus,
   };
 
+  const links: FormLink[] = [
+    { to: AUTHENTICATION_ROUTE, content: "Authentication" },
+    { to: RESTORE_PASSWORD_ROUTE, content: "Restore" },
+    { to: UPDATE_PASSWORD_ROUTE, content: "Update" },
+  ];
+
   return (
     <Card className="registration" title="Registration">
-      <RegistrationForm 
-        fields={fields} 
-        buttonParams={buttonParams}
-      />
-      <div className="registration__links">
-        <Link
-          className="card-link registration__link"
-          to={AUTHENTICATION_ROUTE}
-        >
-          authentication
-        </Link>
-        <Link
-          className="card-link registration__link"
-          to={RESTORE_PASSWORD_ROUTE}
-        >
-          Forgot your password?
-        </Link>
+      <RegistrationForm fields={fields} buttonParams={buttonParams} />
+      <div className="card-links registration__links">
+        {links.map(
+          ({ to, content }: FormLink, index: number): React.ReactNode => (
+            <Link className="card-link registration__link" key={index} to={to}>
+              {content}
+            </Link>
+          )
+        )}
       </div>
     </Card>
   );

@@ -1,13 +1,13 @@
 import { put, call, StrictEffect } from "redux-saga/effects";
 import firebase from "firebase";
 
-import { Fields } from "../../../screens/Authentication/Authentication.interface";
-import { handleError } from "../../../utils/functions";
-import { AUTH_SUCCESS_MESSAGE } from "../../../utils/consts";
+import { Fields } from "../../../../screens/enter/Authentication/Authentication.interface";
+import { handleError } from "../../../../utils/functions";
+import { AUTH_SUCCESS_MESSAGE } from "../../../../utils/consts";
 import {
   FETCH_MESSAGES_SUCCESS,
   FETCH_MESSAGES_FAILURE,
-} from "../../actions/authentication";
+} from "../../../actions/authentication";
 
 export interface RequestAuthenticationProps {
   payload: {

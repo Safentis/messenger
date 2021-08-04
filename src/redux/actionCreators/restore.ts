@@ -1,5 +1,5 @@
 import { ActionCreator } from "./actionCreators.interface";
-import { RequestRestore } from "../sagas/restoreSagas/restoreRequest";
+import { RequestRestore } from "../sagas/enter/restore/restoreRequest";
 import { FETCH_RESTORE_PASSWORD } from "../actions/restore";
 
 export const requestRestore = (data: any): ActionCreator<RequestRestore> => {
