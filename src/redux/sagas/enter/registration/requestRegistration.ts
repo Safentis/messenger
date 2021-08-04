@@ -1,14 +1,14 @@
 import { put, call, StrictEffect } from "redux-saga/effects";
 import firebase from "firebase";
 
-import { Fields } from "../../../screens/Registration/Registration.interface";
-import { createFirebaseUser, handleError } from "../../../utils/functions";
-import { FETCH_USER_SET } from "../../actions/user";
-import { RESTORE_SUCCESS_MESSAGE } from "../../../utils/consts";
+import { Fields } from "../../../../screens/enter/Registration/Registration.interface";
+import { createFirebaseUser, handleError } from "../../../../utils/functions";
+import { FETCH_USER_SET } from "../../../actions/user";
+import { RESTORE_SUCCESS_MESSAGE } from "../../../../utils/consts";
 import {
   FETCH_MESSAGES_FAILURE,
   FETCH_MESSAGES_SUCCESS,
-} from "../../actions/authentication";
+} from "../../../actions/authentication";
 
 
 export interface RequestRegistration {

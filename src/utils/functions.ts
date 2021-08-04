@@ -3,7 +3,7 @@ import firebase from "firebase";
 import { STANDART_AVATAR } from "./consts";
 
 export const getDownloadURL = (
-  storageRef: any,
+  storageRef: firebase.storage.Reference,
   picture: any,
   child: string
 ) => {

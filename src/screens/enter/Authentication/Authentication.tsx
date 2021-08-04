@@ -1,20 +1,28 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 
-import form from "../../HOC/form";
-import Card from "../../layouts/Card/index";
-import Form from "../../layouts/Form";
-import Button from "../../components/Button/Button";
-import { requestAuthentication } from "../../redux/actionCreators/authentication";
+import form from "../../../HOC/form";
+import Card from "../../../layouts/Card/index";
+import Form from "../../../layouts/Form";
+import Button from "../../../components/Button/Button";
+import { requestAuthentication } from "../../../redux/actionCreators/authentication";
+import { requestGoogle } from "../../../redux/actionCreators/registration";
 
 import "./Authentication.css";
 import { Fields } from "./Authentication.interface";
-import { REGISTRATION_ROUTE, RESTORE_PASSWORD_ROUTE } from "../../utils/consts";
-import { ButtonParams, FieldsParams } from "../../layouts/Form/index.interface";
-import { requestGoogle } from "../../redux/actionCreators/registration";
+import {
+  REGISTRATION_ROUTE,
+  RESTORE_PASSWORD_ROUTE,
+  UPDATE_PASSWORD_ROUTE,
+} from "../../../utils/consts";
+import {
+  ButtonParams,
+  FieldsParams,
+  FormLink,
+} from "../../../layouts/Form/index.interface";
 
 //* PROPERTY FOR HOC form
 //* which set up a formik
@@ -54,12 +62,15 @@ const Authentication: FC = (): React.ReactElement => {
     icon: faSignInAlt,
   };
 
+  const links: FormLink[] = [
+    { to: REGISTRATION_ROUTE, content: "Registration" },
+    { to: RESTORE_PASSWORD_ROUTE, content: "Restore" },
+    { to: UPDATE_PASSWORD_ROUTE, content: "Update" },
+  ];
+
   return (
     <Card className="authentication" title="Authentication">
-      <AuthenticationForm 
-        fields={fields} 
-        buttonParams={buttonParams}
-      />
+      <AuthenticationForm fields={fields} buttonParams={buttonParams} />
       <div className="authentication__socials">
         <Button
           className="card-button authentication__button"
@@ -69,19 +80,18 @@ const Authentication: FC = (): React.ReactElement => {
           sign with google
         </Button>
       </div>
-      <div className="authentication__links">
-        <Link
-          className="card-link authentication__link"
-          to={REGISTRATION_ROUTE}
-        >
-          registration
-        </Link>
-        <Link
-          className="card-link authentication__link"
-          to={RESTORE_PASSWORD_ROUTE}
-        >
-          Forgot your password?
-        </Link>
+      <div className="card-links authentication__links">
+        {links.map(
+          ({ to, content }: FormLink, index: number): React.ReactNode => (
+            <Link
+              className="card-link authentication__link"
+              key={index}
+              to={to}
+            >
+              {content}
+            </Link>
+          )
+        )}
       </div>
     </Card>
   );

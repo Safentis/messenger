@@ -1,6 +1,6 @@
 import React, { FC, Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import Label from "../../components/Label/Label";
 import Input from "../../components/Input/Input";
@@ -11,6 +11,7 @@ import SuccessMessage from "../../components/SuccessMessage/SuccessMessage";
 import "./index.css";
 import { Props, Handlers, Validation, FieldsParams } from "./index.interface";
 import { useEffect } from "react";
+import { TOASTIFY_CONFIG } from "../../utils/configs/toastify.config";
 
 const Form: FC<Props> = ({
   children,
@@ -75,26 +76,15 @@ const Form: FC<Props> = ({
   useEffect(() => {
     status?.state !== undefined && 
     status.state && 
-    toast(status?.message, {
-      position: "bottom-left",
-      autoClose: 3000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    toast(status?.message, TOASTIFY_CONFIG);
   }, [status]);
 
   return (
-    <>
-      <form className="form" onSubmit={handleSubmit}>
-        {FORM_FIELDS}
-        {FORM_BUTTON}
-        {FORM_REQUEST_STATUS}
-      </form>
-      <ToastContainer />
-    </>
+    <form className="form" onSubmit={handleSubmit}>
+      {FORM_FIELDS}
+      {FORM_BUTTON}
+      {FORM_REQUEST_STATUS}
+    </form>
   );
 };
 

@@ -1,9 +1,9 @@
 import { call, put, StrictEffect } from "redux-saga/effects";
 import firebase from "firebase";
 
-import { createFirebaseUser, handleError } from "../../../utils/functions";
-import { FETCH_MESSAGES_FAILURE, FETCH_MESSAGES_SUCCESS } from "../../actions/authentication";
-import { FETCH_USER_SET } from "../../actions/user";
+import { createFirebaseUser, handleError } from "../../../../utils/functions";
+import { FETCH_MESSAGES_FAILURE, FETCH_MESSAGES_SUCCESS } from "../../../actions/authentication";
+import { FETCH_USER_SET } from "../../../actions/user";
 
 const fetchUserAccount = async (): Promise<firebase.User | null> => {
   const provider = await new firebase.auth.GoogleAuthProvider();

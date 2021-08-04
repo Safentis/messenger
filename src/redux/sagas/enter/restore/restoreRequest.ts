@@ -1,9 +1,9 @@
 import { call, StrictEffect } from "redux-saga/effects";
 import firebase from "firebase";
 
-import { RequestProps } from "../sagas.interface";
-import { handleError } from "../../../utils/functions";
-import { REGISTRATION_SUCCESS_MESSAGE } from "../../../utils/consts";
+import { RequestProps } from "../../sagas.interface";
+import { handleError } from "../../../../utils/functions";
+import { REGISTRATION_SUCCESS_MESSAGE } from "../../../../utils/consts";
 
 export interface RequestRestore {
   data: {
