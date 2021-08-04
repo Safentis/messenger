@@ -14,3 +14,7 @@ export const MESSENGER_CHAT = "/:name/:key";
 
 export const STANDART_AVATAR =
   "https://firebasestorage.googleapis.com/v0/b/messenger-b15ea.appspot.com/o/avatars%2Fanonymous-user.png?alt=media&token=227f86c4-efa1-4d33-839e-0ee6ae9fc7a8";
+
+export const AUTH_SUCCESS_MESSAGE = "Wellcome back!";
+export const RESTORE_SUCCESS_MESSAGE = "Wellcome to application!";
+export const REGISTRATION_SUCCESS_MESSAGE = "Сheck you email, a password reset email was sent there!"

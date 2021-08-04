@@ -54,17 +54,11 @@ const Authentication: FC = (): React.ReactElement => {
     icon: faSignInAlt,
   };
 
-  //* Messages succes and failure
-  const successMessage: string = "Wellcome!";
-  const failureMessage: string = "Check your email and password!";
-
   return (
     <Card className="authentication" title="Authentication">
       <AuthenticationForm 
         fields={fields} 
         buttonParams={buttonParams}
-        successMessage={successMessage}
-        failureMessage={failureMessage} 
       />
       <div className="authentication__socials">
         <Button

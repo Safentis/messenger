@@ -5,8 +5,6 @@ export interface Props {
   formik: any;
   fields: FieldsParams[];
   buttonParams: ButtonParams;
-  successMessage?: string;
-  failureMessage?: string;
 }
 
 export interface Handlers {
@@ -16,7 +14,10 @@ export interface Handlers {
 export interface Validation {
   errors: FormikErrors<any>;
   touched: FormikTouched<any>;
-  status: boolean;
+  status: {
+    state: boolean;
+    message: string;
+  };
 }
 
 export interface FieldsParams {

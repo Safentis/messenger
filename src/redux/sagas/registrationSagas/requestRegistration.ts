@@ -1,9 +1,10 @@
 import { put, call, StrictEffect } from "redux-saga/effects";
 import firebase from "firebase";
 
-import { createFirebaseUser, handleError } from "../../../utils/functions";
 import { Fields } from "../../../screens/Registration/Registration.interface";
+import { createFirebaseUser, handleError } from "../../../utils/functions";
 import { FETCH_USER_SET } from "../../actions/user";
+import { RESTORE_SUCCESS_MESSAGE } from "../../../utils/consts";
 import {
   FETCH_MESSAGES_FAILURE,
   FETCH_MESSAGES_SUCCESS,
@@ -70,10 +71,10 @@ export default function* requestRegistration({
         user: info,
       },
     });
-
-    setStatus(true);
+    
+    setStatus({state: true, message: RESTORE_SUCCESS_MESSAGE});
   } catch (error) {
-    setStatus(false);
+    setStatus({state: false, message: error.message});
     yield put({
       type: FETCH_MESSAGES_FAILURE,
     });

@@ -2,6 +2,8 @@ import { put, call, StrictEffect } from "redux-saga/effects";
 import firebase from "firebase";
 
 import { Fields } from "../../../screens/Authentication/Authentication.interface";
+import { handleError } from "../../../utils/functions";
+import { AUTH_SUCCESS_MESSAGE } from "../../../utils/consts";
 import {
   FETCH_MESSAGES_SUCCESS,
   FETCH_MESSAGES_FAILURE,
@@ -25,8 +27,8 @@ export const getIdToken = (): Promise<string> | undefined => {
 /**
  * getIdToken
  * @param {object} payload
- * @param {Fields} values contains email and password fields
- * @param {function} setStatus is function for handle of form status with api formik
+ * @param {Fields} payload.values contains email and password fields
+ * @param {function} payload.setStatus is function for handle of form status with api formik
  * @returns {Generator <StrictEffect, void, any>}
  */
 export default function* requestAuthentication({
@@ -39,7 +41,7 @@ export default function* requestAuthentication({
 
     //* If the request is successfuled
     //* we set status on true
-    setStatus(true);
+    setStatus({state: true, message: AUTH_SUCCESS_MESSAGE});
 
     //* We set token for authentication
     yield put({
@@ -48,13 +50,11 @@ export default function* requestAuthentication({
         token: token,
       },
     });
-  } catch (err) {
-    console.error("Code ", err.code);
-    console.error("Message ", err.message);
+  } catch (error) {
+    setStatus({state: false, message: error.message});
     //* If the request is rejected
     //* we set status on false
-    setStatus(false);
-
     yield put({ type: FETCH_MESSAGES_FAILURE });
+    handleError(error);
   }
 }
