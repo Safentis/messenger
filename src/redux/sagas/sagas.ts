@@ -1,6 +1,8 @@
 import { takeEvery, all } from "redux-saga/effects";
 
 import requestAuthentication from "./authenticationSagas/requestAuthentication";
+import requestGoogle from "./registrationSagas/requestGoogle";
+import requestRestore from "./restoreSagas/restoreRequest";
 import requestSignOut from "./authenticationSagas/requestSignOut";
 import requestTokenCheck from "./authenticationSagas/requestTokenCheck";
 import requestDialogs from "./dialogsSagas/requestDialogs";
@@ -32,9 +34,9 @@ import {
   FETCH_USER_UPDATE,
   FETCH_USER_SETTINGS,
 } from "../actions/user";
-import requestGoogle from "./registrationSagas/requestGoogle";
-import requestRestore from "./restoreSagas/restoreRequest";
-import { FETCH_RESTORE_PASSWORD } from "../actions/restore";
+import { 
+  FETCH_RESTORE_PASSWORD 
+} from "../actions/restore";
 
 export default function* rootSaga() {
   yield all([

@@ -52,15 +52,15 @@ export const getDownloadURL = (
   });
 };
 
-export const handleError = (error: Error): never => {
+export const handleError = (error: Error): never | void => {
   console.error(error);
   console.error(error.message);
   console.error(error.stack);
-  throw new Error(`
-        \nERROR: ${error}
-        \nERROR_MESSAGE: ${error.message} 
-        \nSTACK: ${error.stack}
-    `);
+  // throw new Error(`
+  //       \nERROR: ${error}
+  //       \nERROR_MESSAGE: ${error.message} 
+  //       \nSTACK: ${error.stack}
+  //   `);
 };
 
 export const createFirebaseUser = async (user: firebase.User): Promise<void> => {

@@ -41,10 +41,6 @@ const Authentication: FC = (): React.ReactElement => {
     dispatch(requestGoogle());
   };
 
-  useSelector((state) => {
-    console.log(state);
-  })
-
   //* --------------------------------------------------
   //* Props for Form component
   const fields: FieldsParams[] = [
@@ -52,14 +48,24 @@ const Authentication: FC = (): React.ReactElement => {
     { name: "password", type: "password" },
   ];
 
+  //* Button
   const buttonParams: ButtonParams = {
     text: "Enter",
     icon: faSignInAlt,
   };
 
+  //* Messages succes and failure
+  const successMessage: string = "Wellcome!";
+  const failureMessage: string = "Check your email and password!";
+
   return (
     <Card className="authentication" title="Authentication">
-      <AuthenticationForm fields={fields} buttonParams={buttonParams} />
+      <AuthenticationForm 
+        fields={fields} 
+        buttonParams={buttonParams}
+        successMessage={successMessage}
+        failureMessage={failureMessage} 
+      />
       <div className="authentication__socials">
         <Button
           className="card-button authentication__button"

@@ -7,21 +7,21 @@ import form from "../../HOC/form";
 import Card from "../../layouts/Card/index";
 import Form from "../../layouts/Form";
 import { requestRegistration } from "../../redux/actionCreators/registration";
-import { ButtonParams, FieldsParams } from "../../layouts/Form/index.interface";
 
+import "./Registration.css";
+import { ButtonParams, FieldsParams } from "../../layouts/Form/index.interface";
 import { Fields, Props } from "./Registration.interface";
 import {
   AUTHENTICATION_ROUTE,
   RESTORE_PASSWORD_ROUTE,
 } from "../../utils/consts";
-import "./Registration.css";
 
 //* PROPERTY FOR HOC form
 //* which set up a formik
 const regExpPassword: RegExp =
-  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]$/;
+  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 const passwordMessage: string =
-  "Password must will be with one Uppercase, one Lowercase, one Number and one special case Character";
+  "Password must will be with one Uppercase, one Lowercase, one Number and special Symbol";
 
 const AUTH_FORM_FIELDS: Fields = {
   email: "",
@@ -59,14 +59,24 @@ const Registration: FC<Props> = (): React.ReactElement => {
     { name: "password repeat", type: "password" },
   ];
 
+  //* Button registration
   const buttonParams: ButtonParams = {
     text: "Registration",
     icon: faUserPlus,
   };
 
+  //* Messages succes and failure
+  const successMessage: string = "Wellcome!";
+  const failureMessage: string = "Somthing wrong, try letter!";
+
   return (
     <Card className="registration" title="Registration">
-      <RegistrationForm fields={fields} buttonParams={buttonParams} />
+      <RegistrationForm 
+        fields={fields} 
+        buttonParams={buttonParams}
+        successMessage={successMessage}
+        failureMessage={failureMessage} 
+      />
       <div className="registration__links">
         <Link
           className="card-link registration__link"

@@ -15,7 +15,7 @@ import {
     FieldsParams,
 } from "./index.interface";
 
-const Form: FC<Props> = ({ children, formik, fields, buttonParams }): React.ReactElement => {
+const Form: FC<Props> = ({ children, formik, fields, buttonParams, successMessage = '', failureMessage = '' }): React.ReactElement => {
   //* With destructuring we are taking object
   //* errors : object that contains error-messages
   //* touched: object which marks the fields visited
@@ -58,13 +58,13 @@ const Form: FC<Props> = ({ children, formik, fields, buttonParams }): React.Reac
 
   const SUCCESS_MESSAGE: React.ReactNode = (
     <SuccessMessage className="form__status">
-      Wellcome!
+      {successMessage}
     </SuccessMessage>
   );
 
   const ERROR_MESSAGE: React.ReactNode = (
     <ErrorMessage className="form__status">
-      Something went wrong
+      {failureMessage}
     </ErrorMessage>
   );
 

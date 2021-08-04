@@ -36,14 +36,24 @@ const Restore: FC<Props> = (): React.ReactElement => {
   //* fields props for Form components, that is template
   const fields: FieldsParams[] = [{ name: "email", type: "text" }];
 
+  //* Button reset
   const buttonParams: ButtonParams = {
     text: "Restore",
     icon: faEnvelope,
   };
 
+  //* Messages succes and failure
+  const successMessage: string = "Сheck you email, a password reset email was sent there!";
+  const failureMessage: string = "Somthing wrong, email addres don't not exist or don't wrong!";
+
   return (
     <Card className="restore" title="Restore">
-      <RestoreForm fields={fields} buttonParams={buttonParams} />
+      <RestoreForm 
+        fields={fields} 
+        buttonParams={buttonParams}
+        successMessage={successMessage}
+        failureMessage={failureMessage} 
+      />
       <div className="restore__links">
         <Link
           className="card-link restore__link"

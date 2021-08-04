@@ -1,7 +1,7 @@
 import { put, StrictEffect } from "redux-saga/effects";
 
 import { FETCH_DIALOGS_SET } from "../../actions/dialogs";
-import { RequestProps } from '../../sagas.interface';
+import { RequestProps } from '../sagas.interface';
 
 /**
  * @param {object} payload

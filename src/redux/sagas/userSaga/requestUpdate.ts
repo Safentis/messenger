@@ -1,7 +1,7 @@
 import firebase from "firebase";
 import { call, put, StrictEffect } from "redux-saga/effects";
 
-import { RequestProps } from "../../sagas.interface";
+import { RequestProps } from "../sagas.interface";
 import { getDownloadURL, handleError } from "../../../utils/functions";
 import { ProfileInterface } from "../../../screens/options/Profile/Profile.interface";
 import { STANDART_AVATAR } from "../../../utils/consts";
