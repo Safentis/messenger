@@ -6,7 +6,6 @@
 .namebar__inner {
 }
 
-.namebar__bottom,
 .namebar__top {
   align-items: center;
   display: flex;
@@ -15,11 +14,6 @@
 .namebar__top {
   justify-content: flex-end;
   flex-wrap: wrap;
-}
-
-.namebar__bottom {
-  justify-content: flex-end;
-  margin: 1rem 0;
 }
 
 .namebar__name {
@@ -38,6 +32,10 @@
   align-items: center;
   display: flex;
   text-transform: uppercase;
+}
+
+.namebar__children {
+  margin-right: auto;
 }
 
 .namebar__button,

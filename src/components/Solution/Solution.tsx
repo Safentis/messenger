@@ -22,7 +22,7 @@ const Solution: FC<Props> = ({ className = "", question, sendMessage }) => {
 
   //* ---------------------------------------------------------
   //* Handlers of the solution
-  const handleInputChange = (event: any, solution: string) => {
+  const handleInputChange = (event: React.ChangeEvent<object>, solution: string) => {
     setSolution(solution);
   };
 

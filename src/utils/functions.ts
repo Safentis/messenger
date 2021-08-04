@@ -1,5 +1,7 @@
 import firebase from "firebase";
 
+import { STANDART_AVATAR } from "./consts";
+
 export const getDownloadURL = (
   storageRef: any,
   picture: any,
@@ -50,13 +52,30 @@ export const getDownloadURL = (
   });
 };
 
-export const handleError = (error: Error): never => {
+export const handleError = (error: Error): never | void => {
   console.error(error);
   console.error(error.message);
   console.error(error.stack);
-  throw new Error(`
-        \nERROR: ${error}
-        \nERROR_MESSAGE: ${error.message} 
-        \nSTACK: ${error.stack}
-    `);
+  // throw new Error(`
+  //       \nERROR: ${error}
+  //       \nERROR_MESSAGE: ${error.message} 
+  //       \nSTACK: ${error.stack}
+  //   `);
+};
+
+export const createFirebaseUser = async (user: firebase.User): Promise<void> => {
+  await fetch(
+    `https://messenger-b15ea-default-rtdb.europe-west1.firebasedatabase.app/users/${user.uid}.json`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: user.displayName || user.email,
+        email: user.email,
+        photo: user.photoURL || STANDART_AVATAR,
+      }),
+    }
+  );
 };

@@ -9,3 +9,12 @@
 .authentication__link {
 
 }
+
+.authentication__socials {
+  margin-top: 1rem;
+  display: flex;
+}
+
+.authentication__button {
+  padding: 0;
+}

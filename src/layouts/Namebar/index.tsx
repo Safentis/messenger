@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { Props } from "./index.interface";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,10 +9,12 @@ import Button from "../../components/Button/Button";
 import Profile from "../../screens/options/Profile/Profile";
 import Settings from "../../screens/options/Settings/Settings";
 
+import { UserStore } from "../../redux/reducers/userReducer/userReducer.interface";
+import { Props } from "./index.interface";
 import { RootReducerState } from "../../redux/reducers/rootReducer.interface";
 import "./index.css";
 
-const Namebar: FC<Props> = ({ children }) => {
+const Namebar: FC<Props> = ({ children }): React.ReactElement => {
   //* ---------------------------------------------------
   //* Application exit handler
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Namebar: FC<Props> = ({ children }) => {
 
   //* ---------------------------------------------------
   //* Application user information
-  const user = useSelector((state: RootReducerState) => {
+  const user = useSelector((state: RootReducerState): UserStore => {
     return state.userReducer.user;
   });
 
@@ -31,6 +32,9 @@ const Namebar: FC<Props> = ({ children }) => {
     <section className="namebar">
       <div className="namebar__inner">
         <div className="namebar__top">
+          <div className="namebar__children">
+            {children}
+          </div>
           <div className="namebar__name">{user.name || user.email}</div>
           <div className="namebar__controls">
             <Settings />
@@ -44,7 +48,6 @@ const Namebar: FC<Props> = ({ children }) => {
             </Button>
           </div>
         </div>
-        <div className="namebar__bottom">{children}</div>
       </div>
     </section>
   );

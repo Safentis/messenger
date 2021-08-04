@@ -24,21 +24,13 @@ export interface Message {
   images: string[];
 }
 
-export interface Database {
-  chatrooms: Chatroom | boolean;
-  client: Client;
-}
-
-export interface Person {
-  name: string;
-  key: string;
-  theme: string;
-  subtheme: string;
-}
-
 export interface User {
   name: string;
   email?: string;
   photo?: string;
   status?: string | boolean;
+}
+
+export interface UserDatabase {
+  
 }
