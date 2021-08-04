@@ -2,7 +2,7 @@ import { FC } from "react";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
+import 'react-toastify/dist/ReactToastify.css';
 
 import form from "../../HOC/form";
 import Form from "../../layouts/Form";
@@ -42,17 +42,11 @@ const Restore: FC<Props> = (): React.ReactElement => {
     icon: faEnvelope,
   };
 
-  //* Messages succes and failure
-  const successMessage: string = "Сheck you email, a password reset email was sent there!";
-  const failureMessage: string = "Somthing wrong, email addres don't not exist or don't wrong!";
-
   return (
     <Card className="restore" title="Restore">
       <RestoreForm 
         fields={fields} 
         buttonParams={buttonParams}
-        successMessage={successMessage}
-        failureMessage={failureMessage} 
       />
       <div className="restore__links">
         <Link

@@ -1,5 +1,6 @@
 import React, { FC, Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ToastContainer, toast } from "react-toastify";
 
 import Label from "../../components/Label/Label";
 import Input from "../../components/Input/Input";
@@ -8,14 +9,15 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import SuccessMessage from "../../components/SuccessMessage/SuccessMessage";
 
 import "./index.css";
-import {
-    Props,
-    Handlers,
-    Validation,
-    FieldsParams,
-} from "./index.interface";
+import { Props, Handlers, Validation, FieldsParams } from "./index.interface";
+import { useEffect } from "react";
 
-const Form: FC<Props> = ({ children, formik, fields, buttonParams, successMessage = '', failureMessage = '' }): React.ReactElement => {
+const Form: FC<Props> = ({
+  children,
+  formik,
+  fields,
+  buttonParams,
+}): React.ReactElement => {
   //* With destructuring we are taking object
   //* errors : object that contains error-messages
   //* touched: object which marks the fields visited
@@ -57,29 +59,42 @@ const Form: FC<Props> = ({ children, formik, fields, buttonParams, successMessag
   );
 
   const SUCCESS_MESSAGE: React.ReactNode = (
-    <SuccessMessage className="form__status">
-      {successMessage}
-    </SuccessMessage>
+    <SuccessMessage className="form__status">{status?.message}</SuccessMessage>
   );
 
   const ERROR_MESSAGE: React.ReactNode = (
-    <ErrorMessage className="form__status">
-      {failureMessage}
-    </ErrorMessage>
+    <ErrorMessage className="form__status">{status?.message}</ErrorMessage>
   );
 
   const FORM_REQUEST_STATUS: React.ReactNode =
     //* If status true
     //* we view message about access
     //* else we are seeing error message
-    status !== undefined ? (status ? SUCCESS_MESSAGE : ERROR_MESSAGE) : null;
+    status?.state !== undefined ? (status.state ? SUCCESS_MESSAGE : ERROR_MESSAGE) : null;
+
+  useEffect(() => {
+    status?.state !== undefined && 
+    status.state && 
+    toast(status?.message, {
+      position: "bottom-left",
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }, [status]);
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      {FORM_FIELDS}
-      {FORM_BUTTON}
-      {FORM_REQUEST_STATUS}
-    </form>
+    <>
+      <form className="form" onSubmit={handleSubmit}>
+        {FORM_FIELDS}
+        {FORM_BUTTON}
+        {FORM_REQUEST_STATUS}
+      </form>
+      <ToastContainer />
+    </>
   );
 };
 

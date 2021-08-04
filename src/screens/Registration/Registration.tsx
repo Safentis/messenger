@@ -65,17 +65,11 @@ const Registration: FC<Props> = (): React.ReactElement => {
     icon: faUserPlus,
   };
 
-  //* Messages succes and failure
-  const successMessage: string = "Wellcome!";
-  const failureMessage: string = "Somthing wrong, try letter!";
-
   return (
     <Card className="registration" title="Registration">
       <RegistrationForm 
         fields={fields} 
         buttonParams={buttonParams}
-        successMessage={successMessage}
-        failureMessage={failureMessage} 
       />
       <div className="registration__links">
         <Link
