@@ -22,7 +22,7 @@ const useSolution = ({ dialogs, question }: Props): string[] => {
         let lstMessage: string = values[lstIndex]?.content;
         let regExp: RegExp = new RegExp(question, "igu");
 
-        if (frsMessage.match(regExp)) {
+        if (frsMessage?.match(regExp)) {
           complited.push(lstMessage);
         }
       }

@@ -65,9 +65,9 @@ const Authentication: FC = (): React.ReactElement => {
   const links: FormLink[] = [
     { to: REGISTRATION_ROUTE, content: "Registration" },
     { to: RESTORE_PASSWORD_ROUTE, content: "Restore" },
-    { to: UPDATE_PASSWORD_ROUTE, content: "Update" },
   ];
 
+  // RWg2d9S4RgFB6fV
   return (
     <Card className="authentication" title="Authentication">
       <AuthenticationForm fields={fields} buttonParams={buttonParams} />

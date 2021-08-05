@@ -69,7 +69,6 @@ const Registration: FC<Props> = (): React.ReactElement => {
   const links: FormLink[] = [
     { to: AUTHENTICATION_ROUTE, content: "Authentication" },
     { to: RESTORE_PASSWORD_ROUTE, content: "Restore" },
-    { to: UPDATE_PASSWORD_ROUTE, content: "Update" },
   ];
 
   return (

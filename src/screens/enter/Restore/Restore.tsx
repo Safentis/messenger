@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import form from "../../../HOC/form";
 import Form from "../../../layouts/Form";
 import Card from "../../../layouts/Card";
-import { requestRestore } from "../../../redux/actionCreators/restore";
+import { requestRestorePassword } from "../../../redux/actionCreators/restore";
 
 import "./Restore.css";
 import { Fields, Props } from "./Restore.interface";
@@ -35,7 +35,7 @@ const AUTH_VALIDATION_SCHEMA: object = Yup.object({
 const RestoreForm = form(
   Form,
   AUTH_FORM_FIELDS,
-  requestRestore,
+  requestRestorePassword,
   AUTH_VALIDATION_SCHEMA
 );
 
@@ -53,7 +53,6 @@ const Restore: FC<Props> = (): React.ReactElement => {
   const links: FormLink[] = [
     { to: AUTHENTICATION_ROUTE, content: "Authentication" },
     { to: REGISTRATION_ROUTE, content: "Registration" },
-    { to: UPDATE_PASSWORD_ROUTE, content: "Update" },
   ];
 
   return (

@@ -9,6 +9,7 @@ import Form from "../../../layouts/Form";
 
 import "./Update.css";
 import { Props, Fields } from "./Update.interface";
+import { requestUpdatePassword } from "../../../redux/actionCreators/update";
 import {
   ButtonParams,
   FieldsParams,
@@ -44,9 +45,7 @@ const AUTH_VALIDATION_SCHEMA: object = Yup.object({
 const UpdateForm = form(
   Form,
   AUTH_FORM_FIELDS,
-  (data: any) => {
-    console.log(data);
-  },
+  requestUpdatePassword,
   AUTH_VALIDATION_SCHEMA
 );
 
@@ -66,11 +65,9 @@ const Update: FC<Props> = (): React.ReactElement => {
 
   const links: FormLink[] = [
     { to: AUTHENTICATION_ROUTE, content: "Authentication" },
-    { to: RESTORE_PASSWORD_ROUTE, content: "Restore" },
     { to: REGISTRATION_ROUTE, content: "Registration" },
   ];
 
-  // Qwerty@2000
   return (
     <Card className="update" title="Update">
       <UpdateForm fields={fields} buttonParams={buttonParams} />

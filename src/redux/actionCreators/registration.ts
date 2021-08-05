@@ -1,14 +1,11 @@
 import { FETCH_REGISTRATION_GOOGLE, FETCH_REGISTRATION_REQUEST } from "../actions/registration";
-import { RequestRegistration } from "../sagas/enter/registration/requestRegistration";
+import { EnterSagaProps } from "../sagas/sagas.interface";
 import { ActionCreator } from "./actionCreators.interface";
 
-export const requestRegistration = ({values, setStatus}: RequestRegistration): ActionCreator<RequestRegistration> => {
+export const requestRegistration = (data: EnterSagaProps): ActionCreator<EnterSagaProps> => {
   return {
     type: FETCH_REGISTRATION_REQUEST,
-    payload: {
-      values,
-      setStatus,
-    },
+    payload: data,
   };
 };
 

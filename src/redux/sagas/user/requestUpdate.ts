@@ -1,11 +1,12 @@
 import firebase from "firebase";
+import { toast } from "react-toastify";
 import { call, put, StrictEffect } from "redux-saga/effects";
 
 import { RequestProps } from "../sagas.interface";
-import { getDownloadURL, handleError } from "../../../utils/functions";
+import { getDownloadURL, handleError, updateFirebaseUser } from "../../../utils/functions";
 import { ProfileInterface } from "../../../screens/options/Profile/Profile.interface";
-import { STANDART_AVATAR } from "../../../utils/consts";
 import { FETCH_USER_SET } from "../../actions/user";
+import { TOASTIFY_CONFIG } from "../../../utils/configs/toastify.config";
 
 export interface RequestUpdateProps {
   closeModal: Function;
@@ -35,27 +36,6 @@ const updateProfile = (profile: any, name: string, photo: string): Promise<fireb
   });
 };
 
-const updateFirebaseUser = async ({uid, name, photo}: {uid: string, name: string, photo: string}): Promise<any> => {
-  try {
-    return await fetch(
-      `https://messenger-b15ea-default-rtdb.europe-west1.firebasedatabase.app/users/${uid}.json`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: name,
-          photo: photo || STANDART_AVATAR,
-        }),
-      }
-    );
-  } catch(error) {
-    console.error('Code: ', error.code);
-    console.error('Message: ', error.message);
-  }
-};
-
 /**
  * @param {object} payload
  * @param {object} payload.user
@@ -79,7 +59,7 @@ export default function* requestUpdate({
     yield call(updatePassword, profile, password);
     yield call(updateProfile, profile, name, photo);
     yield call(updateFirebaseUser, {uid, name, photo});
-
+    
     yield closeModal();
     yield put({
       type: FETCH_USER_SET,
@@ -87,7 +67,9 @@ export default function* requestUpdate({
         user: { name, photo },
       },
     });
+    toast('Profile was change', TOASTIFY_CONFIG);
   } catch (error) {
     handleError(error);
+    toast(error.message, TOASTIFY_CONFIG);
   }
 }

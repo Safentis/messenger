@@ -1,6 +1,5 @@
 import React, { FC, Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { toast } from "react-toastify";
 
 import Label from "../../components/Label/Label";
 import Input from "../../components/Input/Input";
@@ -9,9 +8,12 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import SuccessMessage from "../../components/SuccessMessage/SuccessMessage";
 
 import "./index.css";
-import { Props, Handlers, Validation, FieldsParams } from "./index.interface";
-import { useEffect } from "react";
-import { TOASTIFY_CONFIG } from "../../utils/configs/toastify.config";
+import { 
+  Props, 
+  Handlers, 
+  Validation, 
+  FieldsParams
+} from "./index.interface";
 
 const Form: FC<Props> = ({
   children,
@@ -71,13 +73,11 @@ const Form: FC<Props> = ({
     //* If status true
     //* we view message about access
     //* else we are seeing error message
-    status?.state !== undefined ? (status.state ? SUCCESS_MESSAGE : ERROR_MESSAGE) : null;
-
-  useEffect(() => {
-    status?.state !== undefined && 
-    status.state && 
-    toast(status?.message, TOASTIFY_CONFIG);
-  }, [status]);
+    status?.state !== undefined
+      ? status.state
+        ? SUCCESS_MESSAGE
+        : ERROR_MESSAGE
+      : null;
 
   return (
     <form className="form" onSubmit={handleSubmit}>
