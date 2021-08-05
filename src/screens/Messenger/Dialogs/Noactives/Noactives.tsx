@@ -10,6 +10,7 @@ import { requestActions } from "../../../../redux/actionCreators/dialogs";
 
 import { Props } from "./Noactive.interface";
 import { Chatroom } from "../../../Root.interface";
+import { handleSignalsNotification } from "../../../../utils/functions";
 
 type dateType = string | number | Date;
 type chatroomType = [string, Chatroom];
@@ -40,6 +41,7 @@ const Noactives: FC<Props> = ({ dialogs, user: { uid } }) => {
       begun,
     };
 
+    await handleSignalsNotification(chatId);
     await dispatch(requestActions({ chatId, body }));
   };
 
@@ -81,20 +83,6 @@ const Noactives: FC<Props> = ({ dialogs, user: { uid } }) => {
 
   return (
     <>
-      {/* <Namebar>
-                <Line className="noactive__line"/>
-                <Search />
-            </Namebar>
-            <Content>
-                <InfiniteScroll
-                    loadMore={loadMore}
-                    hasMore={hasMoreItems}
-                    loader={loader}
-                    useWindow={false}
-                >
-                    {showItems(result)}
-                </InfiniteScroll>
-            </Content> */}
       <InfiniteScroll
         loadMore={loadMore}
         hasMore={hasMoreItems}

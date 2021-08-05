@@ -1,6 +1,7 @@
 import firebase from "firebase";
+import { ValidationTokenCheck } from "../redux/sagas/enter/authentication/requestTokenCheck";
 
-import { STANDART_AVATAR } from "./consts";
+import { LOCAL_HOST, STANDART_AVATAR } from "./consts";
 
 export const getDownloadURL = (
   storageRef: firebase.storage.Reference,
@@ -64,18 +65,95 @@ export const handleError = (error: Error): never | void => {
 };
 
 export const createFirebaseUser = async (user: firebase.User): Promise<void> => {
-  await fetch(
-    `https://messenger-b15ea-default-rtdb.europe-west1.firebasedatabase.app/users/${user.uid}.json`,
-    {
-      method: "PUT",
+  try {
+    await fetch(
+      `https://messenger-b15ea-default-rtdb.europe-west1.firebasedatabase.app/users/${user.uid}.json`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: user.displayName || user.email,
+          email: user.email,
+          photo: user.photoURL || STANDART_AVATAR,
+        }),
+      }
+    );
+  } catch(error) {
+    handleError(error);
+  }
+};
+
+export const updateFirebaseUser = async ({uid, name, photo}: {uid: string, name: string, photo: string}): Promise<any> => {
+  try {
+    return await fetch(
+      `https://messenger-b15ea-default-rtdb.europe-west1.firebasedatabase.app/users/${uid}.json`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          photo: photo || STANDART_AVATAR,
+        }),
+      }
+    );
+  } catch(error) {
+    console.error('Code: ', error.code);
+    console.error('Message: ', error.message);
+  }
+};
+
+//* ------------------------------------------------------------------------------------------
+//* ADMIN SDK
+export async function fetchValidationToken(token: string): Promise<ValidationTokenCheck | undefined> {
+  try {
+    const req = await fetch(LOCAL_HOST, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token,
+      },
+    });
+    return await req.json();
+  } catch(error) {
+    handleError(error);
+  }
+}
+
+export const fetchUpdatePassword = async (password: string, email: string): Promise<void> => {
+  try {
+    const req = await fetch(LOCAL_HOST + "/" + "user", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: user.displayName || user.email,
-        email: user.email,
-        photo: user.photoURL || STANDART_AVATAR,
+        password,
+        email,
       }),
-    }
-  );
-};
+    });
+    return await req.json();
+  } catch(error) {
+    handleError(error);
+  }
+}
+
+export const handleSignalsNotification = async (chatId: string) => {
+  try {
+    await fetch(LOCAL_HOST + '/notification', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          key: chatId
+        }),
+      }
+    )
+  } catch(error) {
+    handleError(error);
+  }
+}

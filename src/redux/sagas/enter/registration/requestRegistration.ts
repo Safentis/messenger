@@ -1,29 +1,22 @@
 import { put, call, StrictEffect } from "redux-saga/effects";
+import { toast } from "react-toastify";
 import firebase from "firebase";
 
 import { Fields } from "../../../../screens/enter/Registration/Registration.interface";
+import { EnterSagaProps } from "../../sagas.interface";
 import { createFirebaseUser, handleError } from "../../../../utils/functions";
 import { FETCH_USER_SET } from "../../../actions/user";
-import { RESTORE_SUCCESS_MESSAGE } from "../../../../utils/consts";
+import { TOASTIFY_CONFIG } from "../../../../utils/configs/toastify.config";
+import { REGISTRATION_SUCCESS_MESSAGE } from "../../../../utils/consts";
 import {
   FETCH_MESSAGES_FAILURE,
   FETCH_MESSAGES_SUCCESS,
 } from "../../../actions/authentication";
 
 
-export interface RequestRegistration {
-  values: Fields;
-  setStatus: Function;
-}
-
-interface RequestRegistrationProps {
-  payload: RequestRegistration;
-}
-
 const fetchRegistration = async ({ email, password }: Fields): Promise<firebase.User> => {
   const userCredential: firebase.auth.UserCredential = await firebase
-    .auth()
-    .createUserWithEmailAndPassword(email, password);
+    .auth().createUserWithEmailAndPassword(email, password);
   const user: firebase.User = (await userCredential.user) as firebase.User;
 
   return user;
@@ -34,14 +27,15 @@ const getIdToken = async (user: firebase.User): Promise<string> => {
 };
 
 /**
- * @param {object} payload
- * @param {Fields} values contains email and password fields
- * @param {function} setStatus is function for handle of form status with api formik
+ * @param {EnterSagaProps} payload
+ * @param {Fields} payload.values
+ * @param {object} payload.formik
+ * @param {object} payload.histroy
  * @returns {Generator <StrictEffect, void, any>}
  */
 export default function* requestRegistration({
-  payload: { values, setStatus },
-}: RequestRegistrationProps): Generator<StrictEffect, void, any> {
+  payload: { values, formik, history },
+}: EnterSagaProps): Generator<StrictEffect, void, any> {
   try {
     const user: firebase.User = yield call(fetchRegistration, {
       email: values.email,
@@ -50,7 +44,8 @@ export default function* requestRegistration({
     
     const token: string = yield call(getIdToken, user);
 
-    yield call(createFirebaseUser, user); // function in utils dir
+    //* Function from utils dir
+    yield call(createFirebaseUser, user);
     yield put({
       type: FETCH_MESSAGES_SUCCESS,
       payload: {
@@ -72,9 +67,14 @@ export default function* requestRegistration({
       },
     });
     
-    setStatus({state: true, message: RESTORE_SUCCESS_MESSAGE});
+    //* Set SUCCESS status to formik
+    formik.setStatus({state: true, message: REGISTRATION_SUCCESS_MESSAGE});
+    
+    //* Set-up toast for an in-app messages
+    toast(REGISTRATION_SUCCESS_MESSAGE, TOASTIFY_CONFIG)
   } catch (error) {
-    setStatus({state: false, message: error.message});
+    //* Set FAILURE status to formik
+    formik.setStatus({state: false, message: error.message});
     yield put({
       type: FETCH_MESSAGES_FAILURE,
     });

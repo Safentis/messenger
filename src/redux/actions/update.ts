@@ -1,0 +1,1 @@
+export const FETCH_UPDATE_PASSWORD: string = "FETCH_UPDATE_PASSWORD";

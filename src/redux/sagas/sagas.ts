@@ -2,17 +2,18 @@ import { takeEvery, all } from "redux-saga/effects";
 
 import requestAuthentication from "./enter/authentication/requestAuthentication";
 import requestGoogle from "./enter/registration/requestGoogle";
-import requestRestore from "./enter/restore/restoreRequest";
 import requestSignOut from "./enter/authentication/requestSignOut";
 import requestTokenCheck from "./enter/authentication/requestTokenCheck";
 import requestDialogs from "./dialogs/requestDialogs";
 import requestFiltered from "./dialogs/requestFiltered";
+import requestRestorePassword from "./enter/restore/requestRestorePassword";
 import requestActions from "./dialogs/requestActions";
 import requestMessages from "./dialogs/requestMessages";
 import requestUser from "./user/requestUser";
 import requestUpdate from "./user/requestUpdate";
 import requestSettings from "./user/requestSettings";
 import requestRegistration from "./enter/registration/requestRegistration";
+import requestUpdatePassword from "./enter/update/requestUpdatePassword";
 
 import {
   FETCH_EXITING_APP,
@@ -37,13 +38,17 @@ import {
 import { 
   FETCH_RESTORE_PASSWORD 
 } from "../actions/restore";
+import { 
+  FETCH_UPDATE_PASSWORD 
+} from "../actions/update";
 
 export default function* rootSaga() {
   yield all([
     takeEvery(FETCH_MESSAGES_REQUEST as any, requestAuthentication),
     takeEvery(FETCH_REGISTRATION_REQUEST as any, requestRegistration),
-    takeEvery(FETCH_RESTORE_PASSWORD as any, requestRestore),
+    takeEvery(FETCH_RESTORE_PASSWORD as any, requestRestorePassword),
     takeEvery(FETCH_REGISTRATION_GOOGLE, requestGoogle),
+    takeEvery(FETCH_UPDATE_PASSWORD as any, requestUpdatePassword),
     takeEvery(FETCH_TOKEN_CHECK as any, requestTokenCheck),
     takeEvery(FETCH_EXITING_APP, requestSignOut),
     takeEvery(FETCH_DIALOGS as any, requestDialogs),
