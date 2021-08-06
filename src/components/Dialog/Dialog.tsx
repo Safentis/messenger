@@ -14,7 +14,10 @@ const Dialog: FC<Props> = ({ children, client, messages = {} }) => {
 
   const allMessages: Message[] = Object.values(messages);
   const lastIndex: number = allMessages.length - 1;
-  const lastContent: string = allMessages[lastIndex]?.content || defaultContent;
+  const lastContent: string =
+    (allMessages[lastIndex]?.content &&
+      allMessages[lastIndex]?.content?.slice(0, 33) + "...") ||
+    defaultContent;
   const lastTimestamp: string | number | Date =
     allMessages[lastIndex]?.timestamp;
   const lastWritter: string = allMessages[lastIndex]?.writtenBy;
@@ -27,7 +30,7 @@ const Dialog: FC<Props> = ({ children, client, messages = {} }) => {
     <div className="dialog">
       <div className="dialog__inner">
         <div className="dialog__client">
-          <Avatar className="dialog__avatar" width={45} height={45}/>
+          <Avatar className="dialog__avatar" width={45} height={45} />
         </div>
         <div className="dialog__content">
           <p className="dialog__name">{client}</p>

@@ -53,7 +53,6 @@
 }
 .aside__content {
   overflow-y: auto;
-  overflow-x: hidden;
   height: 65vh;
 }
 

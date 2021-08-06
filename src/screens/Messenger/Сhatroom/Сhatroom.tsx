@@ -20,10 +20,8 @@ import {
   Props,
   Signal,
   Envelope,
-  chatroomType,
   activityType,
   typingType,
-  messagesType,
   pictureType,
   inputbarType,
   useparamsType,
@@ -44,6 +42,7 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
     chatroomChannel: string;
     question: string;
     status: string;
+    complited: string | number | Date;
   }
 
   const [chatroom, setChatroom]: [ChatroomState, Function] = useState({
@@ -51,10 +50,11 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
     messages: Object.values(dialogs[key]?.messages || []),
     question: Object.values(dialogs[key]?.messages || [])[1],
     status: dialogs[key]?.status,
+    complited: '',
   });
 
-  let activity: activityType = useLastActivity(
-    chatroom.messages[chatroom.messages.length - 1]?.timestamp
+  const activity: activityType = useLastActivity(
+    chatroom?.complited
   );
 
   useEffect(() => {
@@ -73,6 +73,7 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
       messages: messages,
       question: messages[1]?.content,
       status: chatroom?.status,
+      complited: dialogs[key]?.complited
     });
   }, [key]);
 

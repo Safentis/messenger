@@ -10,6 +10,7 @@ export interface Chatroom {
   status: string;
   theme: string;
   subtheme: string;
+  complited: string | number | Date;
 }
 
 export interface Client {
@@ -22,6 +23,7 @@ export interface Message {
   timestamp: string | number | Date;
   writtenBy: string;
   images: string[];
+  solution?: boolean;
 }
 
 export interface User {

@@ -1,13 +1,11 @@
 import { call, put } from "@redux-saga/core/effects";
 import { StrictEffect } from "@redux-saga/types";
-import { LOCAL_HOST } from "../../../../utils/consts";
 import { fetchValidationToken } from "../../../../utils/functions";
 
 import { FETCH_EXITING_APP } from "../../../actions/authentication";
 
 export interface ValidationTokenCheck {
   validation: boolean;
-  uid: string;
 }
 
 interface RequestTokenCheckProps {
@@ -31,7 +29,6 @@ export default function* requestTokenCheck({
 }: RequestTokenCheckProps): Generator<StrictEffect, void, any> {
   try {
     const { validation }: ValidationTokenCheck = yield call(fetchValidationToken, token);
-
     //* if validation false we exiting from application
     if (!validation) {
       yield put({
