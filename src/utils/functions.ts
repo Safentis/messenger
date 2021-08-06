@@ -1,7 +1,7 @@
 import firebase from "firebase";
 import { ValidationTokenCheck } from "../redux/sagas/enter/authentication/requestTokenCheck";
 
-import { LOCAL_HOST, STANDART_AVATAR } from "./consts";
+import { SERVER_URL, STANDART_AVATAR } from "./consts";
 
 export const getDownloadURL = (
   storageRef: firebase.storage.Reference,
@@ -101,16 +101,35 @@ export const updateFirebaseUser = async ({uid, name, photo}: {uid: string, name:
       }
     );
   } catch(error) {
-    console.error('Code: ', error.code);
-    console.error('Message: ', error.message);
+    handleError(error);
   }
 };
+
+export const handleSolution = async (chatId: string, messageId: string) => {
+  console.log(messageId);
+  try {
+    return await fetch(
+      `https://messenger-b15ea-default-rtdb.europe-west1.firebasedatabase.app/chatrooms/${chatId}/messages/${messageId}.json`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          solution: true,
+        }),
+      }
+    );
+  } catch(error) {
+    handleError(error);
+  }
+}
 
 //* ------------------------------------------------------------------------------------------
 //* ADMIN SDK
 export async function fetchValidationToken(token: string): Promise<ValidationTokenCheck | undefined> {
   try {
-    const req = await fetch(LOCAL_HOST, {
+    const req = await fetch(SERVER_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -125,7 +144,7 @@ export async function fetchValidationToken(token: string): Promise<ValidationTok
 
 export const fetchUpdatePassword = async (password: string, email: string): Promise<void> => {
   try {
-    const req = await fetch(LOCAL_HOST + "/" + "user", {
+    const req = await fetch(SERVER_URL + "/" + "user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -143,7 +162,7 @@ export const fetchUpdatePassword = async (password: string, email: string): Prom
 
 export const handleSignalsNotification = async (chatId: string) => {
   try {
-    await fetch(LOCAL_HOST + '/notification', {
+    await fetch(SERVER_URL + '/notification', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,7 +1,5 @@
-export interface Props {
-  content: string;
-  timestamp: string | number;
-  images?: string[];
-  writtenBy: string;
+import { Message } from "../../screens/Root.interface";
+
+export interface Props extends Message {
   photo: string;
 }

@@ -4,7 +4,7 @@ import "./Typing.css";
 
 const Typing: FC<Props> = ({ className, isTyping }) => {
   return isTyping ? (
-    <p className={"typing " + className}>Typing message...</p>
+    <p className={"typing " + className}>Client typing message...</p>
   ) : null;
 };
 

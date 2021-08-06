@@ -15,7 +15,7 @@ const useSolution = ({ dialogs, question }: Props): string[] => {
     //* We take all complted dialogs and search final message
     Object.values(dialogs).map(({ messages = {}, status }) => {
       let values: Message[] = Object.values(messages);
-     
+      
       if (status === "complited" && values.length > 0) {
         let lstIndex: number = values.length - 1;
         let frsMessage: string = values[1]?.content;

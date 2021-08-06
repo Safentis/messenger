@@ -1,7 +1,10 @@
 import { FC } from "react";
 
 import Avatar from "../Avatar/Avatar";
+import Button from "../Button/Button";
 import useLastActivity from "../../Hooks/useLastActivity";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 import { Props } from "./Message.interface";
 import { STANDART_AVATAR } from "../../utils/consts";
@@ -42,8 +45,11 @@ const Message: FC<Props> = ({
 
   const CONTENT: React.ReactNode | null =
     content?.length > 0 ? (
-      <p className={"message__text " + contentClass}>{content}</p>
+      <>
+        <p className={"message__text " + contentClass}>{content}</p>
+      </>
     ) : null;
+
 
   return (
     <div className={"message " + messageClass}>
