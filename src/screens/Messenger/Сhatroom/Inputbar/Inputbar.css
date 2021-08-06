@@ -64,38 +64,30 @@
   left: 34%;
 }
 
-/* @media screen and (max-width: 1280px) {
-  .inputbar {
-    grid-column-gap: 2rem;
-    grid-template-columns: 0.7fr 15rem auto;
-  }
-}
-
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1280px) {
   .inputbar {
     grid-column-gap: 2rem;
     grid-template-columns: 0.5fr 15rem 0.35fr;
-  }
-
-  .inputbar__field {
-    font-size: 1.6rem;
+    width: 100%;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 980px) {
   .inputbar {
-    grid-column-gap: 2rem;
-    grid-template-columns: 0.5fr 15rem 0.5fr;
+    grid-template-columns: 0.5fr 15rem;
+    padding-bottom: 1rem;
   }
-
-  .inputbar__icon {
-    margin: 0.2rem;
+  
+  .inputbar__content {
+    grid-column-start: 1;
+    grid-column-end: 3;
   }
 }
 
-@media screen and (max-width: 581px) {
+@media screen and (max-width: 580px) {
   .inputbar {
-    grid-column-gap: 0rem;
-    grid-template-columns: auto 0.5fr;
+    position: unset !important;
+    width: 100%;
+    grid-template-columns: auto auto;
   }
-} */
+}

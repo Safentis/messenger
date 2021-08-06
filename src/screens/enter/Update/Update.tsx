@@ -20,7 +20,6 @@ import {
   PASSWORD_VALIDATION_MESSAGE,
   REGISTRATION_ROUTE,
   REG_EXP_PASSWORD,
-  RESTORE_PASSWORD_ROUTE,
 } from "../../../utils/consts";
 
 //* PROPERTY FOR HOC form

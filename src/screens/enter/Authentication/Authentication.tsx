@@ -16,7 +16,6 @@ import { Fields } from "./Authentication.interface";
 import {
   REGISTRATION_ROUTE,
   RESTORE_PASSWORD_ROUTE,
-  UPDATE_PASSWORD_ROUTE,
 } from "../../../utils/consts";
 import {
   ButtonParams,

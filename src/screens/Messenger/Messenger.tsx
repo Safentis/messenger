@@ -34,7 +34,7 @@ const Messenger: FC = (): any => {
   );
 
   useEffect(() => {
-    dispatch(requestTokenCheck(token));
+    // dispatch(requestTokenCheck(token));
   }, []);
 
   //* --------------------------------------------------------------------

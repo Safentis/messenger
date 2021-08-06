@@ -1,12 +1,12 @@
 import Enzyme from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-
-Enzyme.configure({ adapter: new Adapter() });
-
 import { shallow } from "enzyme";
 import { useFormik } from "formik";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+
 import Form from "./index";
 
+Enzyme.configure({ adapter: new Adapter() });
 jest.mock("formik");
 
 describe("<Form />", () => {
@@ -35,13 +35,14 @@ describe("<Form />", () => {
 
   describe("Quantity of the rendered components", () => {
 
+    const buttonParams = {text: '', icon: faEnvelope}
     const fields = [
         { name: "email", type: "text" },
         { name: "password", type: "password" },
     ];
 
     beforeEach(() => {
-      component = <Form formik={formik} fields={fields}/>;
+      component = <Form buttonParams={buttonParams}  formik={formik} fields={fields}/>;
       wrapper = shallow(component);
     });
 

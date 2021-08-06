@@ -106,7 +106,6 @@ export const updateFirebaseUser = async ({uid, name, photo}: {uid: string, name:
 };
 
 export const handleSolution = async (chatId: string, messageId: string) => {
-  console.log(messageId);
   try {
     return await fetch(
       `https://messenger-b15ea-default-rtdb.europe-west1.firebasedatabase.app/chatrooms/${chatId}/messages/${messageId}.json`,
@@ -144,7 +143,7 @@ export async function fetchValidationToken(token: string): Promise<ValidationTok
 
 export const fetchUpdatePassword = async (password: string, email: string): Promise<void> => {
   try {
-    const req = await fetch(SERVER_URL + "/" + "user", {
+    const req = await fetch(SERVER_URL + "/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -160,7 +159,7 @@ export const fetchUpdatePassword = async (password: string, email: string): Prom
   }
 }
 
-export const handleSignalsNotification = async (chatId: string) => {
+export const handleSignalsNotification = async (chatId: string): Promise<void> => {
   try {
     await fetch(SERVER_URL + '/notification', {
         method: "POST",
@@ -171,7 +170,7 @@ export const handleSignalsNotification = async (chatId: string) => {
           key: chatId
         }),
       }
-    )
+    );
   } catch(error) {
     handleError(error);
   }

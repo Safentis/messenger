@@ -62,3 +62,15 @@
   border-bottom-right-radius: 0;
   color: var(--main-blue-color);
 }
+
+@media screen and (max-width: 980px) {
+  .messages {
+    height: 71vh;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .messages {
+    height: 100vh;
+  }
+}

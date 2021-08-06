@@ -11,17 +11,25 @@ export interface Signal {
   message: number;
   publisher: string;
   subscription: null | string;
-  timetoken: string | number | Date;
+  timetoken: dateType;
 }
 
 export interface Envelope {
   message: Message;
   publisher: string;
-  timetoken: string | number | Date;
+  timetoken: dateType;
 }
 
+export interface ChatroomState {
+  messages: Message[];
+  question: string;
+  status: string;
+  complited: dateType;
+}
+
+export type dateType = string | number | Date;
 export type chatroomType = [string, Chatroom];
-export type activityType = string | number | Date;
+export type activityType = dateType;
 export type typingType = [boolean, Function];
 export type messagesType = [Message[], Function];
 export type pictureType = [object[], Function];

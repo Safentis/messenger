@@ -1,10 +1,7 @@
 import { FC } from "react";
 
 import Avatar from "../Avatar/Avatar";
-import Button from "../Button/Button";
 import useLastActivity from "../../Hooks/useLastActivity";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 import { Props } from "./Message.interface";
 import { STANDART_AVATAR } from "../../utils/consts";
@@ -33,7 +30,6 @@ const Message: FC<Props> = ({
 
   //* -----------------------------------------------------------
   //* Content
-  // console.log(images);
   const PICTURES: React.ReactNode | null =
     images.length > 0
       ? images.map((image: string, index: number) => (

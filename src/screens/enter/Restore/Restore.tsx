@@ -14,7 +14,6 @@ import { Fields, Props } from "./Restore.interface";
 import {
   AUTHENTICATION_ROUTE,
   REGISTRATION_ROUTE,
-  UPDATE_PASSWORD_ROUTE,
 } from "../../../utils/consts";
 import {
   ButtonParams,

@@ -24,5 +24,7 @@ export const PASSWORD_VALIDATION_MESSAGE = "Password must will be with one Upper
 export const STANDART_AVATAR =
   "https://firebasestorage.googleapis.com/v0/b/messenger-b15ea.appspot.com/o/avatars%2Fanonymous-user.png?alt=media&token=227f86c4-efa1-4d33-839e-0ee6ae9fc7a8";
 //* Request urls
-export const SERVER_URL = "http://localhost:8080";
-export const HEROKU_URL = "https://messenger-token-checker.herokuapp.com";
+//* local host: http://localhost:8080
+//* heroku app: https://messenger-token-checker.herokuapp.com
+// export const SERVER_URL = "http://localhost:8080";
+export const SERVER_URL = "https://messenger-token-checker.herokuapp.com";

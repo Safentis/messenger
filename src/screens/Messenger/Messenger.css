@@ -1,7 +1,7 @@
 .messenger {
   background-color: var(--main-lg-grey-color);
   display: grid;
-  grid-template-columns: .35fr 1fr;
+  grid-template-columns: 35rem 1fr;
   grid-template-rows: 0.1fr 1fr;
   grid-template-areas:
     "aside namebar"
@@ -26,19 +26,36 @@
 .chatroom {
   grid-area: content;
 }
-/* 
+
 @media screen and (max-width: 1024px) {
   .messenger {
-    grid-template-columns: 20rem auto;
+    grid-template-columns: 30rem auto;
   }
 }
 
 @media screen and (max-width: 768px) {
   .messenger {
+    grid-template-columns: .5fr auto;
     grid-template-areas:
-      "aside aside    "
       "namebar namebar"
-      "content content";
-    grid-template-rows: 0.1fr 0.2fr 0.1fr;
+      "aside content  "
+      "aside content  "
+    /* grid-template-rows: 0.1fr 0.2fr 0.1fr; */
   }
-} */
+}
+
+@media screen and (max-width: 580px) {
+  .messenger::-webkit-scrollbar-thumb {
+    background-color: var(--main-lg-blue-color);
+    border-radius: 0.5rem;
+  }
+  .messenger {
+    overflow-y: scroll;
+    grid-template-columns: auto;
+    grid-template-areas:
+      "namebar namebar"
+      "content content"
+      "aside aside    "
+    ;
+  }
+}
