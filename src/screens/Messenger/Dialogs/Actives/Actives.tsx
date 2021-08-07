@@ -17,7 +17,7 @@ const Actives: FC<Props> = ({ dialogs, user: { uid } }) => {
   //* We created save functionality
   const handleSave = async (event: MouseEvent) => {
     const target = event.target as HTMLElement;
-    const chatId = target.dataset.id;
+    const chatId = target.dataset.id as string;
     const body = {
       saved: "saved",
     };

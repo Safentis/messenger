@@ -5,7 +5,7 @@ import { RequestProps } from '../sagas.interface';
 import firebase from 'firebase';
 import { handleError } from "../../../utils/functions";
 
-interface RequestUser {
+export interface RequestUser {
   user: firebase.User;
 }
 
@@ -20,7 +20,7 @@ export default function* requestUser({ payload: { user }}: RequestProps<RequestU
   any
 > {
   try {
-    const info = {
+    const info: UserStore = {
       email: user.email,
       name: user.displayName,
       photo: user.photoURL,

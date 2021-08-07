@@ -53,10 +53,10 @@ export default function* rootSaga() {
     takeEvery(FETCH_EXITING_APP, requestSignOut),
     takeEvery(FETCH_DIALOGS as any, requestDialogs),
     takeEvery(FETCH_FILTERED_DIALOGS, requestFiltered),
-    takeEvery(FETCH_ACTIONS, requestActions),
+    takeEvery(FETCH_ACTIONS as any, requestActions),
     takeEvery(FETCH_USER as any, requestUser),
     takeEvery(FETCH_USER_UPDATE as any, requestUpdate),
-    takeEvery(FETCH_USER_SETTINGS, requestSettings),
-    takeEvery(FETCH_MESSAGES, requestMessages),
+    takeEvery(FETCH_USER_SETTINGS as any, requestSettings),
+    takeEvery(FETCH_MESSAGES as any, requestMessages),
   ]);
 }

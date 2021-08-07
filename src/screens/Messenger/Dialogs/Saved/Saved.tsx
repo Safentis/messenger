@@ -9,8 +9,7 @@ import Button from "../../../../components/Button/Button";
 import Dialog from "../../../../components/Dialog/Dialog";
 import Stars from "../../../../components/Stars/Stars";
 
-import { Props, chatroomType } from "./Saved.interface";
-import { Chatroom } from "../../../Root.interface";
+import { Props } from "./Saved.interface";
 
 const Saved: FC<Props> = ({ dialogs, user: { uid } }): React.ReactElement => {
   const dispatch = useDispatch();

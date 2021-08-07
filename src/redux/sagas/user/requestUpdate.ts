@@ -64,7 +64,10 @@ export default function* requestUpdate({
     yield put({
       type: FETCH_USER_SET,
       payload: {
-        user: { name, photo },
+        user: { 
+          name, 
+          photo 
+        },
       },
     });
     toast('Profile was change', TOASTIFY_CONFIG);

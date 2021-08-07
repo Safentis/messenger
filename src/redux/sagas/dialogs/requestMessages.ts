@@ -1,11 +1,14 @@
 import { call, StrictEffect } from "redux-saga/effects";
 
-interface fetchMessages {
+import { RequestProps } from "../sagas.interface";
+import { Message } from "../../../screens/Root.interface";
+
+export interface FetchMessages {
   chatId: string;
-  body: any;
+  body: Message;
 }
 
-const fetchMessages = async ({ chatId, body }: fetchMessages): Promise<void> => {
+const fetchMessages = async ({ chatId, body }: FetchMessages): Promise<void> => {
   try {
     await fetch(
       `https://messenger-b15ea-default-rtdb.europe-west1.firebasedatabase.app/chatrooms/${chatId}/messages.json`,
@@ -31,7 +34,7 @@ const fetchMessages = async ({ chatId, body }: fetchMessages): Promise<void> => 
  */
 export default function* requestMessages({
   payload: { chatId, body },
-}: any): Generator<StrictEffect, void, any> {
+}: RequestProps<FetchMessages>): Generator<StrictEffect, void, any> {
   try {
     yield call(fetchMessages, { chatId, body });
   } catch (error) {

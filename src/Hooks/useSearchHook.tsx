@@ -43,7 +43,7 @@ const useSearchHook = ({ dialogs, search }: Props): null => {
       noFiltered.length > 0 &&
         noFiltered.forEach((dialog: chatroomType) => {
           let [key, value]: chatroomType = dialog;
-          let messages: Message[] = Object.values(value.messages);
+          let messages: Message[] = Object.values(value?.messages || []);
   
           messages.forEach((message: Message) => {
             let lowerContentCase: string = message.content.toLowerCase();

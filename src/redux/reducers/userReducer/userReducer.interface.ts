@@ -1,7 +1,7 @@
 export interface UserStore {
-  email: string;
-  name: string;
-  photo: string;
+  email: string | null;
+  name: string | null;
+  photo: string | null;
   uid: string; 
 }
 
