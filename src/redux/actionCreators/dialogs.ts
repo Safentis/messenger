@@ -5,10 +5,11 @@ import {
   FETCH_FILTERED_DIALOGS,
   FETCH_MESSAGES,
 } from "../actions/dialogs";
+import { Chatrooms } from "../../screens/Root.interface";
 import { ActionCreator } from "./actionCreators.interface";
 import { FetchMessages } from "../sagas/dialogs/requestMessages";
 
-export const requestDialogs = (dialogs: any) => {
+export const requestDialogs = (dialogs: Chatrooms): ActionCreator<{ dialogs: Chatrooms }> => {
   return {
     type: FETCH_DIALOGS,
     payload: {
@@ -17,7 +18,7 @@ export const requestDialogs = (dialogs: any) => {
   };
 };
 
-export const setFilteredDialogs = (dialogs: any) => {
+export const setFilteredDialogs = (dialogs: Chatrooms): ActionCreator<{ dialogs: Chatrooms }> => {
   return {
     type: FETCH_FILTERED_DIALOGS,
     payload: {

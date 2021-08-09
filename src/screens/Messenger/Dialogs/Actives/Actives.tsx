@@ -5,7 +5,7 @@ import { Link, useRouteMatch } from "react-router-dom";
 import { requestActions } from "../../../../redux/actionCreators/dialogs";
 import Dialog from "../../../../components/Dialog/Dialog";
 import Button from "../../../../components/Button/Button";
-import useFilterDialogs from "../../../../Hooks/useFilterDialogs";
+import useFilterDialogs, { ChatroomType } from "../../../../Hooks/useFilterDialogs";
 
 import { Props } from "./Actives.interface";
 
@@ -28,7 +28,7 @@ const Actives: FC<Props> = ({ dialogs, user: { uid } }) => {
   //* -------------------------------------------------------
   //* We create filter
   const status: string = "active";
-  const result: any[] = useFilterDialogs({ dialogs, status, uid });
+  const result: ChatroomType[] = useFilterDialogs({ dialogs, status, uid });
 
   //* -------------------------------------------------------
   //* Content

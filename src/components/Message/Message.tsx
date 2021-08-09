@@ -5,6 +5,7 @@ import useLastActivity from "../../Hooks/useLastActivity";
 
 import { Props } from "./Message.interface";
 import { STANDART_AVATAR } from "../../utils/consts";
+import { DateType } from "../../screens/Root.interface";
 import "./Message.css";
 
 const Message: FC<Props> = ({
@@ -16,7 +17,7 @@ const Message: FC<Props> = ({
 }) => {
   //* -----------------------------------------------------------
   //* With useLastActivity we got a activity
-  const activity: any = useLastActivity(timestamp);
+  const activity: DateType = useLastActivity(timestamp);
 
   //* -----------------------------------------------------------
   //* Classes

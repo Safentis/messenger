@@ -2,29 +2,12 @@ import { call, StrictEffect } from "redux-saga/effects";
 
 import { RequestProps } from "../sagas.interface";
 import { Message } from "../../../screens/Root.interface";
+import { fetchMessages } from "../../../utils/functions";
 
 export interface FetchMessages {
   chatId: string;
   body: Message;
 }
-
-const fetchMessages = async ({ chatId, body }: FetchMessages): Promise<void> => {
-  try {
-    await fetch(
-      `https://messenger-b15ea-default-rtdb.europe-west1.firebasedatabase.app/chatrooms/${chatId}/messages.json`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      }
-    );
-  } catch (error) {
-    console.error(error.code);
-    console.error(error.message);
-  }
-};
 
 /**
  * @param {object} payload

@@ -1,9 +1,10 @@
 import { put, StrictEffect } from "redux-saga/effects";
-import { FETCH_USER_SET } from "../../actions/user";
-import { UserStore } from "../../reducers/userReducer/userReducer.interface";
-import { RequestProps } from '../sagas.interface';
 import firebase from 'firebase';
+
+import { FETCH_USER_SET } from "../../actions/user";
+import { RequestProps } from '../sagas.interface';
 import { handleError } from "../../../utils/functions";
+import { UserStore } from "../../reducers/userReducer/userReducer.interface";
 
 export interface RequestUser {
   user: firebase.User;

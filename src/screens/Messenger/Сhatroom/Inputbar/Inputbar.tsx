@@ -1,6 +1,6 @@
-import { FC, useState } from "react";
+import React, { FC, KeyboardEvent, SyntheticEvent, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Picker from "emoji-picker-react";
+import Picker, { IEmojiPickerProps } from "emoji-picker-react";
 import ImageUploader from "react-images-upload";
 import { faSmile } from "@fortawesome/free-solid-svg-icons";
 import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
@@ -23,11 +23,11 @@ const Inputbar: FC<Props> = ({
 }) => {
   //* ---------------------------------------------
   //* Input handlers
-  const handleChange = (event: any) => {
-    setInputbar(event.target.value);
+  const handleChange = (event: SyntheticEvent<HTMLInputElement>): void => {
+    setInputbar(event.currentTarget.value);
   };
 
-  const handleKeyPress = (event: any) => {
+  const handleKeyPress = (event: { key: string; code: number; }): void => {
     if (event.key === "Enter" || event.code === 13) {
       sendMessage(inputbar);
     }
@@ -53,7 +53,7 @@ const Inputbar: FC<Props> = ({
   //* Emoji handler
   const [isEmoji, setEmoji] = useState(false);
 
-  const onEmojiClick = (event: any, emojiObject: any) => {
+  const onEmojiClick = (event: any, emojiObject: { emoji: string; }): void => {
     setInputbar(inputbar + " " + emojiObject.emoji);
   };
 

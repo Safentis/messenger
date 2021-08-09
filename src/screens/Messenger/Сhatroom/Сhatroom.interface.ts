@@ -1,4 +1,4 @@
-import { Chatroom, Message } from "../../Root.interface";
+import { Chatroom, DateType, Message } from "../../Root.interface";
 
 export interface Props {
   dialogs: Chatroom[];
@@ -11,25 +11,23 @@ export interface Signal {
   message: number;
   publisher: string;
   subscription: null | string;
-  timetoken: dateType;
+  timetoken: DateType;
 }
 
 export interface Envelope {
   message: Message;
   publisher: string;
-  timetoken: dateType;
+  timetoken: DateType;
 }
 
 export interface ChatroomState {
   messages: Message[];
   question: string;
   status: string;
-  complited: dateType;
+  complited: DateType;
 }
 
-export type dateType = string | number | Date;
 export type chatroomType = [string, Chatroom];
-export type activityType = dateType;
 export type typingType = [boolean, Function];
 export type messagesType = [Message[], Function];
 export type pictureType = [object[], Function];

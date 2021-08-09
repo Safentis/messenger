@@ -7,7 +7,7 @@ import { RootReducerState } from "../redux/reducers/rootReducer.interface";
 import { privateRoutes, publicRoutes } from "../routes";
 import { AUTHENTICATION_ROUTE, MESSENGER_ROUTE } from "../utils/consts";
 
-const RootRouter: FC = (): any => {
+const RootRouter: FC = (): React.ReactElement => {
   const success: boolean = useSelector((state: RootReducerState) => {
     return state.authenticationReducer.success;
   });

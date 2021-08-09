@@ -1,8 +1,9 @@
 import { FC, useEffect } from "react";
-import "./Messages.css";
-import { Props, MessagesElement, ScrollHeight } from "./Messages.interface";
 
-const Messages: FC<Props> = ({ children, className = "" }) => {
+import { Props, MessagesElement, ScrollHeight } from "./Messages.interface";
+import "./Messages.css";
+
+const Messages: FC<Props> = ({ children, className = "" }): React.ReactElement => {
   //* --------------------------------------------------------
   //* Autoscroll messages
   useEffect(() => {

@@ -7,7 +7,7 @@ import { Props } from "./Dialog.interface";
 import { Message } from "../../screens/Root.interface";
 import "./Dialog.css";
 
-const Dialog: FC<Props> = ({ children, client, messages = {} }) => {
+const Dialog: FC<Props> = ({ children, client, messages = {} }): React.ReactElement => {
   //* -------------------------------------------------------------------
   //* Content of the dialog
   const defaultContent: string = "no messages";

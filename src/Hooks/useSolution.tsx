@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Chatroom, Message } from "../screens/Root.interface";
+
+import { Chatrooms, Message } from "../screens/Root.interface";
 
 interface Props {
-  dialogs: Chatroom[];
+  dialogs: Chatrooms;
   question: string;
 }
 

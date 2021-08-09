@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 
 import "./Line.css";
 import { Props } from "./Line.interface";
-import { Chatroom } from "../../screens/Root.interface";
+import { Chatroom, Chatrooms } from "../../screens/Root.interface";
 import { RootReducerState } from "../../redux/reducers/rootReducer.interface";
 
 const Line: FC<Props> = ({ className = '' }): React.ReactElement => {
-  const dialogs = useSelector((state: RootReducerState): Chatroom[] => {
+  const dialogs = useSelector((state: RootReducerState): Chatrooms => {
     return state.dialogsReducer.dialogs;
   });
 

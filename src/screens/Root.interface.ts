@@ -8,7 +8,7 @@ export interface Chatroom {
   operatorId: string;
   operator: string;
   saved: string;
-  score: string | number | null;
+  score: string | number | null | undefined;
   status: string;
   theme: string;
   subtheme: string;
@@ -33,4 +33,8 @@ export interface User {
   email?: string;
   photo?: string;
   status?: string | boolean;
+}
+
+export interface Chatrooms {
+  [key: string]: Chatroom
 }

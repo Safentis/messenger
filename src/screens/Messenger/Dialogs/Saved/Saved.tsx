@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
 
 import { requestActions } from "../../../../redux/actionCreators/dialogs";
-import useFilterDialogs from "../../../../Hooks/useFilterDialogs";
+import useFilterDialogs, { ChatroomType } from "../../../../Hooks/useFilterDialogs";
 import Button from "../../../../components/Button/Button";
 import Dialog from "../../../../components/Dialog/Dialog";
 import Stars from "../../../../components/Stars/Stars";
@@ -30,11 +30,11 @@ const Saved: FC<Props> = ({ dialogs, user: { uid } }): React.ReactElement => {
   //* -------------------------------------------------------
   //* We create filter
   const status: string = "saved";
-  const result: any = useFilterDialogs({ dialogs, status, uid });
+  const result: ChatroomType[] = useFilterDialogs({ dialogs, status, uid });
 
   //* -------------------------------------------------------
   //* Content
-  const CONTENT: React.ReactNode = result.map(([key, value]: any, index: number) => (
+  const CONTENT: React.ReactNode = result.map(([key, value]: ChatroomType, index: number) => (
     <Dialog key={index} {...value}>
       <Stars score={value.score} />
       <Link className="button-action" to={url + "/" + key}>

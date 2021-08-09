@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import Props from "./ErrorMessage.interface";
 import "./ErrorMessage.css";
 
@@ -6,7 +6,7 @@ import "./ErrorMessage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
-const ErrorMessage = ({ children = "Error", className = "" }: Props): any => {
+const ErrorMessage: FC <Props> = ({ children = "Error", className = "" }): React.ReactElement => {
   return (
     <div className={"error-message " + className}>
       <p className="error-message__text error-message__text_red">

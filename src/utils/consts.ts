@@ -26,5 +26,5 @@ export const STANDART_AVATAR =
 //* Request urls
 //* local host: http://localhost:8080
 //* heroku app: https://messenger-token-checker.herokuapp.com
-// export const SERVER_URL = "http://localhost:8080";
+//* export const LOCAL_HOST = "http://localhost:8080";
 export const SERVER_URL = "https://messenger-token-checker.herokuapp.com";

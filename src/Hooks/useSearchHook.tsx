@@ -1,16 +1,15 @@
 import { useEffect } from "react";
-import _ from "lodash";
 import { useDispatch } from "react-redux";
+import _ from "lodash";
 
 import { setFilteredDialogs } from "../redux/actionCreators/dialogs";
-import { Chatroom, Message } from "../screens/Root.interface";
+import { Chatroom, Chatrooms, Message } from "../screens/Root.interface";
 
 type chatroomType = [string, Chatroom];
 interface Props {
-  dialogs: Chatroom[];
+  dialogs: Chatrooms;
   search: string;
 }
-
 
 const useSearchHook = ({ dialogs, search }: Props): null => {
   //* ---------------------------------------------------
@@ -23,7 +22,7 @@ const useSearchHook = ({ dialogs, search }: Props): null => {
       let lowerSearchCase: string = search.toLowerCase();
       let isFiltered: chatroomType[] = [];
       let noFiltered: chatroomType[] = [];
-      let isEntries: object;
+      let isEntries: Chatrooms;
   
       //* We search by customer name and if we find
       //* matches we push the result into the isFiltered array

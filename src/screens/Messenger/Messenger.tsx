@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { Dispatch, FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import firebase from "firebase";
 
@@ -13,13 +13,14 @@ import { messengerRoutes, namebarRoutes, contentRoutes } from "../../routes";
 
 import "./Messenger.css";
 import { RootReducerState } from "../../redux/reducers/rootReducer.interface";
+import { Chatrooms } from "../Root.interface";
 
-const Messenger: FC = (): any => {
+const Messenger: FC = (): React.ReactElement => {
   //* --------------------------------------------------------------------
   //* We take of the token from the gloabal state by name storage
   //* if component mounted, we test of the token, and if token is not valid
   //* we exiting from account
-  const dispatch: any = useDispatch();
+  const dispatch: Dispatch<object> = useDispatch();
   //* -----------------------------------------------------
   //* We get of the all dialogs and user information
   const { token, dialogs, user, settings } = useSelector(
@@ -34,18 +35,18 @@ const Messenger: FC = (): any => {
   );
 
   useEffect(() => {
-    dispatch(requestTokenCheck(token));
+    // dispatch(requestTokenCheck(token));
   }, []);
 
   //* --------------------------------------------------------------------
   //* We get of the all dialogs from database and saves them to store
   //* and create long connection
   useEffect(() => {
-    let database: any = firebase.database();
-    let chatrooms: any = database.ref("chatrooms");
+    let database = firebase.database();
+    let chatrooms = database.ref("chatrooms");
 
-    chatrooms.on("value", (snapshot: any) => {
-      let dialogs: any = snapshot.val();
+    chatrooms.on("value", (snapshot) => {
+      let dialogs: Chatrooms = snapshot.val();
 
       dispatch(requestDialogs(dialogs));
       dispatch(setFilteredDialogs(dialogs));

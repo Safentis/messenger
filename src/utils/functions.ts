@@ -1,5 +1,6 @@
 import firebase from "firebase";
 import { FetchActions } from "../redux/sagas/dialogs/requestActions";
+import { FetchMessages } from "../redux/sagas/dialogs/requestMessages";
 import { ValidationTokenCheck } from "../redux/sagas/enter/authentication/requestTokenCheck";
 
 import { SERVER_URL, STANDART_AVATAR } from "./consts";
@@ -73,6 +74,24 @@ export const fetchActions = async ({ chatId, body }: FetchActions) => {
       `https://messenger-b15ea-default-rtdb.europe-west1.firebasedatabase.app/chatrooms/${chatId}.json`,
       {
         method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      }
+    );
+  } catch (error) {
+    console.error(error.code);
+    console.error(error.message);
+  }
+};
+
+export const fetchMessages = async ({ chatId, body }: FetchMessages): Promise<void> => {
+  try {
+    await fetch(
+      `https://messenger-b15ea-default-rtdb.europe-west1.firebasedatabase.app/chatrooms/${chatId}/messages.json`,
+      {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },

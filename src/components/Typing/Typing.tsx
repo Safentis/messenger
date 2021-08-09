@@ -1,8 +1,9 @@
 import { FC } from "react";
-import { Props } from "./Typing.interface";
-import "./Typing.css";
 
-const Typing: FC<Props> = ({ className, isTyping }) => {
+import "./Typing.css";
+import { Props } from "./Typing.interface";
+
+const Typing: FC<Props> = ({ className, isTyping }): React.ReactElement | null => {
   return isTyping ? (
     <p className={"typing " + className}>Client typing message...</p>
   ) : null;

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import moment from "moment";
 
-type dataType = number | string | Date;
+import { DateType } from "../screens/Root.interface";
 
-const useLastActivity = (timestamp: dataType): dataType => {
+const useLastActivity = (timestamp: DateType): DateType => {
   const [lastActivity, setLastActivity] = useState("");
 
   const callLastActivity = () => {

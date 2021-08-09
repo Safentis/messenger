@@ -15,22 +15,20 @@ import { requestMessages } from "../../../redux/actionCreators/dialogs";
 
 import { messageImageSave } from "./Chatroom.support";
 import { messageTemplate } from "./Chatroom.support";
-import { Chatroom, Message as MessageInterface } from "../../Root.interface";
+import { Chatroom, DateType, Message as MessageInterface } from "../../Root.interface";
 import {
   Props,
   Signal,
   Envelope,
-  dateType,
   typingType,
   pictureType,
-  activityType,
   inputbarType,
   useparamsType,
   ChatroomState,
 } from "./Сhatroom.interface";
 import "./Сhatroom.css";
 
-const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
+const Сhatroom: FC<Props> = ({ dialogs, user, settings }): React.ReactElement => {
   //* ---------------------------------------------
   //* We get a key of url
   const { key }: useparamsType = useParams();
@@ -50,7 +48,7 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
     let messages: MessageInterface[] = Object.values(chatroom.messages || []);
     let question: string = messages[1]?.content;
     let status: string = chatroom?.status;
-    let complited: dateType = dialogs[key]?.complited;
+    let complited: DateType = dialogs[key]?.complited;
 
     //* ---------------------------------------------
     //* Auto greeting
@@ -171,7 +169,7 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
 
   //* ---------------------------------------------
   //* Last activity hook
-  const activity: activityType = useLastActivity(chatroom?.complited);
+  const activity: DateType = useLastActivity(chatroom?.complited);
 
   //* ---------------------------------------------
   //* Content
