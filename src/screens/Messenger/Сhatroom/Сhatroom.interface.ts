@@ -1,7 +1,7 @@
-import { Chatroom, DateType, Message } from "../../Root.interface";
+import { Chatroom, Chatrooms, DateType, Message } from "../../Root.interface";
 
 export interface Props {
-  dialogs: Chatroom[];
+  dialogs: Chatrooms;
   user: any;
   settings: any;
 }
@@ -22,7 +22,8 @@ export interface Envelope {
 
 export interface ChatroomState {
   messages: Message[];
-  question: string;
+  keys: string[];
+  question: string | undefined;
   status: string;
   complited: DateType;
 }

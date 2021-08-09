@@ -2,6 +2,7 @@ import { FC, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { usePubNub } from "pubnub-react";
 import { useDispatch } from "react-redux";
+import Pubnub from "pubnub";
 
 import Inputbar from "./Inputbar/Inputbar";
 import Messages from "./Messages/Messages";
@@ -11,8 +12,8 @@ import Content from "../../../layouts/Content/index";
 import Solution from "../../../components/Solution/Solution";
 import Typing from "../../../components/Typing/Typing";
 import useLastActivity from "../../../Hooks/useLastActivity";
-import { requestMessages } from "../../../redux/actionCreators/dialogs";
 
+import { requestMessages } from "../../../redux/actionCreators/dialogs";
 import { messageImageSave } from "./Chatroom.support";
 import { messageTemplate } from "./Chatroom.support";
 import { Chatroom, DateType, Message as MessageInterface } from "../../Root.interface";
@@ -37,7 +38,8 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }): React.ReactElement =
   //* ---------------------------------------------
   //* Main state
   const [chatroom, setChatroom]: [ChatroomState, Function] = useState({
-    messages: [],
+    messages: Object.values(dialogs[key].messages || []),
+    keys: Object.keys(dialogs[key].messages || []),
     question: "",
     status: "",
     complited: "",
@@ -46,6 +48,7 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }): React.ReactElement =
   useEffect(() => {
     let chatroom: Chatroom = dialogs[key];
     let messages: MessageInterface[] = Object.values(chatroom.messages || []);
+    let keys: string[] = Object.keys(chatroom.messages || []);
     let question: string = messages[1]?.content;
     let status: string = chatroom?.status;
     let complited: DateType = dialogs[key]?.complited;
@@ -63,6 +66,7 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }): React.ReactElement =
       messages,
       question,
       status,
+      keys,
       complited,
     });
   }, [key]);
@@ -73,9 +77,9 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }): React.ReactElement =
 
   //* ---------------------------------------------
   //* Pubnub state
-  const chatroomChannel = `room-${key}`;
-  const pubnub: any = usePubNub();
-  const [channels]: any[] = useState([chatroomChannel]);
+  const chatroomChannel: string = `room-${key}`;
+  const [channels]: [string[], Function] = useState([chatroomChannel]);
+  const pubnub: Pubnub = usePubNub();
 
   //* ---------------------------------------------
   //* Picture handler
@@ -175,7 +179,13 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }): React.ReactElement =
   //* Content
   const MESSAGES = chatroom.messages.map(
     (message: MessageInterface, index: number) => (
-      <Message key={index} {...message} {...user} />
+      <Message 
+        key={index} 
+        chatId={key} //* key of chatroom
+        index={chatroom.keys[index]} //* key of message
+        {...message} 
+        {...user} 
+      />
     )
   );
 

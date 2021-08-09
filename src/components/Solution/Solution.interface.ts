@@ -1,5 +1,7 @@
+import { Chatrooms } from "../../screens/Root.interface";
+
 export interface Props {
   className?: string;
-  question: string;
   sendMessage: Function;
+  question: string | undefined;
 }

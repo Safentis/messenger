@@ -145,9 +145,9 @@ export const updateFirebaseUser = async ({uid, name, photo}: {uid: string, name:
   }
 };
 
-export const handleSolution = async (chatId: string, messageId: string) => {
+export const handleSolution = async (chatId: string, messageId: string | number, isSolution: boolean) => {
   try {
-    return await fetch(
+    const req = await fetch(
       `https://messenger-b15ea-default-rtdb.europe-west1.firebasedatabase.app/chatrooms/${chatId}/messages/${messageId}.json`,
       {
         method: "PATCH",
@@ -155,10 +155,12 @@ export const handleSolution = async (chatId: string, messageId: string) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          solution: true,
+          solution: isSolution,
         }),
       }
     );
+
+    console.log(await req.json());
   } catch(error) {
     handleError(error);
   }
