@@ -36,5 +36,5 @@ export interface User {
 }
 
 export interface Chatrooms {
-  [key: string]: Chatroom
+  [key: string]: Chatroom;
 }

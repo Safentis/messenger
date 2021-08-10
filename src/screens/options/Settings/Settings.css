@@ -1,8 +1,8 @@
 .settings {
   display: grid;
   grid-template-areas:
-    "greetings headers"
-    "greetings subheaders";
+    'greetings headers'
+    'greetings subheaders';
   grid-gap: 1rem;
 }
 
@@ -64,8 +64,8 @@
 @media screen and (max-width: 768px) {
   .settings {
     grid-template-areas:
-      "greetings   greetings"
-      "headers       headers"
-      "subheaders subheaders";
+      'greetings   greetings'
+      'headers       headers'
+      'subheaders subheaders';
   }
 }

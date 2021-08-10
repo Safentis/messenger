@@ -1,11 +1,11 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import { Props } from "./index.interface";
-import "./index.css";
+import { Props } from './index.interface';
+import './index.css';
 
-const Content: FC<Props> = ({ children, className = "" }) => {
+const Content: FC<Props> = ({ children, className = '' }) => {
   return (
-    <section className={"content " + className}>
+    <section className={'content ' + className}>
       <div className="content__inner">{children}</div>
     </section>
   );

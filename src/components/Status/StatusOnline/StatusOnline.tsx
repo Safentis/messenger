@@ -1,17 +1,14 @@
-import { FC } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle } from "@fortawesome/free-solid-svg-icons";
+import { FC } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { Props } from "./StatusOnline.interface";
-import "./StatusOnline.css";
+import { Props } from './StatusOnline.interface';
+import './StatusOnline.css';
 
-const StatusOnline: FC<Props> = ({ className = "" }): React.ReactElement => {
+const StatusOnline: FC<Props> = ({ className = '' }): React.ReactElement => {
   return (
     <>
-      <FontAwesomeIcon
-        className={"status-online " + className}
-        icon={faCircle}
-      />
+      <FontAwesomeIcon className={'status-online ' + className} icon={faCircle} />
     </>
   );
 };

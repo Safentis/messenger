@@ -1,6 +1,6 @@
-import { FC } from "react";
-import Content from "../../../../layouts/Content";
-import Namebar from "../../../../layouts/Namebar";
+import { FC } from 'react';
+import Content from '../../../../layouts/Content';
+import Namebar from '../../../../layouts/Namebar';
 
 const Home: FC = () => {
   return (

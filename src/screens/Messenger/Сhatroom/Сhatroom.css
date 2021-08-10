@@ -6,7 +6,6 @@
 }
 
 .chatroom {
-  
 }
 
 .chatroom__inner {
@@ -24,7 +23,7 @@
 
 .chatroom__complited::before {
   background-color: var(--main-grey-color);
-  content: "";
+  content: '';
   display: block;
   margin-bottom: 2rem;
   height: 0.1rem;

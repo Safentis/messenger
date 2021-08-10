@@ -1,8 +1,8 @@
-import { call, put } from "@redux-saga/core/effects";
-import { StrictEffect } from "@redux-saga/types";
-import { fetchValidationToken } from "../../../../utils/functions";
+import { call, put } from '@redux-saga/core/effects';
+import { StrictEffect } from '@redux-saga/types';
+import { fetchValidationToken } from '../../../../utils/functions';
 
-import { FETCH_EXITING_APP } from "../../../actions/authentication";
+import { FETCH_EXITING_APP } from '../../../actions/authentication';
 
 export interface ValidationTokenCheck {
   validation: boolean;
@@ -13,7 +13,6 @@ interface RequestTokenCheckProps {
     token: string;
   };
 }
-
 
 /**
  * The function calls fetchValidationToken and,
@@ -36,7 +35,7 @@ export default function* requestTokenCheck({
       });
     }
   } catch (err) {
-    console.error("Code ", err.code);
-    console.error("Message ", err.message);
+    console.error('Code ', err.code);
+    console.error('Message ', err.message);
   }
 }

@@ -1,6 +1,6 @@
-import { ActionCreator } from "./actionCreators.interface";
-import { EnterSagaProps } from "../sagas/sagas.interface";
-import { FETCH_RESTORE_PASSWORD } from "../actions/restore";
+import { ActionCreator } from './actionCreators.interface';
+import { EnterSagaProps } from '../sagas/sagas.interface';
+import { FETCH_RESTORE_PASSWORD } from '../actions/restore';
 
 export const requestRestorePassword = (data: EnterSagaProps): ActionCreator<EnterSagaProps> => {
   return {

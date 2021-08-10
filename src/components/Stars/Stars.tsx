@@ -1,11 +1,11 @@
-import { FC } from "react";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FC } from 'react';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import "./Stars.css";
-import { Props } from "./Stars.interface";
+import './Stars.css';
+import { Props } from './Stars.interface';
 
-const Stars: FC<Props> = ({ className = "", score = undefined }): React.ReactElement | null => {
+const Stars: FC<Props> = ({ className = '', score = undefined }): React.ReactElement | null => {
   const stars: number[] = [];
 
   if (score) {

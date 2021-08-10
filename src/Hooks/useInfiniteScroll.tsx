@@ -1,7 +1,7 @@
-import { useState } from "react";
-import Loader from "react-loader-spinner";
+import { useState } from 'react';
+import Loader from 'react-loader-spinner';
 
-import { Chatroom } from "../screens/Root.interface";
+import { Chatroom } from '../screens/Root.interface';
 
 type chatroomType = [string, Chatroom];
 

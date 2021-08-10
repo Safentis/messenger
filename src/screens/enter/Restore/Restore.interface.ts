@@ -1,7 +1,5 @@
-export interface Props {
-    
-}
+export interface Props {}
 
 export interface Fields {
-    email: string;
+  email: string;
 }

@@ -1,8 +1,8 @@
-import { call, StrictEffect } from "redux-saga/effects";
-import { DateType } from "../../../screens/Root.interface";
+import { call, StrictEffect } from 'redux-saga/effects';
+import { DateType } from '../../../screens/Root.interface';
 
-import { fetchActions } from "../../../utils/functions";
-import { RequestProps } from "../sagas.interface";
+import { fetchActions } from '../../../utils/functions';
+import { RequestProps } from '../sagas.interface';
 
 export interface FetchActions {
   chatId: string;
@@ -26,7 +26,7 @@ export default function* requestActions({
   try {
     yield call(fetchActions, { chatId, body });
   } catch (err) {
-    console.error("Code ", err.code);
-    console.error("Message ", err.message);
+    console.error('Code ', err.code);
+    console.error('Message ', err.message);
   }
 }

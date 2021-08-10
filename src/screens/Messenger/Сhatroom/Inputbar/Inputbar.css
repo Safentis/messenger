@@ -77,7 +77,7 @@
     grid-template-columns: 0.5fr 15rem;
     padding-bottom: 1rem;
   }
-  
+
   .inputbar__content {
     grid-column-start: 1;
     grid-column-end: 3;

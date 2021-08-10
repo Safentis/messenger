@@ -1,4 +1,4 @@
-import { Chatrooms } from "../../screens/Root.interface";
+import { Chatrooms } from '../../screens/Root.interface';
 
 export interface Props {
   className?: string;

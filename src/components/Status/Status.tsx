@@ -1,14 +1,14 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import StatusOffline from "./StatusOffline/StatusOffline";
-import StatusOnline from "./StatusOnline/StatusOnline";
+import StatusOffline from './StatusOffline/StatusOffline';
+import StatusOnline from './StatusOnline/StatusOnline';
 
-import { Props } from "./Status.interface";
+import { Props } from './Status.interface';
 
-const Status: FC<Props> = ({ className = "", status }): React.ReactElement => {
+const Status: FC<Props> = ({ className = '', status }): React.ReactElement => {
   return (
     <>
-      {status === "online" ? (
+      {status === 'online' ? (
         <StatusOnline className={className} />
       ) : (
         <StatusOffline className={className} />

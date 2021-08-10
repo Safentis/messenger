@@ -1,6 +1,6 @@
-import firebase from "firebase";
-import { call, put, StrictEffect } from "redux-saga/effects";
-import { EXITING_APP } from "../../../actions/authentication";
+import firebase from 'firebase';
+import { call, put, StrictEffect } from 'redux-saga/effects';
+import { EXITING_APP } from '../../../actions/authentication';
 
 export const signOutAccount = () => {
   return firebase.auth().signOut();
@@ -11,18 +11,14 @@ export const signOutAccount = () => {
  * @param {string} payload.type
  * @returns {Generator <StrictEffect, any, any>}
  */
-export default function* requestTokenCheck(): Generator<
-  StrictEffect,
-  any,
-  any
-> {
+export default function* requestTokenCheck(): Generator<StrictEffect, any, any> {
   try {
     yield call(signOutAccount);
     yield put({
       type: EXITING_APP,
     });
   } catch (err) {
-    console.error("Code ", err.code);
-    console.error("Message ", err.message);
+    console.error('Code ', err.code);
+    console.error('Message ', err.message);
   }
 }

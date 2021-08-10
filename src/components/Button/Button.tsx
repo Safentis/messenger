@@ -1,11 +1,11 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import { Props } from "./Button.interface";
-import "./Button.css";
+import { Props } from './Button.interface';
+import './Button.css';
 
 const Button: FC<Props | any> = ({
-  children = "",
-  className = "",
+  children = '',
+  className = '',
   ...attrs
 }): React.ReactElement => {
   return (

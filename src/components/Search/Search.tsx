@@ -1,20 +1,20 @@
-import React, { FC, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
+import React, { FC, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
 
-import Input from "../Input/Input";
-import useSearchHook from "../../Hooks/useSearchHook";
+import Input from '../Input/Input';
+import useSearchHook from '../../Hooks/useSearchHook';
 
-import "./Search.css";
-import { Props } from "./Search.interface";
-import { Chatrooms } from "../../screens/Root.interface";
-import { RootReducerState } from "../../redux/reducers/rootReducer.interface";
+import './Search.css';
+import { Props } from './Search.interface';
+import { Chatrooms } from '../../screens/Root.interface';
+import { RootReducerState } from '../../redux/reducers/rootReducer.interface';
 
 const Search: FC<Props> = (): React.ReactElement => {
   //* ---------------------------------------------------
   //* State search handler
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const handleSearch = (event: React.SyntheticEvent<HTMLInputElement>) => {
     setSearch(event.currentTarget.value);
   };

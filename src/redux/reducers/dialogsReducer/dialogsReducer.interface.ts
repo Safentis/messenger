@@ -1,4 +1,4 @@
-import { Chatrooms } from "../../../screens/Root.interface";
+import { Chatrooms } from '../../../screens/Root.interface';
 
 export interface State {
   dialogs: Chatrooms;
@@ -8,7 +8,7 @@ export interface State {
 export interface Action {
   type: string;
   payload: {
-    dialogs: Chatrooms
-    filtered: Chatrooms
+    dialogs: Chatrooms;
+    filtered: Chatrooms;
   };
 }

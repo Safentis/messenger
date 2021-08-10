@@ -1,19 +1,16 @@
-import { State, Action } from "./authenticationReducer.interface";
+import { State, Action } from './authenticationReducer.interface';
 import {
   FETCH_MESSAGES_SUCCESS,
   FETCH_MESSAGES_FAILURE,
   EXITING_APP,
-} from "../../actions/authentication";
+} from '../../actions/authentication';
 
 const initialState: State = {
   success: false,
-  token: "",
+  token: '',
 };
 
-export const authenticationReducer = (
-  state = initialState,
-  action: Action
-): State => {
+export const authenticationReducer = (state = initialState, action: Action): State => {
   const type: string = action.type;
   const token: string = action?.payload?.token;
 
@@ -28,13 +25,13 @@ export const authenticationReducer = (
       return {
         ...state,
         success: false,
-        token: "",
+        token: '',
       };
     case EXITING_APP:
       return {
         ...state,
         success: false,
-        token: "",
+        token: '',
       };
     default:
       return state;

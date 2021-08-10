@@ -1,9 +1,9 @@
-import { put, StrictEffect } from "redux-saga/effects";
+import { put, StrictEffect } from 'redux-saga/effects';
 
-import { handleError } from "../../../utils/functions";
-import { FETCH_USER_SETTINGS_SET } from "../../actions/user";
-import { Settings } from "../../reducers/userReducer/userReducer.interface";
-import { RequestProps } from "../sagas.interface";
+import { handleError } from '../../../utils/functions';
+import { FETCH_USER_SETTINGS_SET } from '../../actions/user';
+import { Settings } from '../../reducers/userReducer/userReducer.interface';
+import { RequestProps } from '../sagas.interface';
 
 export interface RequestSettings {
   settings: Settings;

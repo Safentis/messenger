@@ -1,5 +1,5 @@
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { FormikErrors, FormikTouched } from "formik";
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { FormikErrors, FormikTouched } from 'formik';
 
 export interface Props {
   formik: any;

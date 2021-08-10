@@ -1,8 +1,8 @@
-import { call, StrictEffect } from "redux-saga/effects";
+import { call, StrictEffect } from 'redux-saga/effects';
 
-import { RequestProps } from "../sagas.interface";
-import { Message } from "../../../screens/Root.interface";
-import { fetchMessages } from "../../../utils/functions";
+import { RequestProps } from '../sagas.interface';
+import { Message } from '../../../screens/Root.interface';
+import { fetchMessages } from '../../../utils/functions';
 
 export interface FetchMessages {
   chatId: string;
@@ -11,8 +11,8 @@ export interface FetchMessages {
 
 /**
  * @param {object} payload
- * @param {string} payload.chatId 
- * @param {object} payload.body 
+ * @param {string} payload.chatId
+ * @param {object} payload.body
  * @returns {Generator <StrictEffect, void, any>}
  */
 export default function* requestMessages({
@@ -21,8 +21,8 @@ export default function* requestMessages({
   try {
     yield call(fetchMessages, { chatId, body });
   } catch (error) {
-    console.error("Code ", error.code);
-    console.error("Message ", error.message);
+    console.error('Code ', error.code);
+    console.error('Message ', error.message);
     throw new Error(`Error in requestMessages: ${error}`);
   }
 }

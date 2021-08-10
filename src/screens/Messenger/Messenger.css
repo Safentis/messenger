@@ -4,9 +4,9 @@
   grid-template-columns: 35rem 1fr;
   grid-template-rows: 0.1fr 1fr;
   grid-template-areas:
-    "aside namebar"
-    "aside content"
-    "aside content";
+    'aside namebar'
+    'aside content'
+    'aside content';
   height: 100%;
   margin: 0 auto;
 }
@@ -35,12 +35,11 @@
 
 @media screen and (max-width: 768px) {
   .messenger {
-    grid-template-columns: .5fr auto;
+    grid-template-columns: 0.5fr auto;
     grid-template-areas:
-      "namebar namebar"
-      "aside content  "
-      "aside content  "
-    /* grid-template-rows: 0.1fr 0.2fr 0.1fr; */
+      'namebar namebar'
+      'aside content  '
+      'aside content  ';
   }
 }
 
@@ -53,9 +52,8 @@
     overflow-y: scroll;
     grid-template-columns: auto;
     grid-template-areas:
-      "namebar namebar"
-      "content content"
-      "aside aside    "
-    ;
+      'namebar namebar'
+      'content content'
+      'aside aside    ';
   }
 }

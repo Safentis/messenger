@@ -1,19 +1,17 @@
-import React, { FC } from "react";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router";
+import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 
-import { Chatroom } from "../../screens/Root.interface";
-import { RootReducerState } from "../../redux/reducers/rootReducer.interface";
-import { Props, paramsType } from "./Name.interface";
-import "./Name.css";
+import { Chatroom } from '../../screens/Root.interface';
+import { RootReducerState } from '../../redux/reducers/rootReducer.interface';
+import { Props, paramsType } from './Name.interface';
+import './Name.css';
 
 const Name: FC<Props> = ({}): React.ReactElement => {
   const { key: chatId }: paramsType = useParams();
-  const { client }: Chatroom = useSelector(
-    (state: RootReducerState): Chatroom => {
-      return state.dialogsReducer.dialogs[chatId as string];
-    }
-  );
+  const { client }: Chatroom = useSelector((state: RootReducerState): Chatroom => {
+    return state.dialogsReducer.dialogs[chatId as string];
+  });
 
   return (
     <div className="name">

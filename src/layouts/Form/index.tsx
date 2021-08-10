@@ -1,26 +1,16 @@
-import React, { FC, Fragment } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { FC, Fragment } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Label from "../../components/Label/Label";
-import Input from "../../components/Input/Input";
-import Button from "../../components/Button/Button";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-import SuccessMessage from "../../components/SuccessMessage/SuccessMessage";
+import Label from '../../components/Label/Label';
+import Input from '../../components/Input/Input';
+import Button from '../../components/Button/Button';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import SuccessMessage from '../../components/SuccessMessage/SuccessMessage';
 
-import "./index.css";
-import { 
-  Props, 
-  Handlers, 
-  Validation, 
-  FieldsParams
-} from "./index.interface";
+import './index.css';
+import { Props, Handlers, Validation, FieldsParams } from './index.interface';
 
-const Form: FC<Props> = ({
-  children,
-  formik,
-  fields,
-  buttonParams,
-}): React.ReactElement => {
+const Form: FC<Props> = ({ children, formik, fields, buttonParams }): React.ReactElement => {
   //* With destructuring we are taking object
   //* errors : object that contains error-messages
   //* touched: object which marks the fields visited
@@ -47,11 +37,9 @@ const Form: FC<Props> = ({
             {...formik.getFieldProps(name)}
           />
         </Label>
-        {touched[name] && errors[name] ? (
-          <ErrorMessage>{errors[name]}</ErrorMessage>
-        ) : null}
+        {touched[name] && errors[name] ? <ErrorMessage>{errors[name]}</ErrorMessage> : null}
       </Fragment>
-    )
+    ),
   );
 
   const FORM_BUTTON: React.ReactNode = (
@@ -73,11 +61,7 @@ const Form: FC<Props> = ({
     //* If status true
     //* we view message about access
     //* else we are seeing error message
-    status?.state !== undefined
-      ? status.state
-        ? SUCCESS_MESSAGE
-        : ERROR_MESSAGE
-      : null;
+    status?.state !== undefined ? (status.state ? SUCCESS_MESSAGE : ERROR_MESSAGE) : null;
 
   return (
     <form className="form" onSubmit={handleSubmit}>

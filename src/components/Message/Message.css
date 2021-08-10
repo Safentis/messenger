@@ -7,16 +7,16 @@
   margin-right: auto;
   grid-template-columns: 10rem 1fr;
   grid-template-areas:
-    ".  content"
-    "user     .";
+    '.  content'
+    'user     .';
 }
 
 .message-operator {
   margin-left: auto;
   grid-template-columns: 1fr 10rem;
   grid-template-areas:
-    "content  ."
-    ".     user";
+    'content  .'
+    '.     user';
 }
 
 .message__user {
@@ -54,8 +54,16 @@
 }
 
 .message__solution {
-  color: var(--main-gold-color);
+  cursor: pointer;
   margin-left: 1rem;
+}
+
+.message__solution_active {
+  color: var(--main-gold-color);
+}
+
+.message__solution_noactive {
+  color: var(--main-grey-color);
 }
 
 .content-client {

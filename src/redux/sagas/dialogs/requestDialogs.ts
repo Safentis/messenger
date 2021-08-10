@@ -1,8 +1,8 @@
-import { put, StrictEffect } from "redux-saga/effects";
+import { put, StrictEffect } from 'redux-saga/effects';
 
-import { FETCH_DIALOGS_SET } from "../../actions/dialogs";
+import { FETCH_DIALOGS_SET } from '../../actions/dialogs';
 import { RequestProps } from '../sagas.interface';
-import { Chatrooms } from "../../../screens/Root.interface";
+import { Chatrooms } from '../../../screens/Root.interface';
 
 /**
  * @param {RequestProps} payload
@@ -20,7 +20,7 @@ export default function* requestDialogs({
       },
     });
   } catch (err) {
-    console.error("Code ", err.code);
-    console.error("Message ", err.message);
+    console.error('Code ', err.code);
+    console.error('Message ', err.message);
   }
 }

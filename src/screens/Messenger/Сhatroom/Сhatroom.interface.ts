@@ -1,4 +1,4 @@
-import { Chatroom, Chatrooms, DateType, Message } from "../../Root.interface";
+import { Chatroom, Chatrooms, DateType, Message } from '../../Root.interface';
 
 export interface Props {
   dialogs: Chatrooms;

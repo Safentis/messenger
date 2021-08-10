@@ -1,8 +1,8 @@
-import { put, StrictEffect } from "redux-saga/effects";
+import { put, StrictEffect } from 'redux-saga/effects';
 
-import { FETCH_FILTERED_SET } from "../../actions/dialogs";
-import { RequestProps } from "../sagas.interface";
-import { Chatrooms } from "../../../screens/Root.interface";
+import { FETCH_FILTERED_SET } from '../../actions/dialogs';
+import { RequestProps } from '../sagas.interface';
+import { Chatrooms } from '../../../screens/Root.interface';
 
 /**
  * @param {RequestProps} payload
@@ -20,7 +20,7 @@ export default function* setFilteredDialogs({
       },
     });
   } catch (err) {
-    console.error("Code ", err.code);
-    console.error("Message ", err.message);
+    console.error('Code ', err.code);
+    console.error('Message ', err.message);
   }
 }

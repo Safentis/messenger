@@ -1,6 +1,6 @@
-import { FETCH_REGISTRATION_GOOGLE, FETCH_REGISTRATION_REQUEST } from "../actions/registration";
-import { EnterSagaProps } from "../sagas/sagas.interface";
-import { ActionCreator } from "./actionCreators.interface";
+import { FETCH_REGISTRATION_GOOGLE, FETCH_REGISTRATION_REQUEST } from '../actions/registration';
+import { EnterSagaProps } from '../sagas/sagas.interface';
+import { ActionCreator } from './actionCreators.interface';
 
 export const requestRegistration = (data: EnterSagaProps): ActionCreator<EnterSagaProps> => {
   return {
@@ -12,8 +12,6 @@ export const requestRegistration = (data: EnterSagaProps): ActionCreator<EnterSa
 export const requestGoogle = (): ActionCreator<{}> => {
   return {
     type: FETCH_REGISTRATION_GOOGLE,
-    payload: {
-      
-    }
-  }
-}
+    payload: {},
+  };
+};

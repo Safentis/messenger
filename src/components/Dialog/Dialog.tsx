@@ -1,25 +1,23 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import Avatar from "../Avatar/Avatar";
-import useLastActivity from "../../Hooks/useLastActivity";
+import Avatar from '../Avatar/Avatar';
+import useLastActivity from '../../Hooks/useLastActivity';
 
-import { Props } from "./Dialog.interface";
-import { Message } from "../../screens/Root.interface";
-import "./Dialog.css";
+import { Props } from './Dialog.interface';
+import { Message } from '../../screens/Root.interface';
+import './Dialog.css';
 
 const Dialog: FC<Props> = ({ children, client, messages = {} }): React.ReactElement => {
   //* -------------------------------------------------------------------
   //* Content of the dialog
-  const defaultContent: string = "no messages";
+  const defaultContent: string = 'no messages';
 
   const allMessages: Message[] = Object.values(messages);
   const lastIndex: number = allMessages.length - 1;
   const lastContent: string =
-    (allMessages[lastIndex]?.content &&
-      allMessages[lastIndex]?.content?.slice(0, 33) + "...") ||
+    (allMessages[lastIndex]?.content && allMessages[lastIndex]?.content?.slice(0, 33) + '...') ||
     defaultContent;
-  const lastTimestamp: string | number | Date =
-    allMessages[lastIndex]?.timestamp;
+  const lastTimestamp: string | number | Date = allMessages[lastIndex]?.timestamp;
   const lastWritter: string = allMessages[lastIndex]?.writtenBy;
 
   //* -------------------------------------------------------------------

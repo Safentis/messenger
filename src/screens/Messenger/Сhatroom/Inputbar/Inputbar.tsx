@@ -1,20 +1,20 @@
-import React, { FC, KeyboardEvent, SyntheticEvent, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Picker, { IEmojiPickerProps } from "emoji-picker-react";
-import ImageUploader from "react-images-upload";
-import { faSmile } from "@fortawesome/free-solid-svg-icons";
-import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
-import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
+import React, { FC, KeyboardEvent, SyntheticEvent, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Picker, { IEmojiPickerProps } from 'emoji-picker-react';
+import ImageUploader from 'react-images-upload';
+import { faSmile } from '@fortawesome/free-solid-svg-icons';
+import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
+import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 
-import Input from "../../../../components/Input/Input";
-import Button from "../../../../components/Button/Button";
+import Input from '../../../../components/Input/Input';
+import Button from '../../../../components/Button/Button';
 
-import { Props } from "./Inputbar.interface";
-import "./Inputbar.css";
+import { Props } from './Inputbar.interface';
+import './Inputbar.css';
 
 const Inputbar: FC<Props> = ({
   children,
-  className = "",
+  className = '',
   inputbar,
   setInputbar,
   handleKeyUp,
@@ -27,8 +27,8 @@ const Inputbar: FC<Props> = ({
     setInputbar(event.currentTarget.value);
   };
 
-  const handleKeyPress = (event: { key: string; code: number; }): void => {
-    if (event.key === "Enter" || event.code === 13) {
+  const handleKeyPress = (event: { key: string; code: number }): void => {
+    if (event.key === 'Enter' || event.code === 13) {
       sendMessage(inputbar);
     }
   };
@@ -43,7 +43,7 @@ const Inputbar: FC<Props> = ({
         withIcon={true}
         buttonText="Choose images"
         onChange={handleDrop}
-        imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+        imgExtension={['.jpg', '.gif', '.png', '.gif']}
         maxFileSize={5242880}
       />
     </div>
@@ -53,8 +53,8 @@ const Inputbar: FC<Props> = ({
   //* Emoji handler
   const [isEmoji, setEmoji] = useState(false);
 
-  const onEmojiClick = (event: any, emojiObject: { emoji: string; }): void => {
-    setInputbar(inputbar + " " + emojiObject.emoji);
+  const onEmojiClick = (event: any, emojiObject: { emoji: string }): void => {
+    setInputbar(inputbar + ' ' + emojiObject.emoji);
   };
 
   const MESSAGES_EMOJI = isEmoji ? (
@@ -64,7 +64,7 @@ const Inputbar: FC<Props> = ({
   ) : null;
 
   return (
-    <div className={"inputbar " + className}>
+    <div className={'inputbar ' + className}>
       <Input
         className="inputbar__field"
         placeholder="Type your message here..."
@@ -82,10 +82,7 @@ const Inputbar: FC<Props> = ({
               setIsPicture(false);
             }}
           >
-            <FontAwesomeIcon
-              className="icon_white inputbar__icon"
-              icon={faSmile}
-            />
+            <FontAwesomeIcon className="icon_white inputbar__icon" icon={faSmile} />
           </Button>
           {MESSAGES_EMOJI}
         </li>
@@ -97,22 +94,13 @@ const Inputbar: FC<Props> = ({
               setIsPicture(!isPicture);
             }}
           >
-            <FontAwesomeIcon
-              className="icon_white inputbar__icon"
-              icon={faPaperclip}
-            />
+            <FontAwesomeIcon className="icon_white inputbar__icon" icon={faPaperclip} />
           </Button>
           {MESSAGES_PICTURE}
         </li>
         <li className="inputbar__item">
-          <Button
-            className="inputbar__button"
-            onClick={() => sendMessage(inputbar)}
-          >
-            <FontAwesomeIcon
-              className="icon_white inputbar__icon"
-              icon={faLocationArrow}
-            />
+          <Button className="inputbar__button" onClick={() => sendMessage(inputbar)}>
+            <FontAwesomeIcon className="icon_white inputbar__icon" icon={faLocationArrow} />
           </Button>
         </li>
       </ul>
