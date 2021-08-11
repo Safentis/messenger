@@ -33,7 +33,7 @@ const Messenger: FC = (): React.ReactElement => {
   });
 
   useEffect(() => {
-    // dispatch(requestTokenCheck(token));
+    dispatch(requestTokenCheck(token));
   }, []);
 
   //* --------------------------------------------------------------------

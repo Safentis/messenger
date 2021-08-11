@@ -16,15 +16,15 @@ import { ButtonParams, FieldsParams, FormLink } from '../../../layouts/Form/inde
 
 //* PROPERTY FOR HOC form
 //* which set up a formik
-const AUTH_FORM_FIELDS: Fields = {
+const RESTORE_FORM_FIELDS: Fields = {
   email: '',
 };
 
-const AUTH_VALIDATION_SCHEMA: object = Yup.object({
+const RESTORE_VALIDATION_SCHEMA: object = Yup.object({
   email: Yup.string().email('Invalid email format').required('Required'),
 });
 
-const RestoreForm = form(Form, AUTH_FORM_FIELDS, requestRestorePassword, AUTH_VALIDATION_SCHEMA);
+const RestoreForm = form(Form, RESTORE_FORM_FIELDS, requestRestorePassword, RESTORE_VALIDATION_SCHEMA);
 
 const Restore: FC<Props> = (): React.ReactElement => {
   //* --------------------------------------------------

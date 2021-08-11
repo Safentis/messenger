@@ -105,12 +105,17 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }): React.ReactElement =
   //* ---------------------------------------------
   //* Pubnub handlers
   const sendMessage = async (message: string): Promise<void> => {
-    if (message.trim().length !== 0 || pictures.length > 0) {
+    let isMessage: boolean = message.trim().length !== 0;
+    let isPicture: boolean = pictures.length > 0;
+    let isComplite: boolean = chatroom.status === 'complited';
+
+    if (isComplite) return;
+    if (isMessage || isPicture) {
       setInputbar('');
       let images: string[] = [];
       let body: MessageInterface;
 
-      if (pictures.length > 0) {
+      if (isPicture) {
         setPictures([]);
         images = await messageImageSave({ pictures });
       }

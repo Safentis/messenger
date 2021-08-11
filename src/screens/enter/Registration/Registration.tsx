@@ -20,13 +20,13 @@ import {
 
 //* PROPERTY FOR HOC form
 //* which set up a formik
-const AUTH_FORM_FIELDS: Fields = {
+const REGISTRATION_FORM_FIELDS: Fields = {
   email: '',
   password: '',
   'password repeat': '',
 };
 
-const AUTH_VALIDATION_SCHEMA: object = Yup.object({
+const REGISTRATION_VALIDATION_SCHEMA: object = Yup.object({
   email: Yup.string().email('Invalid email format').required('Required'),
   password: Yup.string()
     .min(8, 'Not less than 8 symbol')
@@ -39,7 +39,7 @@ const AUTH_VALIDATION_SCHEMA: object = Yup.object({
     .matches(REG_EXP_PASSWORD, PASSWORD_VALIDATION_MESSAGE),
 });
 
-const RegistrationForm = form(Form, AUTH_FORM_FIELDS, requestRegistration, AUTH_VALIDATION_SCHEMA);
+const RegistrationForm = form(Form, REGISTRATION_FORM_FIELDS, requestRegistration, REGISTRATION_VALIDATION_SCHEMA);
 
 const Registration: FC<Props> = (): React.ReactElement => {
   //* --------------------------------------------------

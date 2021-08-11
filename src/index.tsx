@@ -10,6 +10,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
 import 'firebase/firestore';
 import 'firebase/auth';
+import 'bootstrap/dist/css/bootstrap.css';
 
 import Root from './screens/Root';
 import { store } from './redux/store/store';

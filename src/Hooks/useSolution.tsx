@@ -26,7 +26,7 @@ const useSolution = ({ dialogs, question }: Props): string[] => {
             // let regExp: RegExp = new RegExp(question, 'igu');
 
             if (queMessage?.includes(question) || question?.includes(queMessage)) {
-              solMessage.map((sol) => {
+              solMessage.map(sol => {
                 complited.push(sol.content);
               });
             }

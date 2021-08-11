@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Field, Form } from 'react-final-form';
 import { faUserAlt } from '@fortawesome/free-solid-svg-icons';
 import { Spinner } from 'reactstrap';
-import 'bootstrap/dist/css/bootstrap.css';
 
 import Popup from '../../../layouts/Popup';
 import Label from '../../../components/Label/Label';

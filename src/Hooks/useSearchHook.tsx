@@ -29,9 +29,9 @@ const useSearchHook = ({ dialogs, search }: Props): null => {
       //* by message
       Object.entries(dialogs).filter((dialog: chatroomType) => {
         let [key, value]: chatroomType = dialog;
-        let lowerClientCase: string = value.client.toLowerCase();
+        let lowerClientCase: string = value?.client?.toLowerCase();
 
-        lowerClientCase.includes(lowerSearchCase)
+        lowerClientCase?.includes(lowerSearchCase)
           ? isFiltered.push(dialog)
           : noFiltered.push(dialog);
       });

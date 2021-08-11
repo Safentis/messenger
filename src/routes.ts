@@ -10,7 +10,6 @@ import Noactives from './screens/Messenger/Dialogs/Noactives/Noactives';
 import Сhatroom from './screens/Messenger/Сhatroom/Сhatroom';
 import Actives from './screens/Messenger/Dialogs/Actives/Actives';
 import Saved from './screens/Messenger/Dialogs/Saved/Saved';
-import Home from './screens/Messenger/Dialogs/Home/Home';
 import Line from './components/Line/Line';
 import Name from './components/Name/Name';
 

@@ -20,12 +20,12 @@ import {
 
 //* PROPERTY FOR HOC form
 //* which set up a formik
-const AUTH_FORM_FIELDS: Fields = {
+const UPDATE_FORM_FIELDS: Fields = {
   password: '',
   'password repeat': '',
 };
 
-const AUTH_VALIDATION_SCHEMA: object = Yup.object({
+const UPDATE_VALIDATION_SCHEMA: object = Yup.object({
   password: Yup.string()
     .required('Required')
     .min(8, 'Not less than 8 symbol')
@@ -37,7 +37,7 @@ const AUTH_VALIDATION_SCHEMA: object = Yup.object({
     .matches(REG_EXP_PASSWORD, PASSWORD_VALIDATION_MESSAGE),
 });
 
-const UpdateForm = form(Form, AUTH_FORM_FIELDS, requestUpdatePassword, AUTH_VALIDATION_SCHEMA);
+const UpdateForm = form(Form, UPDATE_FORM_FIELDS, requestUpdatePassword, UPDATE_VALIDATION_SCHEMA);
 
 const Update: FC<Props> = (): React.ReactElement => {
   //* --------------------------------------------------
