@@ -1,25 +1,27 @@
-import { FC, useEffect, useState } from "react";
-import { Props } from "./Search.interface";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { setFilteredDialogs } from "../../redux/actionCreators/dialogs";
-import useSearchHook from "../../Hooks/useSearchHook";
-import Input from "../Input/Input";
-import "./Search.css";
+import React, { FC, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
 
-const Search: FC<Props> = (): any => {
+import Input from '../Input/Input';
+import useSearchHook from '../../Hooks/useSearchHook';
+
+import './Search.css';
+import { Props } from './Search.interface';
+import { Chatrooms } from '../../screens/Root.interface';
+import { RootReducerState } from '../../redux/reducers/rootReducer.interface';
+
+const Search: FC<Props> = (): React.ReactElement => {
   //* ---------------------------------------------------
   //* State search handler
-  const [search, setSearch] = useState("");
-  const handleSearch = (event: any) => {
-    setSearch(event.target.value);
+  const [search, setSearch] = useState('');
+  const handleSearch = (event: React.SyntheticEvent<HTMLInputElement>) => {
+    setSearch(event.currentTarget.value);
   };
 
   //* ---------------------------------------------------
   //* Search requests
-  const dialogs = useSelector((state: any): any[] => {
+  const dialogs = useSelector((state: RootReducerState): Chatrooms => {
     return state.dialogsReducer.dialogs;
   });
 

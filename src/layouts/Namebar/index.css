@@ -4,14 +4,12 @@
 }
 
 .namebar__inner {
+  padding: 1rem;
 }
 
 .namebar__top {
   align-items: center;
   display: flex;
-}
-
-.namebar__top {
   justify-content: flex-end;
   flex-wrap: wrap;
 }

@@ -1,4 +1,6 @@
+import React from 'react';
+
 export interface Props {
-  children?: string | any;
+  children?: string | React.ReactNode;
   className?: string;
 }

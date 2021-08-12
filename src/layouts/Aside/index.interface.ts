@@ -1,5 +1,5 @@
-import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import React from 'react';
 
 export interface Props {
   children: React.ReactNode;

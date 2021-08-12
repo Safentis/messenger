@@ -1,4 +1,4 @@
-import { Message } from "../../../Root.interface";
+import { Message } from '../../../Root.interface';
 
 export interface Props {
   className?: string;

@@ -1,16 +1,16 @@
-import { FC, useState } from "react";
-import { faCog } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
-import { Formik, Form, FieldArray } from "formik";
+import { FC, useState } from 'react';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { Formik, Form, FieldArray } from 'formik';
 
-import { requestSettings } from "../../../redux/actionCreators/user";
-import Popup from "../../../layouts/Popup";
-import Button from "../../../components/Button/Button";
-import Label from "../../../components/Label/Label";
-import Input from "../../../components/Input/Input";
+import { requestSettings } from '../../../redux/actionCreators/user';
+import Popup from '../../../layouts/Popup';
+import Button from '../../../components/Button/Button';
+import Label from '../../../components/Label/Label';
+import Input from '../../../components/Input/Input';
 
-import { Props } from "./Settings.interface";
-import "./Settings.css";
+import { Props } from './Settings.interface';
+import './Settings.css';
 
 const Settings: FC<Props> = ({}) => {
   const dispatch = useDispatch();
@@ -31,10 +31,10 @@ const Settings: FC<Props> = ({}) => {
     greetings: settings.greetings,
   };
 
-  const popupTitle: string = "Dialog Settings";
+  const popupTitle: string = 'Dialog Settings';
   const popupExpose: any = {
     icon: faCog,
-    title: "Settings",
+    title: 'Settings',
   };
 
   //* ------------------------------------------------
@@ -60,7 +60,7 @@ const Settings: FC<Props> = ({}) => {
         enableReinitialize={true}
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        render={(formikProps) => (
+        render={formikProps => (
           <Form className="settings">
             <div className="greetings settings__greetings">
               <FieldArray name="greetings">
@@ -88,9 +88,7 @@ const Settings: FC<Props> = ({}) => {
                           </Button>
                           <Button
                             className="button-main greeting__button"
-                            onClick={() =>
-                              form.setFieldValue("greeting", greeting)
-                            }
+                            onClick={() => form.setFieldValue('greeting', greeting)}
                             type="button"
                           >
                             Choose
@@ -99,7 +97,7 @@ const Settings: FC<Props> = ({}) => {
                       ))}
                       <Button
                         className="button-main greetings__button"
-                        onClick={() => push("")}
+                        onClick={() => push('')}
                         type="button"
                       >
                         Add more
@@ -114,7 +112,7 @@ const Settings: FC<Props> = ({}) => {
                   <Input
                     className="input-main phrase__input"
                     placeholder="Greeting"
-                    {...formikProps.getFieldProps("greeting")}
+                    {...formikProps.getFieldProps('greeting')}
                   />
                 </Label>
                 <Button className="button-main phrase__button" type="submit">
@@ -122,8 +120,6 @@ const Settings: FC<Props> = ({}) => {
                 </Button>
               </div>
             </div>
-            <div className="headers">headers</div>
-            <div className="subheaders">subheaders</div>
           </Form>
         )}
       />

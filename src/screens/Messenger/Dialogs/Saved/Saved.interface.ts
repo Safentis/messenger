@@ -1,4 +1,4 @@
-import { Chatroom } from "../../../Root.interface";
+import { Chatroom } from '../../../Root.interface';
 import { UserStore } from '../../../../redux/reducers/userReducer/userReducer.interface';
 
 export interface Props {
@@ -6,4 +6,4 @@ export interface Props {
   user: UserStore;
 }
 
-export type chatroomType = [string, Chatroom]
+export type chatroomType = [string, Chatroom];

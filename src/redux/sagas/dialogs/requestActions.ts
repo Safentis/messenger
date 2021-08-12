@@ -1,42 +1,32 @@
-import { call, StrictEffect } from "redux-saga/effects";
+import { call, StrictEffect } from 'redux-saga/effects';
+import { DateType } from '../../../screens/Root.interface';
 
-interface FetchActions {
+import { fetchActions } from '../../../utils/functions';
+import { RequestProps } from '../sagas.interface';
+
+export interface FetchActions {
   chatId: string;
-  body: any;
+  body: {
+    status?: string;
+    operatorId?: string;
+    begun?: DateType;
+    saved?: string;
+  };
 }
 
-const fetchActions = async ({ chatId, body }: FetchActions) => {
-  try {
-    const update = {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    };
-
-    const request = await fetch(
-      `https://messenger-b15ea-default-rtdb.europe-west1.firebasedatabase.app/chatrooms/${chatId}.json`,
-      update
-    );
-    const respone = await request.json();
-  } catch (error) {
-    console.error(error.code);
-    console.error(error.message);
-  }
-};
-
 /**
- * @param {object} payload
- * @returns {Generator <StrictEffect, any, any>}
+ * @param {FetchActions} payload
+ * @param {string} payload.chatId
+ * @param {object} payload.body
+ * @returns {Generator <StrictEffect, void, any>}
  */
 export default function* requestActions({
   payload: { chatId, body },
-}: any): Generator<StrictEffect, any, any> {
+}: RequestProps<FetchActions>): Generator<StrictEffect, void, any> {
   try {
     yield call(fetchActions, { chatId, body });
   } catch (err) {
-    console.error("Code ", err.code);
-    console.error("Message ", err.message);
+    console.error('Code ', err.code);
+    console.error('Message ', err.message);
   }
 }

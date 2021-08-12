@@ -1,6 +1,6 @@
-import firebase from "firebase";
-import { getDownloadURL } from "../../../utils/functions";
-import { Message } from "../../Root.interface";
+import firebase from 'firebase';
+import { getDownloadURL } from '../../../utils/functions';
+import { Message } from '../../Root.interface';
 
 type image = string[] | null;
 
@@ -9,12 +9,9 @@ interface MessageTemplateProps {
   images: string[];
 }
 
-export const messageTemplate = ({
-  content,
-  images,
-}: MessageTemplateProps): Message => {
+export const messageTemplate = ({ content, images }: MessageTemplateProps): Message => {
   let timestamp: any = new Date();
-  let writtenBy: string = "operator";
+  let writtenBy: string = 'operator';
 
   return {
     writtenBy,
@@ -32,7 +29,7 @@ interface MessageImageSaveProps {
 
 export const messageImageSave = async ({ pictures }: MessageImageSaveProps) => {
   let storageRef = firebase.storage().ref();
-  let child: string = "images/";
+  let child: string = 'images/';
   let urls: string[] = [];
 
   try {
@@ -43,7 +40,7 @@ export const messageImageSave = async ({ pictures }: MessageImageSaveProps) => {
       urls.push(url);
     }
 
-    console.log(urls)
+    console.log(urls);
     return urls;
   } catch (error) {
     throw new Error(`${error}`);

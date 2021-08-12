@@ -1,16 +1,16 @@
-import { FC, MouseEvent } from "react";
-import { useDispatch } from "react-redux";
-import { Link, useRouteMatch } from "react-router-dom";
-import InfiniteScroll from "react-infinite-scroller";
+import { FC, MouseEvent } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useRouteMatch } from 'react-router-dom';
+import InfiniteScroll from 'react-infinite-scroller';
 
-import Dialog from "../../../../components/Dialog/Dialog";
-import useFilterDialogs from "../../../../Hooks/useFilterDialogs";
-import useInfiniteScroll from "../../../../Hooks/useInfiniteScroll";
-import { requestActions } from "../../../../redux/actionCreators/dialogs";
+import Dialog from '../../../../components/Dialog/Dialog';
+import useFilterDialogs from '../../../../Hooks/useFilterDialogs';
+import useInfiniteScroll from '../../../../Hooks/useInfiniteScroll';
+import { requestActions } from '../../../../redux/actionCreators/dialogs';
 
-import { Props } from "./Noactive.interface";
-import { Chatroom } from "../../../Root.interface";
-import { handleSignalsNotification } from "../../../../utils/functions";
+import { Props } from './Noactive.interface';
+import { Chatroom } from '../../../Root.interface';
+import { handleSignalsNotification } from '../../../../utils/functions';
 
 type dateType = string | number | Date;
 type chatroomType = [string, Chatroom];
@@ -26,7 +26,7 @@ const Noactives: FC<Props> = ({ dialogs, user: { uid } }) => {
 
   //* -------------------------------------------------------
   //* We create filter
-  const status: string = "noactive";
+  const status: string = 'noactive';
   const result: chatroomType[] = useFilterDialogs({ dialogs, status, uid });
 
   //* -------------------------------------------------------
@@ -36,7 +36,7 @@ const Noactives: FC<Props> = ({ dialogs, user: { uid } }) => {
     const chatId: string = target.dataset.id as string;
     const begun: dateType = new Date();
     const body: dispatchType = {
-      status: "active",
+      status: 'active',
       operatorId: uid,
       begun,
     };
@@ -58,7 +58,7 @@ const Noactives: FC<Props> = ({ dialogs, user: { uid } }) => {
     if (dialogs.length > 0) {
       for (let i = 0; i <= records; ++i) {
         //* If the dialogue is undefined, we skip it
-        if (typeof dialogs[i] === "undefined") {
+        if (typeof dialogs[i] === 'undefined') {
           continue;
         } else {
           const [key, value] = dialogs[i];
@@ -67,12 +67,12 @@ const Noactives: FC<Props> = ({ dialogs, user: { uid } }) => {
               <Link
                 className="button-action"
                 onClick={handleEnter}
-                to={"actives" + "/" + key}
+                to={'actives' + '/' + key}
                 data-id={key}
               >
                 start
               </Link>
-            </Dialog>
+            </Dialog>,
           );
         }
       }
@@ -83,12 +83,7 @@ const Noactives: FC<Props> = ({ dialogs, user: { uid } }) => {
 
   return (
     <>
-      <InfiniteScroll
-        loadMore={loadMore}
-        hasMore={hasMoreItems}
-        loader={loader}
-        useWindow={false}
-      >
+      <InfiniteScroll loadMore={loadMore} hasMore={hasMoreItems} loader={loader} useWindow={false}>
         {showItems(result)}
       </InfiniteScroll>
     </>

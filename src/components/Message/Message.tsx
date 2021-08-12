@@ -1,43 +1,60 @@
-import { FC } from "react";
+import React, { FC, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Avatar from "../Avatar/Avatar";
-import Button from "../Button/Button";
-import useLastActivity from "../../Hooks/useLastActivity";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import Avatar from '../Avatar/Avatar';
+import useLastActivity from '../../Hooks/useLastActivity';
 
-import { Props } from "./Message.interface";
-import { STANDART_AVATAR } from "../../utils/consts";
-import "./Message.css";
+import './Message.css';
+import { Props } from './Message.interface';
+import { DateType } from '../../screens/Root.interface';
+import { STANDART_AVATAR } from '../../utils/consts';
+import { handleSolution } from '../../utils/functions';
+import { useEffect } from 'react';
 
 const Message: FC<Props> = ({
   content,
   timestamp,
   writtenBy,
+  solution = false,
   images = [],
   photo,
+  index,
 }) => {
   //* -----------------------------------------------------------
   //* With useLastActivity we got a activity
-  const activity: any = useLastActivity(timestamp);
+  const activity: DateType = useLastActivity(timestamp);
+  const { key }: { key: string } = useParams();
 
   //* -----------------------------------------------------------
   //* Classes
-  const isClient: boolean = writtenBy === "client";
-  const messageClass: string = isClient ? "message-client" : "message-operator";
-  const contentClass: string = isClient ? "content-client" : "content-operator";
+  const isClient: boolean = writtenBy === 'client';
+  const messageClass: string = isClient ? 'message-client' : 'message-operator';
+  const contentClass: string = isClient ? 'content-client' : 'content-operator';
 
   //* -----------------------------------------------------------
   //* Avatar
   const avatar: string | null = isClient ? null : photo;
 
   //* -----------------------------------------------------------
+  //* Handle solution, the function needs for handle of solution
+  const [isSolution, setSolution] = useState<boolean>(solution);
+  const handleClick = async () => {
+    await handleSolution(key, index, !isSolution);
+    setSolution(!isSolution);
+  };
+
+  useEffect(() => {
+    setSolution(solution);
+  }, [solution]);
+
+  //* -----------------------------------------------------------
   //* Content
-  // console.log(images);
   const PICTURES: React.ReactNode | null =
     images.length > 0
       ? images.map((image: string, index: number) => (
-          <p className={"message__images"} key={index}>
+          <p className={'message__images'} key={index}>
             <img className="message__image" src={image} />
           </p>
         ))
@@ -46,16 +63,28 @@ const Message: FC<Props> = ({
   const CONTENT: React.ReactNode | null =
     content?.length > 0 ? (
       <>
-        <p className={"message__text " + contentClass}>{content}</p>
+        <p className={'message__text ' + contentClass}>{content}</p>
       </>
     ) : null;
 
+  const SOLUTION: React.ReactNode | null = (
+    <FontAwesomeIcon
+      className={`message__solution ${
+        isSolution ? 'message__solution_active' : 'message__solution_noactive'
+      }
+        `}
+      icon={faStar}
+      onClick={handleClick}
+    />
+  );
 
   return (
-    <div className={"message " + messageClass}>
+    <div className={'message ' + messageClass}>
       <div className="message__user">
         <Avatar src={avatar ?? STANDART_AVATAR} />
-        <p className="message__activity">{activity}</p>
+        <p className="message__activity">
+          {activity} {SOLUTION}
+        </p>
       </div>
       <div className="message__content">
         {PICTURES}

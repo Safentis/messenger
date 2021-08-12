@@ -1,16 +1,16 @@
-import { State, Action, UserStore, Settings } from "./userReducer.interface";
-import { FETCH_USER_SET, FETCH_USER_SETTINGS_SET } from "../../actions/user";
+import { State, Action, UserStore, Settings } from './userReducer.interface';
+import { FETCH_USER_SET, FETCH_USER_SETTINGS_SET } from '../../actions/user';
 
 const initialState: State = {
   user: {
-    email: "",
-    name: "",
-    photo: "",
-    uid: "",
+    email: '',
+    name: '',
+    photo: '',
+    uid: '',
   },
   settings: {
-    greeting: "",
-    greetings: [""],
+    greeting: '',
+    greetings: [''],
   },
 };
 

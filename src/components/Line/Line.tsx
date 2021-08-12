@@ -1,13 +1,13 @@
-import { FC } from "react";
-import { useSelector } from "react-redux";
+import { FC } from 'react';
+import { useSelector } from 'react-redux';
 
-import "./Line.css";
-import { Props } from "./Line.interface";
-import { Chatroom } from "../../screens/Root.interface";
-import { RootReducerState } from "../../redux/reducers/rootReducer.interface";
+import './Line.css';
+import { Props } from './Line.interface';
+import { Chatroom, Chatrooms } from '../../screens/Root.interface';
+import { RootReducerState } from '../../redux/reducers/rootReducer.interface';
 
 const Line: FC<Props> = ({ className = '' }): React.ReactElement => {
-  const dialogs = useSelector((state: RootReducerState): Chatroom[] => {
+  const dialogs = useSelector((state: RootReducerState): Chatrooms => {
     return state.dialogsReducer.dialogs;
   });
 
@@ -16,7 +16,7 @@ const Line: FC<Props> = ({ className = '' }): React.ReactElement => {
   let array: Chatroom[] = Object.values(dialogs || []);
 
   while (index < array.length) {
-    if (array[index].status === "noactive") {
+    if (array[index].status === 'noactive') {
       count++;
     }
 

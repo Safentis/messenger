@@ -1,4 +1,4 @@
 export interface Props {
-    pictures: object[]
-    setPictures: Function
+  pictures: object[];
+  setPictures: Function;
 }

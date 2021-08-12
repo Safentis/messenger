@@ -1,35 +1,35 @@
-import { FC, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { usePubNub } from "pubnub-react";
-import { useDispatch } from "react-redux";
+import { FC, useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { usePubNub } from 'pubnub-react';
+import { useDispatch } from 'react-redux';
+import Pubnub from 'pubnub';
 
-import Inputbar from "./Inputbar/Inputbar";
-import Messages from "./Messages/Messages";
-import Message from "../../../components/Message/Message";
-import ImagesList from "./ImagesList/ImagesList";
-import Content from "../../../layouts/Content/index";
-import Solution from "../../../components/Solution/Solution";
-import Typing from "../../../components/Typing/Typing";
-import useLastActivity from "../../../Hooks/useLastActivity";
-import { requestMessages } from "../../../redux/actionCreators/dialogs";
+import Inputbar from './Inputbar/Inputbar';
+import Messages from './Messages/Messages';
+import Message from '../../../components/Message/Message';
+import ImagesList from './ImagesList/ImagesList';
+import Content from '../../../layouts/Content/index';
+import Solution from '../../../components/Solution/Solution';
+import Typing from '../../../components/Typing/Typing';
+import useLastActivity from '../../../Hooks/useLastActivity';
 
-import { messageImageSave } from "./Chatroom.support";
-import { messageTemplate } from "./Chatroom.support";
-import { Message as MessageInterface } from "../../Root.interface";
+import { requestMessages } from '../../../redux/actionCreators/dialogs';
+import { messageImageSave } from './Chatroom.support';
+import { messageTemplate } from './Chatroom.support';
+import { Chatroom, DateType, Message as MessageInterface } from '../../Root.interface';
 import {
   Props,
   Signal,
   Envelope,
-  activityType,
   typingType,
   pictureType,
   inputbarType,
   useparamsType,
-} from "./Сhatroom.interface";
-import "./Сhatroom.css";
+  ChatroomState,
+} from './Сhatroom.interface';
+import './Сhatroom.css';
 
-const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
-
+const Сhatroom: FC<Props> = ({ dialogs, user, settings }): React.ReactElement => {
   //* ---------------------------------------------
   //* We get a key of url
   const { key }: useparamsType = useParams();
@@ -37,45 +37,39 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
 
   //* ---------------------------------------------
   //* Main state
-  interface ChatroomState {
-    messages: MessageInterface[];
-    chatroomChannel: string;
-    question: string;
-    status: string;
-    complited: string | number | Date;
-  }
-
   const [chatroom, setChatroom]: [ChatroomState, Function] = useState({
-    chatroomChannel: `room-${key}`,
     messages: Object.values(dialogs[key]?.messages || []),
-    question: Object.values(dialogs[key]?.messages || [])[1],
-    status: dialogs[key]?.status,
+    keys: Object.keys(dialogs[key]?.messages || []),
+    question: '',
+    status: '',
     complited: '',
   });
 
-  const activity: activityType = useLastActivity(
-    chatroom?.complited
-  );
-
   useEffect(() => {
-    let chatroom = dialogs[key];
-    let messages = Object.values(chatroom.messages || []);
+    let chatroom: Chatroom = dialogs[key];
+    let messages: MessageInterface[] = Object.values(chatroom?.messages || []);
+    let keys: string[] = Object.keys(chatroom?.messages || []);
+    let question: string = messages[1]?.content;
+    let status: string = chatroom?.status;
+    let complited: DateType = dialogs[key]?.complited;
 
     //* ---------------------------------------------
     //* Auto greeting
-    if (chatroom.status === "noactive") {
+    if (chatroom?.status === 'noactive') {
       setTimeout(() => {
         sendMessage(settings.greeting);
-      }, 0)
+      }, 0);
     }
 
     setChatroom({
-      messages: messages,
-      question: messages[1]?.content,
-      status: chatroom?.status,
-      complited: dialogs[key]?.complited
+      ...chatroom,
+      messages,
+      question,
+      status,
+      keys,
+      complited,
     });
-  }, [key]);
+  }, [key, dialogs[key].status]);
 
   //* ---------------------------------------------
   //* Typing state
@@ -83,55 +77,60 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
 
   //* ---------------------------------------------
   //* Pubnub state
-  const chatroomChannel = `room-${key}`;
-  const pubnub: any = usePubNub();
-  const [channels]: any[] = useState([chatroomChannel]);
+  const chatroomChannel: string = `room-${key}`;
+  const [channels]: [string[], Function] = useState([chatroomChannel]);
+  const pubnub: Pubnub = usePubNub();
 
   //* ---------------------------------------------
   //* Picture handler
   const [pictures, setPictures]: pictureType = useState([]);
   const handleDrop = async (picture: object): Promise<void> => {
-    setPictures(picture)
+    setPictures(picture);
   };
 
   //* ---------------------------------------------
   //* Inputbar state and typing logic
-  const [inputbar, setInputbar]: inputbarType = useState("");
+  const [inputbar, setInputbar]: inputbarType = useState('');
   const handleKeyUp = () => {
     const inputHasText = inputbar.length > 0;
 
     if (inputHasText || !inputHasText) {
       pubnub.signal({
         channel: chatroomChannel,
-        message: inputHasText ? "1" : "0",
+        message: inputHasText ? '1' : '0',
       });
     }
   };
 
   //* ---------------------------------------------
   //* Pubnub handlers
-  const sendMessage = async (message: string) => {
-    if (message.trim().length !== 0 || pictures.length > 0) {
-      setInputbar("");
+  const sendMessage = async (message: string): Promise<void> => {
+    let isMessage: boolean = message.trim().length !== 0;
+    let isPicture: boolean = pictures.length > 0;
+    let isComplite: boolean = chatroom.status === 'complited';
+
+    if (isComplite) return;
+    if (isMessage || isPicture) {
+      setInputbar('');
       let images: string[] = [];
       let body: MessageInterface;
-  
-      if (pictures.length > 0) {
+
+      if (isPicture) {
         setPictures([]);
         images = await messageImageSave({ pictures });
       }
-  
+
       body = messageTemplate({ content: message, images });
-  
+
       pubnub.publish({
         channel: chatroomChannel,
         message: { ...body },
       });
       pubnub.signal({
         channel: chatroomChannel,
-        message: "0",
+        message: '0',
       });
-    } 
+    }
   };
 
   const handleMessage = ({ message }: Envelope) => {
@@ -139,21 +138,21 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
     state.messages.push(message);
     setChatroom(state);
 
-    if (message.writtenBy === "operator") {
+    if (message.writtenBy === 'operator') {
       dispatch(
         requestMessages({
           chatId: key,
           body: {
             ...message,
           },
-        })
+        }),
       );
     }
   };
 
   const handleSignal = (signal: Signal) => {
-    if (signal.publisher === "client") {
-      if (signal.message.toString() === "1") {
+    if (signal.publisher === 'client') {
+      if (signal.message.toString() === '1') {
         setIsTyping(true);
       } else {
         setIsTyping(false);
@@ -166,7 +165,7 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
       message: handleMessage,
       signal: handleSignal,
     };
-  
+
     pubnub.setUUID('operator');
     pubnub.addListener(listener);
     pubnub.subscribe({ channels });
@@ -176,23 +175,29 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }) => {
     };
   }, [pubnub, channels]);
 
- 
+  //* ---------------------------------------------
+  //* Last activity hook
+  const activity: DateType = useLastActivity(chatroom?.complited);
 
   //* ---------------------------------------------
   //* Content
   const MESSAGES = chatroom.messages.map((message: MessageInterface, index: number) => (
-    <Message key={index} {...message} {...user} />
+    <Message
+      key={index}
+      chatId={key} //* key of chatroom
+      index={chatroom.keys[index]} //* key of message
+      {...message}
+      {...user}
+    />
   ));
 
   const MESSAGE_COMPLITED =
-    chatroom.status === "complited" ? (
+    chatroom.status === 'complited' ? (
       <p className="chatroom__complited">Dialog complited {activity}</p>
     ) : null;
 
   const MESSAGE_IMAGE =
-    pictures.length > 0 ? (
-      <ImagesList pictures={pictures} setPictures={setPictures} />
-    ) : null;
+    pictures.length > 0 ? <ImagesList pictures={pictures} setPictures={setPictures} /> : null;
 
   return (
     <Content className="chatroom">

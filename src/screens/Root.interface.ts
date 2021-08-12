@@ -1,16 +1,18 @@
+export type DateType = string | number | Date;
+
 export interface Chatroom {
-  begun: string | number | Date;
+  begun: DateType;
   client: string;
-  created: string | number | Date;
+  created: DateType;
   messages: Message;
   operatorId: string;
   operator: string;
   saved: string;
-  score: string | number | null;
+  score: string | number | null | undefined;
   status: string;
   theme: string;
   subtheme: string;
-  complited: string | number | Date;
+  complited: DateType;
 }
 
 export interface Client {
@@ -20,9 +22,9 @@ export interface Client {
 
 export interface Message {
   content: string;
-  timestamp: string | number | Date;
+  timestamp: DateType;
   writtenBy: string;
-  images: string[];
+  images?: string[];
   solution?: boolean;
 }
 
@@ -33,6 +35,6 @@ export interface User {
   status?: string | boolean;
 }
 
-export interface UserDatabase {
-  
+export interface Chatrooms {
+  [key: string]: Chatroom;
 }

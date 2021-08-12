@@ -1,16 +1,15 @@
-import { FC } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useRouteMatch } from "react-router-dom";
+import { FC } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useRouteMatch } from 'react-router-dom';
 
-import { requestActions } from "../../../../redux/actionCreators/dialogs";
-import useFilterDialogs from "../../../../Hooks/useFilterDialogs";
-import Button from "../../../../components/Button/Button";
-import Dialog from "../../../../components/Dialog/Dialog";
-import Stars from "../../../../components/Stars/Stars";
+import { requestActions } from '../../../../redux/actionCreators/dialogs';
+import useFilterDialogs, { ChatroomType } from '../../../../Hooks/useFilterDialogs';
+import Button from '../../../../components/Button/Button';
+import Dialog from '../../../../components/Dialog/Dialog';
+import Stars from '../../../../components/Stars/Stars';
 
-import { Props, chatroomType } from "./Saved.interface";
-import { Chatroom } from "../../../Root.interface";
+import { Props } from './Saved.interface';
 
 const Saved: FC<Props> = ({ dialogs, user: { uid } }): React.ReactElement => {
   const dispatch = useDispatch();
@@ -22,7 +21,7 @@ const Saved: FC<Props> = ({ dialogs, user: { uid } }): React.ReactElement => {
     const target: HTMLElement = event.target as HTMLElement;
     const chatId: string = target.dataset.id as string;
     const body = {
-      saved: "nosaved",
+      saved: 'nosaved',
     };
 
     dispatch(requestActions({ chatId, body }));
@@ -30,15 +29,15 @@ const Saved: FC<Props> = ({ dialogs, user: { uid } }): React.ReactElement => {
 
   //* -------------------------------------------------------
   //* We create filter
-  const status: string = "saved";
-  const result: any = useFilterDialogs({ dialogs, status, uid });
+  const status: string = 'saved';
+  const result: ChatroomType[] = useFilterDialogs({ dialogs, status, uid });
 
   //* -------------------------------------------------------
   //* Content
-  const CONTENT: React.ReactNode = result.map(([key, value]: any, index: number) => (
+  const CONTENT: React.ReactNode = result.map(([key, value]: ChatroomType, index: number) => (
     <Dialog key={index} {...value}>
       <Stars score={value.score} />
-      <Link className="button-action" to={url + "/" + key}>
+      <Link className="button-action" to={url + '/' + key}>
         proceed
       </Link>
       <Button className="button-action" onClick={handleDelete} data-id={key}>
@@ -47,11 +46,7 @@ const Saved: FC<Props> = ({ dialogs, user: { uid } }): React.ReactElement => {
     </Dialog>
   ));
 
-  return (
-    <>
-      {CONTENT}
-    </>
-  );
+  return <>{CONTENT}</>;
 };
 
 export default Saved;

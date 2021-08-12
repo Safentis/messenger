@@ -15,9 +15,9 @@
   --main-fs-h3: 1.6rem;
   --main-fs-text: 1.4rem;
 
-  --main-font-regular: "DIN Pro", sans-serif;
-  --main-font-medium: "DIN Pro", sans-serif;
-  --main-fron-bold: "DIN Pro Cond", sans-serif;
+  --main-font-regular: 'DIN Pro', sans-serif;
+  --main-font-medium: 'DIN Pro', sans-serif;
+  --main-fron-bold: 'DIN Pro Cond', sans-serif;
 
   --error-color: crimson;
   --success-color: #79aa6b;

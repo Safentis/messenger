@@ -1,42 +1,38 @@
-import React, { FC, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Field, Form } from "react-final-form";
-import { faUserAlt } from "@fortawesome/free-solid-svg-icons";
+import React, { FC, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Field, Form } from 'react-final-form';
+import { faUserAlt } from '@fortawesome/free-solid-svg-icons';
+import { Spinner } from 'reactstrap';
 
-import Popup from "../../../layouts/Popup";
-import Label from "../../../components/Label/Label";
-import Button from "../../../components/Button/Button";
-import Input from "../../../components/Input/Input";
-import Avatar from "../../../components/Avatar/Avatar";
-import { requestUpdate } from "../../../redux/actionCreators/user";
+import Popup from '../../../layouts/Popup';
+import Label from '../../../components/Label/Label';
+import Button from '../../../components/Button/Button';
+import Input from '../../../components/Input/Input';
+import Avatar from '../../../components/Avatar/Avatar';
+import ErrorMessage from '../../../components/ErrorMessage/ErrorMessage';
 
-import "./Profile.css";
-import { STANDART_AVATAR } from "../../../utils/consts";
-import { RootReducerState } from "../../../redux/reducers/rootReducer.interface";
-import { UserStore } from "../../../redux/reducers/userReducer/userReducer.interface";
-import {
-  avatarType,
-  fileType,
-  Props,
-  ProfileInterface,
-  submitType,
-} from "./Profile.interface";
+import './Profile.css';
+import { requestUpdate } from '../../../redux/actionCreators/user';
+import { RootReducerState } from '../../../redux/reducers/rootReducer.interface';
+import { UserStore } from '../../../redux/reducers/userReducer/userReducer.interface';
+import { avatarType, fileType, Props, ProfileInterface, submitType } from './Profile.interface';
+import { STANDART_AVATAR } from '../../../utils/consts';
+import { password, required } from './Profile.support';
 
 const Profile: FC<Props> = ({}): React.ReactElement => {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const user = useSelector((state: RootReducerState): UserStore => {
     return state.userReducer.user;
   });
 
   //* ------------------------------------------------
   //* Image extensions that are allowed to put
-  const extensions: string[] = ["image/png", "image/jpeg"];
+  const extensions: string[] = ['image/png', 'image/jpeg'];
 
   //* ------------------------------------------------
   //* Handler of the file load
-  const [avatar, setAvatar]: avatarType = useState(
-    user.photo || STANDART_AVATAR
-  );
+  const [avatar, setAvatar]: avatarType = useState(user.photo || STANDART_AVATAR);
   const [file, setFile]: fileType = useState({});
   const handleFile = (event: Event) => {
     let target: any = event.target;
@@ -55,14 +51,14 @@ const Profile: FC<Props> = ({}): React.ReactElement => {
   //* Handler of the submit
   const handleSubmit = async (event: submitType) => {
     let { password, passwordRepeat, name } = event;
-    let isExtension: boolean = "type" in file;
+    let isExtension: boolean = 'type' in file;
     let isCompare: boolean = password === passwordRepeat;
     let uid: string = user.uid;
 
     if (isExtension && isCompare) {
       let user: ProfileInterface = { uid, file, name, password };
-
-      dispatch(requestUpdate({ user, closeModal }));
+      setIsLoading(true);
+      dispatch(requestUpdate({ user, closeModal, setIsLoading }));
     }
   };
 
@@ -72,10 +68,10 @@ const Profile: FC<Props> = ({}): React.ReactElement => {
     name: user.name,
   };
 
-  const popupTitle: string = "Update profile";
+  const popupTitle: string = 'Update profile';
   const popupExpose = {
     icon: faUserAlt,
-    title: "Profile",
+    title: 'Profile',
   };
 
   //* ------------------------------------------------
@@ -87,6 +83,7 @@ const Profile: FC<Props> = ({}): React.ReactElement => {
 
   const closeModal = () => {
     setIsOpen(false);
+    setIsLoading(false);
   };
 
   return (
@@ -100,53 +97,55 @@ const Profile: FC<Props> = ({}): React.ReactElement => {
       <Form onSubmit={handleSubmit} initialValues={initialValues}>
         {({ handleSubmit }) => (
           <form className="profile" action="none" onSubmit={handleSubmit}>
-            <Field name="name">
-              {({ input }) => (
-                <Label className="label-main  profile__label">
-                  Name
-                  <Input
-                    className="input-main profile__input"
-                    placeholder="Name"
-                    {...input}
-                  />
-                </Label>
+            <Field name="name" validate={required}>
+              {({ input, meta }) => (
+                <>
+                  <Label className="label-main  profile__label">
+                    Name
+                    <Input className="input-main profile__input" placeholder="Name" {...input} />
+                  </Label>
+                  {meta.error && meta.touched && <ErrorMessage>{meta.error}</ErrorMessage>}
+                </>
               )}
             </Field>
             <div className="profile__user">
-              <Avatar
-                className="profile__avatar"
-                height="100"
-                width="100"
-                src={avatar}
-              />
+              <Avatar className="profile__avatar" height="100" width="100" src={avatar} />
               <FileField className="profile__image" onChange={handleFile} />
             </div>
-            <Field name="password">
-              {({ input }) => (
-                <Label className="label-main profile__label">
-                  Password
-                  <Input
-                    className="input-main profile__input"
-                    placeholder="Password"
-                    {...input}
-                  />
-                </Label>
+            <Field name="password" validate={password}>
+              {({ input, meta }) => (
+                <>
+                  <Label className="label-main profile__label">
+                    Password
+                    <Input
+                      className="input-main profile__input"
+                      placeholder="Password"
+                      type="password"
+                      {...input}
+                    />
+                  </Label>
+                  {meta.error && meta.touched && <ErrorMessage>{meta.error}</ErrorMessage>}
+                </>
               )}
             </Field>
-            <Field name="passwordRepeat">
-              {({ input }) => (
-                <Label className="label-main profile__label">
-                  Repeat password
-                  <Input
-                    className="input-main profile__input"
-                    placeholder="Repeat Password"
-                    {...input}
-                  />
-                </Label>
+            <Field name="passwordRepeat" validate={password}>
+              {({ input, meta }) => (
+                <>
+                  <Label className="label-main profile__label">
+                    Repeat password
+                    <Input
+                      className="input-main profile__input"
+                      placeholder="Repeat Password"
+                      type="password"
+                      {...input}
+                    />
+                  </Label>
+                  {meta.error && meta.touched && <ErrorMessage>{meta.error}</ErrorMessage>}
+                </>
               )}
             </Field>
             <Button className="button-main profile__update" type="submit">
-              Update
+              {!isLoading ? 'Update' : <Spinner color="secondary" />}
             </Button>
           </form>
         )}
@@ -158,12 +157,7 @@ const Profile: FC<Props> = ({}): React.ReactElement => {
 const FileField = ({ name, ...props }: any) => (
   <Field name={name}>
     {({ input: { value, onChange, ...input } }) => (
-      <input
-        {...input}
-        type="file"
-        onChange={({ target }) => onChange(target.files)}
-        {...props}
-      />
+      <input {...input} type="file" onChange={({ target }) => onChange(target.files)} {...props} />
     )}
   </Field>
 );

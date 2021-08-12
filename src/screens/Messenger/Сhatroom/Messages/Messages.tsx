@@ -1,21 +1,22 @@
-import { FC, useEffect } from "react";
-import "./Messages.css";
-import { Props, MessagesElement, ScrollHeight } from "./Messages.interface";
+import { FC, useEffect } from 'react';
 
-const Messages: FC<Props> = ({ children, className = "" }) => {
+import { Props, MessagesElement, ScrollHeight } from './Messages.interface';
+import './Messages.css';
+
+const Messages: FC<Props> = ({ children, className = '' }): React.ReactElement => {
   //* --------------------------------------------------------
   //* Autoscroll messages
   useEffect(() => {
     let messagesElement: MessagesElement;
     let scrollHeight: ScrollHeight;
 
-    messagesElement = document.querySelector(".messages");
+    messagesElement = document.querySelector('.messages');
     scrollHeight = messagesElement && messagesElement?.scrollHeight;
 
     if (messagesElement && scrollHeight) {
       messagesElement?.scrollTo({
         top: scrollHeight,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
     }
 
@@ -26,7 +27,7 @@ const Messages: FC<Props> = ({ children, className = "" }) => {
   });
 
   return (
-    <div className={"messages " + className}>
+    <div className={'messages ' + className}>
       <div className="messages__inner">{children}</div>
     </div>
   );

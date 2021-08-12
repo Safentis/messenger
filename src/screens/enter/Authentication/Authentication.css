@@ -1,11 +1,10 @@
-.authentication {}
+.authentication {
+}
 
 .authentication__links {
-  
 }
 
 .authentication__link {
-
 }
 
 .authentication__socials {
@@ -15,4 +14,8 @@
 
 .authentication__button {
   padding: 0;
+}
+
+.authentication__google {
+  color: var(--error-color);
 }

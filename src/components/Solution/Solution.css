@@ -15,3 +15,32 @@
 .solution__button:hover {
   opacity: 0.6;
 }
+
+@media screen and (max-width: 1240px) {
+  .chatroom__solution {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .chatroom__solution {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    width: 100% !important;
+    justify-content: center;
+  }
+
+  .solution__button {
+    justify-self: end;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .chatroom__solution {
+    justify-content: space-around;
+  }
+
+  .solution__button {
+    margin: 0;
+  }
+}
