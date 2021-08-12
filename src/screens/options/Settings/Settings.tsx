@@ -120,8 +120,6 @@ const Settings: FC<Props> = ({}) => {
                 </Button>
               </div>
             </div>
-            <div className="headers">headers</div>
-            <div className="subheaders">subheaders</div>
           </Form>
         )}
       />

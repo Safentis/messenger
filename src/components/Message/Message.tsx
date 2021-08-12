@@ -11,12 +11,13 @@ import { Props } from './Message.interface';
 import { DateType } from '../../screens/Root.interface';
 import { STANDART_AVATAR } from '../../utils/consts';
 import { handleSolution } from '../../utils/functions';
+import { useEffect } from 'react';
 
 const Message: FC<Props> = ({
   content,
   timestamp,
   writtenBy,
-  solution,
+  solution = false,
   images = [],
   photo,
   index,
@@ -38,11 +39,15 @@ const Message: FC<Props> = ({
 
   //* -----------------------------------------------------------
   //* Handle solution, the function needs for handle of solution
-  const [isSolution, setSolution] = useState<boolean>(solution as boolean);
+  const [isSolution, setSolution] = useState<boolean>(solution);
   const handleClick = async () => {
     await handleSolution(key, index, !isSolution);
     setSolution(!isSolution);
   };
+
+  useEffect(() => {
+    setSolution(solution);
+  }, [solution]);
 
   //* -----------------------------------------------------------
   //* Content

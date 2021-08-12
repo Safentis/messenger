@@ -21,10 +21,10 @@
 
 .card-button,
 .card-link {
-  color: var(--main-blue-color);
   text-transform: uppercase;
   transition: 0.3s;
-  font-size: 1.4rem;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .card-button:hover,
@@ -33,7 +33,7 @@
   opacity: 0.5;
 }
 
-.card-button::after,
+/* .card-button::after,
 .card-link::after {
   content: '';
   display: block;
@@ -48,7 +48,7 @@
 .card-link:hover::after {
   width: 100%;
   transition: 0.3s;
-}
+} */
 
 .card__loader {
   align-items: center;

@@ -10,14 +10,15 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
 import 'firebase/firestore';
 import 'firebase/auth';
-import 'bootstrap/dist/css/bootstrap.css';
 
 import Root from './screens/Root';
 import { store } from './redux/store/store';
 import { persistor } from './redux/store/store';
 
-import 'normalize.css';
 import './fonts/DINPro/stylesheet.css';
+import 'normalize.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
 firebase.initializeApp({

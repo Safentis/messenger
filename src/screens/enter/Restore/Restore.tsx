@@ -2,7 +2,7 @@ import { FC } from 'react';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import 'react-toastify/dist/ReactToastify.css';
+import { Button } from 'reactstrap';
 
 import form from '../../../HOC/form';
 import Form from '../../../layouts/Form';
@@ -24,7 +24,12 @@ const RESTORE_VALIDATION_SCHEMA: object = Yup.object({
   email: Yup.string().email('Invalid email format').required('Required'),
 });
 
-const RestoreForm = form(Form, RESTORE_FORM_FIELDS, requestRestorePassword, RESTORE_VALIDATION_SCHEMA);
+const RestoreForm = form(
+  Form,
+  RESTORE_FORM_FIELDS,
+  requestRestorePassword,
+  RESTORE_VALIDATION_SCHEMA,
+);
 
 const Restore: FC<Props> = (): React.ReactElement => {
   //* --------------------------------------------------
@@ -49,7 +54,9 @@ const Restore: FC<Props> = (): React.ReactElement => {
         {links.map(
           ({ to, content }: FormLink, index: number): React.ReactNode => (
             <Link className="card-link restore__link" key={index} to={to}>
-              {content}
+              <Button className="card-link" color="link" size="lg" outline>
+                {content}
+              </Button>
             </Link>
           ),
         )}

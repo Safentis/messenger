@@ -1,8 +1,8 @@
 .settings {
   display: grid;
   grid-template-areas:
-    'greetings headers'
-    'greetings subheaders';
+    'greetings'
+    'greetings';
   grid-gap: 1rem;
 }
 
@@ -11,14 +11,6 @@
 
 .greetings {
   grid-area: greetings;
-}
-
-.headers {
-  grid-area: headers;
-}
-
-.subheaders {
-  grid-area: subheaders;
 }
 
 .greetings__button {
@@ -45,7 +37,10 @@
 }
 
 .greeting__button {
-  margin: 0 0.5rem;
+  margin: 0 0 0 0.5rem;
+}
+
+.greetings__phrase {
 }
 
 .phrase {
@@ -58,7 +53,8 @@
 
 .phrase__button {
   margin-top: 1rem;
-  padding: 1rem;
+  margin-left: 0.5rem;
+  padding: 1.475rem;
 }
 
 @media screen and (max-width: 768px) {

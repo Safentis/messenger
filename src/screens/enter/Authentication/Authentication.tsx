@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
+import { Button } from 'reactstrap';
 
 import form from '../../../HOC/form';
 import Card from '../../../layouts/Card/index';
 import Form from '../../../layouts/Form';
-import Button from '../../../components/Button/Button';
+// import Button from '../../../components/Button/Button';
 import { requestAuthentication } from '../../../redux/actionCreators/authentication';
 import { requestGoogle } from '../../../redux/actionCreators/registration';
 
@@ -59,7 +60,6 @@ const Authentication: FC = (): React.ReactElement => {
     { to: RESTORE_PASSWORD_ROUTE, content: 'Restore' },
   ];
 
-  // RWg2d9S4RgFB6fV
   return (
     <Card className="authentication" title="Authentication">
       <AuthenticationForm fields={fields} buttonParams={buttonParams} />
@@ -67,16 +67,21 @@ const Authentication: FC = (): React.ReactElement => {
         <Button
           className="card-button authentication__button"
           onClick={signWithGoogle}
+          color="link"
           type="submit"
+          size="lg"
+          outline
         >
-          sign with google
+          sign with <span className="authentication__google">google</span>
         </Button>
       </div>
       <div className="card-links authentication__links">
         {links.map(
           ({ to, content }: FormLink, index: number): React.ReactNode => (
             <Link className="card-link authentication__link" key={index} to={to}>
-              {content}
+              <Button className="card-button" color="link" size="lg" outline>
+                {content}
+              </Button>
             </Link>
           ),
         )}

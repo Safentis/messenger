@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { faKey } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
+import { Button } from 'reactstrap';
 
 import form from '../../../HOC/form';
 import Card from '../../../layouts/Card';
@@ -65,7 +66,9 @@ const Update: FC<Props> = (): React.ReactElement => {
         {links.map(
           ({ to, content }: FormLink, index: number): React.ReactNode => (
             <Link className="card-link update__link" key={index} to={to}>
-              {content}
+              <Button className="card-link" color="link" size="lg" outline>
+                {content}
+              </Button>
             </Link>
           ),
         )}

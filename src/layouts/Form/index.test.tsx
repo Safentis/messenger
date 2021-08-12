@@ -61,10 +61,6 @@ describe('<Form />', () => {
       expect(wrapper.find('Input')).toHaveLength(2);
     });
 
-    it('Component has 2 errorMessage', () => {
-      expect(wrapper.find('ErrorMessage')).toHaveLength(1);
-    });
-
     it('Component has 1 button', () => {
       expect(wrapper.find('Button')).toHaveLength(1);
     });

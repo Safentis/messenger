@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { Button } from 'reactstrap';
 
 import form from '../../../HOC/form';
 import Card from '../../../layouts/Card/index';
@@ -39,7 +40,12 @@ const REGISTRATION_VALIDATION_SCHEMA: object = Yup.object({
     .matches(REG_EXP_PASSWORD, PASSWORD_VALIDATION_MESSAGE),
 });
 
-const RegistrationForm = form(Form, REGISTRATION_FORM_FIELDS, requestRegistration, REGISTRATION_VALIDATION_SCHEMA);
+const RegistrationForm = form(
+  Form,
+  REGISTRATION_FORM_FIELDS,
+  requestRegistration,
+  REGISTRATION_VALIDATION_SCHEMA,
+);
 
 const Registration: FC<Props> = (): React.ReactElement => {
   //* --------------------------------------------------
@@ -68,7 +74,9 @@ const Registration: FC<Props> = (): React.ReactElement => {
         {links.map(
           ({ to, content }: FormLink, index: number): React.ReactNode => (
             <Link className="card-link registration__link" key={index} to={to}>
-              {content}
+              <Button className="card-link" color="link" size="lg" outline>
+                {content}
+              </Button>
             </Link>
           ),
         )}
