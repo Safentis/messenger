@@ -69,7 +69,7 @@ const Сhatroom: FC<Props> = ({ dialogs, user, settings }): React.ReactElement =
       keys,
       complited,
     });
-  }, [key, dialogs[key].status]);
+  }, [key]);
 
   //* ---------------------------------------------
   //* Typing state
