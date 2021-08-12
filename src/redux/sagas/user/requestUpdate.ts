@@ -68,6 +68,7 @@ export default function* requestUpdate({
         user: {
           name,
           photo,
+          uid
         },
       },
     });
