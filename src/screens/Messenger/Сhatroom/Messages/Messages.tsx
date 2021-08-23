@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import { Props, MessagesElement, ScrollHeight } from './Messages.interface';
 import './Messages.css';

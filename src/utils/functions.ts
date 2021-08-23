@@ -32,13 +32,10 @@ export const getDownloadURL = (
         switch (error.code) {
           case 'storage/unauthorized':
             throw new Error(`User doesn't have permission to access the object`);
-            break;
           case 'storage/canceled':
             throw new Error(`User canceled the upload`);
-            break;
           case 'storage/unknown':
             throw new Error(`Unknown error occurred, inspect error.serverResponse`);
-            break;
         }
       },
       () => {
@@ -55,11 +52,6 @@ export const handleError = (error: Error): never | void => {
   console.error(error);
   console.error(error.message);
   console.error(error.stack);
-  // throw new Error(`
-  //       \nERROR: ${error}
-  //       \nERROR_MESSAGE: ${error.message}
-  //       \nSTACK: ${error.stack}
-  //   `);
 };
 
 //* ------------------------------------------------------------------------------------------

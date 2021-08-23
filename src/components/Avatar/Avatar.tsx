@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 import { Props } from './Avatar.interface';
 import { STANDART_AVATAR } from '../../utils/consts';
@@ -12,7 +12,7 @@ const Avatar: FC<Props> = ({
 }): React.ReactElement => {
   return (
     <div className={'avatar ' + className}>
-      <img className="avatar__image" src={url} alt="user" width="50" height="50" {...attrs} />
+      <img className="avatar__image" src={url} alt="user" {...attrs} />
       {children}
     </div>
   );

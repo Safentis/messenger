@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 import './Typing.css';
 import { Props } from './Typing.interface';

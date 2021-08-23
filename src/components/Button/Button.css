@@ -18,7 +18,6 @@
 
 .button-action {
   color: var(--main-white-color);
-  margin-right: auto;
   font-size: 1.4rem;
   font-weight: 400;
   transition: 0.3s;

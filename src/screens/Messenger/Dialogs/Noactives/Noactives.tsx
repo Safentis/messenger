@@ -1,4 +1,4 @@
-import { FC, MouseEvent } from 'react';
+import React, { FC, MouseEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useRouteMatch } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroller';

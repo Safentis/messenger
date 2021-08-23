@@ -1,4 +1,4 @@
-import { Children, FC } from 'react';
+import React, { Children, FC } from 'react';
 
 import Props from './Label.interface';
 import './Label.css';
