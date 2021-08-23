@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 import StatusOffline from './StatusOffline/StatusOffline';
 import StatusOnline from './StatusOnline/StatusOnline';

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';

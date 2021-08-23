@@ -1,4 +1,4 @@
-import { Dispatch, FC, useEffect } from 'react';
+import React, { Dispatch, FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import firebase from 'firebase';
 
